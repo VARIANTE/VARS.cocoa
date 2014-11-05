@@ -69,6 +69,7 @@
 #define VS_M_SYMBOL_XOR                        @"⊽" // 0x22BD
 #define VS_M_SYMBOL_X_VARIABLE                 @"x"
 #define VS_M_SYMBOL_Y_VARIABLE                 @"y"
+#define VS_M_SYMBOL_NAN                        @"nan"
 #define VS_M_REGEX_NUMERIC_SET 				   @"([0-9]|\\.|\\,)+"
 #define VS_M_REGEX_FUNCTION_SET 			   @"([a-d]|[f-w]|z|_|₂)+"
 #define VS_M_REGEX_OPERATOR_SET 			   @"(\\+|−|\\*|×|/|÷|\\^|E|~|C|P|≪|≫|∧|∨|⊻|⊽|=|%)"
@@ -135,6 +136,7 @@
 #define VS_M_SYMBOL_XOR                        "⊽" // 0x22BD
 #define VS_M_SYMBOL_X_VARIABLE                 "x"
 #define VS_M_SYMBOL_Y_VARIABLE                 "y"
+#define VS_M_SYMBOL_NAN                        "nan"
 #define VS_M_REGEX_NUMERIC_SET 				   "([0-9]|\\.|\\,)+"
 #define VS_M_REGEX_FUNCTION_SET 			   "([a-d]|[f-w]|z|_|₂)+"
 #define VS_M_REGEX_OPERATOR_SET 			   "(\\+|−|\\*|×|/|÷|\\^|E|~|C|P|≪|≫|∧|∨|⊻|⊽|=|%)"
@@ -276,7 +278,10 @@ float ffactf(float __n);
 double ffact(double __n);
 
 /**
- *  Computes n choose r.
+ *  Computes n choose r. If both n and r are positive integers, the output
+ *  would be the binomial coefficient, involving Stirling's approximation for
+ *  larger values of r. If either is a complex/negative number, the gamma function Γ would
+ *  be used.
  *
  *  @param __n
  *  @param __r
@@ -286,7 +291,10 @@ double ffact(double __n);
 float fncrf(float __n, float __r);
 
 /**
- *  Computes n choose r.
+ *  Computes n choose r. If both n and r are positive integers, the output
+ *  would be the binomial coefficient, involving Stirling's approximation for
+ *  larger values of r. If either is a complex/negative number, the gamma function Γ would
+ *  be used.
  *
  *  @param __n
  *  @param __r
@@ -296,7 +304,10 @@ float fncrf(float __n, float __r);
 double fncr(double __n, double __r);
 
 /**
- *  Computes n pick r.
+ *  Computes n pick r. If both n and r are positive integers, the output
+ *  would be the standard r-permutations of n involving Stirling's approximation for
+ *  larger values of r. If either is a complex/negative number, the gamma function Γ would
+ *  be used.
  *
  *  @param __n
  *  @param __r
@@ -306,7 +317,10 @@ double fncr(double __n, double __r);
 float fnprf(float __n, float __r);
 
 /**
- *  Computes n pick r.
+ *  Computes n pick r. If both n and r are positive integers, the output
+ *  would be the standard r-permutations of n involving Stirling's approximation for
+ *  larger values of r. If either is a complex/negative number, the gamma function Γ would
+ *  be used.
  *
  *  @param __n
  *  @param __r

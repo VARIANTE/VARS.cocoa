@@ -139,26 +139,40 @@ static NSNumberFormatter *NUMBER_FORMATTER;
     {
         // Do nothing.
     }
-    else if ([aString isEqualToString:@"nan"] || [aString isEqualToString:@"NAN"] || [aString isEqualToString:@"NaN"])
-    {
-        number = [NSNumber numberWithDouble:NAN];
-    }
     else if (aNumberFormatter == nil)
     {
-        // Somehow grouping separators invalidates the numeric value in the string, remove them.
-        aString = [aString stringByReplacingOccurrencesOfString:[VSNumberUtil globalNumberFormatterWithDefaultLocale].groupingSeparator withString:@""];
-
-        number = [[VSNumberUtil globalNumberFormatterWithDefaultLocale] numberFromString:aString];
-
-        // Double check.
-        if (number != nil)
+        if ([[aString lowercaseString] isEqualToString:[VS_M_SYMBOL_NAN lowercaseString]])
         {
-            number = [NSNumber numberWithDouble:[VSNumberUtil doubleFromString:aString]];
+            number = [NSNumber numberWithDouble:NAN];
+        }
+        else
+        {
+            // Somehow grouping separators invalidates the numeric value in the string, remove them.
+            aString = [aString stringByReplacingOccurrencesOfString:[VSNumberUtil globalNumberFormatterWithDefaultLocale].groupingSeparator withString:@""];
+
+            number = [[VSNumberUtil globalNumberFormatterWithDefaultLocale] numberFromString:aString];
+
+            // Double check.
+            if (number != nil)
+            {
+                number = [NSNumber numberWithDouble:[VSNumberUtil doubleFromString:aString]];
+            }
         }
     }
     else
     {
-        number = [aNumberFormatter numberFromString:aString];
+        if ([[aString lowercaseString] isEqualToString:[VS_M_SYMBOL_NAN lowercaseString]])
+        {
+            number = [NSNumber numberWithDouble:NAN];
+        }
+        else if ([[aString lowercaseString] isEqualToString:[aNumberFormatter.notANumberSymbol lowercaseString]])
+        {
+            number = [NSNumber numberWithDouble:NAN];
+        }
+        else
+        {
+            number = [aNumberFormatter numberFromString:aString];
+        }
     }
 
     return number;

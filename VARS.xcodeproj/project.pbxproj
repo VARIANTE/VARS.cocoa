@@ -70,6 +70,8 @@
 		6BD0336F1988CE5D00AF9866 /* VSStringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD0334D1988CE5D00AF9866 /* VSStringUtil.m */; };
 		6BDCCFA419E0E59300A86FCA /* VSUIModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BDCCFA219E0E59300A86FCA /* VSUIModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6BDCCFA519E0E59300A86FCA /* VSUIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDCCFA319E0E59300A86FCA /* VSUIModel.m */; };
+		6BEB22FA1A04539800E50AC7 /* VSCalculusUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BEB22F81A04539800E50AC7 /* VSCalculusUtil.h */; };
+		6BEB22FB1A04539800E50AC7 /* VSCalculusUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEB22F91A04539800E50AC7 /* VSCalculusUtil.m */; };
 		6BFD7BA419EF4AE00065D557 /* VSArrayUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BFD7BA219EF4AE00065D557 /* VSArrayUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6BFD7BA519EF4AE00065D557 /* VSArrayUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BFD7BA319EF4AE00065D557 /* VSArrayUtil.m */; };
 /* End PBXBuildFile section */
@@ -140,6 +142,8 @@
 		6BD0334D1988CE5D00AF9866 /* VSStringUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSStringUtil.m; sourceTree = "<group>"; };
 		6BDCCFA219E0E59300A86FCA /* VSUIModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSUIModel.h; sourceTree = "<group>"; };
 		6BDCCFA319E0E59300A86FCA /* VSUIModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSUIModel.m; sourceTree = "<group>"; };
+		6BEB22F81A04539800E50AC7 /* VSCalculusUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCalculusUtil.h; sourceTree = "<group>"; };
+		6BEB22F91A04539800E50AC7 /* VSCalculusUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSCalculusUtil.m; sourceTree = "<group>"; };
 		6BFD7BA219EF4AE00065D557 /* VSArrayUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSArrayUtil.h; sourceTree = "<group>"; };
 		6BFD7BA319EF4AE00065D557 /* VSArrayUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSArrayUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -295,6 +299,8 @@
 		6BD033431988CE5D00AF9866 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				6BEB22F81A04539800E50AC7 /* VSCalculusUtil.h */,
+				6BEB22F91A04539800E50AC7 /* VSCalculusUtil.m */,
 				6BD033441988CE5D00AF9866 /* VSColorUtil.h */,
 				6BD033451988CE5D00AF9866 /* VSColorUtil.m */,
 				6BD033461988CE5D00AF9866 /* VSMathUtil.h */,
@@ -337,6 +343,7 @@
 				6BD0334F1988CE5D00AF9866 /* vsdebug.h in Headers */,
 				6BD033601988CE5D00AF9866 /* VSUIView.h in Headers */,
 				6BCA158819BD995F00968347 /* VSViewportUtil.h in Headers */,
+				6BEB22FA1A04539800E50AC7 /* VSCalculusUtil.h in Headers */,
 				6B1CC1F619DB5C2D00079144 /* VSUIViewUpdate.h in Headers */,
 				6BDCCFA419E0E59300A86FCA /* VSUIModel.h in Headers */,
 				6B74723E19E5300D0065970E /* VSUITextField.h in Headers */,
@@ -474,6 +481,7 @@
 				6B74723F19E5300D0065970E /* VSUITextField.m in Sources */,
 				6B1CC1F719DB5C2D00079144 /* VSUIViewUpdate.m in Sources */,
 				6BD0336D1988CE5D00AF9866 /* VSQuartzUtil.m in Sources */,
+				6BEB22FB1A04539800E50AC7 /* VSCalculusUtil.m in Sources */,
 				6BD033691988CE5D00AF9866 /* VSMathUtil.m in Sources */,
 				6BD033501988CE5D00AF9866 /* vsmath.c in Sources */,
 				6BD033591988CE5D00AF9866 /* VSUIButton.m in Sources */,

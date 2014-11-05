@@ -277,7 +277,10 @@ double ffact(double __n)
 }
 
 /**
- *  Computes n choose r.
+ *  Computes n choose r. If both n and r are positive integers, the output
+ *  would be the binomial coefficient, involving Stirling's approximation for
+ *  larger values of r. If either is a complex/negative number, the gamma function Γ would
+ *  be used.
  *
  *  @param __n
  *  @param __r
@@ -286,18 +289,130 @@ double ffact(double __n)
  */
 float fncrf(float __n, float __r)
 {
-    float o = expf((lgammaf(__n+1.0)) - (lgammaf(__r+1.0) + lgammaf(__n-__r+1.0)));
+    float o = 1.0f;
 
-    if ((fisintf(__n) == 1) && (fisint(__r) == 1))
+    // If n and r are a positive integers, compute the binomial coefficient.
+    if (fisintf(__n) && __n >= 0.0f && fisintf(__r) && __r >= 0.0f)
     {
-        o = roundf(o);
-    }
+        // Binomial coefficient properties.
+        if (__n == __r)      return 1.0f;
+        if (__r == 0.0f)     return 1.0f;
+        if (__r == 1.0f)     return __n;
+        if (__r == __n-1.0f) return __n;
+        if (__r > __n)       return 0.0f;
+        if (__r == 2.0f)     return __n*(__n-1.0f)/2.0f;
 
+        // Use approximation approach if r is too large.
+        if (__r > 1E7)
+        {
+            int simplified = 0;
+
+            if (simplified)
+            {
+                // Stirling's approximation: log(n!) ≈ nlog(n)-n
+                // Factorial representation of the binomial coefficient: n!/r!(n-r)!
+                // Derivation:
+                //      C(n,r) = n!/r!(n-r)!
+                // log(C(n,r)) = log(n!/r!(n-r)!)
+                // log(C(n,r)) = log(n!) - log(r!) - log((n-r)!)
+                // log(C(n,r)) ≈ (nlog(n)-n) - (rlog(r)-r) - ((n-r)log(n-r)-(n-r))
+                // log(C(n,r)) ≈ nlog(n)-n - rlog(r)+r - (n-r)log(n-r)+n-r
+                // log(C(n,r)) ≈ nlog(n) - rlog(r) - (n-r)log(n-r)
+                //      C(n,r) ≈ 10^(nlog(n) - rlog(r) - (n-r)log(n-r))
+                float a = __n * log10f(__n);
+                float b = __r * log10f(__r);
+                float c = (__n-__r) * log10f(__n-__r);
+
+                o = a-c-b; // Due to precision issues, order from likelihood of largest to smallest.
+
+                if (o < 0.0f)
+                {
+                    o = NAN;
+                }
+                else
+                {
+                    o = powf(10.0f, o);
+                }
+            }
+            else
+            {
+                // A better approximation that incorporates Stirling's approximation: log(n!) ≈ (n+0.5)log(n)-n+0.5log(2π)
+                // Factorial representation of the binomial coefficient: n!/r!(n-r)!
+                // Derivation:
+                //      C(n,r) = n!/r!(n-r)!
+                // log(C(n,r)) = log(n!/r!(n-r)!)
+                // log(C(n,r)) = log(n!) - log(r!) - log((n-r)!)
+                // log(C(n,r)) ≈ (n+0.5)log(n)-n+0.5log(2π) - (r+0.5)log(r)+r-0.5log(2π) - ((n-r)+0.5)log(n-r)+(n-r)-0.5log(2π)
+                // log(C(n,r)) ≈ (n+0.5)log(n) - (r+0.5)log(r) - (n-r+0.5)log(n-r) - 0.5log(2π)
+                //      C(n,r) ≈ 10^((n+0.5)log(n) - (r+0.5)log(r) - (n-r+0.5)log(n-r) - 0.5log(2π))
+                float a = (__n+0.5f)*log10f(__n);
+                float b = (__r+0.5f)*log10f(__r);
+                float c = (__n-__r+0.5)*log10f(__n-__r);
+                float d = 0.5f*log10f(2.0f*M_PI);
+
+                o = a-c-b-d; // Due to precision issues, order from likelihood of largest to smallest.
+
+                if (o < 0.0f)
+                {
+                    o = NAN;
+                }
+                else
+                {
+                    o = powf(10.0f, o);
+                }
+            }
+        }
+        // Standard approach.
+        else
+        {
+            // Factorial representation of the binomial coefficient: n!/r!(n-r)!
+            // Derivation:
+            // C(n,r) = n!/r!(n-r)!
+            //        = (1*2*...*n) / (1*2*...*r) * (1*2*...*(n-r))
+            //        = ((r+1)*(r+2)*...*n) / (1*2*...*(n-r))
+            //        = ((r+1)*(r+2)*...*(r+n-r)) / (1*2*...*(n-r))
+            //        = (r+1)/1 * (r+2)/2 * ... * (r+n-r)/(n-r)
+            //        = Π(i=1, n-r) (r+i)/i
+            //        = Π(i=1, n-r) 1+r/i
+            if (__n-__r < __r)
+            {
+                for (int i = 1; i <= __n -__r; i++)
+                {
+                    o *= 1.0f + __r/i;
+                }
+            }
+            else
+            {
+                for (int i = 1; i <= __r; i++)
+                {
+                    o *= 1.0f + (__n-__r)/i;
+                }
+            }
+        }
+
+        return o;
+    }
+    // Else we are dealing with complex numbers, gamma function is needed.
+    else
+    {
+        // Recall Γ(n) = (n-1)!, therefore Γ(n+1) = n!. Also, nCr = n!/r!(n-r)!.
+        // Factorial representation of the binomial coefficient: n!/r!(n-r)!
+        float a = lgammaf(__n+1.0f); // ln(n!)
+        float b = lgammaf(__r+1.0f); // ln(r!)
+        float c = lgammaf(__n-__r+1.0f); // ln((n-r))!
+
+        o = a-c-b; // Due to precision issues, order from likelihood of largest to smallest.
+        o = expf(o);
+    }
+    
     return o;
 }
 
 /**
- *  Computes n choose r.
+ *  Computes n choose r. If both n and r are positive integers, the output
+ *  would be the binomial coefficient, involving Stirling's approximation for
+ *  larger values of r. If either is a complex/negative number, the gamma function Γ would
+ *  be used.
  *
  *  @param __n
  *  @param __r
@@ -306,18 +421,130 @@ float fncrf(float __n, float __r)
  */
 double fncr(double __n, double __r)
 {
-    double o = exp((lgamma(__n+1.0)) - (lgamma(__r+1.0) + lgamma(__n-__r+1.0)));
+    double o = 1.0;
 
-    if (fisint(__n) && fisint(__r))
+    // If n and r are a positive integers, compute the binomial coefficient.
+    if (fisint(__n) && __n >= 0.0 && fisint(__r) && __r >= 0.0)
     {
-        o = round(o);
+        // Binomial coefficient properties.
+        if (__n == __r)     return 1.0;
+        if (__r == 0.0)     return 1.0;
+        if (__r == 1.0)     return __n;
+        if (__r == __n-1.0) return __n;
+        if (__r > __n)      return 0.0;
+        if (__r == 2.0)     return __n*(__n-1.0)/2.0;
+
+        // Use approximation approach if r is too large.
+        if (__r > 1E7)
+        {
+            int simplified = 0;
+
+            if (simplified)
+            {
+                // Stirling's approximation: log(n!) ≈ nlog(n)-n
+                // Factorial representation of the binomial coefficient: n!/r!(n-r)!
+                // Derivation:
+                //      C(n,r) = n!/r!(n-r)!
+                // log(C(n,r)) = log(n!/r!(n-r)!)
+                // log(C(n,r)) = log(n!) - log(r!) - log((n-r)!)
+                // log(C(n,r)) ≈ (nlog(n)-n) - (rlog(r)-r) - ((n-r)log(n-r)-(n-r))
+                // log(C(n,r)) ≈ nlog(n)-n - rlog(r)+r - (n-r)log(n-r)+n-r
+                // log(C(n,r)) ≈ nlog(n) - rlog(r) - (n-r)log(n-r)
+                //      C(n,r) ≈ 10^(nlog(n) - rlog(r) - (n-r)log(n-r))
+                double a = __n * log10(__n);
+                double b = __r * log10(__r);
+                double c = (__n-__r) * log10(__n-__r);
+
+                o = a-c-b; // Due to precision issues, order from likelihood of largest to smallest.
+
+                if (o < 0.0)
+                {
+                    o = NAN;
+                }
+                else
+                {
+                    o = pow(10.0, o);
+                }
+            }
+            else
+            {
+                // A better approximation that incorporates Stirling's approximation: log(n!) ≈ (n+0.5)log(n)-n+0.5log(2π)
+                // Factorial representation of the binomial coefficient: n!/r!(n-r)!
+                // Derivation:
+                //      C(n,r) = n!/r!(n-r)!
+                // log(C(n,r)) = log(n!/r!(n-r)!)
+                // log(C(n,r)) = log(n!) - log(r!) - log((n-r)!)
+                // log(C(n,r)) ≈ (n+0.5)log(n)-n+0.5log(2π) - (r+0.5)log(r)+r-0.5log(2π) - ((n-r)+0.5)log(n-r)+(n-r)-0.5log(2π)
+                // log(C(n,r)) ≈ (n+0.5)log(n) - (r+0.5)log(r) - (n-r+0.5)log(n-r) - 0.5log(2π)
+                //      C(n,r) ≈ 10^((n+0.5)log(n) - (r+0.5)log(r) - (n-r+0.5)log(n-r) - 0.5log(2π))
+                double a = (__n+0.5)*log10(__n);
+                double b = (__r+0.5)*log10(__r);
+                double c = (__n-__r+0.5)*log10(__n-__r);
+                double d = 0.5*log10(2.0*M_PI);
+
+                o = a-c-b-d; // Due to precision issues, order from likelihood of largest to smallest.
+
+                if (o < 0.0)
+                {
+                    o = NAN;
+                }
+                else
+                {
+                    o = pow(10.0, o);
+                }
+            }
+        }
+        // Standard approach.
+        else
+        {
+            // Factorial representation of the binomial coefficient: n!/r!(n-r)!
+            // Derivation:
+            // C(n,r) = n!/r!(n-r)!
+            //        = (1*2*...*n) / (1*2*...*r) * (1*2*...*(n-r))
+            //        = ((r+1)*(r+2)*...*n) / (1*2*...*(n-r))
+            //        = ((r+1)*(r+2)*...*(r+n-r)) / (1*2*...*(n-r))
+            //        = (r+1)/1 * (r+2)/2 * ... * (r+n-r)/(n-r)
+            //        = Π(i=1, n-r) (r+i)/i
+            //        = Π(i=1, n-r) 1+r/i
+            if (__n-__r < __r)
+            {
+                for (int i = 1; i <= __n -__r; i++)
+                {
+                    o *= 1.0 + __r/i;
+                }
+            }
+            else
+            {
+                for (int i = 1; i <= __r; i++)
+                {
+                    o *= 1.0 + (__n-__r)/i;
+                }
+            }
+        }
+
+        return o;
+    }
+    // Else we are dealing with complex numbers, gamma function is needed.
+    else
+    {
+        // Recall Γ(n) = (n-1)!, therefore Γ(n+1) = n!. Also, nCr = n!/r!(n-r)!.
+        // Factorial representation of the binomial coefficient: n!/r!(n-r)!
+        double a = lgamma(__n+1.0); // ln(n!)
+        double b = lgamma(__r+1.0); // ln(r!)
+        double c = lgamma(__n-__r+1.0); // ln((n-r))!
+
+        o = a-c-b; // Due to precision issues, order from likelihood of largest to smallest.
+        o = exp(o);
     }
 
     return o;
 }
 
 /**
- *  Computes n pick r.
+ *  Computes n pick r. If both n and r are positive integers, the output
+ *  would be the standard r-permutations of n involving Stirling's approximation for
+ *  larger values of r. If either is a complex/negative number, the gamma function Γ would
+ *  be used.
  *
  *  @param __n
  *  @param __r
@@ -326,18 +553,114 @@ double fncr(double __n, double __r)
  */
 float fnprf(float __n, float __r)
 {
-    float o = expf(lgammaf(__n+1.0) - lgammaf(__n-__r+1.0));
+    float o = 1.0f;
 
-    if ((fisintf(__n) == 1) && (fisintf(__r) == 1))
+    // If n and r are a positive integers, compute the standard r-permutations of n.
+    if (fisintf(__n) && __n >= 0.0f && fisintf(__r) && __r >= 0.0f)
     {
-        o = roundf(o);
-    }
+        // General properties.
+        if (__n == __r)      return ffactf(__n);
+        if (__r == 0.0f)     return 1.0f;
+        if (__r == 1.0f)     return __n;
+        if (__r == __n-1.0f) return ffactf(__n);
+        if (__r > __n)       return 0.0f;
 
+        // Use approximation approach if r is too large.
+        if (__r > 1E7)
+        {
+            int simplified = 0;
+
+            if (simplified)
+            {
+                // Stirling's approximation: log(n!) ≈ nlog(n)-n
+                // Factorial representation of r-permutations of n: n!/r!(n-r)!
+                // Derivation:
+                //      P(n,r) = n!/(n-r)!
+                // log(P(n,r)) = log(n!/(n-r)!)
+                // log(P(n,r)) = log(n!) - log((n-r)!)
+                // log(P(n,r)) ≈ (nlog(n)-n) - ((n-r)log(n-r)-(n-r))
+                // log(P(n,r)) ≈ nlog(n)-n - (n-r)log(n-r)+n-r
+                // log(P(n,r)) ≈ nlog(n) - (n-r)log(n-r) - r
+                //      P(n,r) ≈ 10^(nlog(n) - (n-r)log(n-r) - r)
+                float a = __n * log10f(__n);
+                float b = (__n-__r) * log10f(__n-__r);
+                float c = __r;
+
+                o = a-b-c; // Due to precision issues, order from likelihood of largest to smallest.
+
+                if (o < 0.0f)
+                {
+                    o = NAN;
+                }
+                else
+                {
+                    o = pow(10.0f, o);
+                }
+            }
+            else
+            {
+                // A better approximation that incorporates Stirling's approximation: log(n!) ≈ (n+0.5)log(n)-n+0.5log(2π)
+                // Factorial representation of r-permutations of n: n!/r!(n-r)!
+                // Derivation:
+                //      P(n,r) = n!/(n-r)!
+                // log(P(n,r)) = log(n!/(n-r)!)
+                // log(P(n,r)) = log(n!) - log((n-r)!)
+                // log(P(n,r)) ≈ (n+0.5)log(n)-n+0.5log(2π) - (n-r+0.5)log(n-r)+(n-r)-0.5log(2π)
+                // log(P(n,r)) ≈ (n+0.5)log(n) - (n-r+0.5)log(n-r) - r
+                //      P(n,r) ≈ 10^((n+0.5)log(n) - (n-r+0.5)log(n-r) - r)
+                float a = (__n+0.5f)*log10f(__n);
+                float b = (__n-__r+0.5f)*log10f(__n-__r);
+                float c = __r;
+
+                o = a-b-c; // Due to precision issues, order from likelihood of largest to smallest.
+
+                if (o < 0.0f)
+                {
+                    o = NAN;
+                }
+                else
+                {
+                    o = powf(10.0f, o);
+                }
+            }
+        }
+        // Standard approach.
+        else
+        {
+            // Factorial representation of r-permutations of n: n!/(n-r)!
+            // Derivation:
+            // P(n,r) = n!/(n-r)!
+            //        = (1*2*...*n) / (1*2*...*(n-r))
+            //        = (n-r+1) * (n-r+2) * ... * n-r+r
+            //        = Π(i=1, r) n-r+i
+            for (int i = 1; i <= __r; i++)
+            {
+                o *= __n-__r+i;
+            }
+        }
+
+        return o;
+    }
+    // Else we are dealing with complex numbers, gamma function is needed.
+    else
+    {
+        // Recall Γ(n) = (n-1)!, therefore Γ(n+1) = n!. Also, nCr = n!/r!(n-r)!.
+        // Factorial representation of r-permutations of n: n!/(n-r)!
+        float a = lgammaf(__n+1.0f); // ln(n!)
+        float b = lgammaf(__n-__r+1.0f); // ln((n-r))!
+
+        o = a-b; // Due to precision issues, order from likelihood of largest to smallest.
+        o = expf(o);
+    }
+    
     return o;
 }
 
 /**
- *  Computes n pick r.
+ *  Computes n pick r. If both n and r are positive integers, the output
+ *  would be the standard r-permutations of n involving Stirling's approximation for
+ *  larger values of r. If either is a complex/negative number, the gamma function Γ would
+ *  be used.
  *
  *  @param __n
  *  @param __r
@@ -346,13 +669,106 @@ float fnprf(float __n, float __r)
  */
 double fnpr(double __n, double __r)
 {
-    double o = exp(lgamma(__n+1.0) - lgamma(__n-__r+1.0));
+    double o = 1.0;
 
-    if (fisint(__n) && fisint(__r))
+    // If n and r are a positive integers, compute the standard r-permutations of n.
+    if (fisint(__n) && __n >= 0.0 && fisint(__r) && __r >= 0.0)
     {
-        o = round(o);
-    }
+        // General properties.
+        if (__n == __r)     return ffact(__n);
+        if (__r == 0.0)     return 1.0;
+        if (__r == 1.0)     return __n;
+        if (__r == __n-1.0) return ffact(__n);
+        if (__r > __n)      return 0.0;
 
+        // Use approximation approach if r is too large.
+        if (__r > 1E7)
+        {
+            int simplified = 0;
+
+            if (simplified)
+            {
+                // Stirling's approximation: log(n!) ≈ nlog(n)-n
+                // Factorial representation of r-permutations of n: n!/r!(n-r)!
+                // Derivation:
+                //      P(n,r) = n!/(n-r)!
+                // log(P(n,r)) = log(n!/(n-r)!)
+                // log(P(n,r)) = log(n!) - log((n-r)!)
+                // log(P(n,r)) ≈ (nlog(n)-n) - ((n-r)log(n-r)-(n-r))
+                // log(P(n,r)) ≈ nlog(n)-n - (n-r)log(n-r)+n-r
+                // log(P(n,r)) ≈ nlog(n) - (n-r)log(n-r) - r
+                //      P(n,r) ≈ 10^(nlog(n) - (n-r)log(n-r) - r)
+                double a = __n * log10(__n);
+                double b = (__n-__r) * log10(__n-__r);
+                double c = __r;
+
+                o = a-b-c; // Due to precision issues, order from likelihood of largest to smallest.
+
+                if (o < 0.0)
+                {
+                    o = NAN;
+                }
+                else
+                {
+                    o = pow(10.0, o);
+                }
+            }
+            else
+            {
+                // A better approximation that incorporates Stirling's approximation: log(n!) ≈ (n+0.5)log(n)-n+0.5log(2π)
+                // Factorial representation of r-permutations of n: n!/r!(n-r)!
+                // Derivation:
+                //      P(n,r) = n!/(n-r)!
+                // log(P(n,r)) = log(n!/(n-r)!)
+                // log(P(n,r)) = log(n!) - log((n-r)!)
+                // log(P(n,r)) ≈ (n+0.5)log(n)-n+0.5log(2π) - (n-r+0.5)log(n-r)+(n-r)-0.5log(2π)
+                // log(P(n,r)) ≈ (n+0.5)log(n) - (n-r+0.5)log(n-r) - r
+                //      P(n,r) ≈ 10^((n+0.5)log(n) - (n-r+0.5)log(n-r) - r)
+                double a = (__n+0.5)*log10(__n);
+                double b = (__n-__r+0.5)*log10(__n-__r);
+                double c = __r;
+
+                o = a-b-c; // Due to precision issues, order from likelihood of largest to smallest.
+
+                if (o < 0.0)
+                {
+                    o = NAN;
+                }
+                else
+                {
+                    o = pow(10.0, o);
+                }
+            }
+        }
+        // Standard approach.
+        else
+        {
+            // Factorial representation of r-permutations of n: n!/(n-r)!
+            // Derivation:
+            // P(n,r) = n!/(n-r)!
+            //        = (1*2*...*n) / (1*2*...*(n-r))
+            //        = (n-r+1) * (n-r+2) * ... * n-r+r
+            //        = Π(i=1, r) n-r+i
+            for (int i = 1; i <= __r; i++)
+            {
+                o *= __n-__r+i;
+            }
+        }
+
+        return o;
+    }
+    // Else we are dealing with complex numbers, gamma function is needed.
+    else
+    {
+        // Recall Γ(n) = (n-1)!, therefore Γ(n+1) = n!. Also, nCr = n!/r!(n-r)!.
+        // Factorial representation of r-permutations of n: n!/(n-r)!
+        double a = lgamma(__n+1.0); // ln(n!)
+        double b = lgamma(__n-__r+1.0); // ln((n-r))!
+
+        o = a-b; // Due to precision issues, order from likelihood of largest to smallest.
+        o = exp(o);
+    }
+    
     return o;
 }
 

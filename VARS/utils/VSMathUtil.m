@@ -1014,7 +1014,7 @@
         currToken = (NSString *)tokens[i];
 
         // Try to process the token.
-        if (![VSMathUtil _processShuntingYardToken:currToken andPreviousToken:prevToken stack:stack output:postfixStack customVariableSets:customVariableSets contentAware:NO])
+        if (![VSMathUtil _processShuntingYardToken:currToken andPreviousToken:prevToken stack:stack output:postfixStack customVariableSets:customVariableSets contentAware:YES])
         {
             vs_dealloc(stack);
 
@@ -1059,7 +1059,7 @@
  */
 + (BOOL)processShuntingYardToken:(id)token stack:(NSMutableArray *)stack output:(NSMutableArray *)output customVariableSets:(NSArray *)customVariableSets
 {
-    return [VSMathUtil _processShuntingYardToken:token andPreviousToken:nil stack:stack output:output customVariableSets:customVariableSets contentAware:YES];
+    return [VSMathUtil _processShuntingYardToken:token andPreviousToken:nil stack:stack output:output customVariableSets:customVariableSets contentAware:NO];
 }
 
 /*
@@ -2483,7 +2483,7 @@
                 }
                 else
                 {
-                    if (!isContentAware)
+                    if (isContentAware)
                     {
                         [VSMathUtil _insertMultiplierAfterLinkableToken:prevToken stack:stack output:output customVariableSets:customVariableSets];
                     }
@@ -2493,7 +2493,7 @@
             }
             else
             {
-                if (!isContentAware)
+                if (isContentAware)
                 {
                     [VSMathUtil _insertMultiplierAfterLinkableToken:prevToken stack:stack output:output customVariableSets:customVariableSets];
                 }
@@ -2507,7 +2507,7 @@
         case VSMathTokenTypeVariable:
         case VSMathTokenTypeConstant:
         {
-            if (!isContentAware)
+            if (isContentAware)
             {
                 [VSMathUtil _insertMultiplierAfterLinkableToken:prevToken stack:stack output:output customVariableSets:customVariableSets];
             }
@@ -2526,11 +2526,12 @@
         case VSMathTokenTypeFunction:
         {
             // Check if this negative sign should behave like a minus sign.
-            if (!isContentAware && ([VSMathUtil typeOfSymbol:token] == VSMathSymbolTypeNegative) && [VSMathUtil _validateLinkableToken:prevToken customVariableSets:customVariableSets])
+            if (isContentAware && ([VSMathUtil typeOfSymbol:token] == VSMathSymbolTypeNegative) && [VSMathUtil _validateLinkableToken:prevToken customVariableSets:customVariableSets])
             {
-                if (stackTopTokenType == VSMathTokenTypeOperator || stackTopTokenType == VSMathTokenTypeUnaryPrefixOperator)
+                if (stackTopTokenType == VSMathTokenTypeOperator || stackTopTokenType == VSMathTokenTypeUnaryPrefixOperator || stackTopTokenType == VSMathTokenTypeFunction)
                 {
-                    while ([VSMathUtil precedenceOfSymbol:stack.lastObject] >= [VSMathUtil precedenceOfSymbol:VS_M_SYMBOL_SUBTRACT])
+                    while (([VSMathUtil precedenceOfSymbol:stack.lastObject] >= [VSMathUtil precedenceOfSymbol:VS_M_SYMBOL_SUBTRACT]) ||
+                           ([VSMathUtil typeOfTokenSubset:stack.lastObject] == VSMathTokenTypeFunction))
                     {
                         [output addObject:stack.lastObject];
                         [stack removeLastObject];
@@ -2541,7 +2542,7 @@
             }
             else
             {
-                if (!isContentAware)
+                if (isContentAware)
                 {
                     [VSMathUtil _insertMultiplierAfterLinkableToken:prevToken stack:stack output:output customVariableSets:customVariableSets];
                 }
@@ -2555,18 +2556,19 @@
         case VSMathTokenTypeOperator:
         {
             // Check if this minus sign should behave like a negative sign.
-            if (!isContentAware && ([VSMathUtil typeOfSymbol:token] == VSMathSymbolTypeSubtract) && ![VSMathUtil _validateLinkableToken:prevToken customVariableSets:customVariableSets])
+            if (isContentAware && ([VSMathUtil typeOfSymbol:token] == VSMathSymbolTypeSubtract) && ![VSMathUtil _validateLinkableToken:prevToken customVariableSets:customVariableSets])
             {
                 [stack addObject:VS_M_SYMBOL_NEGATIVE];
             }
             else
             {
-                if (stackTopTokenType == VSMathTokenTypeOperator || stackTopTokenType == VSMathTokenTypeUnaryPrefixOperator)
+                if (stackTopTokenType == VSMathTokenTypeOperator || stackTopTokenType == VSMathTokenTypeUnaryPrefixOperator || stackTopTokenType == VSMathTokenTypeFunction)
                 {
                     // If left-associative.
                     if ([VSMathUtil operatorAssociativeTypeOfSymbol:token] == VSMathOperatorAssociativeTypeLeft)
                     {
-                        while ([VSMathUtil precedenceOfSymbol:stack.lastObject] >= [VSMathUtil precedenceOfSymbol:token])
+                        while (([VSMathUtil precedenceOfSymbol:stack.lastObject] >= [VSMathUtil precedenceOfSymbol:token]) ||
+                               ([VSMathUtil typeOfTokenSubset:stack.lastObject] == VSMathTokenTypeFunction))
                         {
                             [output addObject:stack.lastObject];
                             [stack removeLastObject];
@@ -2575,7 +2577,8 @@
                     // If right-associative.
                     else if ([VSMathUtil operatorAssociativeTypeOfSymbol:token] == VSMathOperatorAssociativeTypeRight)
                     {
-                        while ([VSMathUtil precedenceOfSymbol:stack.lastObject] > [VSMathUtil precedenceOfSymbol:token])
+                        while (([VSMathUtil precedenceOfSymbol:stack.lastObject] > [VSMathUtil precedenceOfSymbol:token]) ||
+                               ([VSMathUtil typeOfTokenSubset:stack.lastObject] == VSMathTokenTypeFunction))
                         {
                             [output addObject:stack.lastObject];
                             [stack removeLastObject];
@@ -2593,7 +2596,7 @@
         {
             if ([VSMathUtil typeOfSymbol:token] == VSMathSymbolTypeLeftParenthesis)
             {
-                if (!isContentAware)
+                if (isContentAware)
                 {
                     [VSMathUtil _insertMultiplierAfterLinkableToken:prevToken stack:stack output:output customVariableSets:customVariableSets];
                 }
@@ -2603,9 +2606,9 @@
             else if ([VSMathUtil typeOfSymbol:token] == VSMathSymbolTypeRightParenthesis)
             {
                 // While stacktop is not left-paren, pop stacktop to ouptut.
-                while ([stack.lastObject isKindOfClass:[NSNumber class]] || ([VSMathUtil typeOfSymbol:(NSString *)stack.lastObject] != VSMathSymbolTypeLeftParenthesis))
+                while ([VSMathUtil typeOfSymbol:stack.lastObject] != VSMathSymbolTypeLeftParenthesis)
                 {
-                    if ([stack count] > 0)
+                    if (stack.count > 0)
                     {
                         [output addObject:stack.lastObject];
                         [stack removeLastObject];
@@ -2618,7 +2621,7 @@
                 }
 
                 // Pop stacktop (should be left-paren).
-                if ([stack.lastObject isKindOfClass:[NSString class]] && [VSMathUtil typeOfSymbol:(NSString *)stack.lastObject] == VSMathSymbolTypeLeftParenthesis)
+                if ([VSMathUtil typeOfSymbol:(NSString *)stack.lastObject] == VSMathSymbolTypeLeftParenthesis)
                 {
                     [stack removeLastObject];
                 }
@@ -2629,13 +2632,10 @@
                 }
 
                 // Evaluate to see if stacktop is now a function and pop to output if it is.
-                if (stack.count > 0 && [stack.lastObject isKindOfClass:[NSString class]])
+                if ((stack.count > 0) && ([VSMathUtil typeOfTokenSubset:stack.lastObject] == VSMathTokenTypeFunction))
                 {
-                    if ([VSMathUtil typeOfTokenSubset:stack.lastObject] == VSMathTokenTypeFunction)
-                    {
-                        [output addObject:stack.lastObject];
-                        [stack removeLastObject];
-                    }
+                    [output addObject:stack.lastObject];
+                    [stack removeLastObject];
                 }
             }
 
@@ -2661,7 +2661,7 @@
 
                     if ([characterSet isSupersetOfSet:tokenSet])
                     {
-                        if (!isContentAware)
+                        if (isContentAware)
                         {
                             [VSMathUtil _insertMultiplierAfterLinkableToken:prevToken stack:stack output:output customVariableSets:customVariableSets];
                         }

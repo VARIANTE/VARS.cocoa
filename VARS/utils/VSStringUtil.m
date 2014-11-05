@@ -99,7 +99,7 @@
 {
     if (numericFormatSpecifier == nil) numericFormatSpecifier = VS_N_NUMERIC_FORMAT_DOUBLE;
     if (exponentSymbol == nil) exponentSymbol = VS_M_SYMBOL_SCIENTIFIC_NOTATION;
-    if (NANSymbol == nil) NANSymbol = @"nan";
+    if (NANSymbol == nil) NANSymbol = VS_M_SYMBOL_NAN;
 
     if (isnan(aDouble))
     {
@@ -107,7 +107,6 @@
     }
     else
     {
-
         return [[NSString stringWithFormat:numericFormatSpecifier, aDouble] stringByReplacingOccurrencesOfString:@"e" withString:exponentSymbol];
     }
 }

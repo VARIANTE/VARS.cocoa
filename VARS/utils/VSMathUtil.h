@@ -202,6 +202,9 @@ typedef NS_ENUM(int, VSMathTokenType)
 
 #pragma mark - INTERFACE
 
+/**
+ *  Utility for complex math operations.
+ */
 NS_ROOT_CLASS
 @interface VSMathUtil
 
