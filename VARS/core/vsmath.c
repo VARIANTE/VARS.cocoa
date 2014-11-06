@@ -183,6 +183,34 @@ double fgtor(double __n)
 }
 
 /**
+ *  Computes the natural logarithm of a float value.
+ *
+ *  @param __n
+ *
+ *  @return The computed float value.
+ */
+float flnf(float __n)
+{
+    float o = log10f(__n) / log10f(M_E);
+
+    return o;
+}
+
+/**
+ *  Computes the natural logarithm of a double value.
+ *
+ *  @param __n
+ *
+ *  @return The computed double value.
+ */
+double fln(double __n)
+{
+    double o = log10(__n) / log10(M_E);
+
+    return o;
+}
+
+/**
  *  Computes the factorial of a float value. Supports the factorial computation
  *  of positive/negative non-integers.
  *
@@ -302,8 +330,8 @@ float fncrf(float __n, float __r)
         if (__r > __n)       return 0.0f;
         if (__r == 2.0f)     return __n*(__n-1.0f)/2.0f;
 
-        // Use approximation approach if r is too large.
-        if (__r > 1E7)
+        // Use approximation approach if n-r is too large.
+        if (__n-__r > 1E7)
         {
             int simplified = 0;
 
@@ -434,8 +462,8 @@ double fncr(double __n, double __r)
         if (__r > __n)      return 0.0;
         if (__r == 2.0)     return __n*(__n-1.0)/2.0;
 
-        // Use approximation approach if r is too large.
-        if (__r > 1E7)
+        // Use approximation approach if n-r is too large.
+        if (__n-__r > 1E7)
         {
             int simplified = 0;
 

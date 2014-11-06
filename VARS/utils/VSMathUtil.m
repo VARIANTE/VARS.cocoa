@@ -673,14 +673,14 @@
         case VSMathOperationTypeNaturalLogarithm:
         {
             if (isnan(operandX)) return NAN;
-            result = log(operandX) / log([VSMathUtil evaluateOperation:VSMathOperationTypeEuler angleMode:angleMode]);
+            result = fln(operandX);
             break;
         }
 
         case VSMathOperationTypeInverseNaturalLogarithm:
         {
             if (isnan(operandX)) return NAN;
-            result = pow(M_E, operandX);
+            result = exp(operandX);
             break;
         }
 

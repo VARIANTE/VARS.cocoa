@@ -256,12 +256,30 @@ float fgtorf(float __n);
 double fgtor(double __n);
 
 /**
+ *  Computes the natural logarithm of a float value.
+ *
+ *  @param __n
+ *
+ *  @return The computed float value.
+ */
+float flnf(float __n);
+
+/**
+ *  Computes the natural logarithm of a double value.
+ *
+ *  @param __n
+ *
+ *  @return The computed double value.
+ */
+double fln(double __n);
+
+/**
  *  Computes the factorial of a float value. Supports the factorial computation
  *  of positive/negative non-integers.
  *
  *  @param __n
  *
- *  @return The computed float value if applicable,   otherwise (i.e. computing the factorial of
+ *  @return The computed float value if applicable, otherwise (i.e. computing the factorial of
  *          a negative integer).
  */
 float ffactf(float __n);
