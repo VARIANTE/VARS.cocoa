@@ -115,7 +115,7 @@
  */
 - (void)didInit
 {
-    _cachedLocaleIdentifier = [NSLocale currentLocale].localeIdentifier;
+
 }
 
 /*
@@ -144,6 +144,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    _cachedLocaleIdentifier = [NSLocale currentLocale].localeIdentifier;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_onCurrentLocaleDidChange:) name:NSCurrentLocaleDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_onApplicationDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
