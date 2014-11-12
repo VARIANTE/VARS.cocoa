@@ -8,6 +8,8 @@
 
 #import "VSNumberUtil.h"
 
+#pragma mark - ENUMS
+
 /**
  *  Enums of all numeral system types.
  */
@@ -26,17 +28,7 @@ typedef NS_ENUM(int, VSCharacterEncodingType)
  *
  *  @return NSString equivalent of the specified VSCharacterEncodingType.
  */
-NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
-{
-    switch (type)
-    {
-        case VSCharacterEncodingTypeUnknown:  return @"VSCharacterEncodingTypeUnknown";
-        case VSCharacterEncodingTypeAscii:    return @"VSCharacterEncodingTypeAscii";
-        case VSCharacterEncodingTypeUTF16:    return @"VSCharacterEncodingTypeUTF16";
-        case VSCharacterEncodingTypeMaxTypes: return @"VSCharacterEncodingTypeMaxTypes";
-        default:                              return @(type).stringValue;
-    }
-}
+NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type);
 
 #pragma mark - INTERFACE
 

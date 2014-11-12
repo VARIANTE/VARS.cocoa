@@ -8,6 +8,25 @@
 
 #import "VSViewportUtil.h"
 
+#pragma mark - ENUMS
+
+/*
+ *  @inheritdoc
+ */
+NSString *NSStringFromVSViewportAspectRatioType(VSViewportAspectRatioType type)
+{
+    switch (type)
+    {
+        case VSViewportAspectRatioTypeUnknown:  return @"VSViewportAspectRatioTypeUnknown";
+        case VSViewportAspectRatioType5_4:      return @"VSViewportAspectRatioType5_4";
+        case VSViewportAspectRatioType4_3:      return @"VSViewportAspectRatioType4_3";
+        case VSViewportAspectRatioType16_10:    return @"VSViewportAspectRatioType16_10";
+        case VSViewportAspectRatioType16_9:     return @"VSViewportAspectRatioType16_9";
+        case VSViewportAspectRatioTypeMaxTypes: return @"VSViewportAspectRatioTypeMaxTypes";
+        default:                                return @(type).stringValue;
+    }
+}
+
 #pragma mark - IMPLEMENTATION
 
 /*

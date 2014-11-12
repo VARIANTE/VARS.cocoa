@@ -25,6 +25,8 @@
  */
 #define VS_N_HEXADECIMAL_PREFIX @"0x"
 
+#pragma mark - ENUMS
+
 /**
  *  Enums of all numeral system types.
  */
@@ -44,17 +46,7 @@ typedef NS_ENUM(int, VSNumberSystemType)
  *
  *  @return NSString equivalent of the specified VSNumberSystemType.
  */
-NSString *NSStringFromVSNumberSystemType(VSNumberSystemType type)
-{
-    switch (type)
-    {
-        case VSNumberSystemTypeUnknown:     return @"VSNumberSystemTypeUnknown";
-        case VSNumberSystemTypeDecimal:     return @"VSNumberSystemTypeDecimal";
-        case VSNumberSystemTypeHexadecimal: return @"VSNumberSystemTypeHexadecimal";
-        case VSNumberSystemTypeMaxTypes:    return @"VSNumberSystemTypeMaxTypes";
-        default:                            return @(type).stringValue;
-    }
-}
+NSString *NSStringFromVSNumberSystemType(VSNumberSystemType type);
 
 #pragma mark - INTERFACE
 

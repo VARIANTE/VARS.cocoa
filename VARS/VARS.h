@@ -11,6 +11,7 @@
 #import "VARS/vsmem.h"
 
 #import "VARS/VSArrayUtil.h"
+#import "VARS/VSCalculusUtil.h"
 #import "VARS/VSColorUtil.h"
 #import "VARS/VSMathUtil.h"
 #import "VARS/VSNumberUtil.h"

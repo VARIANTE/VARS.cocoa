@@ -14,6 +14,23 @@
 #import "VSMathUtil.h"
 #import "VSStringUtil.h"
 
+#pragma mark - ENUMS
+
+/*
+ *  @inheritdoc
+ */
+NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
+{
+    switch (type)
+    {
+        case VSCharacterEncodingTypeUnknown:  return @"VSCharacterEncodingTypeUnknown";
+        case VSCharacterEncodingTypeAscii:    return @"VSCharacterEncodingTypeAscii";
+        case VSCharacterEncodingTypeUTF16:    return @"VSCharacterEncodingTypeUTF16";
+        case VSCharacterEncodingTypeMaxTypes: return @"VSCharacterEncodingTypeMaxTypes";
+        default:                              return @(type).stringValue;
+    }
+}
+
 #pragma mark - IMPLEMENTATION
 
 /*

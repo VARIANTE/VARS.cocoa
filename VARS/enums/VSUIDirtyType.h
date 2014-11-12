@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma mark - ENUMS
+
 /**
  *  All dirty invalidation types.
  *
@@ -35,21 +37,4 @@ typedef NS_ENUM(unsigned int, VSUIDirtyType)
  *
  *  @return NSString equivalent of the specified VSUIDirtyType.
  */
-NSString *NSStringFromVSUIDirtyType(VSUIDirtyType type)
-{
-    switch (type)
-    {
-        case VSUIDirtyTypeNone:        return @"VSUIDirtyTypeNone";
-        case VSUIDirtyTypeLayout:      return @"VSUIDirtyTypeLayout";
-        case VSUIDirtyTypeOrientation: return @"VSUIDirtyTypeOrientation";
-        case VSUIDirtyTypeState:       return @"VSUIDirtyTypeState";
-        case VSUIDirtyTypeData:        return @"VSUIDirtyTypeData";
-        case VSUIDirtyTypeLocale:      return @"VSUIDirtyTypeLocale";
-        case VSUIDirtyTypeDepth:       return @"VSUIDirtyTypeDepth";
-        case VSUIDirtyTypeConfig:      return @"VSUIDirtyTypeConfig";
-        case VSUIDirtyTypeStyle:       return @"VSUIDirtyTypeStyle";
-        case VSUIDirtyTypeCustom:      return @"VSUIDirtyTypeCustom";
-        case VSUIDirtyTypeMaxTypes:    return @"VSUIDirtyTypeMaxTypes";
-        default:                       return @(type).stringValue;
-    }
-}
+NSString *NSStringFromVSUIDirtyType(VSUIDirtyType type);

@@ -18,6 +18,23 @@
  */
 static NSNumberFormatter *NUMBER_FORMATTER;
 
+#pragma mark - ENUMS
+
+/*
+ *  @inheritdoc
+ */
+NSString *NSStringFromVSNumberSystemType(VSNumberSystemType type)
+{
+    switch (type)
+    {
+        case VSNumberSystemTypeUnknown:     return @"VSNumberSystemTypeUnknown";
+        case VSNumberSystemTypeDecimal:     return @"VSNumberSystemTypeDecimal";
+        case VSNumberSystemTypeHexadecimal: return @"VSNumberSystemTypeHexadecimal";
+        case VSNumberSystemTypeMaxTypes:    return @"VSNumberSystemTypeMaxTypes";
+        default:                            return @(type).stringValue;
+    }
+}
+
 #pragma mark - INTERFACE
 
 /*

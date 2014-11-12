@@ -9,10 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#pragma mark - INTERFACE
-
-NS_ROOT_CLASS
-@interface VSViewportUtil
+#pragma mark - ENUMS
 
 /**
  *  Enums of all numeral system types.
@@ -34,19 +31,12 @@ typedef NS_ENUM(int, VSViewportAspectRatioType)
  *
  *  @return NSString equivalent of the specified VSViewportAspectRatioType.
  */
-NSString *NSStringFromVSViewportAspectRatioType(VSViewportAspectRatioType type)
-{
-    switch (type)
-    {
-        case VSViewportAspectRatioTypeUnknown:  return @"VSViewportAspectRatioTypeUnknown";
-        case VSViewportAspectRatioType5_4:      return @"VSViewportAspectRatioType5_4";
-        case VSViewportAspectRatioType4_3:      return @"VSViewportAspectRatioType4_3";
-        case VSViewportAspectRatioType16_10:    return @"VSViewportAspectRatioType16_10";
-        case VSViewportAspectRatioType16_9:     return @"VSViewportAspectRatioType16_9";
-        case VSViewportAspectRatioTypeMaxTypes: return @"VSViewportAspectRatioTypeMaxTypes";
-        default:                                return @(type).stringValue;
-    }
-}
+NSString *NSStringFromVSViewportAspectRatioType(VSViewportAspectRatioType type);
+
+#pragma mark - INTERFACE
+
+NS_ROOT_CLASS
+@interface VSViewportUtil
 
 #pragma mark - CLASS METHODS
 
