@@ -37,6 +37,25 @@ typedef NS_ENUM(int, VSNumberSystemType)
     VSNumberSystemTypeMaxTypes
 };
 
+/**
+ *  Translates VSNumberSystemType to string.
+ *
+ *  @param type
+ *
+ *  @return NSString equivalent of the specified VSNumberSystemType.
+ */
+NSString *NSStringFromVSNumberSystemType(VSNumberSystemType type)
+{
+    switch (type)
+    {
+        case VSNumberSystemTypeUnknown:     return @"VSNumberSystemTypeUnknown";
+        case VSNumberSystemTypeDecimal:     return @"VSNumberSystemTypeDecimal";
+        case VSNumberSystemTypeHexadecimal: return @"VSNumberSystemTypeHexadecimal";
+        case VSNumberSystemTypeMaxTypes:    return @"VSNumberSystemTypeMaxTypes";
+        default:                            return @(type).stringValue;
+    }
+}
+
 #pragma mark - INTERFACE
 
 NS_ROOT_CLASS

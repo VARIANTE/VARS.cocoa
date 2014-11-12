@@ -19,6 +19,25 @@ typedef NS_ENUM(int, VSCharacterEncodingType)
     VSCharacterEncodingTypeMaxTypes
 };
 
+/**
+ *  Translates VSCharacterEncodingType to string.
+ *
+ *  @param type
+ *
+ *  @return NSString equivalent of the specified VSCharacterEncodingType.
+ */
+NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
+{
+    switch (type)
+    {
+        case VSCharacterEncodingTypeUnknown:  return @"VSCharacterEncodingTypeUnknown";
+        case VSCharacterEncodingTypeAscii:    return @"VSCharacterEncodingTypeAscii";
+        case VSCharacterEncodingTypeUTF16:    return @"VSCharacterEncodingTypeUTF16";
+        case VSCharacterEncodingTypeMaxTypes: return @"VSCharacterEncodingTypeMaxTypes";
+        default:                              return @(type).stringValue;
+    }
+}
+
 #pragma mark - INTERFACE
 
 /**

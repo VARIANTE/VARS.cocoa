@@ -28,3 +28,28 @@ typedef NS_ENUM(unsigned int, VSUIDirtyType)
     VSUIDirtyTypeMaxTypes    = 0xFFFFFFFF
 };
 
+/**
+ *  Translates VSUIDirtyType to string.
+ *
+ *  @param type
+ *
+ *  @return NSString equivalent of the specified VSUIDirtyType.
+ */
+NSString *NSStringFromVSUIDirtyType(VSUIDirtyType type)
+{
+    switch (type)
+    {
+        case VSUIDirtyTypeNone:        return @"VSUIDirtyTypeNone";
+        case VSUIDirtyTypeLayout:      return @"VSUIDirtyTypeLayout";
+        case VSUIDirtyTypeOrientation: return @"VSUIDirtyTypeOrientation";
+        case VSUIDirtyTypeState:       return @"VSUIDirtyTypeState";
+        case VSUIDirtyTypeData:        return @"VSUIDirtyTypeData";
+        case VSUIDirtyTypeLocale:      return @"VSUIDirtyTypeLocale";
+        case VSUIDirtyTypeDepth:       return @"VSUIDirtyTypeDepth";
+        case VSUIDirtyTypeConfig:      return @"VSUIDirtyTypeConfig";
+        case VSUIDirtyTypeStyle:       return @"VSUIDirtyTypeStyle";
+        case VSUIDirtyTypeCustom:      return @"VSUIDirtyTypeCustom";
+        case VSUIDirtyTypeMaxTypes:    return @"VSUIDirtyTypeMaxTypes";
+        default:                       return @(type).stringValue;
+    }
+}

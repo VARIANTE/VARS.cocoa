@@ -29,6 +29,26 @@ typedef NS_ENUM(int, VSMathAngleModeType)
 };
 
 /**
+ *  Translates VSMathAngleModeType to string.
+ *
+ *  @param type
+ *
+ *  @return NSString equivalent of the specified VSMathAngleModeType.
+ */
+NSString *NSStringFromVSMathAngleModeType(VSMathAngleModeType type)
+{
+    switch (type)
+    {
+        case VSMathAngleModeTypeUnknown:  return @"VSMathAngleModeTypeUnknown";
+        case VSMathAngleModeTypeDegree:   return @"VSMathAngleModeTypeDegree";
+        case VSMathAngleModeTypeRadian:   return @"VSMathAngleModeTypeRadian";
+        case VSMathAngleModeTypeGradian:  return @"VSMathAngleModeTypeGradian";
+        case VSMathAngleModeTypeMaxTypes: return @"VSMathAngleModeTypeMaxTypes";
+        default:                          return @(type).stringValue;
+    }
+}
+
+/**
  *  Enums of all defined math symbols.
  */
 typedef NS_ENUM(int, VSMathSymbolType)
@@ -93,6 +113,80 @@ typedef NS_ENUM(int, VSMathSymbolType)
     VSMathSymbolTypeYVariable,
     VSMathSymbolTypeMaxTypes
 };
+
+/**
+ *  Translates VSMathSymbolType to string.
+ *
+ *  @param type
+ *
+ *  @return NSString equivalent of the specified VSMathSymbolType.
+ */
+NSString *NSStringFromVSMathSymbolType(VSMathSymbolType type)
+{
+    switch (type)
+    {
+        case VSMathSymbolTypeUnknown:                  return @"VSMathSymbolTypeUnknown";
+        case VSMathSymbolTypeEqual:                    return @"VSMathSymbolTypeEqual";
+        case VSMathSymbolTypeAdd:                      return @"VSMathSymbolTypeAdd";
+        case VSMathSymbolTypeSubtract:                 return @"VSMathSymbolTypeSubtract";
+        case VSMathSymbolTypeMultiply:                 return @"VSMathSymbolTypeMultiply";
+        case VSMathSymbolTypeMultiplyAlternate:        return @"VSMathSymbolTypeMultiplyAlternate";
+        case VSMathSymbolTypeDivide:                   return @"VSMathSymbolTypeDivide";
+        case VSMathSymbolTypeDivideAlternate:          return @"VSMathSymbolTypeDivideAlternate";
+        case VSMathSymbolTypeModulo:                   return @"VSMathSymbolTypeModulo";
+        case VSMathSymbolTypeExponent:                 return @"VSMathSymbolTypeExponent";
+        case VSMathSymbolTypeRoot:                     return @"VSMathSymbolTypeRoot";
+        case VSMathSymbolTypeScientificNotation:       return @"VSMathSymbolTypeScientificNotation";
+        case VSMathSymbolTypeChoose:                   return @"VSMathSymbolTypeChoose";
+        case VSMathSymbolTypePick:                     return @"VSMathSymbolTypePick";
+        case VSMathSymbolTypeNegative:                 return @"VSMathSymbolTypeNegative";
+        case VSMathSymbolTypeSquare:                   return @"VSMathSymbolTypeSquare";
+        case VSMathSymbolTypeSquareRoot:               return @"VSMathSymbolTypeSquareRoot";
+        case VSMathSymbolTypeCube:                     return @"VSMathSymbolTypeCube";
+        case VSMathSymbolTypeCubeRoot:                 return @"VSMathSymbolTypeCubeRoot";
+        case VSMathSymbolTypePercent:                  return @"VSMathSymbolTypePercent";
+        case VSMathSymbolTypeFactorial:                return @"VSMathSymbolTypeFactorial";
+        case VSMathSymbolTypeSine:                     return @"VSMathSymbolTypeSine";
+        case VSMathSymbolTypeCosine:                   return @"VSMathSymbolTypeCosine";
+        case VSMathSymbolTypeTangent:                  return @"VSMathSymbolTypeTangent";
+        case VSMathSymbolTypeInverseSine:              return @"VSMathSymbolTypeInverseSine";
+        case VSMathSymbolTypeInverseCosine:            return @"VSMathSymbolTypeInverseCosine";
+        case VSMathSymbolTypeInverseTangent:           return @"VSMathSymbolTypeInverseTangent";
+        case VSMathSymbolTypeHyperbolicSine:           return @"VSMathSymbolTypeHyperbolicSine";
+        case VSMathSymbolTypeHyperbolicCosine:         return @"VSMathSymbolTypeHyperbolicCosine";
+        case VSMathSymbolTypeHyperbolicTangent:        return @"VSMathSymbolTypeHyperbolicTangent";
+        case VSMathSymbolTypeInverseHyperbolicSine:    return @"VSMathSymbolTypeInverseHyperbolicSine";
+        case VSMathSymbolTypeInverseHyperbolicCosine:  return @"VSMathSymbolTypeInverseHyperbolicCosine";
+        case VSMathSymbolTypeInverseHyperbolicTangent: return @"VSMathSymbolTypeInverseHyperbolicTangent";
+        case VSMathSymbolTypeNaturalLogarithm:         return @"VSMathSymbolTypeNaturalLogarithm";
+        case VSMathSymbolTypeLogarithm10:              return @"VSMathSymbolTypeLogarithm10";
+        case VSMathSymbolTypeLogarithm2:               return @"VSMathSymbolTypeLogarithm2";
+        case VSMathSymbolTypeAbsoluteValue:            return @"VSMathSymbolTypeAbsoluteValue";
+        case VSMathSymbolTypeLeftParenthesis:          return @"VSMathSymbolTypeLeftParenthesis";
+        case VSMathSymbolTypeRightParenthesis:         return @"VSMathSymbolTypeRightParenthesis";
+        case VSMathSymbolTypeLeftShift:                return @"VSMathSymbolTypeLeftShift";
+        case VSMathSymbolTypeLeftShiftBy:              return @"VSMathSymbolTypeLeftShiftBy";
+        case VSMathSymbolTypeRightShift:               return @"VSMathSymbolTypeRightShift";
+        case VSMathSymbolTypeRightShiftBy:             return @"VSMathSymbolTypeRightShiftBy";
+        case VSMathSymbolTypeLeftRotate:               return @"VSMathSymbolTypeLeftRotate";
+        case VSMathSymbolTypeRightRotate:              return @"VSMathSymbolTypeRightRotate";
+        case VSMathSymbolTypeOnesComplement:           return @"VSMathSymbolTypeOnesComplement";
+        case VSMathSymbolTypeTwosComplement:           return @"VSMathSymbolTypeTwosComplement";
+        case VSMathSymbolTypeFlipWord:                 return @"VSMathSymbolTypeFlipWord";
+        case VSMathSymbolTypeFlipByte:                 return @"VSMathSymbolTypeFlipByte";
+        case VSMathSymbolTypeAnd:                      return @"VSMathSymbolTypeAnd";
+        case VSMathSymbolTypeOr:                       return @"VSMathSymbolTypeOr";
+        case VSMathSymbolTypeNor:                      return @"VSMathSymbolTypeNor";
+        case VSMathSymbolTypeXor:                      return @"VSMathSymbolTypeXor";
+        case VSMathSymbolTypePi:                       return @"VSMathSymbolTypePi";
+        case VSMathSymbolTypeEuler:                    return @"VSMathSymbolTypeEuler";
+        case VSMathSymbolTypeRandomNumber:             return @"VSMathSymbolTypeRandomNumber";
+        case VSMathSymbolTypeXVariable:                return @"VSMathSymbolTypeXVariable";
+        case VSMathSymbolTypeYVariable:                return @"VSMathSymbolTypeYVariable";
+        case VSMathSymbolTypeMaxTypes:                 return @"VSMathSymbolTypeMaxTypes";
+        default:                                       return @(type).stringValue;
+    }
+}
 
 /**
  *  Enums of all defined math operations and functions.
@@ -161,6 +255,80 @@ typedef NS_ENUM(int, VSMathOperationType)
 };
 
 /**
+ *  Translates VSMathOperationType to string.
+ *
+ *  @param type
+ *
+ *  @return NSString equivalent of the specified VSMathOperationType.
+ */
+NSString *NSStringFromVSMathOperationType(VSMathOperationType type)
+{
+    switch (type)
+    {
+        case VSMathOperationTypeUnknown:                  return @"VSMathOperationTypeUnknown";
+        case VSMathOperationTypeExponent:                 return @"VSMathOperationTypeExponent";
+        case VSMathOperationTypeRoot:                     return @"VSMathOperationTypeRoot";
+        case VSMathOperationTypeScientificNotation:       return @"VSMathOperationTypeScientificNotation";
+        case VSMathOperationTypeChoose:                   return @"VSMathOperationTypeChoose";
+        case VSMathOperationTypePick:                     return @"VSMathOperationTypePick";
+        case VSMathOperationTypeSquare:                   return @"VSMathOperationTypeSquare";
+        case VSMathOperationTypeCube:                     return @"VSMathOperationTypeCube";
+        case VSMathOperationTypeSquareRoot:               return @"VSMathOperationTypeSquareRoot";
+        case VSMathOperationTypeCubeRoot:                 return @"VSMathOperationTypeCubeRoot";
+        case VSMathOperationTypePercent:                  return @"VSMathOperationTypePercent";
+        case VSMathOperationTypeFactorial:                return @"VSMathOperationTypeFactorial";
+        case VSMathOperationTypeSine:                     return @"VSMathOperationTypeSine";
+        case VSMathOperationTypeCosine:                   return @"VSMathOperationTypeCosine";
+        case VSMathOperationTypeTangent:                  return @"VSMathOperationTypeTangent";
+        case VSMathOperationTypeInverseSine:              return @"VSMathOperationTypeInverseSine";
+        case VSMathOperationTypeInverseCosine:            return @"VSMathOperationTypeInverseCosine";
+        case VSMathOperationTypeInverseTangent:           return @"VSMathOperationTypeInverseTangent";
+        case VSMathOperationTypeHyperbolicSine:           return @"VSMathOperationTypeHyperbolicSine";
+        case VSMathOperationTypeHyperbolicCosine:         return @"VSMathOperationTypeHyperbolicCosine";
+        case VSMathOperationTypeHyperbolicTangent:        return @"VSMathOperationTypeHyperbolicTangent";
+        case VSMathOperationTypeInverseHyperbolicSine:    return @"VSMathOperationTypeInverseHyperbolicSine";
+        case VSMathOperationTypeInverseHyperbolicCosine:  return @"VSMathOperationTypeInverseHyperbolicCosine";
+        case VSMathOperationTypeInverseHyperbolicTangent: return @"VSMathOperationTypeInverseHyperbolicTangent";
+        case VSMathOperationTypeNaturalLogarithm:         return @"VSMathOperationTypeNaturalLogarithm";
+        case VSMathOperationTypeInverseNaturalLogarithm:  return @"VSMathOperationTypeInverseNaturalLogarithm";
+        case VSMathOperationTypeLogarithm10:              return @"VSMathOperationTypeLogarithm10";
+        case VSMathOperationTypeInverseLogarithm10:       return @"VSMathOperationTypeInverseLogarithm10";
+        case VSMathOperationTypeLogarithm2:               return @"VSMathOperationTypeLogarithm2";
+        case VSMathOperationTypeInverseLogarithm2:        return @"VSMathOperationTypeInverseLogarithm2";
+        case VSMathOperationTypeAbsoluteValue:            return @"VSMathOperationTypeAbsoluteValue";
+        case VSMathOperationTypeLeftParenthesis:          return @"VSMathOperationTypeLeftParenthesis";
+        case VSMathOperationTypeRightParenthesis:         return @"VSMathOperationTypeRightParenthesis";
+        case VSMathOperationTypePi:                       return @"VSMathOperationTypePi";
+        case VSMathOperationTypeEuler:                    return @"VSMathOperationTypeEuler";
+        case VSMathOperationTypeRandomNumber:             return @"VSMathOperationTypeRandomNumber";
+        case VSMathOperationTypeInverse:                  return @"VSMathOperationTypeInverse";
+        case VSMathOperationTypeNegative:                 return @"VSMathOperationTypeNegative";
+        case VSMathOperationTypeModulo:                   return @"VSMathOperationTypeModulo";
+        case VSMathOperationTypeDivide:                   return @"VSMathOperationTypeDivide";
+        case VSMathOperationTypeMultiply:                 return @"VSMathOperationTypeMultiply";
+        case VSMathOperationTypeSubtract:                 return @"VSMathOperationTypeSubtract";
+        case VSMathOperationTypeAdd:                      return @"VSMathOperationTypeAdd";
+        case VSMathOperationTypeEqual:                    return @"VSMathOperationTypeEqual";
+        case VSMathOperationTypeLeftShift:                return @"VSMathOperationTypeLeftShift";
+        case VSMathOperationTypeLeftShiftBy:              return @"VSMathOperationTypeLeftShiftBy";
+        case VSMathOperationTypeRightShift:               return @"VSMathOperationTypeRightShift";
+        case VSMathOperationTypeRightShiftBy:             return @"VSMathOperationTypeRightShiftBy";
+        case VSMathOperationTypeOnesComplement:           return @"VSMathOperationTypeOnesComplement";
+        case VSMathOperationTypeTwosComplement:           return @"VSMathOperationTypeTwosComplement";
+        case VSMathOperationTypeFlipWord:                 return @"VSMathOperationTypeFlipWord";
+        case VSMathOperationTypeFlipByte:                 return @"VSMathOperationTypeFlipByte";
+        case VSMathOperationTypeRoR:                      return @"VSMathOperationTypeRoR";
+        case VSMathOperationTypeRoL:                      return @"VSMathOperationTypeRoL";
+        case VSMathOperationTypeAnd:                      return @"VSMathOperationTypeAnd";
+        case VSMathOperationTypeOr:                       return @"VSMathOperationTypeOr";
+        case VSMathOperationTypeNor:                      return @"VSMathOperationTypeNor";
+        case VSMathOperationTypeXor:                      return @"VSMathOperationTypeXor";
+        case VSMathOperationTypeMaxTypes:                 return @"VSMathOperationTypeMaxTypes";
+        default:                                          return @(type).stringValue;
+    }
+}
+
+/**
  *  Enums of all math operator unary types (i.e. unary prefix, unary postfix, etc).
  */
 typedef NS_ENUM(int, VSMathOperatorUnaryType)
@@ -173,6 +341,26 @@ typedef NS_ENUM(int, VSMathOperatorUnaryType)
 };
 
 /**
+ *  Translates VSMathOperatorUnaryType to string.
+ *
+ *  @param type
+ *
+ *  @return NSString equivalent of the specified VSMathOperatorUnaryType.
+ */
+NSString *NSStringFromVSMathOperatorUnaryType(VSMathOperatorUnaryType type)
+{
+    switch (type)
+    {
+        case VSMathOperatorUnaryTypeUnknown:      return @"VSMathOperatorUnaryTypeUnknown";
+        case VSMathOperatorUnaryTypeNonUnary:     return @"VSMathOperatorUnaryTypeNonUnary";
+        case VSMathOperatorUnaryTypeUnaryPrefix:  return @"VSMathOperatorUnaryTypeUnaryPrefix";
+        case VSMathOperatorUnaryTypeUnaryPostfix: return @"VSMathOperatorUnaryTypeUnaryPostfix";
+        case VSMathOperatorUnaryTypeMaxTypes:     return @"VSMathOperatorUnaryTypeMaxTypes";
+        default:                                  return @(type).stringValue;
+    }
+}
+
+/**
  *  Enums of all math operator associative types (i.e. left, right, etc).
  */
 typedef NS_ENUM(int, VSMathOperatorAssociativeType)
@@ -182,6 +370,25 @@ typedef NS_ENUM(int, VSMathOperatorAssociativeType)
     VSMathOperatorAssociativeTypeRight,
     VSMathOperatorAssociativeTypeMaxTypes
 };
+
+/**
+ *  Translates VSMathOperatorAssociativeType to string.
+ *
+ *  @param type
+ *
+ *  @return NSString equivalent of the specified VSMathOperatorAssociativeType.
+ */
+NSString *NSStringFromVSMathOperatorAssociativeType(VSMathOperatorAssociativeType type)
+{
+    switch (type)
+    {
+        case VSMathOperatorAssociativeTypeUnknown:  return @"VSMathOperatorAssociativeTypeUnknown";
+        case VSMathOperatorAssociativeTypeLeft:     return @"VSMathOperatorAssociativeTypeLeft";
+        case VSMathOperatorAssociativeTypeRight:    return @"VSMathOperatorAssociativeTypeRight";
+        case VSMathOperatorAssociativeTypeMaxTypes: return @"VSMathOperatorAssociativeTypeMaxTypes";
+        default:                                    return @(type).stringValue;
+    }
+}
 
 /**
  *  Enums of all math expression token types.
@@ -199,6 +406,31 @@ typedef NS_ENUM(int, VSMathTokenType)
     VSMathTokenTypeParenthesis,
     VSMathTokenTypeMaxTypes
 };
+
+/**
+ *  Translates VSMathTokenType to string.
+ *
+ *  @param type
+ *
+ *  @return NSString equivalent of the specified VSMathTokenType.
+ */
+NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
+{
+    switch (type)
+    {
+        case VSMathTokenTypeUnknown:              return @"VSMathTokenTypeUnknown";
+        case VSMathTokenTypeNumeric:              return @"VSMathTokenTypeNumeric";
+        case VSMathTokenTypeFunction:             return @"VSMathTokenTypeFunction";
+        case VSMathTokenTypeOperator:             return @"VSMathTokenTypeOperator";
+        case VSMathTokenTypeUnaryPrefixOperator:  return @"VSMathTokenTypeUnaryPrefixOperator";
+        case VSMathTokenTypeUnaryPostfixOperator: return @"VSMathTokenTypeUnaryPostfixOperator";
+        case VSMathTokenTypeConstant:             return @"VSMathTokenTypeConstant";
+        case VSMathTokenTypeVariable:             return @"VSMathTokenTypeVariable";
+        case VSMathTokenTypeParenthesis:          return @"VSMathTokenTypeParenthesis";
+        case VSMathTokenTypeMaxTypes:             return @"VSMathTokenTypeMaxTypes";
+        default:                                  return @(type).stringValue;
+    }
+}
 
 #pragma mark - INTERFACE
 
