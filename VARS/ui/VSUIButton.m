@@ -25,6 +25,7 @@ static const int DEFAULT_UUID = -1;
 {
 @private
     VSUIViewUpdate *_updateDelegate;
+
     NSMutableDictionary *_backgroundColorTable;
 }
 
@@ -36,6 +37,22 @@ static const int DEFAULT_UUID = -1;
 @property (nonatomic) int UUID;
 
 #pragma mark - INSTANCE METHODS
+#pragma mark - Updating
+
+/**
+ *  @private
+ *
+ *  Applies state-specific update.
+ */
+- (void)_updateState;
+
+/**
+ *  @private
+ *
+ *  Applies data-specific update.
+ */
+- (void)_updateData;
+
 #pragma mark - Styling
 
 /**
@@ -89,53 +106,6 @@ static const int DEFAULT_UUID = -1;
 - (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     [self.updateDelegate setInterfaceOrientation:interfaceOrientation];
-}
-
-#pragma mark - PROTOCOL METHODS
-#pragma mark - Updating
-
-/*
- *  @inheritdoc VSUIViewUpdateDelegate
- */
-- (void)setNeedsUpdate
-{
-    [self update];
-}
-
-/*
- *  @inheritdoc VSUIViewUpdateDelegate
- */
-- (void)update
-{
-    if ([self isDirty:VSUIDirtyTypeStyle|VSUIDirtyTypeState])
-    {
-        [self setBackgroundColor:[self _getBackgroundColorForState:self.state]];
-    }
-
-    if ([self isDirty:VSUIDirtyTypeState|VSUIDirtyTypeData])
-    {
-        if (self.shouldOverrideAccessibilityOption)
-        {
-            NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithAttributedString:[self.titleLabel attributedText]];
-            NSRange range = NSMakeRange(0, mas.string.length);
-
-            [mas removeAttribute:NSUnderlineStyleAttributeName range:range];
-            [mas addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithUnsignedInteger:NSUnderlineStyleNone] range:range];
-            [self.titleLabel setAttributedText:mas];
-
-            vs_dealloc(mas);
-        }
-    }
-
-    [self.updateDelegate setDirty:VSUIDirtyTypeNone];
-}
-
-/*
- *  @inheritdoc VSUIViewUpdateDelegate
- */
-- (BOOL)isDirty:(VSUIDirtyType)dirtyType
-{
-    return [self.updateDelegate isDirty:dirtyType];
 }
 
 #pragma mark - PROPERTIES
@@ -208,9 +178,18 @@ static const int DEFAULT_UUID = -1;
 {
     if (self.shouldAnimateBackgroundColor)
     {
-        [VSUIButton animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionBeginFromCurrentState animations:^{
-            [super setBackgroundColor:backgroundColor];
-        } completion:NULL];
+        if (((self.state & UIControlStateHighlighted) != 0) || ((self.state & UIControlStateSelected) != 0))
+        {
+            [VSUIButton animateWithDuration:0.0 delay:0 options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionBeginFromCurrentState animations:^{
+                [super setBackgroundColor:backgroundColor];
+            } completion:NULL];
+        }
+        else
+        {
+            [VSUIButton animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionAllowUserInteraction|UIViewAnimationOptionBeginFromCurrentState animations:^{
+                [super setBackgroundColor:backgroundColor];
+            } completion:NULL];
+        }
     }
     else
     {
@@ -311,6 +290,43 @@ static const int DEFAULT_UUID = -1;
  */
 @synthesize shouldRedirectTouchesToNextResponder = _shouldRedirectTouchesToNextResponder;
 
+#pragma mark - PROTOCOL METHODS
+#pragma mark - Updating
+
+/*
+ *  @inheritdoc VSUIViewUpdateDelegate
+ */
+- (void)setNeedsUpdate
+{
+    [self update];
+}
+
+/*
+ *  @inheritdoc VSUIViewUpdateDelegate
+ */
+- (void)update
+{
+    if ([self isDirty:VSUIDirtyTypeStyle|VSUIDirtyTypeState])
+    {
+        [self _updateState];
+    }
+
+    if ([self isDirty:VSUIDirtyTypeState|VSUIDirtyTypeData])
+    {
+        [self _updateData];
+    }
+
+    [self.updateDelegate setDirty:VSUIDirtyTypeNone];
+}
+
+/*
+ *  @inheritdoc VSUIViewUpdateDelegate
+ */
+- (BOOL)isDirty:(VSUIDirtyType)dirtyType
+{
+    return [self.updateDelegate isDirty:dirtyType];
+}
+
 #pragma mark - INSTANCE METHODS
 #pragma mark - Lifecycle
 
@@ -407,6 +423,34 @@ static const int DEFAULT_UUID = -1;
     [self.updateDelegate setDirty:VSUIDirtyTypeLayout];
 }
 
+#pragma mark - Updating
+
+/*
+ *  @inheritdoc
+ */
+- (void)_updateState
+{
+    [self setBackgroundColor:[self _getBackgroundColorForState:self.state]];
+}
+
+/*
+ *  @inheritdoc
+ */
+- (void)_updateData
+{
+    if (self.shouldOverrideAccessibilityOption)
+    {
+        NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithAttributedString:[self.titleLabel attributedText]];
+        NSRange range = NSMakeRange(0, mas.string.length);
+
+        [mas removeAttribute:NSUnderlineStyleAttributeName range:range];
+        [mas addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithUnsignedInteger:NSUnderlineStyleNone] range:range];
+        [self.titleLabel setAttributedText:mas];
+
+        vs_dealloc(mas);
+    }
+}
+
 #pragma mark - Event Handling
 
 /*
@@ -476,13 +520,15 @@ static const int DEFAULT_UUID = -1;
  */
 - (void)setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state
 {
+    NSNumber *key = @(state);
+
     if (backgroundColor == nil)
     {
-        [_backgroundColorTable setObject:[NSNull null] forKey:[NSNumber numberWithUnsignedInteger:state]];
+        [_backgroundColorTable removeObjectForKey:key];
     }
     else
     {
-        [_backgroundColorTable setObject:backgroundColor forKey:[NSNumber numberWithUnsignedInteger:state]];
+        [_backgroundColorTable setObject:backgroundColor forKey:key];
     }
 
     [self.updateDelegate setDirty:VSUIDirtyTypeStyle];
@@ -493,47 +539,91 @@ static const int DEFAULT_UUID = -1;
  */
 - (UIColor *)_getBackgroundColorForState:(UIControlState)state
 {
-    if (_backgroundColorTable == nil) return nil;
+    NSNumber *key = @(state);
 
-    id targetColor = [_backgroundColorTable objectForKey:[NSNumber numberWithUnsignedInteger:state]];
-    id normalColor = [_backgroundColorTable objectForKey:[NSNumber numberWithUnsignedInteger:UIControlStateNormal]];
+    UIColor *targetColor = (UIColor *)[_backgroundColorTable objectForKey:key];
 
-    if ([targetColor isKindOfClass:[UIColor class]])
+    // Determine fallback color.
+    if (!targetColor)
     {
-        return targetColor;
-    }
-    else if ([normalColor isKindOfClass:[UIColor class]])
-    {
-        if (state == UIControlStateHighlighted)
+        switch (state)
         {
-            if (self.shouldDimWhenHighlighted)
+            case UIControlStateNormal:
             {
-                CGFloat delta = [VSColorUtil verifyRGBOfColor:normalColor hasRoomForDeltaUniformValue:-20.0f] ? -20.0f : 20.0f;
-                return [VSColorUtil modifyRGBOfColor:normalColor byUniformValue:delta];
+                return self.backgroundColor;
+            }
+
+            case UIControlStateHighlighted:
+            {
+                UIColor *fallbackColor = [self _getBackgroundColorForState:UIControlStateNormal];
+
+                if (self.shouldDimWhenHighlighted)
+                {
+                    CGFloat delta = [VSColorUtil verifyRGBOfColor:fallbackColor hasRoomForDeltaUniformValue:-20.0f] ? -20.0f : 20.0f;
+                    return [VSColorUtil modifyRGBOfColor:fallbackColor byUniformValue:delta];
+                }
+                else
+                {
+                    return fallbackColor;
+                }
+            }
+
+            case UIControlStateSelected:
+            {
+                UIColor *fallbackColor = [self _getBackgroundColorForState:UIControlStateNormal];
+
+                if (self.shouldDimWhenSelected)
+                {
+                    CGFloat delta = [VSColorUtil verifyRGBOfColor:fallbackColor hasRoomForDeltaUniformValue:-20.0f] ? -20.0f : 20.0f;
+                    return [VSColorUtil modifyRGBOfColor:fallbackColor byUniformValue:delta];
+                }
+                else
+                {
+                    return fallbackColor;
+                }
+            }
+
+            case UIControlStateDisabled:
+            {
+                UIColor *fallbackColor = [self _getBackgroundColorForState:UIControlStateNormal];
+
+                if (self.shouldDimWhenDisabled)
+                {
+                    return [fallbackColor colorWithAlphaComponent:0.2f];
+                }
+                else
+                {
+                    return fallbackColor;
+                }
+            }
+
+            default:
+            {
+                if ((state & UIControlStateDisabled) != 0)
+                {
+                    return [self _getBackgroundColorForState:UIControlStateDisabled];
+                }
+                else if ((state & UIControlStateSelected) != 0)
+                {
+                    return [self _getBackgroundColorForState:UIControlStateSelected];
+                }
+                else if ((state & UIControlStateHighlighted) != 0)
+                {
+                    return [self _getBackgroundColorForState:UIControlStateHighlighted];
+                }
+                else
+                {
+                    return [self _getBackgroundColorForState:UIControlStateNormal];
+                }
             }
         }
-        else if (state == UIControlStateSelected)
-        {
-            if (self.shouldDimWhenSelected)
-            {
-                CGFloat delta = [VSColorUtil verifyRGBOfColor:normalColor hasRoomForDeltaUniformValue:-20.0f] ? -20.0f : 20.0f;
-                return [VSColorUtil modifyRGBOfColor:normalColor byUniformValue:delta];
-            }
-        }
-        else if (state == UIControlStateDisabled)
-        {
-            if (self.shouldDimWhenDisabled)
-            {
-                return [normalColor colorWithAlphaComponent:0.2f];
-            }
-        }
-        
-        return normalColor;
     }
     else
     {
-        return nil;
+        return targetColor;
     }
+
+    return nil;
 }
 
 @end

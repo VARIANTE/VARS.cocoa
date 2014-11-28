@@ -12,7 +12,7 @@
 #ifdef __OBJC__
 #ifdef DEBUG
 #define vs_log(format, ...) NSLog(format, ## __VA_ARGS__)
-#define vs_nfassert(condition, format, ...) if (!condition) NSLog([@"[NONFATAL ASSERT] " stringByAppendingString:format], ## __VA_ARGS__)
+#define vs_nfassert(condition, format, ...) if (!condition) vs_log(format, ## __VA_ARGS__)
 #define vs_fassert(condition, description, ...) NSAssert(condition, description, ## __VA_ARGS__)
 #else
 #define vs_log(format, ...)
