@@ -82,6 +82,11 @@
     vs_dealloc(dummyKeyboard);
 }
 
+/*
+ *  @inheritdoc
+ */
+@synthesize shouldRedirectTouchesToNextResponder = _shouldRedirectTouchesToNextResponder;
+
 #pragma mark - PROTOCOL METHODS
 #pragma mark - Updating
 
@@ -159,6 +164,8 @@
  */
 - (void)didInit
 {
+    [self setShouldRedirectTouchesToNextResponder:NO];
+    
     [self.updateDelegate setDirty:VSUIDirtyTypeMaxTypes];
 }
 
@@ -192,6 +199,68 @@
     // HACK: Somehow contentSize is not immediately updated after the text is set, so we need an alternative way to calculate the content height.
     CGPoint offsetPoint = CGPointMake(0.0, fmax(0.0, [self sizeThatFits:CGSizeMake(self.frame.size.width, FLT_MAX)].height - self.frame.size.height));
     [self setContentOffset:offsetPoint animated:animated];
+}
+
+#pragma mark - Event Handling
+
+/*
+ *  @inheritdoc UIResponder
+ */
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.shouldRedirectTouchesToNextResponder)
+    {
+        [self.nextResponder touchesBegan:touches withEvent:event];
+    }
+    else
+    {
+        [super touchesBegan:touches withEvent:event];
+    }
+}
+
+/*
+ *  @inheritdoc UIResponder
+ */
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.shouldRedirectTouchesToNextResponder)
+    {
+        [self.nextResponder touchesMoved:touches withEvent:event];
+    }
+    else
+    {
+        [super touchesMoved:touches withEvent:event];
+    }
+}
+
+/*
+ *  @inheritdoc UIResponder
+ */
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.shouldRedirectTouchesToNextResponder)
+    {
+        [self.nextResponder touchesEnded:touches withEvent:event];
+    }
+    else
+    {
+        [super touchesEnded:touches withEvent:event];
+    }
+}
+
+/*
+ *  @inheritdoc UIResponder
+ */
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.shouldRedirectTouchesToNextResponder)
+    {
+        [self.nextResponder touchesCancelled:touches withEvent:event];
+    }
+    else
+    {
+        [super touchesCancelled:touches withEvent:event];
+    }
 }
 
 @end

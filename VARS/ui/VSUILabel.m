@@ -131,6 +131,11 @@ static const int DEFAULT_UUID = -1;
     [self setUserInteractionEnabled:YES];
 }
 
+/*
+ *  @inheritdoc
+ */
+@synthesize shouldRedirectTouchesToNextResponder = _shouldRedirectTouchesToNextResponder;
+
 #pragma mark - Styles
 
 /*
@@ -228,15 +233,11 @@ static const int DEFAULT_UUID = -1;
 - (void)didInit
 {
     [self setTextEdgeInsets:UIEdgeInsetsZero];
+    [self setShouldRedirectTouchesToNextResponder:NO];
 
     UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(_onRevealMenu:)];
     [self addGestureRecognizer:longPressGestureRecognizer];
     vs_dealloc(longPressGestureRecognizer);
-
-    UITapGestureRecognizer *doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_onRevealMenu:)];
-    [doubleTapGestureRecognizer setNumberOfTapsRequired:2];
-    [self addGestureRecognizer:doubleTapGestureRecognizer];
-    vs_dealloc(doubleTapGestureRecognizer);
 
     UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_onHideMenu:)];
     [singleTapGestureRecognizer setNumberOfTapsRequired:1];
@@ -355,6 +356,66 @@ static const int DEFAULT_UUID = -1;
 #pragma mark - Event Handling
 
 /*
+ *  @inheritdoc UIResponder
+ */
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.shouldRedirectTouchesToNextResponder)
+    {
+        [self.nextResponder touchesBegan:touches withEvent:event];
+    }
+    else
+    {
+        [super touchesBegan:touches withEvent:event];
+    }
+}
+
+/*
+ *  @inheritdoc UIResponder
+ */
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.shouldRedirectTouchesToNextResponder)
+    {
+        [self.nextResponder touchesMoved:touches withEvent:event];
+    }
+    else
+    {
+        [super touchesMoved:touches withEvent:event];
+    }
+}
+
+/*
+ *  @inheritdoc UIResponder
+ */
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.shouldRedirectTouchesToNextResponder)
+    {
+        [self.nextResponder touchesEnded:touches withEvent:event];
+    }
+    else
+    {
+        [super touchesEnded:touches withEvent:event];
+    }
+}
+
+/*
+ *  @inheritdoc UIResponder
+ */
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.shouldRedirectTouchesToNextResponder)
+    {
+        [self.nextResponder touchesCancelled:touches withEvent:event];
+    }
+    else
+    {
+        [super touchesCancelled:touches withEvent:event];
+    }
+}
+
+/*
  *  @inheritdoc
  */
 - (void)_onRevealMenu:(UIGestureRecognizer *)gestureRecognizer
@@ -370,10 +431,7 @@ static const int DEFAULT_UUID = -1;
  */
 - (void)_onHideMenu:(UIGestureRecognizer *)gestureRecognizer
 {
-    if (gestureRecognizer.state == UIGestureRecognizerStateBegan)
-    {
-        [self hideMenu];
-    }
+    [self hideMenu];
 }
 
 @end

@@ -132,6 +132,13 @@ static const int DEFAULT_UUID = -1;
     [self setSelectedTextRange:selectionRange];
 }
 
+#pragma mark - Behaviors
+
+/*
+ *  @inheritdoc
+ */
+@synthesize shouldRedirectTouchesToNextResponder = _shouldRedirectTouchesToNextResponder;
+
 #pragma mark - Styles
 
 /*
@@ -240,6 +247,8 @@ static const int DEFAULT_UUID = -1;
  */
 - (void)didInit
 {
+    [self setShouldRedirectTouchesToNextResponder:NO];
+    
     [self.updateDelegate setDirty:VSUIDirtyTypeMaxTypes];
 }
 
@@ -261,6 +270,68 @@ static const int DEFAULT_UUID = -1;
     [super layoutSubviews];
 
     [self.updateDelegate setDirty:VSUIDirtyTypeLayout];
+}
+
+#pragma mark - Event Handling
+
+/*
+ *  @inheritdoc UIResponder
+ */
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.shouldRedirectTouchesToNextResponder)
+    {
+        [self.nextResponder touchesBegan:touches withEvent:event];
+    }
+    else
+    {
+        [super touchesBegan:touches withEvent:event];
+    }
+}
+
+/*
+ *  @inheritdoc UIResponder
+ */
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.shouldRedirectTouchesToNextResponder)
+    {
+        [self.nextResponder touchesMoved:touches withEvent:event];
+    }
+    else
+    {
+        [super touchesMoved:touches withEvent:event];
+    }
+}
+
+/*
+ *  @inheritdoc UIResponder
+ */
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.shouldRedirectTouchesToNextResponder)
+    {
+        [self.nextResponder touchesEnded:touches withEvent:event];
+    }
+    else
+    {
+        [super touchesEnded:touches withEvent:event];
+    }
+}
+
+/*
+ *  @inheritdoc UIResponder
+ */
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.shouldRedirectTouchesToNextResponder)
+    {
+        [self.nextResponder touchesCancelled:touches withEvent:event];
+    }
+    else
+    {
+        [super touchesCancelled:touches withEvent:event];
+    }
 }
 
 @end

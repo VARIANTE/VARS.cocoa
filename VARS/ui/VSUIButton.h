@@ -65,6 +65,12 @@
  */
 @property (nonatomic) BOOL shouldOverrideAccessibilityOption;
 
+/**
+ *  Speicifies whether this button ignores touch events so they can be passed to the next object in the
+ *  responder chain.
+ */
+@property (nonatomic) BOOL shouldRedirectTouchesToNextResponder;
+
 #pragma mark - INSTANCE METHODS
 #pragma mark - Lifecycle
 

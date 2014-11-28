@@ -18,6 +18,7 @@
 #import "VARS/VSQuartzUtil.h"
 #import "VARS/VSStringUtil.h"
 #import "VARS/VSUIButton.h"
+#import "VARS/VSUIControl.h"
 #import "VARS/VSUIDirtyType.h"
 #import "VARS/VSUILabel.h"
 #import "VARS/VSUIModel.h"

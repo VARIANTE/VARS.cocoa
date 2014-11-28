@@ -166,6 +166,12 @@ static const int DEFAULT_UUID = -1;
 - (void)setEnabled:(BOOL)enabled
 {
     [super setEnabled:enabled];
+
+    if (!enabled)
+    {
+        [self setHighlighted:NO];
+    }
+
     [self.updateDelegate setDirty:VSUIDirtyTypeState];
 }
 
@@ -300,6 +306,11 @@ static const int DEFAULT_UUID = -1;
  */
 @synthesize shouldOverrideAccessibilityOption = _shouldOverrideAccessibilityOption;
 
+/*
+ *  @inheritdoc
+ */
+@synthesize shouldRedirectTouchesToNextResponder = _shouldRedirectTouchesToNextResponder;
+
 #pragma mark - INSTANCE METHODS
 #pragma mark - Lifecycle
 
@@ -370,6 +381,7 @@ static const int DEFAULT_UUID = -1;
     [self setShouldAnimateBackgroundColor:YES];
     [self setShouldAnimateVisibility:NO];
     [self setShouldOverrideAccessibilityOption:YES];
+    [self setShouldRedirectTouchesToNextResponder:NO];
 
     [self.updateDelegate setDirty:VSUIDirtyTypeMaxTypes];
 }
@@ -393,6 +405,68 @@ static const int DEFAULT_UUID = -1;
     [super layoutSubviews];
 
     [self.updateDelegate setDirty:VSUIDirtyTypeLayout];
+}
+
+#pragma mark - Event Handling
+
+/*
+ *  @inheritdoc UIResponder
+ */
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.shouldRedirectTouchesToNextResponder)
+    {
+        [self.nextResponder touchesBegan:touches withEvent:event];
+    }
+    else
+    {
+        [super touchesBegan:touches withEvent:event];
+    }
+}
+
+/*
+ *  @inheritdoc UIResponder
+ */
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.shouldRedirectTouchesToNextResponder)
+    {
+        [self.nextResponder touchesMoved:touches withEvent:event];
+    }
+    else
+    {
+        [super touchesMoved:touches withEvent:event];
+    }
+}
+
+/*
+ *  @inheritdoc UIResponder
+ */
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.shouldRedirectTouchesToNextResponder)
+    {
+        [self.nextResponder touchesEnded:touches withEvent:event];
+    }
+    else
+    {
+        [super touchesEnded:touches withEvent:event];
+    }
+}
+
+/*
+ *  @inheritdoc UIResponder
+ */
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.shouldRedirectTouchesToNextResponder)
+    {
+        [self.nextResponder touchesCancelled:touches withEvent:event];
+    }
+    else
+    {
+        [super touchesCancelled:touches withEvent:event];
+    }
 }
 
 #pragma mark - Styling

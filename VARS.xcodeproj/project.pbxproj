@@ -31,6 +31,8 @@
 		6B9557E119E28C5A0007D3B8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B9557D619E25FBE0007D3B8 /* CoreGraphics.framework */; };
 		6BCA158819BD995F00968347 /* VSViewportUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BCA158619BD995F00968347 /* VSViewportUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6BCA158919BD995F00968347 /* VSViewportUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCA158719BD995F00968347 /* VSViewportUtil.m */; };
+		6BCB9E9D1A27E594004D681D /* VSUIControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BCB9E9B1A27E594004D681D /* VSUIControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BCB9E9E1A27E594004D681D /* VSUIControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCB9E9C1A27E594004D681D /* VSUIControl.m */; };
 		6BD032FE1988CE0500AF9866 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BD032FD1988CE0500AF9866 /* Foundation.framework */; };
 		6BD0330D1988CE0500AF9866 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BD032FD1988CE0500AF9866 /* Foundation.framework */; };
 		6BD033121988CE0500AF9866 /* libVARS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BD032FA1988CE0500AF9866 /* libVARS.a */; };
@@ -47,7 +49,6 @@
 		6BD033541988CE5D00AF9866 /* VSUIDirtyType.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD0332F1988CE5D00AF9866 /* VSUIDirtyType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6BD033551988CE5D00AF9866 /* VSUINotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD033311988CE5D00AF9866 /* VSUINotifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6BD033581988CE5D00AF9866 /* VSUIButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD033351988CE5D00AF9866 /* VSUIButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BD033591988CE5D00AF9866 /* VSUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD033361988CE5D00AF9866 /* VSUIButton.m */; };
 		6BD0335A1988CE5D00AF9866 /* VSUILabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD033371988CE5D00AF9866 /* VSUILabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6BD0335B1988CE5D00AF9866 /* VSUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD033381988CE5D00AF9866 /* VSUILabel.m */; };
 		6BD0335C1988CE5D00AF9866 /* VSUIScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD033391988CE5D00AF9866 /* VSUIScrollView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -68,6 +69,7 @@
 		6BD0336D1988CE5D00AF9866 /* VSQuartzUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD0334B1988CE5D00AF9866 /* VSQuartzUtil.m */; };
 		6BD0336E1988CE5D00AF9866 /* VSStringUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD0334C1988CE5D00AF9866 /* VSStringUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6BD0336F1988CE5D00AF9866 /* VSStringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD0334D1988CE5D00AF9866 /* VSStringUtil.m */; };
+		6BD11FBD1A2820F10077411A /* VSUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD033361988CE5D00AF9866 /* VSUIButton.m */; };
 		6BDCCFA419E0E59300A86FCA /* VSUIModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BDCCFA219E0E59300A86FCA /* VSUIModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6BDCCFA519E0E59300A86FCA /* VSUIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDCCFA319E0E59300A86FCA /* VSUIModel.m */; };
 		6BE546A01A1365FF009B2CDC /* VSUIDirtyType.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE5469F1A1365FF009B2CDC /* VSUIDirtyType.m */; };
@@ -102,6 +104,8 @@
 		6B9557D619E25FBE0007D3B8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6BCA158619BD995F00968347 /* VSViewportUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSViewportUtil.h; sourceTree = "<group>"; };
 		6BCA158719BD995F00968347 /* VSViewportUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSViewportUtil.m; sourceTree = "<group>"; };
+		6BCB9E9B1A27E594004D681D /* VSUIControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSUIControl.h; sourceTree = "<group>"; };
+		6BCB9E9C1A27E594004D681D /* VSUIControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSUIControl.m; sourceTree = "<group>"; };
 		6BD032FA1988CE0500AF9866 /* libVARS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVARS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BD032FD1988CE0500AF9866 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6BD033011988CE0500AF9866 /* VARS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VARS-Prefix.pch"; sourceTree = "<group>"; };
@@ -279,6 +283,8 @@
 			children = (
 				6BD033351988CE5D00AF9866 /* VSUIButton.h */,
 				6BD033361988CE5D00AF9866 /* VSUIButton.m */,
+				6BCB9E9B1A27E594004D681D /* VSUIControl.h */,
+				6BCB9E9C1A27E594004D681D /* VSUIControl.m */,
 				6BD033371988CE5D00AF9866 /* VSUILabel.h */,
 				6BD033381988CE5D00AF9866 /* VSUILabel.m */,
 				6BD033391988CE5D00AF9866 /* VSUIScrollView.h */,
@@ -336,9 +342,9 @@
 				6BD0335E1988CE5D00AF9866 /* VSUITextView.h in Headers */,
 				6BD033531988CE5D00AF9866 /* vsmem.h in Headers */,
 				6BD0336C1988CE5D00AF9866 /* VSQuartzUtil.h in Headers */,
+				6BD033581988CE5D00AF9866 /* VSUIButton.h in Headers */,
 				6BD033261988CE4500AF9866 /* VARS.h in Headers */,
 				6BD0335C1988CE5D00AF9866 /* VSUIScrollView.h in Headers */,
-				6BD033581988CE5D00AF9866 /* VSUIButton.h in Headers */,
 				6BD033661988CE5D00AF9866 /* VSColorUtil.h in Headers */,
 				6BD033681988CE5D00AF9866 /* VSMathUtil.h in Headers */,
 				6BD033621988CE5D00AF9866 /* VSUIViewController.h in Headers */,
@@ -351,6 +357,7 @@
 				6B74723E19E5300D0065970E /* VSUITextField.h in Headers */,
 				6BFD7BA419EF4AE00065D557 /* VSArrayUtil.h in Headers */,
 				6BEB22FA1A04539800E50AC7 /* VSCalculusUtil.h in Headers */,
+				6BCB9E9D1A27E594004D681D /* VSUIControl.h in Headers */,
 				6BD0335A1988CE5D00AF9866 /* VSUILabel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -474,6 +481,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BD11FBD1A2820F10077411A /* VSUIButton.m in Sources */,
 				6BD0335F1988CE5D00AF9866 /* VSUITextView.m in Sources */,
 				6BCA158919BD995F00968347 /* VSViewportUtil.m in Sources */,
 				6BD0336B1988CE5D00AF9866 /* VSNumberUtil.m in Sources */,
@@ -487,13 +495,13 @@
 				6BEB22FB1A04539800E50AC7 /* VSCalculusUtil.m in Sources */,
 				6BD033691988CE5D00AF9866 /* VSMathUtil.m in Sources */,
 				6BD033501988CE5D00AF9866 /* vsmath.c in Sources */,
-				6BD033591988CE5D00AF9866 /* VSUIButton.m in Sources */,
 				6BDCCFA519E0E59300A86FCA /* VSUIModel.m in Sources */,
 				6BE546A01A1365FF009B2CDC /* VSUIDirtyType.m in Sources */,
 				6BD0336F1988CE5D00AF9866 /* VSStringUtil.m in Sources */,
 				6BD0334E1988CE5D00AF9866 /* vsdebug.c in Sources */,
 				6BD033671988CE5D00AF9866 /* VSColorUtil.m in Sources */,
 				6BD0335B1988CE5D00AF9866 /* VSUILabel.m in Sources */,
+				6BCB9E9E1A27E594004D681D /* VSUIControl.m in Sources */,
 				6BD033611988CE5D00AF9866 /* VSUIView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -623,7 +631,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VARS/VARS-Prefix.pch";
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
@@ -639,7 +650,10 @@
 				DSTROOT = /tmp/VARS.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VARS/VARS-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;

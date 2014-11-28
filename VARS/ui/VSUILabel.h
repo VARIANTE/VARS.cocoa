@@ -25,7 +25,16 @@
 
 #pragma mark - Behaviors
 
+/**
+ *  Speicifies whether action menu is enabled.
+ */
 @property (nonatomic) BOOL menuEnabled;
+
+/**
+ *  Speicifies whether this button ignores touch events so they can be passed to the next object in the
+ *  responder chain.
+ */
+@property (nonatomic) BOOL shouldRedirectTouchesToNextResponder;
 
 #pragma mark - Styles
 

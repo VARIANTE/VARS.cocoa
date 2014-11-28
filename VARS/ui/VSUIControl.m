@@ -7,15 +7,14 @@
  */
 
 #import "vsmem.h"
-
-#import "VSUIScrollView.h"
+#import "VSUIControl.h"
 
 #pragma mark - INTERFACE
 
 /*
  *  @inheritdoc
  */
-@interface VSUIScrollView()
+@interface VSUIControl()
 {
 @private
     VSUIViewUpdate *_updateDelegate;
@@ -28,7 +27,7 @@
 /*
  *  @inheritdoc
  */
-@implementation VSUIScrollView
+@implementation VSUIControl
 
 #pragma mark - PROTOCOL PROPERTIES
 #pragma mark - Drawing
@@ -133,7 +132,7 @@
 - (void)didInit
 {
     [self setShouldRedirectTouchesToNextResponder:NO];
-    
+
     [self.updateDelegate setDirty:VSUIDirtyTypeMaxTypes];
 }
 
