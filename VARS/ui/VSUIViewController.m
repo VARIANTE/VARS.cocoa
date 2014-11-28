@@ -179,6 +179,21 @@
     [super viewWillLayoutSubviews];
 }
 
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    if ([self.view conformsToProtocol:@protocol(VSUIViewUpdateDelegate)])
+    {
+        VSUIViewUpdate *viewUpdateDelegate = ((id<VSUIViewUpdateDelegate>)self.view).updateDelegate;
+
+        if (viewUpdateDelegate.interfaceOrientation != toInterfaceOrientation)
+        {
+            [viewUpdateDelegate setInterfaceOrientation:toInterfaceOrientation];
+        }
+    }
+
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+}
+
 /*
  *  @inheritdoc
  */
