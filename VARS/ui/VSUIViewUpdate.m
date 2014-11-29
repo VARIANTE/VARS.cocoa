@@ -36,6 +36,7 @@
 @end
 
 #pragma mark - IMPLEMENTATION
+#pragma GCC diagnostic ignored "-Wundeclared-selector"
 
 /*
  *  @inheritdoc
@@ -62,7 +63,7 @@
 #endif
 
     // Add observer to view delegate immediately - see observeValueForKeyPath:ofObject:change:context: for details.
-    [(UIView *)_viewDelegate addObserver:self forKeyPath:@"hidden" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
+    [(UIView *)_viewDelegate addObserver:self forKeyPath:NSStringFromSelector(@selector(hidden)) options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
 }
 
 #pragma mark - Drawing
@@ -146,33 +147,36 @@
  */
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:@"hidden"] && object == self.delegate)
+    if (object == self.delegate)
     {
-        BOOL oldValue = [[change objectForKey:@"old"] boolValue];
-        BOOL newValue = [[change objectForKey:@"new"] boolValue];
-
-        if (oldValue != newValue)
+        if ([keyPath isEqualToString:NSStringFromSelector(@selector(hidden))] && object == self.delegate)
         {
-            if (!self.delegate.hidden && self.isPendingDisplay)
-            {
-                self.isPendingDisplay = NO;
+            BOOL oldValue = [[change objectForKey:@"old"] boolValue];
+            BOOL newValue = [[change objectForKey:@"new"] boolValue];
 
-                [self.delegate setNeedsUpdate];
+            if (oldValue != newValue)
+            {
+                if (!self.delegate.hidden && self.isPendingDisplay)
+                {
+                    self.isPendingDisplay = NO;
+
+                    [self.delegate setNeedsUpdate];
+                }
             }
         }
-    }
 
-    // Validate key path with dirty property map and mark associated dirty flags.
-    if (self.dirtyPropertyMap != nil)
-    {
-        NSDictionary *value = [self.dirtyPropertyMap objectForKey:keyPath];
-
-        if (value != nil)
+        // Validate key path with dirty property map and mark associated dirty flags.
+        if (self.dirtyPropertyMap != nil)
         {
-            VSUIDirtyType dirtyType = [(NSNumber *)[value objectForKey:@"dirtyType"] intValue];
-            BOOL willUpdateImmediately = [(NSNumber *)[value objectForKey:@"willUpdateImmediately"] boolValue];
+            NSDictionary *value = [self.dirtyPropertyMap objectForKey:keyPath];
 
-            [self setDirty:dirtyType willUpdateImmediately:willUpdateImmediately];
+            if (value != nil)
+            {
+                VSUIDirtyType dirtyType = [(NSNumber *)[value objectForKey:@"dirtyType"] intValue];
+                BOOL willUpdateImmediately = [(NSNumber *)[value objectForKey:@"willUpdateImmediately"] boolValue];
+                
+                [self setDirty:dirtyType willUpdateImmediately:willUpdateImmediately];
+            }
         }
     }
 }
@@ -205,7 +209,7 @@
  */
 - (void)dealloc
 {
-    [self.delegate removeObserver:self forKeyPath:@"hidden"];
+    [self.delegate removeObserver:self forKeyPath:NSStringFromSelector(@selector(hidden))];
 
     if (self.dirtyPropertyMap != nil)
     {
@@ -364,6 +368,7 @@
     
     if ([self.dirtyPropertyMap objectForKey:keyPath] == nil) return;
     
+    [self.delegate removeObserver:self forKeyPath:keyPath];
     [self.dirtyPropertyMap removeObjectForKey:keyPath];
 }
 

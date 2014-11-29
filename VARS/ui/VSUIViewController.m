@@ -242,7 +242,7 @@
     {
         VSUIViewUpdate *viewUpdateDelegate = ((id<VSUIViewUpdateDelegate>)self.view).updateDelegate;
 
-        [viewUpdateDelegate setDirty:VSUIDirtyTypeStyle willUpdateImmediately:YES];
+        [viewUpdateDelegate setDirty:VSUIDirtyTypeStyle];
     }
 }
 
