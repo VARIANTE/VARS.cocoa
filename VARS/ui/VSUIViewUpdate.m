@@ -63,7 +63,7 @@
 #endif
 
     // Add observer to view delegate immediately - see observeValueForKeyPath:ofObject:change:context: for details.
-    [(UIView *)_viewDelegate addObserver:self forKeyPath:NSStringFromSelector(@selector(hidden)) options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
+    [(UIView *)_viewDelegate addObserver:self forKeyPath:@"hidden" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
 }
 
 #pragma mark - Drawing
@@ -149,7 +149,7 @@
 {
     if (object == self.delegate)
     {
-        if ([keyPath isEqualToString:NSStringFromSelector(@selector(hidden))] && object == self.delegate)
+        if ([keyPath isEqualToString:@"hidden"] && object == self.delegate)
         {
             BOOL oldValue = [[change objectForKey:@"old"] boolValue];
             BOOL newValue = [[change objectForKey:@"new"] boolValue];
@@ -209,7 +209,7 @@
  */
 - (void)dealloc
 {
-    [self.delegate removeObserver:self forKeyPath:NSStringFromSelector(@selector(hidden))];
+    [self.delegate removeObserver:self forKeyPath:@"hidden"];
 
     if (self.dirtyPropertyMap != nil)
     {
