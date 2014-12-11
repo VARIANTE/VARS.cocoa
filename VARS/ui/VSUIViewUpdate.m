@@ -17,6 +17,12 @@
  *  @inheritdoc
  */
 @interface VSUIViewUpdate()
+{
+@private
+    BOOL _viewDidInit;
+}
+
+#pragma mark - PROPERTIES
 
 /**
  *  Dictionary that maps a property to a dirty type.
@@ -29,9 +35,9 @@
 @property (nonatomic) VSUIDirtyType dirtyTable;
 
 /**
- *  Indicates whether the view delegate is pending display (needs display when it is not hidden).
+ *  Indicates whether the view delegate is pending update (needs update when it is not hidden).
  */
-@property (nonatomic) BOOL isPendingDisplay;
+@property (nonatomic) BOOL pendingUpdate;
 
 @end
 
@@ -93,7 +99,7 @@
 /*
  *  @inheritdoc
  */
-@synthesize isPendingDisplay = _isPendingDisplay;
+@synthesize pendingUpdate = _pendingUpdate;
 
 /*
  *  @inheritdoc
@@ -156,9 +162,9 @@
 
             if (oldValue != newValue)
             {
-                if (!self.delegate.hidden && self.isPendingDisplay)
+                if (!self.delegate.hidden && self.pendingUpdate)
                 {
-                    self.isPendingDisplay = NO;
+                    self.pendingUpdate = NO;
 
                     [self.delegate setNeedsUpdate];
                 }
@@ -193,12 +199,14 @@
 
     if (self)
     {
+        _viewDidInit = NO;
+
         [self setShouldAutomaticallyForwardUpdateMethods:VSUIDirtyTypeNone];
         [self setShouldAutomaticallyBlockForwardedUpdateMethods:VSUIDirtyTypeNone];
         [self setInterfaceOrientation:[VSViewportUtil orientationOfViewport]];
 
         self.dirtyTable = VSUIDirtyTypeNone;
-        self.isPendingDisplay = NO;
+        self.pendingUpdate = NO;
     }
 
     return self;
@@ -227,7 +235,27 @@
 #endif
 }
 
-#pragma mark - Drawing
+#pragma mark - Event Handling
+
+/*
+ *  @inheritdoc
+ */
+- (void)viewDidInit
+{
+    _viewDidInit = YES;
+
+    [self setDirty:VSUIDirtyTypeMaxTypes];
+}
+
+/*
+ *  @inheritdoc
+ */
+- (void)viewDidUpdate
+{
+    [self setDirty:VSUIDirtyTypeNone];
+}
+
+#pragma mark - Updating
 
 /*
  *  @inheritdoc
@@ -291,7 +319,7 @@
     {
         case VSUIDirtyTypeNone:
         {
-            self.isPendingDisplay = NO;
+            self.pendingUpdate = NO;
         }
         case VSUIDirtyTypeMaxTypes:
         {
@@ -308,13 +336,15 @@
 
     if (dirtyType == VSUIDirtyTypeNone) return;
 
+    if (!_viewDidInit) return;
+
     if (willUpdateImmediately)
     {
         [self.delegate update];
     }
     else if (self.delegate.hidden)
     {
-        self.isPendingDisplay = YES;
+        self.pendingUpdate = YES;
     }
     else
     {

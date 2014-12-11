@@ -97,7 +97,19 @@
 @property (nonatomic) VSUIDirtyType shouldAutomaticallyBlockForwardedUpdateMethods;
 
 #pragma mark - INSTANCE METHODS
-#pragma mark - Drawing
+#pragma mark - Event Handling
+
+/**
+ *  Handler invoked by the delegate view when it is done initializing.
+ */
+- (void)viewDidInit;
+
+/**
+ *  Handler invoked by the delegate view when it is done updating.
+ */
+- (void)viewDidUpdate;
+
+#pragma mark - Updating
 
 /**
  *  Checks to see if a given VSUIDirtyType is dirty.

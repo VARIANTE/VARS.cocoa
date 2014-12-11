@@ -174,7 +174,7 @@ static const int DEFAULT_UUID = -1;
  */
 - (void)update
 {
-    [self.updateDelegate setDirty:VSUIDirtyTypeNone];
+    [self.updateDelegate viewDidUpdate];
 }
 
 /*
@@ -249,7 +249,7 @@ static const int DEFAULT_UUID = -1;
 {
     [self setShouldRedirectTouchesToNextResponder:NO];
     
-    [self.updateDelegate setDirty:VSUIDirtyTypeMaxTypes];
+    [self.updateDelegate viewDidInit];
 }
 
 /*

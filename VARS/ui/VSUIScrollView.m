@@ -86,7 +86,7 @@
  */
 - (void)update
 {
-    [self.updateDelegate setDirty:VSUIDirtyTypeNone];
+    [self.updateDelegate viewDidUpdate];
 }
 
 /*
@@ -134,7 +134,7 @@
 {
     [self setShouldRedirectTouchesToNextResponder:NO];
     
-    [self.updateDelegate setDirty:VSUIDirtyTypeMaxTypes];
+    [self.updateDelegate viewDidInit];
 }
 
 /*

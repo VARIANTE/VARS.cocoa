@@ -316,7 +316,7 @@ static const int DEFAULT_UUID = -1;
         [self _updateData];
     }
 
-    [self.updateDelegate setDirty:VSUIDirtyTypeNone];
+    [self.updateDelegate viewDidUpdate];
 }
 
 /*
@@ -399,7 +399,7 @@ static const int DEFAULT_UUID = -1;
     [self setShouldOverrideAccessibilityOption:YES];
     [self setShouldRedirectTouchesToNextResponder:NO];
 
-    [self.updateDelegate setDirty:VSUIDirtyTypeMaxTypes];
+    [self.updateDelegate viewDidInit];
 }
 
 /*

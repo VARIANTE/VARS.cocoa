@@ -159,7 +159,7 @@ static const int DEFAULT_UUID = -1;
  */
 - (void)update
 {
-    [self.updateDelegate setDirty:VSUIDirtyTypeNone];
+    [self.updateDelegate viewDidUpdate];
 }
 
 /*
@@ -244,7 +244,7 @@ static const int DEFAULT_UUID = -1;
     [self addGestureRecognizer:singleTapGestureRecognizer];
     vs_dealloc(singleTapGestureRecognizer);
 
-    [self.updateDelegate setDirty:VSUIDirtyTypeMaxTypes];
+    [self.updateDelegate viewDidInit];
 }
 
 /*
