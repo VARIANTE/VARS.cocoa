@@ -26,7 +26,8 @@ typedef NS_ENUM(unsigned int, VSUIDirtyType)
     VSUIDirtyTypeDepth       = 1 << 5,
     VSUIDirtyTypeConfig      = 1 << 6,
     VSUIDirtyTypeStyle       = 1 << 7,
-    VSUIDirtyTypeCustom      = 1 << 8,
+    VSUIDirtyTypeMode        = 1 << 8,
+    VSUIDirtyTypeCustom      = 1 << 9,
     VSUIDirtyTypeMaxTypes    = 0xFFFFFFFF
 };
 
