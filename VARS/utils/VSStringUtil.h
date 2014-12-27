@@ -63,28 +63,6 @@ NS_ROOT_CLASS
 #pragma mark - Type Conversion
 
 /**
- *  Converts an unsigned long long value to a binary representation in NSString.
- *  The binary representation is divided into groups of 4 bits separated by "|".
- *
- *  @param anUnsignedLongLong
- *
- *  @return The binary representation of the specified unsigned long long value in NSString.
- */
-+ (NSString *)binaryFromUnsignedLongLong:(unsigned long long)anUnsignedLongLong;
-
-/**
- *  Converts an unsigned long long value to a binary representation in NSString with the option
- *  to specify the number of bits in each group separated by a specified groupingSeparator string.
- *
- *  @param anUnsignedLongLong
- *  @param groupingSize
- *  @param groupingSeparator
- *
- *  @return The binary representation of the specified unsigned long long value in NSString.
- */
-+ (NSString *)binaryFromUnsignedLongLong:(unsigned long long)anUnsignedLongLong groupingSize:(unsigned int)groupingSize groupingSeparator:(NSString *)groupingSeparator;
-
-/**
  *  Converts a double value to a string using the default "%0.15g" numeric format specifier.
  *
  *  @param aDouble

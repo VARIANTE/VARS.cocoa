@@ -64,46 +64,6 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
 /*
  *  @inheritdoc
  */
-+ (NSString *)binaryFromUnsignedLongLong:(unsigned long long)anUnsignedLongLong
-{
-    return [VSStringUtil binaryFromUnsignedLongLong:anUnsignedLongLong groupingSize:4 groupingSeparator:@"|"];
-}
-
-/*
- *  @inheritdoc
- */
-+ (NSString *)binaryFromUnsignedLongLong:(unsigned long long)anUnsignedLongLong groupingSize:(unsigned int)groupingSize groupingSeparator:(NSString *)groupingSeparator
-{
-    NSMutableString *binary = [[NSMutableString alloc] init];
-    int binaryDigit = 0;
-
-    if (groupingSize == 0) groupingSize = 8;
-    if (groupingSeparator == nil) groupingSeparator = @"";
-
-    while (binaryDigit < 64)
-    {
-        binaryDigit++;
-
-        [binary insertString:((anUnsignedLongLong & 1) ? @"1 " : @"0 ") atIndex:0];
-
-        if (binaryDigit % groupingSize == 0 && binaryDigit != 64)
-        {
-            [binary insertString:groupingSeparator atIndex:0];
-        }
-
-        anUnsignedLongLong = anUnsignedLongLong >> 1;
-    }
-
-#if !__has_feature(objc_arc)
-    return [binary autorelease];
-#else
-    return binary;
-#endif
-}
-
-/*
- *  @inheritdoc
- */
 + (NSString *)stringFromDouble:(double)aDouble
 {
     return [VSStringUtil stringFromDouble:aDouble numericFormatSpecifier:nil exponentSymbol:nil NANSymbol:nil];
@@ -318,6 +278,34 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
             return [NSString stringWithFormat:VS_N_NUMERIC_FORMAT_UNSIGNED_LONG_OCTAL, anUnsignedLong];
         }
 
+        case VSNumberSystemTypeBinary:
+        {
+            NSString *output = @"";
+            NSString *buffer = @"";
+
+            unsigned long n = sizeof(unsigned long) * 8;
+
+            for (unsigned long i = 0; i < n; i++)
+            {
+                unsigned int bit = (anUnsignedLong & 1);
+
+                buffer = [((bit) ? @"1" : @"0") stringByAppendingString:buffer];
+
+                if (bit)
+                {
+                    output = [buffer stringByAppendingString:output];
+                    buffer = @"";
+                }
+
+                anUnsignedLong >>= 1;
+            }
+
+            if ([VSStringUtil stringIsNilOrBlank:output])
+            {
+                output = @"0";
+            }
+        }
+
         case VSNumberSystemTypeDecimal:
         default:
         {
@@ -374,6 +362,36 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
         case VSNumberSystemTypeOctal:
         {
             return [NSString stringWithFormat:VS_N_NUMERIC_FORMAT_UNSIGNED_LONG_LONG_OCTAL, anUnsignedLongLong];
+        }
+
+        case VSNumberSystemTypeBinary:
+        {
+            NSString *output = @"";
+            NSString *buffer = @"";
+
+            unsigned long n = sizeof(unsigned long long) * 8;
+
+            for (unsigned long i = 0; i < n; i++)
+            {
+                unsigned int bit = (anUnsignedLongLong & 1);
+
+                buffer = [((bit) ? @"1" : @"0") stringByAppendingString:buffer];
+
+                if (bit)
+                {
+                    output = [buffer stringByAppendingString:output];
+                    buffer = @"";
+                }
+
+                anUnsignedLongLong >>= 1;
+            }
+
+            if ([VSStringUtil stringIsNilOrBlank:output])
+            {
+                output = @"0";
+            }
+
+            return output;
         }
 
         case VSNumberSystemTypeDecimal:

@@ -30,8 +30,27 @@ NSString *NSStringFromVSNumberSystemType(VSNumberSystemType type)
         case VSNumberSystemTypeUnknown:     return @"VSNumberSystemTypeUnknown";
         case VSNumberSystemTypeDecimal:     return @"VSNumberSystemTypeDecimal";
         case VSNumberSystemTypeHexadecimal: return @"VSNumberSystemTypeHexadecimal";
+        case VSNumberSystemTypeOctal:       return @"VSNumberSystemTypeOctal";
+        case VSNumberSystemTypeBinary:      return @"VSNumberSystemTypeBinary";
         case VSNumberSystemTypeMaxTypes:    return @"VSNumberSystemTypeMaxTypes";
         default:                            return @(type).stringValue;
+    }
+}
+
+/*
+ *  @inheritdoc
+ */
+NSString *NSStringFromVSNumberBinaryDigitType(VSNumberBinaryDigitType type)
+{
+    switch (type)
+    {
+        case VSNumberBinaryDigitTypeUnknown:  return @"VSNumberBinaryDigitTypeUnknown";
+        case VSNumberBinaryDigitType8Bit:     return @"VSNumberBinaryDigitType8Bit";
+        case VSNumberBinaryDigitType16Bit:    return @"VSNumberBinaryDigitType16Bit";
+        case VSNumberBinaryDigitType32Bit:    return @"VSNumberBinaryDigitType32Bit";
+        case VSNumberBinaryDigitType64Bit:    return @"VSNumberBinaryDigitType64Bit";
+        case VSNumberBinaryDigitTypeMaxTypes: return @"VSNumberBinaryDigitTypeMaxTypes";
+        default:                              return @(type).stringValue;
     }
 }
 
@@ -414,6 +433,77 @@ NSString *NSStringFromVSNumberSystemType(VSNumberSystemType type)
 /*
  *  @inheritdoc
  */
++ (unsigned int)unsignedIntFromString:(NSString *)aString numberSystem:(VSNumberSystemType)numberSystemType
+{
+    if ((aString == nil) || [aString isEqualToString:@""])
+    {
+        return 0;
+    }
+
+    switch (numberSystemType)
+    {
+        case VSNumberSystemTypeHexadecimal:
+        {
+            unsigned int output = 0;
+
+            NSScanner *hexScanner = [NSScanner scannerWithString:aString];
+            [hexScanner setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US"]];
+            [hexScanner scanHexInt:&output];
+            hexScanner = nil;
+
+            return output;
+        }
+
+        case VSNumberSystemTypeOctal:
+        {
+            unsigned int output = 0;
+            unsigned long strlen = aString.length;
+
+            for (int i = 0; i < strlen; i++)
+            {
+                unsigned int temp = [aString characterAtIndex:i] - 48;
+                temp *= pow(8, strlen - 1 - i);
+
+                output += temp;
+            }
+
+            return output;
+        }
+
+        case VSNumberSystemTypeBinary:
+        {
+            unsigned int output = 0;
+            unsigned long strlen = aString.length;
+
+            for (unsigned long i = 0; i < strlen; i++)
+            {
+                unichar c = [aString characterAtIndex:(strlen - i - 1)];
+
+                if (c == '1')
+                {
+                    output += (unsigned int)1 << (unsigned int)i;
+                }
+                else if (c != '0')
+                {
+                    output = 0;
+                    break;
+                }
+            }
+
+            return output;
+        }
+
+        case VSNumberSystemTypeDecimal:
+        default:
+        {
+            return [VSNumberUtil unsignedIntFromString:aString];
+        }
+    }
+}
+
+/*
+ *  @inheritdoc
+ */
 + (unsigned long)unsignedLongFromString:(NSString *)aString
 {
     return [VSNumberUtil unsignedLongFromString:aString numberFormatter:nil];
@@ -443,6 +533,77 @@ NSString *NSStringFromVSNumberSystemType(VSNumberSystemType type)
         else
         {
             return [number unsignedLongValue];
+        }
+    }
+}
+
+/*
+ *  @inheritdoc
+ */
++ (unsigned long)unsignedLongFromString:(NSString *)aString numberSystem:(VSNumberSystemType)numberSystemType
+{
+    if ((aString == nil) || [aString isEqualToString:@""])
+    {
+        return 0;
+    }
+
+    switch (numberSystemType)
+    {
+        case VSNumberSystemTypeHexadecimal:
+        {
+            unsigned long long output = 0;
+
+            NSScanner *hexScanner = [NSScanner scannerWithString:aString];
+            [hexScanner setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US"]];
+            [hexScanner scanHexLongLong:&output];
+            hexScanner = nil;
+
+            return (unsigned long)output;
+        }
+
+        case VSNumberSystemTypeOctal:
+        {
+            unsigned long output = 0;
+            unsigned long strlen = aString.length;
+
+            for (int i = 0; i < strlen; i++)
+            {
+                unsigned long temp = [aString characterAtIndex:i] - 48;
+                temp *= pow(8, strlen - 1 - i);
+
+                output += temp;
+            }
+
+            return output;
+        }
+
+        case VSNumberSystemTypeBinary:
+        {
+            unsigned long output = 0;
+            unsigned long strlen = aString.length;
+
+            for (unsigned long i = 0; i < strlen; i++)
+            {
+                unichar c = [aString characterAtIndex:(strlen - i - 1)];
+
+                if (c == '1')
+                {
+                    output += (unsigned long)1 << (unsigned long)i;
+                }
+                else if (c != '0')
+                {
+                    output = 0;
+                    break;
+                }
+            }
+
+            return output;
+        }
+
+        case VSNumberSystemTypeDecimal:
+        default:
+        {
+            return [VSNumberUtil unsignedLongFromString:aString];
         }
     }
 }
@@ -518,6 +679,29 @@ NSString *NSStringFromVSNumberSystemType(VSNumberSystemType type)
                 temp *= pow(8, strlen - 1 - i);
 
                 output += temp;
+            }
+
+            return output;
+        }
+
+        case VSNumberSystemTypeBinary:
+        {
+            unsigned long long output = 0;
+            unsigned long strlen = aString.length;
+
+            for (unsigned long i = 0; i < strlen; i++)
+            {
+                unichar c = [aString characterAtIndex:(strlen - i - 1)];
+
+                if (c == '1')
+                {
+                    output += (unsigned long long)1 << (unsigned long long)i;
+                }
+                else if (c != '0')
+                {
+                    output = 0;
+                    break;
+                }
             }
 
             return output;

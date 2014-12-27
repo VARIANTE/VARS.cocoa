@@ -36,6 +36,7 @@ typedef NS_ENUM(int, VSNumberSystemType)
     VSNumberSystemTypeDecimal,
     VSNumberSystemTypeHexadecimal,
     VSNumberSystemTypeOctal,
+    VSNumberSystemTypeBinary,
     VSNumberSystemTypeMaxTypes
 };
 
@@ -47,6 +48,28 @@ typedef NS_ENUM(int, VSNumberSystemType)
  *  @return NSString equivalent of the specified VSNumberSystemType.
  */
 NSString *NSStringFromVSNumberSystemType(VSNumberSystemType type);
+
+/**
+ *  Enums of all binary digit types.
+ */
+typedef NS_ENUM(int, VSNumberBinaryDigitType)
+{
+    VSNumberBinaryDigitTypeUnknown = -1,
+    VSNumberBinaryDigitType8Bit,
+    VSNumberBinaryDigitType16Bit,
+    VSNumberBinaryDigitType32Bit,
+    VSNumberBinaryDigitType64Bit,
+    VSNumberBinaryDigitTypeMaxTypes
+};
+
+/**
+ *  Translates VSNumberBinaryDigitType to string.
+ *
+ *  @param type
+ *
+ *  @return NSString equivalent of the specified VSNumberBinaryDigitType.
+ */
+NSString *NSStringFromVSNumberBinaryDigitType(VSNumberBinaryDigitType type);
 
 #pragma mark - INTERFACE
 
@@ -239,6 +262,16 @@ NS_ROOT_CLASS
 + (unsigned int)unsignedIntFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter;
 
 /**
+ *  Reads and returns an unsigned int value from an NSString using the specified number system type.
+ *
+ *  @param aString
+ *  @param numberSystemType
+ *
+ *  @return The corresponding unsigned int value if valid, 0 if invalid.
+ */
++ (unsigned int)unsignedIntFromString:(NSString *)aString numberSystem:(VSNumberSystemType)numberSystemType;
+
+/**
  *  Reads and returns an unsigned long value from an NSString.
  *
  *  @param aString
@@ -258,6 +291,16 @@ NS_ROOT_CLASS
  *  @return The corresponding unsigned long value if valid, 0 if invalid.
  */
 + (unsigned long)unsignedLongFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter;
+
+/**
+ *  Reads and returns an unsigned long value from an NSString using the specified number system type.
+ *
+ *  @param aString
+ *  @param numberSystemType
+ *
+ *  @return The corresponding unsigned long value if valid, 0 if invalid.
+ */
++ (unsigned long)unsignedLongFromString:(NSString *)aString numberSystem:(VSNumberSystemType)numberSystemType;
 
 /**
  *  Reads and returns an unsigned long long value from an NSString.
