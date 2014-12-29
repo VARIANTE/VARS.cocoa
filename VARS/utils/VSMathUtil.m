@@ -227,6 +227,7 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 @interface VSMathUtil()
 
 #pragma mark - CLASS METHODS
+#pragma mark - Shunting-Yard Algorithm
 
 /**
  *  @private
@@ -310,6 +311,7 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 @implementation VSMathUtil
 
 #pragma mark - CLASS METHODS
+#pragma mark - Math Character Sets
 
 /*
  *  @inheritdoc
@@ -350,6 +352,9 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
  *  @inheritdoc
  */
 + (NSCharacterSet *)parenthesisCharacterSet { return [NSCharacterSet characterSetWithCharactersInString:[NSString stringWithFormat:@"%@%@", VS_M_SYMBOL_LEFT_PARENTHESIS, VS_M_SYMBOL_RIGHT_PARENTHESIS]]; }
+
+#pragma mark - Math Operations
+#pragma mark Bitwise Operations
 
 /*
  *  @inheritdoc
@@ -649,6 +654,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 
     return result;
 }
+
+#pragma mark Floating-Point Operations
 
 /*
  *  @inheritdoc
@@ -1144,6 +1151,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
+#pragma mark - Expression Syntax Verification
+
 /*
  *  @inheritdoc
  */
@@ -1167,6 +1176,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 {
     return ([VSMathUtil evaluatePostfixStack:postfixStack angleMode:VSMathAngleModeTypeDegree tokenMap:nil] != nil);
 }
+
+#pragma mark - Expression Parsing
 
 /*
  *  @inheritdoc
@@ -1305,6 +1316,88 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 /*
  *  @inheritdoc
  */
++ (double)doubleFromToken:(id)token
+{
+    VSMathTokenType tokenType = [VSMathUtil typeOfToken:token];
+
+    if (tokenType == VSMathTokenTypeNumeric)
+    {
+        if ([token isKindOfClass:[NSNumber class]])
+        {
+            return [(NSNumber *)token doubleValue];
+        }
+        else
+        {
+            return [VSNumberUtil doubleFromString:token];
+        }
+    }
+    else if (tokenType == VSMathTokenTypeConstant)
+    {
+        return [VSMathUtil evaluateOperation:[VSMathUtil operationTypeOfSymbol:token] angleMode:VSMathAngleModeTypeUnknown];
+    }
+    else
+    {
+        return NAN;
+    }
+}
+
+/*
+ *  @inheritdoc
+ */
++ (unsigned long long)unsignedLongLongFromToken:(id)token
+{
+    VSMathTokenType tokenType = [VSMathUtil typeOfToken:token];
+
+    if (tokenType == VSMathTokenTypeNumeric)
+    {
+        if ([token isKindOfClass:[NSNumber class]])
+        {
+            return [(NSNumber *)token unsignedLongLongValue];
+        }
+        else
+        {
+            return [VSNumberUtil unsignedLongLongFromString:token];
+        }
+    }
+    else if (tokenType == VSMathTokenTypeConstant)
+    {
+        return [VSMathUtil evaluateOperation:[VSMathUtil operationTypeOfSymbol:token] angleMode:VSMathAngleModeTypeUnknown];
+    }
+    else
+    {
+        return NAN;
+    }
+}
+
+/*
+ *  @inheritdoc
+ */
++ (unsigned long long)unsignedLongLongFromToken:(id)token numberSystem:(VSNumberSystemType)numberSystemType
+{
+    if (token == nil)
+    {
+        return 0;
+    }
+
+    if ([token isKindOfClass:[NSString class]])
+    {
+        return [VSNumberUtil unsignedLongLongFromString:token numberSystem:numberSystemType];
+    }
+    else if ([token isKindOfClass:[NSNumber class]])
+    {
+        return [(NSNumber *)token unsignedLongLongValue];
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+#pragma mark - Infix-Postfix Conversions
+
+/*
+ *  @inheritdoc
+ */
 + (NSArray *)postfixStackFromInfixExpression:(NSString *)infixExpression
 {
     return [VSMathUtil postfixStackFromInfixExpression:infixExpression customVariableSets:nil];
@@ -1405,6 +1498,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     return YES;
 }
 
+#pragma mark - Shunting-Yard Algorithm
+
 /*
  *  @inheritdoc
  */
@@ -1420,6 +1515,373 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 {
     return [VSMathUtil _processShuntingYardToken:token andPreviousToken:nil stack:stack output:output customVariableSets:customVariableSets contentAware:NO];
 }
+
+/*
+ *  @inheritdoc
+ */
++ (BOOL)_processShuntingYardToken:(id)token andPreviousToken:(id)prevToken stack:(NSMutableArray *)stack output:(NSMutableArray *)output customVariableSets:(NSArray *)customVariableSets contentAware:(BOOL)isContentAware
+{
+    if ((token == nil) || (stack == nil) || (output == nil))
+    {
+        return NO;
+    }
+
+    VSMathTokenType tokenType = [VSMathUtil typeOfTokenSubset:token];
+    VSMathTokenType stackTopTokenType = (stack.count > 0) ? [VSMathUtil typeOfTokenSubset:stack.lastObject] : VSMathTokenTypeUnknown;
+
+    switch (tokenType)
+    {
+        case VSMathTokenTypeNumeric:
+        {
+            if ([token isKindOfClass:[NSString class]])
+            {
+                NSNumber *number = [VSNumberUtil numberFromString:token];
+
+                if (number == nil)
+                {
+                    return NO;
+                }
+                else
+                {
+                    if (isContentAware)
+                    {
+                        [VSMathUtil _insertMultiplierAfterLinkableToken:prevToken stack:stack output:output customVariableSets:customVariableSets];
+                    }
+
+                    [output addObject:number]; // push number to output
+                }
+            }
+            else
+            {
+                if (isContentAware)
+                {
+                    [VSMathUtil _insertMultiplierAfterLinkableToken:prevToken stack:stack output:output customVariableSets:customVariableSets];
+                }
+
+                [output addObject:token]; // push number to output
+            }
+
+            break;
+        }
+
+        case VSMathTokenTypeVariable:
+        case VSMathTokenTypeConstant:
+        {
+            if (isContentAware)
+            {
+                [VSMathUtil _insertMultiplierAfterLinkableToken:prevToken stack:stack output:output customVariableSets:customVariableSets];
+            }
+
+            [output addObject:token]; // push variable/constant to output
+            break;
+        }
+
+        case VSMathTokenTypeUnaryPostfixOperator:
+        {
+            [output addObject:token]; // push unary postfix operator to output
+            break;
+        }
+
+        case VSMathTokenTypeUnaryPrefixOperator:
+        case VSMathTokenTypeFunction:
+        {
+            // Check if this negative sign should behave like a minus sign.
+            if (isContentAware && ([VSMathUtil typeOfSymbol:token] == VSMathSymbolTypeNegative) && [VSMathUtil _validateLinkableToken:prevToken customVariableSets:customVariableSets])
+            {
+                if (stackTopTokenType == VSMathTokenTypeOperator || stackTopTokenType == VSMathTokenTypeUnaryPrefixOperator || stackTopTokenType == VSMathTokenTypeFunction)
+                {
+                    while (([VSMathUtil precedenceOfSymbol:stack.lastObject] >= [VSMathUtil precedenceOfSymbol:VS_M_SYMBOL_SUBTRACT]) ||
+                           ([VSMathUtil typeOfTokenSubset:stack.lastObject] == VSMathTokenTypeFunction))
+                    {
+                        [output addObject:stack.lastObject];
+                        [stack removeLastObject];
+                    }
+                }
+
+                [stack addObject:VS_M_SYMBOL_SUBTRACT];
+            }
+            else
+            {
+                if (isContentAware)
+                {
+                    [VSMathUtil _insertMultiplierAfterLinkableToken:prevToken stack:stack output:output customVariableSets:customVariableSets];
+                }
+
+                [stack addObject:token]; // push unary prefix operators/functions to stack
+            }
+
+            break;
+        }
+
+        case VSMathTokenTypeOperator:
+        {
+            // Check if this minus sign should behave like a negative sign.
+            if (isContentAware && ([VSMathUtil typeOfSymbol:token] == VSMathSymbolTypeSubtract) && ![VSMathUtil _validateLinkableToken:prevToken customVariableSets:customVariableSets])
+            {
+                [stack addObject:VS_M_SYMBOL_NEGATIVE];
+            }
+            else
+            {
+                if (stackTopTokenType == VSMathTokenTypeOperator || stackTopTokenType == VSMathTokenTypeUnaryPrefixOperator || stackTopTokenType == VSMathTokenTypeFunction)
+                {
+                    // If left-associative.
+                    if ([VSMathUtil operatorAssociativeTypeOfSymbol:token] == VSMathOperatorAssociativeTypeLeft)
+                    {
+                        while (([VSMathUtil precedenceOfSymbol:stack.lastObject] >= [VSMathUtil precedenceOfSymbol:token]) ||
+                               ([VSMathUtil typeOfTokenSubset:stack.lastObject] == VSMathTokenTypeFunction))
+                        {
+                            [output addObject:stack.lastObject];
+                            [stack removeLastObject];
+                        }
+                    }
+                    // If right-associative.
+                    else if ([VSMathUtil operatorAssociativeTypeOfSymbol:token] == VSMathOperatorAssociativeTypeRight)
+                    {
+                        while (([VSMathUtil precedenceOfSymbol:stack.lastObject] > [VSMathUtil precedenceOfSymbol:token]) ||
+                               ([VSMathUtil typeOfTokenSubset:stack.lastObject] == VSMathTokenTypeFunction))
+                        {
+                            [output addObject:stack.lastObject];
+                            [stack removeLastObject];
+                        }
+                    }
+                }
+
+                [stack addObject:token];
+            }
+
+            break;
+        }
+
+        case VSMathTokenTypeParenthesis:
+        {
+            if ([VSMathUtil typeOfSymbol:token] == VSMathSymbolTypeLeftParenthesis)
+            {
+                if (isContentAware)
+                {
+                    [VSMathUtil _insertMultiplierAfterLinkableToken:prevToken stack:stack output:output customVariableSets:customVariableSets];
+                }
+
+                [stack addObject:token]; // push left-paren to stack
+            }
+            else if ([VSMathUtil typeOfSymbol:token] == VSMathSymbolTypeRightParenthesis)
+            {
+                // While stacktop is not left-paren, pop stacktop to ouptut.
+                while ([VSMathUtil typeOfSymbol:stack.lastObject] != VSMathSymbolTypeLeftParenthesis)
+                {
+                    if (stack.count > 0)
+                    {
+                        [output addObject:stack.lastObject];
+                        [stack removeLastObject];
+                    }
+                    // Since stack count has reached 0 and there is still no left parenthesis found, there is a misbalance between left and right parenthesis, operation failed.
+                    else
+                    {
+                        return NO;
+                    }
+                }
+
+                // Pop stacktop (should be left-paren).
+                if ([VSMathUtil typeOfSymbol:(NSString *)stack.lastObject] == VSMathSymbolTypeLeftParenthesis)
+                {
+                    [stack removeLastObject];
+                }
+                // If no left-paren found, paren mis-match, return error.
+                else
+                {
+                    return NO;
+                }
+
+                // Evaluate to see if stacktop is now a function and pop to output if it is.
+                if ((stack.count > 0) && ([VSMathUtil typeOfTokenSubset:stack.lastObject] == VSMathTokenTypeFunction))
+                {
+                    [output addObject:stack.lastObject];
+                    [stack removeLastObject];
+                }
+            }
+
+            break;
+        }
+
+        case VSMathTokenTypeUnknown:
+        {
+            if (customVariableSets != nil)
+            {
+                unsigned long arrlen = customVariableSets.count;
+
+                for (int i = 0; i < arrlen; i++)
+                {
+                    if (![VSMathUtil _validateCustomVariableSet:customVariableSets[i]])
+                    {
+                        continue;
+                    }
+
+                    NSDictionary *dictionary = (NSDictionary *)customVariableSets[i];
+                    NSCharacterSet *characterSet = [dictionary objectForKey:VS_M_DICTIONARY_PROPERTY_CHARACTER_SET];
+                    NSCharacterSet *tokenSet = [NSCharacterSet characterSetWithCharactersInString:token];
+
+                    if ([characterSet isSupersetOfSet:tokenSet])
+                    {
+                        if (isContentAware)
+                        {
+                            [VSMathUtil _insertMultiplierAfterLinkableToken:prevToken stack:stack output:output customVariableSets:customVariableSets];
+                        }
+
+                        [output addObject:token];
+                        return YES;
+                    }
+                }
+            }
+
+            return NO;
+        }
+
+        default:
+        {
+            return NO;
+        }
+    }
+
+    return YES;
+}
+
+/*
+ *  @inheritdoc
+ */
++ (BOOL)_insertMultiplierAfterLinkableToken:(id)token stack:(NSMutableArray *)stack output:(NSMutableArray *)output customVariableSets:(NSArray *)customVariableSets;
+{
+    if ([VSMathUtil _validateLinkableToken:token customVariableSets:customVariableSets])
+    {
+        return [VSMathUtil processShuntingYardToken:VS_M_SYMBOL_MULTIPLY stack:stack output:output customVariableSets:customVariableSets];
+    }
+    else
+    {
+        return NO;
+    }
+}
+
+/*
+ *  @inheritdoc
+ */
++ (BOOL)_validateLinkableToken:(id)token customVariableSets:(NSArray *)customVariableSets
+{
+    if (token == nil)
+    {
+        return NO;
+    }
+
+    if ([token isKindOfClass:[NSNumber class]])
+    {
+        return YES;
+    }
+    else if ([token isKindOfClass:[NSString class]])
+    {
+        VSMathTokenType tokenType = [VSMathUtil typeOfToken:token];
+        VSMathSymbolType symbolType = [VSMathUtil typeOfSymbol:token];
+        NSCharacterSet *tokenSet = [NSCharacterSet characterSetWithCharactersInString:token];
+
+        if (tokenType == VSMathTokenTypeNumeric)
+        {
+            return YES;
+        }
+
+        if (customVariableSets != nil)
+        {
+            unsigned long arrlen = customVariableSets.count;
+
+            for (int i = 0; i < arrlen; i++)
+            {
+                if (![VSMathUtil _validateCustomVariableSet:customVariableSets[i]])
+                {
+                    continue;
+                }
+
+                NSDictionary *dictionary = (NSDictionary *)customVariableSets[i];
+                NSCharacterSet *characterSet = [dictionary objectForKey:VS_M_DICTIONARY_PROPERTY_CHARACTER_SET];
+
+                if ([characterSet isSupersetOfSet:tokenSet])
+                {
+                    return YES;
+                }
+            }
+        }
+
+        switch (symbolType)
+        {
+            case VSMathSymbolTypeXVariable:
+            case VSMathSymbolTypeYVariable:
+            case VSMathSymbolTypeRightParenthesis:
+            case VSMathSymbolTypeFactorial:
+            case VSMathSymbolTypePercent:
+            case VSMathSymbolTypePi:
+            case VSMathSymbolTypeEuler:
+                return YES;
+
+            default:
+                return NO;
+        }
+    }
+    else
+    {
+        return NO;
+    }
+}
+
+/*
+ *  @inheritdoc
+ */
++ (BOOL)_validateCustomVariableSet:(id)customVariableSet
+{
+    if (customVariableSet == nil)
+    {
+        return NO;
+    }
+
+    if (![customVariableSet isKindOfClass:[NSDictionary class]])
+    {
+        return NO;
+    }
+
+    NSDictionary *dictionary = (NSDictionary *)customVariableSet;
+    id characterSet = [dictionary objectForKey:VS_M_DICTIONARY_PROPERTY_CHARACTER_SET];
+    id maxRange = [dictionary objectForKey:VS_M_DICTIONARY_PROPERTY_MAX_RANGE];
+
+    if ((characterSet == nil) || ![characterSet isKindOfClass:[NSCharacterSet class]])
+    {
+        return NO;
+    }
+
+    if ((maxRange == nil) || ![maxRange isKindOfClass:[NSNumber class]])
+    {
+        return NO;
+    }
+    
+    return YES;
+}
+
+/*
+ *  @inheritdoc
+ */
++ (id)_popNumericTokenOnStack:(NSMutableArray *)stack
+{
+    if (stack == nil || stack.count <= 0)
+    {
+        return nil;
+    }
+    
+    if ([VSMathUtil typeOfToken:stack.lastObject] == VSMathTokenTypeNumeric)
+    {
+        id result = stack.lastObject;
+        [stack removeLastObject];
+        
+        return result;
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+#pragma mark - RPN Processing
 
 /*
  *  @inheritdoc
@@ -1825,6 +2287,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
+#pragma mark - Expression Evaluation
+
 /*
  *  @inheritdoc
  */
@@ -1906,6 +2370,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         return truncatedRPN.lastObject;
     }
 }
+
+#pragma mark - Function Sampling
 
 /*
  *  @inheritdoc
@@ -2116,85 +2582,176 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     return yDelta/xDelta;
 }
 
+#pragma mark - Math Operator Properties
+
 /*
  *  @inheritdoc
  */
-+ (double)doubleFromToken:(id)token
++ (int)precedenceOfSymbol:(NSString *)symbol
 {
-    VSMathTokenType tokenType = [VSMathUtil typeOfToken:token];
+    return [VSMathUtil precedenceOfSymbolType:[VSMathUtil typeOfSymbol:symbol]];
+}
 
-    if (tokenType == VSMathTokenTypeNumeric)
+/*
+ *  @inheritdoc
+ */
++ (int)precedenceOfSymbolType:(VSMathSymbolType)symbolType
+{
+    return [VSMathUtil precedenceOfOperationType:[VSMathUtil operationTypeOfSymbolType:symbolType]];
+}
+
+/*
+ *  @inheritdoc
+ */
++ (int)precedenceOfOperationType:(VSMathOperationType)operationType
+{
+    switch (operationType)
     {
-        if ([token isKindOfClass:[NSNumber class]])
-        {
-            return [(NSNumber *)token doubleValue];
-        }
-        else
-        {
-            return [VSNumberUtil doubleFromString:token];
-        }
-    }
-    else if (tokenType == VSMathTokenTypeConstant)
-    {
-        return [VSMathUtil evaluateOperation:[VSMathUtil operationTypeOfSymbol:token] angleMode:VSMathAngleModeTypeUnknown];
-    }
-    else
-    {
-        return NAN;
+        case VSMathOperationTypeEqual:
+            return 1;
+
+        case VSMathOperationTypeAdd:
+        case VSMathOperationTypeSubtract:
+            return 2;
+
+        case VSMathOperationTypeMultiply:
+        case VSMathOperationTypeDivide:
+        case VSMathOperationTypeModulo:
+            return 3;
+
+        case VSMathOperationTypeExponent:
+        case VSMathOperationTypeRoot:
+        case VSMathOperationTypeScientificNotation:
+        case VSMathOperationTypeChoose:
+        case VSMathOperationTypePick:
+        case VSMathOperationTypeNegative:
+            return 4;
+
+        case VSMathOperationTypeSquareRoot:
+        case VSMathOperationTypeCubeRoot:
+        case VSMathOperationTypeLeftShiftBy:
+        case VSMathOperationTypeRightShiftBy:
+        case VSMathOperationTypeAnd:
+        case VSMathOperationTypeOr:
+        case VSMathOperationTypeNor:
+        case VSMathOperationTypeXor:
+            return 5;
+
+        default:
+            return -1;
     }
 }
 
 /*
  *  @inheritdoc
  */
-+ (unsigned long long)unsignedLongLongFromToken:(id)token
++ (VSMathOperatorAssociativeType)operatorAssociativeTypeOfSymbol:(NSString *)symbol
 {
-    VSMathTokenType tokenType = [VSMathUtil typeOfToken:token];
+    return [VSMathUtil operatorAssociativeTypeOfSymbolType:[VSMathUtil typeOfSymbol:symbol]];
+}
 
-    if (tokenType == VSMathTokenTypeNumeric)
+/*
+ *  @inheritdoc
+ */
++ (VSMathOperatorAssociativeType)operatorAssociativeTypeOfSymbolType:(VSMathSymbolType)symbolType
+{
+    return [VSMathUtil operatorAssociativeTypeOfOperationType:[VSMathUtil operationTypeOfSymbolType:symbolType]];
+}
+
+/*
+ *  @inheritdoc
+ */
++ (VSMathOperatorAssociativeType)operatorAssociativeTypeOfOperationType:(VSMathOperationType)operationType
+{
+    switch (operationType)
     {
-        if ([token isKindOfClass:[NSNumber class]])
-        {
-            return [(NSNumber *)token unsignedLongLongValue];
-        }
-        else
-        {
-            return [VSNumberUtil unsignedLongLongFromString:token];
-        }
-    }
-    else if (tokenType == VSMathTokenTypeConstant)
-    {
-        return [VSMathUtil evaluateOperation:[VSMathUtil operationTypeOfSymbol:token] angleMode:VSMathAngleModeTypeUnknown];
-    }
-    else
-    {
-        return NAN;
+        case VSMathOperationTypeAdd:
+        case VSMathOperationTypeSubtract:
+        case VSMathOperationTypeMultiply:
+        case VSMathOperationTypeDivide:
+        case VSMathOperationTypeModulo:
+        case VSMathOperationTypeChoose:
+        case VSMathOperationTypePick:
+        case VSMathOperationTypeLeftShiftBy:
+        case VSMathOperationTypeRightShiftBy:
+        case VSMathOperationTypeAnd:
+        case VSMathOperationTypeOr:
+        case VSMathOperationTypeNor:
+        case VSMathOperationTypeXor:
+            return VSMathOperatorAssociativeTypeLeft;
+
+        case VSMathOperationTypeEqual:
+        case VSMathOperationTypeExponent:
+        case VSMathOperationTypeRoot:
+        case VSMathOperationTypeScientificNotation:
+        case VSMathOperationTypeNegative:
+        case VSMathOperationTypeSquareRoot:
+        case VSMathOperationTypeCubeRoot:
+            return VSMathOperatorAssociativeTypeRight;
+
+        default:
+            return VSMathOperatorAssociativeTypeUnknown;
     }
 }
 
 /*
  *  @inheritdoc
  */
-+ (unsigned long long)unsignedLongLongFromToken:(id)token numberSystem:(VSNumberSystemType)numberSystemType
++ (VSMathOperatorUnaryType)operatorUnaryTypeOfSymbol:(NSString *)symbol
 {
-    if (token == nil)
-    {
-        return 0;
-    }
+    return [VSMathUtil operatorUnaryTypeOfOperationType:[VSMathUtil operationTypeOfSymbol:symbol]];
+}
 
-    if ([token isKindOfClass:[NSString class]])
+/*
+ *  @inheritdoc
+ */
++ (VSMathOperatorUnaryType)operatorUnaryTypeOfSymbolType:(VSMathSymbolType)symbolType
+{
+    return [VSMathUtil operatorUnaryTypeOfOperationType:[VSMathUtil operationTypeOfSymbolType:symbolType]];
+}
+
+/*
+ *  @inheritdoc
+ */
++ (VSMathOperatorUnaryType)operatorUnaryTypeOfOperationType:(VSMathOperationType)operationType
+{
+    switch (operationType)
     {
-        return [VSNumberUtil unsignedLongLongFromString:token numberSystem:numberSystemType];
-    }
-    else if ([token isKindOfClass:[NSNumber class]])
-    {
-        return [(NSNumber *)token unsignedLongLongValue];
-    }
-    else
-    {
-        return 0;
+        case VSMathOperationTypeAdd:
+        case VSMathOperationTypeSubtract:
+        case VSMathOperationTypeMultiply:
+        case VSMathOperationTypeDivide:
+        case VSMathOperationTypeModulo:
+        case VSMathOperationTypeChoose:
+        case VSMathOperationTypePick:
+        case VSMathOperationTypeLeftShiftBy:
+        case VSMathOperationTypeRightShiftBy:
+        case VSMathOperationTypeAnd:
+        case VSMathOperationTypeOr:
+        case VSMathOperationTypeNor:
+        case VSMathOperationTypeXor:
+        case VSMathOperationTypeExponent:
+        case VSMathOperationTypeRoot:
+        case VSMathOperationTypeScientificNotation:
+            return VSMathOperatorUnaryTypeNonUnary;
+
+        case VSMathOperationTypeFactorial:
+        case VSMathOperationTypeSquare:
+        case VSMathOperationTypeCube:
+        case VSMathOperationTypeInverse:
+            return VSMathOperatorUnaryTypeUnaryPostfix;
+
+        case VSMathOperationTypeSquareRoot:
+        case VSMathOperationTypeCubeRoot:
+        case VSMathOperationTypeNegative:
+            return VSMathOperatorUnaryTypeUnaryPrefix;
+            
+        default:
+            return VSMathOperatorUnaryTypeUnknown;
     }
 }
+
+#pragma mark - Enum Translations
 
 /*
  *  @inheritdoc
@@ -2646,538 +3203,6 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 + (NSString *)symbolWithOperationType:(VSMathOperationType)operationType
 {
     return [VSMathUtil symbolWithType:[VSMathUtil symbolTypeOfOperationType:operationType]];
-}
-
-/*
- *  @inheritdoc
- */
-+ (int)precedenceOfSymbol:(NSString *)symbol
-{
-    return [VSMathUtil precedenceOfSymbolType:[VSMathUtil typeOfSymbol:symbol]];
-}
-
-/*
- *  @inheritdoc
- */
-+ (int)precedenceOfSymbolType:(VSMathSymbolType)symbolType
-{
-    return [VSMathUtil precedenceOfOperationType:[VSMathUtil operationTypeOfSymbolType:symbolType]];
-}
-
-/*
- *  @inheritdoc
- */
-+ (int)precedenceOfOperationType:(VSMathOperationType)operationType
-{
-    switch (operationType)
-    {
-        case VSMathOperationTypeEqual:
-            return 1;
-
-        case VSMathOperationTypeAdd:
-        case VSMathOperationTypeSubtract:
-            return 2;
-
-        case VSMathOperationTypeMultiply:
-        case VSMathOperationTypeDivide:
-        case VSMathOperationTypeModulo:
-            return 3;
-
-        case VSMathOperationTypeExponent:
-        case VSMathOperationTypeRoot:
-        case VSMathOperationTypeScientificNotation:
-        case VSMathOperationTypeChoose:
-        case VSMathOperationTypePick:
-        case VSMathOperationTypeNegative:
-            return 4;
-
-        case VSMathOperationTypeSquareRoot:
-        case VSMathOperationTypeCubeRoot:
-        case VSMathOperationTypeLeftShiftBy:
-        case VSMathOperationTypeRightShiftBy:
-        case VSMathOperationTypeAnd:
-        case VSMathOperationTypeOr:
-        case VSMathOperationTypeNor:
-        case VSMathOperationTypeXor:
-            return 5;
-            
-        default:
-            return -1;
-    }
-}
-
-/*
- *  @inheritdoc
- */
-+ (VSMathOperatorAssociativeType)operatorAssociativeTypeOfSymbol:(NSString *)symbol
-{
-    return [VSMathUtil operatorAssociativeTypeOfSymbolType:[VSMathUtil typeOfSymbol:symbol]];
-}
-
-/*
- *  @inheritdoc
- */
-+ (VSMathOperatorAssociativeType)operatorAssociativeTypeOfSymbolType:(VSMathSymbolType)symbolType
-{
-    return [VSMathUtil operatorAssociativeTypeOfOperationType:[VSMathUtil operationTypeOfSymbolType:symbolType]];
-}
-
-/*
- *  @inheritdoc
- */
-+ (VSMathOperatorAssociativeType)operatorAssociativeTypeOfOperationType:(VSMathOperationType)operationType
-{
-    switch (operationType)
-    {
-        case VSMathOperationTypeAdd:
-        case VSMathOperationTypeSubtract:
-        case VSMathOperationTypeMultiply:
-        case VSMathOperationTypeDivide:
-        case VSMathOperationTypeModulo:
-        case VSMathOperationTypeChoose:
-        case VSMathOperationTypePick:
-        case VSMathOperationTypeLeftShiftBy:
-        case VSMathOperationTypeRightShiftBy:
-        case VSMathOperationTypeAnd:
-        case VSMathOperationTypeOr:
-        case VSMathOperationTypeNor:
-        case VSMathOperationTypeXor:
-            return VSMathOperatorAssociativeTypeLeft;
-
-        case VSMathOperationTypeEqual:
-        case VSMathOperationTypeExponent:
-        case VSMathOperationTypeRoot:
-        case VSMathOperationTypeScientificNotation:
-        case VSMathOperationTypeNegative:
-        case VSMathOperationTypeSquareRoot:
-        case VSMathOperationTypeCubeRoot:
-            return VSMathOperatorAssociativeTypeRight;
-
-        default:
-            return VSMathOperatorAssociativeTypeUnknown;
-    }
-}
-
-/*
- *  @inheritdoc
- */
-+ (VSMathOperatorUnaryType)operatorUnaryTypeOfSymbol:(NSString *)symbol
-{
-    return [VSMathUtil operatorUnaryTypeOfOperationType:[VSMathUtil operationTypeOfSymbol:symbol]];
-}
-
-/*
- *  @inheritdoc
- */
-+ (VSMathOperatorUnaryType)operatorUnaryTypeOfSymbolType:(VSMathSymbolType)symbolType
-{
-    return [VSMathUtil operatorUnaryTypeOfOperationType:[VSMathUtil operationTypeOfSymbolType:symbolType]];
-}
-
-/*
- *  @inheritdoc
- */
-+ (VSMathOperatorUnaryType)operatorUnaryTypeOfOperationType:(VSMathOperationType)operationType
-{
-    switch (operationType)
-    {
-        case VSMathOperationTypeAdd:
-        case VSMathOperationTypeSubtract:
-        case VSMathOperationTypeMultiply:
-        case VSMathOperationTypeDivide:
-        case VSMathOperationTypeModulo:
-        case VSMathOperationTypeChoose:
-        case VSMathOperationTypePick:
-        case VSMathOperationTypeLeftShiftBy:
-        case VSMathOperationTypeRightShiftBy:
-        case VSMathOperationTypeAnd:
-        case VSMathOperationTypeOr:
-        case VSMathOperationTypeNor:
-        case VSMathOperationTypeXor:
-        case VSMathOperationTypeExponent:
-        case VSMathOperationTypeRoot:
-        case VSMathOperationTypeScientificNotation:
-            return VSMathOperatorUnaryTypeNonUnary;
-
-        case VSMathOperationTypeFactorial:
-        case VSMathOperationTypeSquare:
-        case VSMathOperationTypeCube:
-        case VSMathOperationTypeInverse:
-            return VSMathOperatorUnaryTypeUnaryPostfix;
-
-        case VSMathOperationTypeSquareRoot:
-        case VSMathOperationTypeCubeRoot:
-        case VSMathOperationTypeNegative:
-            return VSMathOperatorUnaryTypeUnaryPrefix;
-
-        default:
-            return VSMathOperatorUnaryTypeUnknown;
-    }
-}
-
-/*
- *  @inheritdoc
- */
-+ (BOOL)_processShuntingYardToken:(id)token andPreviousToken:(id)prevToken stack:(NSMutableArray *)stack output:(NSMutableArray *)output customVariableSets:(NSArray *)customVariableSets contentAware:(BOOL)isContentAware
-{
-    if ((token == nil) || (stack == nil) || (output == nil))
-    {
-        return NO;
-    }
-
-    VSMathTokenType tokenType = [VSMathUtil typeOfTokenSubset:token];
-    VSMathTokenType stackTopTokenType = (stack.count > 0) ? [VSMathUtil typeOfTokenSubset:stack.lastObject] : VSMathTokenTypeUnknown;
-
-    switch (tokenType)
-    {
-        case VSMathTokenTypeNumeric:
-        {
-            if ([token isKindOfClass:[NSString class]])
-            {
-                NSNumber *number = [VSNumberUtil numberFromString:token];
-
-                if (number == nil)
-                {
-                    return NO;
-                }
-                else
-                {
-                    if (isContentAware)
-                    {
-                        [VSMathUtil _insertMultiplierAfterLinkableToken:prevToken stack:stack output:output customVariableSets:customVariableSets];
-                    }
-
-                    [output addObject:number]; // push number to output
-                }
-            }
-            else
-            {
-                if (isContentAware)
-                {
-                    [VSMathUtil _insertMultiplierAfterLinkableToken:prevToken stack:stack output:output customVariableSets:customVariableSets];
-                }
-
-                [output addObject:token]; // push number to output
-            }
-
-            break;
-        }
-
-        case VSMathTokenTypeVariable:
-        case VSMathTokenTypeConstant:
-        {
-            if (isContentAware)
-            {
-                [VSMathUtil _insertMultiplierAfterLinkableToken:prevToken stack:stack output:output customVariableSets:customVariableSets];
-            }
-
-            [output addObject:token]; // push variable/constant to output
-            break;
-        }
-
-        case VSMathTokenTypeUnaryPostfixOperator:
-        {
-            [output addObject:token]; // push unary postfix operator to output
-            break;
-        }
-
-        case VSMathTokenTypeUnaryPrefixOperator:
-        case VSMathTokenTypeFunction:
-        {
-            // Check if this negative sign should behave like a minus sign.
-            if (isContentAware && ([VSMathUtil typeOfSymbol:token] == VSMathSymbolTypeNegative) && [VSMathUtil _validateLinkableToken:prevToken customVariableSets:customVariableSets])
-            {
-                if (stackTopTokenType == VSMathTokenTypeOperator || stackTopTokenType == VSMathTokenTypeUnaryPrefixOperator || stackTopTokenType == VSMathTokenTypeFunction)
-                {
-                    while (([VSMathUtil precedenceOfSymbol:stack.lastObject] >= [VSMathUtil precedenceOfSymbol:VS_M_SYMBOL_SUBTRACT]) ||
-                           ([VSMathUtil typeOfTokenSubset:stack.lastObject] == VSMathTokenTypeFunction))
-                    {
-                        [output addObject:stack.lastObject];
-                        [stack removeLastObject];
-                    }
-                }
-
-                [stack addObject:VS_M_SYMBOL_SUBTRACT];
-            }
-            else
-            {
-                if (isContentAware)
-                {
-                    [VSMathUtil _insertMultiplierAfterLinkableToken:prevToken stack:stack output:output customVariableSets:customVariableSets];
-                }
-
-                [stack addObject:token]; // push unary prefix operators/functions to stack
-            }
-
-            break;
-        }
-
-        case VSMathTokenTypeOperator:
-        {
-            // Check if this minus sign should behave like a negative sign.
-            if (isContentAware && ([VSMathUtil typeOfSymbol:token] == VSMathSymbolTypeSubtract) && ![VSMathUtil _validateLinkableToken:prevToken customVariableSets:customVariableSets])
-            {
-                [stack addObject:VS_M_SYMBOL_NEGATIVE];
-            }
-            else
-            {
-                if (stackTopTokenType == VSMathTokenTypeOperator || stackTopTokenType == VSMathTokenTypeUnaryPrefixOperator || stackTopTokenType == VSMathTokenTypeFunction)
-                {
-                    // If left-associative.
-                    if ([VSMathUtil operatorAssociativeTypeOfSymbol:token] == VSMathOperatorAssociativeTypeLeft)
-                    {
-                        while (([VSMathUtil precedenceOfSymbol:stack.lastObject] >= [VSMathUtil precedenceOfSymbol:token]) ||
-                               ([VSMathUtil typeOfTokenSubset:stack.lastObject] == VSMathTokenTypeFunction))
-                        {
-                            [output addObject:stack.lastObject];
-                            [stack removeLastObject];
-                        }
-                    }
-                    // If right-associative.
-                    else if ([VSMathUtil operatorAssociativeTypeOfSymbol:token] == VSMathOperatorAssociativeTypeRight)
-                    {
-                        while (([VSMathUtil precedenceOfSymbol:stack.lastObject] > [VSMathUtil precedenceOfSymbol:token]) ||
-                               ([VSMathUtil typeOfTokenSubset:stack.lastObject] == VSMathTokenTypeFunction))
-                        {
-                            [output addObject:stack.lastObject];
-                            [stack removeLastObject];
-                        }
-                    }
-                }
-
-                [stack addObject:token];
-            }
-
-            break;
-        }
-
-        case VSMathTokenTypeParenthesis:
-        {
-            if ([VSMathUtil typeOfSymbol:token] == VSMathSymbolTypeLeftParenthesis)
-            {
-                if (isContentAware)
-                {
-                    [VSMathUtil _insertMultiplierAfterLinkableToken:prevToken stack:stack output:output customVariableSets:customVariableSets];
-                }
-
-                [stack addObject:token]; // push left-paren to stack
-            }
-            else if ([VSMathUtil typeOfSymbol:token] == VSMathSymbolTypeRightParenthesis)
-            {
-                // While stacktop is not left-paren, pop stacktop to ouptut.
-                while ([VSMathUtil typeOfSymbol:stack.lastObject] != VSMathSymbolTypeLeftParenthesis)
-                {
-                    if (stack.count > 0)
-                    {
-                        [output addObject:stack.lastObject];
-                        [stack removeLastObject];
-                    }
-                    // Since stack count has reached 0 and there is still no left parenthesis found, there is a misbalance between left and right parenthesis, operation failed.
-                    else
-                    {
-                        return NO;
-                    }
-                }
-
-                // Pop stacktop (should be left-paren).
-                if ([VSMathUtil typeOfSymbol:(NSString *)stack.lastObject] == VSMathSymbolTypeLeftParenthesis)
-                {
-                    [stack removeLastObject];
-                }
-                // If no left-paren found, paren mis-match, return error.
-                else
-                {
-                    return NO;
-                }
-
-                // Evaluate to see if stacktop is now a function and pop to output if it is.
-                if ((stack.count > 0) && ([VSMathUtil typeOfTokenSubset:stack.lastObject] == VSMathTokenTypeFunction))
-                {
-                    [output addObject:stack.lastObject];
-                    [stack removeLastObject];
-                }
-            }
-
-            break;
-        }
-
-        case VSMathTokenTypeUnknown:
-        {
-            if (customVariableSets != nil)
-            {
-                unsigned long arrlen = customVariableSets.count;
-
-                for (int i = 0; i < arrlen; i++)
-                {
-                    if (![VSMathUtil _validateCustomVariableSet:customVariableSets[i]])
-                    {
-                        continue;
-                    }
-
-                    NSDictionary *dictionary = (NSDictionary *)customVariableSets[i];
-                    NSCharacterSet *characterSet = [dictionary objectForKey:VS_M_DICTIONARY_PROPERTY_CHARACTER_SET];
-                    NSCharacterSet *tokenSet = [NSCharacterSet characterSetWithCharactersInString:token];
-
-                    if ([characterSet isSupersetOfSet:tokenSet])
-                    {
-                        if (isContentAware)
-                        {
-                            [VSMathUtil _insertMultiplierAfterLinkableToken:prevToken stack:stack output:output customVariableSets:customVariableSets];
-                        }
-
-                        [output addObject:token];
-                        return YES;
-                    }
-                }
-            }
-            
-            return NO;
-        }
-            
-        default:
-        {
-            return NO;
-        }
-    }
-    
-    return YES;
-}
-
-/*
- *  @inheritdoc
- */
-+ (BOOL)_insertMultiplierAfterLinkableToken:(id)token stack:(NSMutableArray *)stack output:(NSMutableArray *)output customVariableSets:(NSArray *)customVariableSets;
-{
-    if ([VSMathUtil _validateLinkableToken:token customVariableSets:customVariableSets])
-    {
-        return [VSMathUtil processShuntingYardToken:VS_M_SYMBOL_MULTIPLY stack:stack output:output customVariableSets:customVariableSets];
-    }
-    else
-    {
-        return NO;
-    }
-}
-
-/*
- *  @inheritdoc
- */
-+ (BOOL)_validateLinkableToken:(id)token customVariableSets:(NSArray *)customVariableSets
-{
-    if (token == nil)
-    {
-        return NO;
-    }
-
-    if ([token isKindOfClass:[NSNumber class]])
-    {
-        return YES;
-    }
-    else if ([token isKindOfClass:[NSString class]])
-    {
-        VSMathTokenType tokenType = [VSMathUtil typeOfToken:token];
-        VSMathSymbolType symbolType = [VSMathUtil typeOfSymbol:token];
-        NSCharacterSet *tokenSet = [NSCharacterSet characterSetWithCharactersInString:token];
-
-        if (tokenType == VSMathTokenTypeNumeric)
-        {
-            return YES;
-        }
-
-        if (customVariableSets != nil)
-        {
-            unsigned long arrlen = customVariableSets.count;
-
-            for (int i = 0; i < arrlen; i++)
-            {
-                if (![VSMathUtil _validateCustomVariableSet:customVariableSets[i]])
-                {
-                    continue;
-                }
-
-                NSDictionary *dictionary = (NSDictionary *)customVariableSets[i];
-                NSCharacterSet *characterSet = [dictionary objectForKey:VS_M_DICTIONARY_PROPERTY_CHARACTER_SET];
-
-                if ([characterSet isSupersetOfSet:tokenSet])
-                {
-                    return YES;
-                }
-            }
-        }
-
-        switch (symbolType)
-        {
-            case VSMathSymbolTypeXVariable:
-            case VSMathSymbolTypeYVariable:
-            case VSMathSymbolTypeRightParenthesis:
-            case VSMathSymbolTypeFactorial:
-            case VSMathSymbolTypePercent:
-            case VSMathSymbolTypePi:
-            case VSMathSymbolTypeEuler:
-                return YES;
-
-            default:
-                return NO;
-        }
-    }
-    else
-    {
-        return NO;
-    }
-}
-
-/*
- *  @inheritdoc
- */
-+ (BOOL)_validateCustomVariableSet:(id)customVariableSet
-{
-    if (customVariableSet == nil)
-    {
-        return NO;
-    }
-
-    if (![customVariableSet isKindOfClass:[NSDictionary class]])
-    {
-        return NO;
-    }
-
-    NSDictionary *dictionary = (NSDictionary *)customVariableSet;
-    id characterSet = [dictionary objectForKey:VS_M_DICTIONARY_PROPERTY_CHARACTER_SET];
-    id maxRange = [dictionary objectForKey:VS_M_DICTIONARY_PROPERTY_MAX_RANGE];
-
-    if ((characterSet == nil) || ![characterSet isKindOfClass:[NSCharacterSet class]])
-    {
-        return NO;
-    }
-
-    if ((maxRange == nil) || ![maxRange isKindOfClass:[NSNumber class]])
-    {
-        return NO;
-    }
-
-    return YES;
-}
-
-/*
- *  @inheritdoc
- */
-+ (id)_popNumericTokenOnStack:(NSMutableArray *)stack
-{
-    if (stack == nil || stack.count <= 0)
-    {
-        return nil;
-    }
-
-    if ([VSMathUtil typeOfToken:stack.lastObject] == VSMathTokenTypeNumeric)
-    {
-        id result = stack.lastObject;
-        [stack removeLastObject];
-
-        return result;
-    }
-    else
-    {
-        return nil;
-    }
 }
 
 @end

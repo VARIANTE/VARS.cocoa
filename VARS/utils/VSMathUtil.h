@@ -266,6 +266,7 @@ NS_ROOT_CLASS
 @interface VSMathUtil
 
 #pragma mark - CLASS METHODS
+#pragma mark - Math Character Sets
 
 /**
  *  Gets the NSCharacterSet for numeric symbols.
@@ -323,6 +324,9 @@ NS_ROOT_CLASS
  */
 + (NSCharacterSet *)parenthesisCharacterSet;
 
+#pragma mark - Math Operations
+#pragma mark Bitwise Operations
+
 /**
  *  Evaluates the given bitwise operation type with one decimal operand.
  *
@@ -343,6 +347,8 @@ NS_ROOT_CLASS
  *  @return Unsigned long long value result.
  */
 + (unsigned long long)evaluateBitwiseOperation:(VSMathOperationType)operationType operandX:(unsigned long long)operandX operandY:(unsigned long long)operandY binaryDigitType:(VSBinaryDigitType)binaryDigitType;
+
+#pragma mark Floating-Point Operations
 
 /**
  *  Evaluates the given operation type with no operand.
@@ -377,6 +383,8 @@ NS_ROOT_CLASS
  */
 + (double)evaluateOperation:(VSMathOperationType)operationType angleMode:(VSMathAngleModeType)angleMode operandX:(double)operandX operandY:(double)operandY;
 
+#pragma mark - Expression Syntax Verification
+
 /**
  *  Validates the syntax of a math expression in infix notation.
  *
@@ -406,6 +414,8 @@ NS_ROOT_CLASS
  */
 + (BOOL)validatePostfixStackSyntax:(NSArray *)postfixStack;
 
+#pragma mark - Expression Parsing
+
 /**
  *  Parses the expression into tokens and returns them in the form of an NSArray with the option to take into 
  *  consideration the specified custom character sets. Custom character sets are defined by an array of NSDictionary 
@@ -434,6 +444,36 @@ NS_ROOT_CLASS
  *  @return YES if successful, NO if something went wrong.
  */
 + (BOOL)parseInfixExpressionIntoTokens:(NSMutableArray *)tokens infixExpression:(NSString *)infixExpression customVariableSets:(NSArray *)customVariableSets;
+
+/**
+ *  Gets the double value from a math expression token.
+ *
+ *  @param token
+ *
+ *  @return The double value, NAN if invalid.
+ */
++ (double)doubleFromToken:(id)token;
+
+/**
+ *  Gets the unsigned long long value from a math expression token.
+ *
+ *  @param token
+ *
+ *  @return The unsigned long long value, 0 if invalid.
+ */
++ (unsigned long long)unsignedLongLongFromToken:(id)token;
+
+/**
+ *  Gets the unsigned long long value from a math expression token in the specified number system type.
+ *
+ *  @param token
+ *  @param numberSystemType
+ *
+ *  @return The unsigned long long value, 0 if invalid.
+ */
++ (unsigned long long)unsignedLongLongFromToken:(id)token numberSystem:(VSNumberSystemType)numberSystemType;
+
+#pragma mark - Infix-Postfix Conversions
 
 /**
  *  Converts a string math expression in infix notation to postfix notation (RPN) represented in an array. This operation only fails under
@@ -485,6 +525,8 @@ NS_ROOT_CLASS
  */
 + (BOOL)parseInfixExpressionIntoPostfixStack:(NSMutableArray *)postfixStack infixExpression:(NSString *)infixExpression customVariableSets:(NSArray *)customVariableSets;
 
+#pragma mark - Shunting-Yard Algorithm
+
 /**
  *  Processes a token and allocates them to the stack according to shunting-yard rules. This process only fails under 3
  *  conditions:
@@ -516,6 +558,8 @@ NS_ROOT_CLASS
  *  @return YES if everything went fine, NO if something went wrong.
  */
 + (BOOL)processShuntingYardToken:(id)token stack:(NSMutableArray *)stack output:(NSMutableArray *)output customVariableSets:(NSArray *)customVariableSets;
+
+#pragma mark - RPN Processing
 
 /**
  *  Truncates a math expression in postfix notation (RPN) in double values and returns an autoreleased array of
@@ -613,6 +657,8 @@ NS_ROOT_CLASS
  */
 + (BOOL)truncateBitwisePostfixStackIntoPostfixStack:(NSMutableArray *)truncatedPostfixStack postfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode tokenMap:(NSDictionary *)tokenMap;
 
+#pragma mark - Expression Evaluation
+
 /**
  *  Evalutes the given infix math expression and returns the result.
  *
@@ -679,6 +725,8 @@ NS_ROOT_CLASS
  *  @return The evaluated NSNumber object, nil if expression is invalid or contains syntax errors.
  */
 + (NSNumber *)evaluateBitwisePostfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode tokenMap:(NSDictionary *)tokenMap;
+
+#pragma mark - Function Sampling
 
 /**
  *  Performs linear sampling on a math expression f(x) over the specified range.
@@ -774,105 +822,7 @@ NS_ROOT_CLASS
  */
 + (double)evaluateSlopeBetweenPoint:(CGPoint)pointA andPoint:(CGPoint)pointB;
 
-/**
- *  Gets the double value from a math expression token.
- *
- *  @param token
- *
- *  @return The double value, NAN if invalid.
- */
-+ (double)doubleFromToken:(id)token;
-
-/**
- *  Gets the unsigned long long value from a math expression token.
- *
- *  @param token
- *
- *  @return The unsigned long long value, 0 if invalid.
- */
-+ (unsigned long long)unsignedLongLongFromToken:(id)token;
-
-/**
- *  Gets the unsigned long long value from a math expression token in the specified number system type.
- *
- *  @param token
- *  @param numberSystemType
- *
- *  @return The unsigned long long value, 0 if invalid.
- */
-+ (unsigned long long)unsignedLongLongFromToken:(id)token numberSystem:(VSNumberSystemType)numberSystemType;
-
-/**
- *  Returns the VSMathTokenType of a recognized token (must be either an NSString or an NSNumber).
- *
- *  @param token
- *
- *  @return The corresponding VSMathTokenType.
- */
-+ (VSMathTokenType)typeOfToken:(id)token;
-
-/**
- *  Returns the VSMathTokenType of a token subset.
- *
- *  @param tokenSubset
- *
- *  @return The corresponding VSMathTokenType.
- */
-+ (VSMathTokenType)typeOfTokenSubset:(id)tokenSubset;
-
-/**
- *  Returns an NSString math symbol using the specified VSMathSymbolType.
- *
- *  @param symbolType
- *
- *  @return The corresponding NSString symbol.
- */
-+ (NSString *)symbolWithType:(VSMathSymbolType)symbolType;
-
-/**
- *  Returns the VSMathSymbolType of the corresponding NSString math symbol.
- *
- *  @param symbol
- *
- *  @return The corresponding VSMathSymbolType.
- */
-+ (VSMathSymbolType)typeOfSymbol:(NSString *)symbol;
-
-/**
- *  Returns the VSMathOperationType of the corresponding NSString math symbol.
- *
- *  @param symbol
- *
- *  @return The corresponding VSMathOperationType.
- */
-+ (VSMathOperationType)operationTypeOfSymbol:(NSString *)symbol;
-
-/**
- *  Returns the VSMathOperationType of the corresponding VSMathSymbolType.
- *
- *  @param symbolType
- *
- *  @return The corresponding VSMathOperationType.
- */
-+ (VSMathOperationType)operationTypeOfSymbolType:(VSMathSymbolType)symbolType;
-
-/**
- *  Returns the VSMathSymbolType of the corresponding VSMathOperationType.
- *
- *  @param operationType
- *
- *  @return The corresponding VSMathSymbolType.
- */
-+ (VSMathSymbolType)symbolTypeOfOperationType:(VSMathOperationType)operationType;
-
-/**
- *  Returns the NSString math symbol of the corresponding VSMathOperationType.
- *
- *  @param operationType
- *
- *  @return The corresponding NSString math symbol.
- */
-+ (NSString *)symbolWithOperationType:(VSMathOperationType)operationType;
+#pragma mark - Math Operator Properties
 
 /**
  *  Gets the precedence of an NSString math symbol (if applicable).
@@ -954,5 +904,79 @@ NS_ROOT_CLASS
  *  @return The corresponding VSMathOperatorUnaryType.
  */
 + (VSMathOperatorUnaryType)operatorUnaryTypeOfOperationType:(VSMathOperationType)operationType;
+
+#pragma mark - Enum Translations
+
+/**
+ *  Returns the VSMathTokenType of a recognized token (must be either an NSString or an NSNumber).
+ *
+ *  @param token
+ *
+ *  @return The corresponding VSMathTokenType.
+ */
++ (VSMathTokenType)typeOfToken:(id)token;
+
+/**
+ *  Returns the VSMathTokenType of a token subset.
+ *
+ *  @param tokenSubset
+ *
+ *  @return The corresponding VSMathTokenType.
+ */
++ (VSMathTokenType)typeOfTokenSubset:(id)tokenSubset;
+
+/**
+ *  Returns an NSString math symbol using the specified VSMathSymbolType.
+ *
+ *  @param symbolType
+ *
+ *  @return The corresponding NSString symbol.
+ */
++ (NSString *)symbolWithType:(VSMathSymbolType)symbolType;
+
+/**
+ *  Returns the VSMathSymbolType of the corresponding NSString math symbol.
+ *
+ *  @param symbol
+ *
+ *  @return The corresponding VSMathSymbolType.
+ */
++ (VSMathSymbolType)typeOfSymbol:(NSString *)symbol;
+
+/**
+ *  Returns the VSMathOperationType of the corresponding NSString math symbol.
+ *
+ *  @param symbol
+ *
+ *  @return The corresponding VSMathOperationType.
+ */
++ (VSMathOperationType)operationTypeOfSymbol:(NSString *)symbol;
+
+/**
+ *  Returns the VSMathOperationType of the corresponding VSMathSymbolType.
+ *
+ *  @param symbolType
+ *
+ *  @return The corresponding VSMathOperationType.
+ */
++ (VSMathOperationType)operationTypeOfSymbolType:(VSMathSymbolType)symbolType;
+
+/**
+ *  Returns the VSMathSymbolType of the corresponding VSMathOperationType.
+ *
+ *  @param operationType
+ *
+ *  @return The corresponding VSMathSymbolType.
+ */
++ (VSMathSymbolType)symbolTypeOfOperationType:(VSMathOperationType)operationType;
+
+/**
+ *  Returns the NSString math symbol of the corresponding VSMathOperationType.
+ *
+ *  @param operationType
+ *
+ *  @return The corresponding NSString math symbol.
+ */
++ (NSString *)symbolWithOperationType:(VSMathOperationType)operationType;
 
 @end
