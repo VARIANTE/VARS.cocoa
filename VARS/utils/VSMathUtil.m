@@ -87,9 +87,11 @@ NSString *NSStringFromVSMathSymbolType(VSMathSymbolType type)
         case VSMathSymbolTypeFlipWord:                 return @"VSMathSymbolTypeFlipWord";
         case VSMathSymbolTypeFlipByte:                 return @"VSMathSymbolTypeFlipByte";
         case VSMathSymbolTypeAnd:                      return @"VSMathSymbolTypeAnd";
+        case VSMathSymbolTypeNand:                     return @"VSMathSymbolTypeNand";
         case VSMathSymbolTypeOr:                       return @"VSMathSymbolTypeOr";
         case VSMathSymbolTypeNor:                      return @"VSMathSymbolTypeNor";
         case VSMathSymbolTypeXor:                      return @"VSMathSymbolTypeXor";
+        case VSMathSymbolTypeXnor:                     return @"VSMathSymbolTypeXnor";
         case VSMathSymbolTypePi:                       return @"VSMathSymbolTypePi";
         case VSMathSymbolTypeEuler:                    return @"VSMathSymbolTypeEuler";
         case VSMathSymbolTypeRandomNumber:             return @"VSMathSymbolTypeRandomNumber";
@@ -162,9 +164,11 @@ NSString *NSStringFromVSMathOperationType(VSMathOperationType type)
         case VSMathOperationTypeRoR:                      return @"VSMathOperationTypeRoR";
         case VSMathOperationTypeRoL:                      return @"VSMathOperationTypeRoL";
         case VSMathOperationTypeAnd:                      return @"VSMathOperationTypeAnd";
+        case VSMathOperationTypeNand:                     return @"VSMathOperationTypeNand";
         case VSMathOperationTypeOr:                       return @"VSMathOperationTypeOr";
         case VSMathOperationTypeNor:                      return @"VSMathOperationTypeNor";
         case VSMathOperationTypeXor:                      return @"VSMathOperationTypeXor";
+        case VSMathOperationTypeXnor:                     return @"VSMathOperationTypeXnor";
         case VSMathOperationTypeMaxTypes:                 return @"VSMathOperationTypeMaxTypes";
         default:                                          return @(type).stringValue;
     }
@@ -326,7 +330,7 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 /*
  *  @inheritdoc
  */
-+ (NSCharacterSet *)operatorCharacterSet { return [NSCharacterSet characterSetWithCharactersInString:[NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@", VS_M_SYMBOL_ADD, VS_M_SYMBOL_SUBTRACT, VS_M_SYMBOL_MULTIPLY, VS_M_SYMBOL_MULTIPLY_ALTERNATE, VS_M_SYMBOL_DIVIDE, VS_M_SYMBOL_DIVIDE_ALTERNATE, VS_M_SYMBOL_EXPONENT, VS_M_SYMBOL_SCIENTIFIC_NOTATION, VS_M_SYMBOL_ROOT, VS_M_SYMBOL_CHOOSE, VS_M_SYMBOL_PICK, VS_M_SYMBOL_LEFT_SHIFT_BY, VS_M_SYMBOL_RIGHT_SHIFT_BY, VS_M_SYMBOL_AND, VS_M_SYMBOL_OR, VS_M_SYMBOL_NOR, VS_M_SYMBOL_XOR]]; }
++ (NSCharacterSet *)operatorCharacterSet { return [NSCharacterSet characterSetWithCharactersInString:[NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@", VS_M_SYMBOL_ADD, VS_M_SYMBOL_SUBTRACT, VS_M_SYMBOL_MULTIPLY, VS_M_SYMBOL_MULTIPLY_ALTERNATE, VS_M_SYMBOL_DIVIDE, VS_M_SYMBOL_DIVIDE_ALTERNATE, VS_M_SYMBOL_EXPONENT, VS_M_SYMBOL_SCIENTIFIC_NOTATION, VS_M_SYMBOL_ROOT, VS_M_SYMBOL_CHOOSE, VS_M_SYMBOL_PICK, VS_M_SYMBOL_LEFT_SHIFT_BY, VS_M_SYMBOL_RIGHT_SHIFT_BY, VS_M_SYMBOL_AND, VS_M_SYMBOL_NAND, VS_M_SYMBOL_OR, VS_M_SYMBOL_NOR, VS_M_SYMBOL_XOR, VS_M_SYMBOL_XNOR]]; }
 
 /*
  *  @inheritdoc
@@ -668,6 +672,20 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
+        case VSMathOperationTypeNand:
+        {
+            switch (binaryDigitType)
+            {
+                case VSBinaryDigitType8Bit:  result = ~((unsigned char)operandX & (unsigned char)operandY);           break;
+                case VSBinaryDigitType16Bit: result = ~((unsigned short)operandX & (unsigned short)operandY);         break;
+                case VSBinaryDigitType32Bit: result = ~((unsigned int)operandX & (unsigned int)operandY);             break;
+                case VSBinaryDigitType64Bit: result = ~((unsigned long long)operandX & (unsigned long long)operandY); break;
+                default:                     result = 0;                                                              break;
+            }
+
+            break;
+        }
+
         case VSMathOperationTypeOr:
         {
             switch (binaryDigitType)
@@ -705,6 +723,20 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
                 case VSBinaryDigitType32Bit: result = ((unsigned int)operandX ^ (unsigned int)operandY);             break;
                 case VSBinaryDigitType64Bit: result = ((unsigned long long)operandX ^ (unsigned long long)operandY); break;
                 default:                     result = 0;                                                             break;
+            }
+
+            break;
+        }
+
+        case VSMathOperationTypeXnor:
+        {
+            switch (binaryDigitType)
+            {
+                case VSBinaryDigitType8Bit:  result = ~((unsigned char)operandX ^ (unsigned char)operandY);           break;
+                case VSBinaryDigitType16Bit: result = ~((unsigned short)operandX ^ (unsigned short)operandY);         break;
+                case VSBinaryDigitType32Bit: result = ~((unsigned int)operandX ^ (unsigned int)operandY);             break;
+                case VSBinaryDigitType64Bit: result = ~((unsigned long long)operandX ^ (unsigned long long)operandY); break;
+                default:                     result = 0;                                                              break;
             }
 
             break;
@@ -2696,9 +2728,11 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         case VSMathOperationTypeLeftShiftBy:
         case VSMathOperationTypeRightShiftBy:
         case VSMathOperationTypeAnd:
+        case VSMathOperationTypeNand:
         case VSMathOperationTypeOr:
         case VSMathOperationTypeNor:
         case VSMathOperationTypeXor:
+        case VSMathOperationTypeXnor:
             return 5;
 
         default:
@@ -2739,9 +2773,11 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         case VSMathOperationTypeLeftShiftBy:
         case VSMathOperationTypeRightShiftBy:
         case VSMathOperationTypeAnd:
+        case VSMathOperationTypeNand:
         case VSMathOperationTypeOr:
         case VSMathOperationTypeNor:
         case VSMathOperationTypeXor:
+        case VSMathOperationTypeXnor:
             return VSMathOperatorAssociativeTypeLeft;
 
         case VSMathOperationTypeEqual:
@@ -2791,9 +2827,11 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         case VSMathOperationTypeLeftShiftBy:
         case VSMathOperationTypeRightShiftBy:
         case VSMathOperationTypeAnd:
+        case VSMathOperationTypeNand:
         case VSMathOperationTypeOr:
         case VSMathOperationTypeNor:
         case VSMathOperationTypeXor:
+        case VSMathOperationTypeXnor:
         case VSMathOperationTypeExponent:
         case VSMathOperationTypeRoot:
         case VSMathOperationTypeScientificNotation:
@@ -2848,9 +2886,11 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             ([token isEqualToString:VS_M_SYMBOL_LEFT_SHIFT_BY]) ||
             ([token isEqualToString:VS_M_SYMBOL_RIGHT_SHIFT_BY]) ||
             ([token isEqualToString:VS_M_SYMBOL_AND]) ||
+            ([token isEqualToString:VS_M_SYMBOL_NAND]) ||
             ([token isEqualToString:VS_M_SYMBOL_OR]) ||
             ([token isEqualToString:VS_M_SYMBOL_NOR]) ||
-            ([token isEqualToString:VS_M_SYMBOL_XOR]))
+            ([token isEqualToString:VS_M_SYMBOL_XOR]) ||
+            ([token isEqualToString:VS_M_SYMBOL_XNOR]))
         {
             return VSMathTokenTypeOperator;
         }
@@ -3048,9 +3088,11 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         case VSMathSymbolTypeFlipWord:                 return VS_M_SYMBOL_FLIP_WORD;
         case VSMathSymbolTypeFlipByte:                 return VS_M_SYMBOL_FLIP_BYTE;
         case VSMathSymbolTypeAnd:                      return VS_M_SYMBOL_AND;
+        case VSMathSymbolTypeNand:                     return VS_M_SYMBOL_NAND;
         case VSMathSymbolTypeOr:                       return VS_M_SYMBOL_OR;
         case VSMathSymbolTypeNor:                      return VS_M_SYMBOL_NOR;
         case VSMathSymbolTypeXor:                      return VS_M_SYMBOL_XOR;
+        case VSMathSymbolTypeXnor:                     return VS_M_SYMBOL_XNOR;
         case VSMathSymbolTypeXVariable:                return VS_M_SYMBOL_X_VARIABLE;
         case VSMathSymbolTypeYVariable:                return VS_M_SYMBOL_Y_VARIABLE;
         default:                                       return nil;
@@ -3112,9 +3154,11 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     else if ([symbol isEqualToString:VS_M_SYMBOL_FLIP_WORD])                  return VSMathSymbolTypeFlipWord;
     else if ([symbol isEqualToString:VS_M_SYMBOL_FLIP_BYTE])                  return VSMathSymbolTypeFlipByte;
     else if ([symbol isEqualToString:VS_M_SYMBOL_AND])                        return VSMathSymbolTypeAnd;
+    else if ([symbol isEqualToString:VS_M_SYMBOL_NAND])                       return VSMathSymbolTypeNand;
     else if ([symbol isEqualToString:VS_M_SYMBOL_OR])                         return VSMathSymbolTypeOr;
     else if ([symbol isEqualToString:VS_M_SYMBOL_NOR])                        return VSMathSymbolTypeNor;
     else if ([symbol isEqualToString:VS_M_SYMBOL_XOR])                        return VSMathSymbolTypeXor;
+    else if ([symbol isEqualToString:VS_M_SYMBOL_XNOR])                       return VSMathSymbolTypeXnor;
     else if ([symbol isEqualToString:VS_M_SYMBOL_PI])                         return VSMathSymbolTypePi;
     else if ([symbol isEqualToString:VS_M_SYMBOL_EULER])                      return VSMathSymbolTypeEuler;
     else if ([symbol isEqualToString:VS_M_SYMBOL_RANDOM_NUMBER])              return VSMathSymbolTypeRandomNumber;
@@ -3190,9 +3234,11 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         case VSMathSymbolTypeFlipByte:                 return VSMathOperationTypeFlipByte;
         case VSMathSymbolTypeFlipWord:                 return VSMathOperationTypeFlipWord;
         case VSMathSymbolTypeAnd:                      return VSMathOperationTypeAnd;
+        case VSMathSymbolTypeNand:                     return VSMathOperationTypeNand;
         case VSMathSymbolTypeOr:                       return VSMathOperationTypeOr;
         case VSMathSymbolTypeNor:                      return VSMathOperationTypeNor;
         case VSMathSymbolTypeXor:                      return VSMathOperationTypeXor;
+        case VSMathSymbolTypeXnor:                     return VSMathOperationTypeXnor;
         default:                                       return VSMathOperationTypeUnknown;
     }
 }
@@ -3254,9 +3300,11 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         case VSMathOperationTypeFlipByte:                 return VSMathSymbolTypeFlipByte;
         case VSMathOperationTypeFlipWord:                 return VSMathSymbolTypeFlipWord;
         case VSMathOperationTypeAnd:                      return VSMathSymbolTypeAnd;
+        case VSMathOperationTypeNand:                     return VSMathSymbolTypeNand;
         case VSMathOperationTypeOr:                       return VSMathSymbolTypeOr;
         case VSMathOperationTypeNor:                      return VSMathSymbolTypeNor;
         case VSMathOperationTypeXor:                      return VSMathSymbolTypeXor;
+        case VSMathOperationTypeXnor:                     return VSMathSymbolTypeXnor;
         default:                                          return VSMathSymbolTypeUnknown;
     }
 }

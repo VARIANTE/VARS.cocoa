@@ -94,9 +94,11 @@ typedef NS_ENUM(int, VSMathSymbolType)
     VSMathSymbolTypeFlipWord,
     VSMathSymbolTypeFlipByte,
     VSMathSymbolTypeAnd,
+    VSMathSymbolTypeNand,
     VSMathSymbolTypeOr,
     VSMathSymbolTypeNor,
     VSMathSymbolTypeXor,
+    VSMathSymbolTypeXnor,
     VSMathSymbolTypePi,
     VSMathSymbolTypeEuler,
     VSMathSymbolTypeRandomNumber,
@@ -174,9 +176,11 @@ typedef NS_ENUM(int, VSMathOperationType)
     VSMathOperationTypeRoR,
     VSMathOperationTypeRoL,
     VSMathOperationTypeAnd,
+    VSMathOperationTypeNand,
     VSMathOperationTypeOr,
     VSMathOperationTypeNor,
     VSMathOperationTypeXor,
+    VSMathOperationTypeXnor,
     VSMathOperationTypeMaxTypes
 };
 

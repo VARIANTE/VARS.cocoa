@@ -79,15 +79,17 @@
 #define VS_M_SYMBOL_FLIP_WORD                  @"flipw"
 #define VS_M_SYMBOL_FLIP_BYTE                  @"flipb"
 #define VS_M_SYMBOL_AND                        @"∧" // 0x2227
+#define VS_M_SYMBOL_NAND                       @"⊼" // 0x22BC
 #define VS_M_SYMBOL_OR                         @"∨" // 0x2228
-#define VS_M_SYMBOL_NOR                        @"⊻" // 0x22BB
-#define VS_M_SYMBOL_XOR                        @"⊽" // 0x22BD
+#define VS_M_SYMBOL_NOR                        @"⊽" // 0x22BD
+#define VS_M_SYMBOL_XOR                        @"⊻" // 0x22BB
+#define VS_M_SYMBOL_XNOR                       @"⋊" // 0x22CA
 #define VS_M_SYMBOL_X_VARIABLE                 @"x"
 #define VS_M_SYMBOL_Y_VARIABLE                 @"y"
 #define VS_M_SYMBOL_NAN                        @"nan"
 #define VS_M_REGEX_NUMERIC_SET 				   @"([0-9]|\\.|\\,)+"
 #define VS_M_REGEX_FUNCTION_SET 			   @"([a-d]|[f-w]|z|_|₂)+"
-#define VS_M_REGEX_OPERATOR_SET 			   @"(\\+|−|\\*|×|/|÷|\\^|E|~|C|P|≪|≫|∧|∨|⊻|⊽|=|%)"
+#define VS_M_REGEX_OPERATOR_SET 			   @"(\\+|−|\\*|×|/|÷|\\^|E|~|C|P|≪|≫|∧|⊼|∨|⊻|⊽|⋊|=|%)"
 #define VS_M_REGEX_UNARY_PREFIX_OPERATOR_SET   @"(-|√|∛)"
 #define VS_M_REGEX_UNARY_POSTFIX_OPERATOR_SET  @"(!|²|³)"
 #define VS_M_REGEX_CONSTANT_SET				   @"(π|e|\\?)"
@@ -146,15 +148,17 @@
 #define VS_M_SYMBOL_FLIP_WORD                  "flipw"
 #define VS_M_SYMBOL_FLIP_BYTE                  "flipb"
 #define VS_M_SYMBOL_AND                        "∧" // 0x2227
+#define VS_M_SYMBOL_NAND                       "⊼" // 0x22BC
 #define VS_M_SYMBOL_OR                         "∨" // 0x2228
-#define VS_M_SYMBOL_NOR                        "⊻" // 0x22BB
-#define VS_M_SYMBOL_XOR                        "⊽" // 0x22BD
+#define VS_M_SYMBOL_NOR                        "⊽" // 0x22BD
+#define VS_M_SYMBOL_XOR                        "⊻" // 0x22BB
+#define VS_M_SYMBOL_XNOR                       "⋊" // 0x22CA
 #define VS_M_SYMBOL_X_VARIABLE                 "x"
 #define VS_M_SYMBOL_Y_VARIABLE                 "y"
 #define VS_M_SYMBOL_NAN                        "nan"
 #define VS_M_REGEX_NUMERIC_SET 				   "([0-9]|\\.|\\,)+"
 #define VS_M_REGEX_FUNCTION_SET 			   "([a-d]|[f-w]|z|_|₂)+"
-#define VS_M_REGEX_OPERATOR_SET 			   "(\\+|−|\\*|×|/|÷|\\^|E|~|C|P|≪|≫|∧|∨|⊻|⊽|=|%)"
+#define VS_M_REGEX_OPERATOR_SET 			   "(\\+|−|\\*|×|/|÷|\\^|E|~|C|P|≪|≫|∧|⊼|∨|⊻|⊽|⋊|=|%)"
 #define VS_M_REGEX_UNARY_PREFIX_OPERATOR_SET   "(-|√|∛)"
 #define VS_M_REGEX_UNARY_POSTFIX_OPERATOR_SET  "(!|²|³)"
 #define VS_M_REGEX_CONSTANT_SET				   "(π|e|\\?)"
