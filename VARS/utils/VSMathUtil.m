@@ -361,8 +361,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
  */
 + (unsigned long long)evaluateBitwiseOperation:(VSMathOperationType)operationType operand:(unsigned long long)operand binaryDigitType:(VSBinaryDigitType)binaryDigitType
 {
-    unsigned long long mask = 0xFFFFFFFFFFFFFFFF;
-    unsigned long long buffer = operand;
+    unsigned long long result = 0;
+    unsigned long long mask = 0;
 
     // Depending on the specified binary digit type, a bit mask needs to be applied to preserve bits.
     switch (binaryDigitType)
@@ -399,11 +399,11 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         {
             switch (binaryDigitType)
             {
-                case VSBinaryDigitType8Bit:  buffer = clshift((unsigned char)buffer);        break;
-                case VSBinaryDigitType16Bit: buffer = hulshift((unsigned short)buffer);      break;
-                case VSBinaryDigitType32Bit: buffer = ulshift((unsigned int)buffer);         break;
-                case VSBinaryDigitType64Bit: buffer = llulshift((unsigned long long)buffer); break;
-                default:                     buffer = 0;                                     break;
+                case VSBinaryDigitType8Bit:  result = clshift((unsigned char)operand);        break;
+                case VSBinaryDigitType16Bit: result = hulshift((unsigned short)operand);      break;
+                case VSBinaryDigitType32Bit: result = ulshift((unsigned int)operand);         break;
+                case VSBinaryDigitType64Bit: result = llulshift((unsigned long long)operand); break;
+                default:                     result = 0;                                      break;
             }
 
             break;
@@ -413,11 +413,11 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         {
             switch (binaryDigitType)
             {
-                case VSBinaryDigitType8Bit:  buffer = crshift((unsigned char)buffer);        break;
-                case VSBinaryDigitType16Bit: buffer = hurshift((unsigned short)buffer);      break;
-                case VSBinaryDigitType32Bit: buffer = urshift((unsigned int)buffer);         break;
-                case VSBinaryDigitType64Bit: buffer = llurshift((unsigned long long)buffer); break;
-                default:                     buffer = 0;                                     break;
+                case VSBinaryDigitType8Bit:  result = crshift((unsigned char)operand);        break;
+                case VSBinaryDigitType16Bit: result = hurshift((unsigned short)operand);      break;
+                case VSBinaryDigitType32Bit: result = urshift((unsigned int)operand);         break;
+                case VSBinaryDigitType64Bit: result = llurshift((unsigned long long)operand); break;
+                default:                     result = 0;                                      break;
             }
 
             break;
@@ -427,11 +427,11 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         {
             switch (binaryDigitType)
             {
-                case VSBinaryDigitType8Bit:  buffer = clrotate((unsigned char)buffer);        break;
-                case VSBinaryDigitType16Bit: buffer = hulrotate((unsigned short)buffer);      break;
-                case VSBinaryDigitType32Bit: buffer = ulrotate((unsigned int)buffer);         break;
-                case VSBinaryDigitType64Bit: buffer = llulrotate((unsigned long long)buffer); break;
-                default:                     buffer = 0;                                      break;
+                case VSBinaryDigitType8Bit:  result = clrotate((unsigned char)operand);        break;
+                case VSBinaryDigitType16Bit: result = hulrotate((unsigned short)operand);      break;
+                case VSBinaryDigitType32Bit: result = ulrotate((unsigned int)operand);         break;
+                case VSBinaryDigitType64Bit: result = llulrotate((unsigned long long)operand); break;
+                default:                     result = 0;                                       break;
             }
 
             break;
@@ -441,11 +441,11 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         {
             switch (binaryDigitType)
             {
-                case VSBinaryDigitType8Bit:  buffer = crrotate((unsigned char)buffer);        break;
-                case VSBinaryDigitType16Bit: buffer = hurrotate((unsigned short)buffer);      break;
-                case VSBinaryDigitType32Bit: buffer = urrotate((unsigned int)buffer);         break;
-                case VSBinaryDigitType64Bit: buffer = llurrotate((unsigned long long)buffer); break;
-                default:                     buffer = 0;                                      break;
+                case VSBinaryDigitType8Bit:  result = crrotate((unsigned char)operand);        break;
+                case VSBinaryDigitType16Bit: result = hurrotate((unsigned short)operand);      break;
+                case VSBinaryDigitType32Bit: result = urrotate((unsigned int)operand);         break;
+                case VSBinaryDigitType64Bit: result = llurrotate((unsigned long long)operand); break;
+                default:                     result = 0;                                       break;
             }
 
             break;
@@ -455,11 +455,11 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         {
             switch (binaryDigitType)
             {
-                case VSBinaryDigitType8Bit:  buffer = ccomp1((unsigned char)buffer);        break;
-                case VSBinaryDigitType16Bit: buffer = hucomp1((unsigned short)buffer);      break;
-                case VSBinaryDigitType32Bit: buffer = ucomp1((unsigned int)buffer);         break;
-                case VSBinaryDigitType64Bit: buffer = llucomp1((unsigned long long)buffer); break;
-                default:                     buffer = 0;                                    break;
+                case VSBinaryDigitType8Bit:  result = ccomp1((unsigned char)operand);        break;
+                case VSBinaryDigitType16Bit: result = hucomp1((unsigned short)operand);      break;
+                case VSBinaryDigitType32Bit: result = ucomp1((unsigned int)operand);         break;
+                case VSBinaryDigitType64Bit: result = llucomp1((unsigned long long)operand); break;
+                default:                     result = 0;                                     break;
             }
 
             break;
@@ -469,11 +469,11 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         {
             switch (binaryDigitType)
             {
-                case VSBinaryDigitType8Bit:  buffer = ccomp2((unsigned char)buffer);        break;
-                case VSBinaryDigitType16Bit: buffer = hucomp2((unsigned short)buffer);      break;
-                case VSBinaryDigitType32Bit: buffer = ucomp2((unsigned int)buffer);         break;
-                case VSBinaryDigitType64Bit: buffer = llucomp2((unsigned long long)buffer); break;
-                default:                     buffer = 0;                                    break;
+                case VSBinaryDigitType8Bit:  result = ccomp2((unsigned char)operand);        break;
+                case VSBinaryDigitType16Bit: result = hucomp2((unsigned short)operand);      break;
+                case VSBinaryDigitType32Bit: result = ucomp2((unsigned int)operand);         break;
+                case VSBinaryDigitType64Bit: result = llucomp2((unsigned long long)operand); break;
+                default:                     result = 0;                                     break;
             }
 
             break;
@@ -483,11 +483,11 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         {
             switch (binaryDigitType)
             {
-                case VSBinaryDigitType8Bit:  buffer = cflipw((unsigned char)buffer);        break;
-                case VSBinaryDigitType16Bit: buffer = huflipw((unsigned short)buffer);      break;
-                case VSBinaryDigitType32Bit: buffer = uflipw((unsigned int)buffer);         break;
-                case VSBinaryDigitType64Bit: buffer = lluflipw((unsigned long long)buffer); break;
-                default:                     buffer = 0;                                    break;
+                case VSBinaryDigitType8Bit:  result = cflipw((unsigned char)operand);        break;
+                case VSBinaryDigitType16Bit: result = huflipw((unsigned short)operand);      break;
+                case VSBinaryDigitType32Bit: result = uflipw((unsigned int)operand);         break;
+                case VSBinaryDigitType64Bit: result = lluflipw((unsigned long long)operand); break;
+                default:                     result = 0;                                     break;
             }
 
             break;
@@ -497,11 +497,11 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         {
             switch (binaryDigitType)
             {
-                case VSBinaryDigitType8Bit:  buffer = cflipb((unsigned char)buffer);        break;
-                case VSBinaryDigitType16Bit: buffer = huflipb((unsigned short)buffer);      break;
-                case VSBinaryDigitType32Bit: buffer = uflipb((unsigned int)buffer);         break;
-                case VSBinaryDigitType64Bit: buffer = lluflipb((unsigned long long)buffer); break;
-                default:                     buffer = 0;                                    break;
+                case VSBinaryDigitType8Bit:  result = cflipb((unsigned char)operand);        break;
+                case VSBinaryDigitType16Bit: result = huflipb((unsigned short)operand);      break;
+                case VSBinaryDigitType32Bit: result = uflipb((unsigned int)operand);         break;
+                case VSBinaryDigitType64Bit: result = lluflipb((unsigned long long)operand); break;
+                default:                     result = 0;                                     break;
             }
 
             break;
@@ -514,7 +514,7 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         }
     }
 
-    return (operand & ~mask) | buffer;
+    return (operand & ~mask) | result;
 }
 
 /*
@@ -523,7 +523,7 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 + (unsigned long long)evaluateBitwiseOperation:(VSMathOperationType)operationType operandX:(unsigned long long)operandX operandY:(unsigned long long)operandY binaryDigitType:(VSBinaryDigitType)binaryDigitType
 {
     unsigned long long result = 0;
-    unsigned long long mask = 0xFFFFFFFFFFFFFFFF;
+    unsigned long long mask = 0;
 
     // Depending on the specified binary digit type, a bit mask needs to be applied to preserve bits.
     switch (binaryDigitType)
@@ -558,91 +558,155 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     {
         case VSMathOperationTypeAdd:
         {
-            result = operandX + operandY;
+            switch (binaryDigitType)
+            {
+                case VSBinaryDigitType8Bit:  result = (unsigned char)operandX + (unsigned char)operandY;           break;
+                case VSBinaryDigitType16Bit: result = (unsigned short)operandX + (unsigned short)operandY;         break;
+                case VSBinaryDigitType32Bit: result = (unsigned int)operandX + (unsigned int)operandY;             break;
+                case VSBinaryDigitType64Bit: result = (unsigned long long)operandX + (unsigned long long)operandY; break;
+                default:                     result = 0;                                                           break;
+            }
+
             break;
         }
 
         case VSMathOperationTypeSubtract:
         {
-            result = operandX - operandY;
+            switch (binaryDigitType)
+            {
+                case VSBinaryDigitType8Bit:  result = (unsigned char)operandX - (unsigned char)operandY;           break;
+                case VSBinaryDigitType16Bit: result = (unsigned short)operandX - (unsigned short)operandY;         break;
+                case VSBinaryDigitType32Bit: result = (unsigned int)operandX - (unsigned int)operandY;             break;
+                case VSBinaryDigitType64Bit: result = (unsigned long long)operandX - (unsigned long long)operandY; break;
+                default:                     result = 0;                                                           break;
+            }
+
             break;
         }
 
         case VSMathOperationTypeMultiply:
         {
-            result = operandX * operandY;
+            switch (binaryDigitType)
+            {
+                case VSBinaryDigitType8Bit:  result = (unsigned char)operandX * (unsigned char)operandY;           break;
+                case VSBinaryDigitType16Bit: result = (unsigned short)operandX * (unsigned short)operandY;         break;
+                case VSBinaryDigitType32Bit: result = (unsigned int)operandX * (unsigned int)operandY;             break;
+                case VSBinaryDigitType64Bit: result = (unsigned long long)operandX * (unsigned long long)operandY; break;
+                default:                     result = 0;                                                           break;
+            }
+
             break;
         }
 
         case VSMathOperationTypeDivide:
         {
-            result = floor(operandX / operandY);
+            switch (binaryDigitType)
+            {
+                case VSBinaryDigitType8Bit:  result = floor((unsigned char)operandX / (unsigned char)operandY);           break;
+                case VSBinaryDigitType16Bit: result = floor((unsigned short)operandX / (unsigned short)operandY);         break;
+                case VSBinaryDigitType32Bit: result = floor((unsigned int)operandX / (unsigned int)operandY);             break;
+                case VSBinaryDigitType64Bit: result = floor((unsigned long long)operandX / (unsigned long long)operandY); break;
+                default:                     result = 0;                                                                  break;
+            }
+
             break;
         }
 
         case VSMathOperationTypeModulo:
         {
-            result = operandX % operandY;
+            switch (binaryDigitType)
+            {
+                case VSBinaryDigitType8Bit:  result = (unsigned char)operandX % (unsigned char)operandY;           break;
+                case VSBinaryDigitType16Bit: result = (unsigned short)operandX % (unsigned short)operandY;         break;
+                case VSBinaryDigitType32Bit: result = (unsigned int)operandX % (unsigned int)operandY;             break;
+                case VSBinaryDigitType64Bit: result = (unsigned long long)operandX % (unsigned long long)operandY; break;
+                default:                     result = 0;                                                           break;
+            }
+
             break;
         }
 
         case VSMathOperationTypeLeftShiftBy:
         {
-            unsigned long long buffer = 0;
-
             switch (binaryDigitType)
             {
-                case VSBinaryDigitType8Bit:  buffer = ((unsigned char)operandX << (unsigned char)operandY);           break;
-                case VSBinaryDigitType16Bit: buffer = ((unsigned short)operandX << (unsigned short)operandY);         break;
-                case VSBinaryDigitType32Bit: buffer = ((unsigned int)operandX << (unsigned int)operandY);             break;
-                case VSBinaryDigitType64Bit: buffer = ((unsigned long long)operandX << (unsigned long long)operandY); break;
-                default:                     buffer = 0;                                                              break;
+                case VSBinaryDigitType8Bit:  result = ((unsigned char)operandX << (unsigned char)operandY);           break;
+                case VSBinaryDigitType16Bit: result = ((unsigned short)operandX << (unsigned short)operandY);         break;
+                case VSBinaryDigitType32Bit: result = ((unsigned int)operandX << (unsigned int)operandY);             break;
+                case VSBinaryDigitType64Bit: result = ((unsigned long long)operandX << (unsigned long long)operandY); break;
+                default:                     result = 0;                                                              break;
             }
-
-            result = (operandX & ~mask) | buffer;
 
             break;
         }
 
         case VSMathOperationTypeRightShiftBy:
         {
-            unsigned long long buffer = 0;
-
             switch (binaryDigitType)
             {
-                case VSBinaryDigitType8Bit:  buffer = ((unsigned char)operandX >> (unsigned char)operandY);           break;
-                case VSBinaryDigitType16Bit: buffer = ((unsigned short)operandX >> (unsigned short)operandY);         break;
-                case VSBinaryDigitType32Bit: buffer = ((unsigned int)operandX >> (unsigned int)operandY);             break;
-                case VSBinaryDigitType64Bit: buffer = ((unsigned long long)operandX >> (unsigned long long)operandY); break;
-                default:                     buffer = 0;                                                              break;
+                case VSBinaryDigitType8Bit:  result = ((unsigned char)operandX >> (unsigned char)operandY);           break;
+                case VSBinaryDigitType16Bit: result = ((unsigned short)operandX >> (unsigned short)operandY);         break;
+                case VSBinaryDigitType32Bit: result = ((unsigned int)operandX >> (unsigned int)operandY);             break;
+                case VSBinaryDigitType64Bit: result = ((unsigned long long)operandX >> (unsigned long long)operandY); break;
+                default:                     result = 0;                                                              break;
             }
-
-            result = (operandX & ~mask) | buffer;
 
             break;
         }
 
         case VSMathOperationTypeAnd:
         {
-            result = operandX & operandY;
+            switch (binaryDigitType)
+            {
+                case VSBinaryDigitType8Bit:  result = ((unsigned char)operandX & (unsigned char)operandY);           break;
+                case VSBinaryDigitType16Bit: result = ((unsigned short)operandX & (unsigned short)operandY);         break;
+                case VSBinaryDigitType32Bit: result = ((unsigned int)operandX & (unsigned int)operandY);             break;
+                case VSBinaryDigitType64Bit: result = ((unsigned long long)operandX & (unsigned long long)operandY); break;
+                default:                     result = 0;                                                             break;
+            }
+
             break;
         }
 
         case VSMathOperationTypeOr:
         {
-            result = operandX | operandY;
+            switch (binaryDigitType)
+            {
+                case VSBinaryDigitType8Bit:  result = ((unsigned char)operandX | (unsigned char)operandY);           break;
+                case VSBinaryDigitType16Bit: result = ((unsigned short)operandX | (unsigned short)operandY);         break;
+                case VSBinaryDigitType32Bit: result = ((unsigned int)operandX | (unsigned int)operandY);             break;
+                case VSBinaryDigitType64Bit: result = ((unsigned long long)operandX | (unsigned long long)operandY); break;
+                default:                     result = 0;                                                             break;
+            }
+
             break;
         }
 
         case VSMathOperationTypeNor:
         {
-            result = ~(operandX | operandY);
+            switch (binaryDigitType)
+            {
+                case VSBinaryDigitType8Bit:  result = ~((unsigned char)operandX | (unsigned char)operandY);           break;
+                case VSBinaryDigitType16Bit: result = ~((unsigned short)operandX | (unsigned short)operandY);         break;
+                case VSBinaryDigitType32Bit: result = ~((unsigned int)operandX | (unsigned int)operandY);             break;
+                case VSBinaryDigitType64Bit: result = ~((unsigned long long)operandX | (unsigned long long)operandY); break;
+                default:                     result = 0;                                                              break;
+            }
+
             break;
         }
 
         case VSMathOperationTypeXor:
         {
-            result = operandX ^ operandY;
+            switch (binaryDigitType)
+            {
+                case VSBinaryDigitType8Bit:  result = ((unsigned char)operandX ^ (unsigned char)operandY);           break;
+                case VSBinaryDigitType16Bit: result = ((unsigned short)operandX ^ (unsigned short)operandY);         break;
+                case VSBinaryDigitType32Bit: result = ((unsigned int)operandX ^ (unsigned int)operandY);             break;
+                case VSBinaryDigitType64Bit: result = ((unsigned long long)operandX ^ (unsigned long long)operandY); break;
+                default:                     result = 0;                                                             break;
+            }
+
             break;
         }
 
@@ -652,7 +716,7 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         }
     }
 
-    return result;
+    return (operandX & ~mask) | result;
 }
 
 #pragma mark Floating-Point Operations
