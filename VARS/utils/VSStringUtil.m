@@ -231,6 +231,270 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
 /*
  *  @inheritdoc
  */
++ (NSString *)stringFromUnsignedChar:(unsigned char)anUnsignedChar
+{
+    return [VSStringUtil stringFromUnsignedShort:anUnsignedChar numericFormatSpecifier:nil];
+}
+
+/*
+ *  @inheritdoc
+ */
++ (NSString *)stringFromUnsignedChar:(unsigned char)anUnsignedChar numericFormatSpecifier:(NSString *)numericFormatSpecifier
+{
+    if (numericFormatSpecifier == nil) numericFormatSpecifier = VS_N_NUMERIC_FORMAT_UNSIGNED_CHAR_DECIMAL;
+
+    return [NSString stringWithFormat:numericFormatSpecifier, anUnsignedChar];
+}
+
+/*
+ *  @inheritdoc
+ */
++ (NSString *)stringFromUnsignedChar:(unsigned char)anUnsignedChar numberFormatter:(NSNumberFormatter *)aNumberFormatter
+{
+    if (aNumberFormatter == nil)
+    {
+        return [VSStringUtil stringFromUnsignedChar:anUnsignedChar];
+    }
+    else
+    {
+        return [aNumberFormatter stringFromNumber:[NSNumber numberWithUnsignedChar:anUnsignedChar]];
+    }
+}
+
+/*
+ *  @inheritdoc
+ */
++ (NSString *)stringFromUnsignedChar:(unsigned char)anUnsignedChar numberSystem:(VSNumberSystemType)numberSystemType
+{
+    switch (numberSystemType)
+    {
+        case VSNumberSystemTypeHexadecimal:
+        {
+            return [NSString stringWithFormat:@"%@%@", VS_N_HEXADECIMAL_PREFIX, [NSString stringWithFormat:VS_N_NUMERIC_FORMAT_UNSIGNED_LONG_HEXADECIMAL, (unsigned long)anUnsignedChar]];
+        }
+
+        case VSNumberSystemTypeOctal:
+        {
+            return [NSString stringWithFormat:VS_N_NUMERIC_FORMAT_UNSIGNED_LONG_OCTAL, (unsigned long)anUnsignedChar];
+        }
+
+        case VSNumberSystemTypeBinary:
+        {
+            NSString *output = @"";
+            NSString *buffer = @"";
+
+            unsigned long n = sizeof(unsigned int) * 8;
+
+            for (unsigned long i = 0; i < n; i++)
+            {
+                unsigned int bit = (anUnsignedChar & 1);
+
+                buffer = [((bit) ? @"1" : @"0") stringByAppendingString:buffer];
+
+                if (bit)
+                {
+                    output = [buffer stringByAppendingString:output];
+                    buffer = @"";
+                }
+
+                anUnsignedChar >>= 1;
+            }
+
+            if ([VSStringUtil stringIsNilOrBlank:output])
+            {
+                output = @"0";
+            }
+
+            return output;
+        }
+
+        case VSNumberSystemTypeDecimal:
+        default:
+        {
+            return [VSStringUtil stringFromUnsignedChar:anUnsignedChar];
+        }
+    }
+}
+
+/*
+ *  @inheritdoc
+ */
++ (NSString *)stringFromUnsignedShort:(unsigned short)anUnsignedShort
+{
+    return [VSStringUtil stringFromUnsignedShort:anUnsignedShort numericFormatSpecifier:nil];
+}
+
+/*
+ *  @inheritdoc
+ */
++ (NSString *)stringFromUnsignedShort:(unsigned short)anUnsignedShort numericFormatSpecifier:(NSString *)numericFormatSpecifier
+{
+    if (numericFormatSpecifier == nil) numericFormatSpecifier = VS_N_NUMERIC_FORMAT_UNSIGNED_SHORT_DECIMAL;
+
+    return [NSString stringWithFormat:numericFormatSpecifier, anUnsignedShort];
+}
+
+/*
+ *  @inheritdoc
+ */
++ (NSString *)stringFromUnsignedShort:(unsigned short)anUnsignedShort numberFormatter:(NSNumberFormatter *)aNumberFormatter
+{
+    if (aNumberFormatter == nil)
+    {
+        return [VSStringUtil stringFromUnsignedShort:anUnsignedShort];
+    }
+    else
+    {
+        return [aNumberFormatter stringFromNumber:[NSNumber numberWithUnsignedShort:anUnsignedShort]];
+    }
+}
+
+/*
+ *  @inheritdoc
+ */
++ (NSString *)stringFromUnsignedShort:(unsigned short)anUnsignedShort numberSystem:(VSNumberSystemType)numberSystemType
+{
+    switch (numberSystemType)
+    {
+        case VSNumberSystemTypeHexadecimal:
+        {
+            return [NSString stringWithFormat:@"%@%@", VS_N_HEXADECIMAL_PREFIX, [NSString stringWithFormat:VS_N_NUMERIC_FORMAT_UNSIGNED_LONG_HEXADECIMAL, (unsigned long)anUnsignedShort]];
+        }
+
+        case VSNumberSystemTypeOctal:
+        {
+            return [NSString stringWithFormat:VS_N_NUMERIC_FORMAT_UNSIGNED_LONG_OCTAL, (unsigned long)anUnsignedShort];
+        }
+
+        case VSNumberSystemTypeBinary:
+        {
+            NSString *output = @"";
+            NSString *buffer = @"";
+
+            unsigned long n = sizeof(unsigned int) * 8;
+
+            for (unsigned long i = 0; i < n; i++)
+            {
+                unsigned int bit = (anUnsignedShort & 1);
+
+                buffer = [((bit) ? @"1" : @"0") stringByAppendingString:buffer];
+
+                if (bit)
+                {
+                    output = [buffer stringByAppendingString:output];
+                    buffer = @"";
+                }
+
+                anUnsignedShort >>= 1;
+            }
+
+            if ([VSStringUtil stringIsNilOrBlank:output])
+            {
+                output = @"0";
+            }
+
+            return output;
+        }
+
+        case VSNumberSystemTypeDecimal:
+        default:
+        {
+            return [VSStringUtil stringFromUnsignedShort:anUnsignedShort];
+        }
+    }
+}
+
+/*
+ *  @inheritdoc
+ */
++ (NSString *)stringFromUnsignedInt:(unsigned int)anUnsignedInt
+{
+    return [VSStringUtil stringFromUnsignedInt:anUnsignedInt numericFormatSpecifier:nil];
+}
+
+/*
+ *  @inheritdoc
+ */
++ (NSString *)stringFromUnsignedInt:(unsigned int)anUnsignedInt numericFormatSpecifier:(NSString *)numericFormatSpecifier
+{
+    if (numericFormatSpecifier == nil) numericFormatSpecifier = VS_N_NUMERIC_FORMAT_UNSIGNED_INT_DECIMAL;
+
+    return [NSString stringWithFormat:numericFormatSpecifier, anUnsignedInt];
+}
+
+/*
+ *  @inheritdoc
+ */
++ (NSString *)stringFromUnsignedInt:(unsigned int)anUnsignedInt numberFormatter:(NSNumberFormatter *)aNumberFormatter
+{
+    if (aNumberFormatter == nil)
+    {
+        return [VSStringUtil stringFromUnsignedInt:anUnsignedInt];
+    }
+    else
+    {
+        return [aNumberFormatter stringFromNumber:[NSNumber numberWithUnsignedInt:anUnsignedInt]];
+    }
+}
+
+/*
+ *  @inheritdoc
+ */
++ (NSString *)stringFromUnsignedInt:(unsigned int)anUnsignedInt numberSystem:(VSNumberSystemType)numberSystemType
+{
+    switch (numberSystemType)
+    {
+        case VSNumberSystemTypeHexadecimal:
+        {
+            return [NSString stringWithFormat:@"%@%@", VS_N_HEXADECIMAL_PREFIX, [NSString stringWithFormat:VS_N_NUMERIC_FORMAT_UNSIGNED_LONG_HEXADECIMAL, (unsigned long)anUnsignedInt]];
+        }
+
+        case VSNumberSystemTypeOctal:
+        {
+            return [NSString stringWithFormat:VS_N_NUMERIC_FORMAT_UNSIGNED_LONG_OCTAL, (unsigned long)anUnsignedInt];
+        }
+
+        case VSNumberSystemTypeBinary:
+        {
+            NSString *output = @"";
+            NSString *buffer = @"";
+
+            unsigned long n = sizeof(unsigned int) * 8;
+
+            for (unsigned long i = 0; i < n; i++)
+            {
+                unsigned int bit = (anUnsignedInt & 1);
+
+                buffer = [((bit) ? @"1" : @"0") stringByAppendingString:buffer];
+
+                if (bit)
+                {
+                    output = [buffer stringByAppendingString:output];
+                    buffer = @"";
+                }
+
+                anUnsignedInt >>= 1;
+            }
+
+            if ([VSStringUtil stringIsNilOrBlank:output])
+            {
+                output = @"0";
+            }
+
+            return output;
+        }
+
+        case VSNumberSystemTypeDecimal:
+        default:
+        {
+            return [VSStringUtil stringFromUnsignedInt:anUnsignedInt];
+        }
+    }
+}
+
+/*
+ *  @inheritdoc
+ */
 + (NSString *)stringFromUnsignedLong:(unsigned long)anUnsignedLong
 {
     return [VSStringUtil stringFromUnsignedLong:anUnsignedLong numericFormatSpecifier:nil];
@@ -304,12 +568,14 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
             {
                 output = @"0";
             }
+
+            return output;
         }
 
         case VSNumberSystemTypeDecimal:
         default:
         {
-            return [VSStringUtil stringFromUnsignedLongLong:anUnsignedLong];
+            return [VSStringUtil stringFromUnsignedLong:anUnsignedLong];
         }
     }
 }

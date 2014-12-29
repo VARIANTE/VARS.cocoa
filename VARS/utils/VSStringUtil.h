@@ -126,6 +126,123 @@ NS_ROOT_CLASS
 + (NSString *)stringFromDouble:(double)aDouble inMultiplesOfConstant:(NSString *)symbol numberFormatter:(NSNumberFormatter *)aNumberFormatter;
 
 /**
+ *  Converts an unsigned char value to a string using the default "%u" numeric format specifier.
+ *
+ *  @param anUnsignedChar
+ *
+ *  @return The NSString representation of the specified unsigned char value.
+ */
++ (NSString *)stringFromUnsignedChar:(unsigned char)anUnsignedChar;
+
+/**
+ *  Converts an unsigned char value to a string with the specified numeric format.
+ *
+ *  @param anUnsignedChar
+ *  @param numericFormatSpecifier
+ *
+ *  @return The NSString representation of the specified unsigned char value.
+ */
++ (NSString *)stringFromUnsignedChar:(unsigned char)anUnsignedChar numericFormatSpecifier:(NSString *)numericFormatSpecifier;
+
+/**
+ *  Converts an unsigned char value to a string with the specified NSNumberFormatter instance.
+ *
+ *  @param anUnsignedChar
+ *  @param aNumberFormatter
+ *
+ *  @return The NSString representation of the specified unsigned char value.
+ */
++ (NSString *)stringFromUnsignedChar:(unsigned char)anUnsignedChar numberFormatter:(NSNumberFormatter *)aNumberFormatter;
+
+/**
+ *  Converts an unsigned char value to a string in the specified number system type.
+ *
+ *  @param anUnsignedChar
+ *  @param numberSystemType
+ *
+ *  @return The NSString representation of the specified unsigned char value in the specified number system type.
+ */
++ (NSString *)stringFromUnsignedChar:(unsigned char)anUnsignedChar numberSystem:(VSNumberSystemType)numberSystemType;
+
+/**
+ *  Converts an unsigned short value to a string using the default "%u" numeric format specifier.
+ *
+ *  @param anUngisnedShort
+ *
+ *  @return The NSString representation of the specified unsigned short value.
+ */
++ (NSString *)stringFromUnsignedShort:(unsigned short)anUngisnedShort;
+
+/**
+ *  Converts an unsigned short value to a string with the specified numeric format.
+ *
+ *  @param anUngisnedShort
+ *  @param numericFormatSpecifier
+ *
+ *  @return The NSString representation of the specified unsigned short value.
+ */
++ (NSString *)stringFromUnsignedShort:(unsigned short)anUngisnedShort numericFormatSpecifier:(NSString *)numericFormatSpecifier;
+
+/**
+ *  Converts an unsigned short value to a string with the specified NSNumberFormatter instance.
+ *
+ *  @param anUngisnedShort
+ *  @param aNumberFormatter
+ *
+ *  @return The NSString representation of the specified unsigned short value.
+ */
++ (NSString *)stringFromUnsignedShort:(unsigned short)anUngisnedShort numberFormatter:(NSNumberFormatter *)aNumberFormatter;
+
+/**
+ *  Converts an unsigned short value to a string in the specified number system type.
+ *
+ *  @param anUngisnedShort
+ *  @param numberSystemType
+ *
+ *  @return The NSString representation of the specified unsigned short value in the specified number system type.
+ */
++ (NSString *)stringFromUnsignedShort:(unsigned short)anUngisnedShort numberSystem:(VSNumberSystemType)numberSystemType;
+
+/**
+ *  Converts an unsigned int value to a string using the default "%u" numeric format specifier.
+ *
+ *  @param anUngisnedInt
+ *
+ *  @return The NSString representation of the specified unsigned int value.
+ */
++ (NSString *)stringFromUnsignedInt:(unsigned int)anUngisnedInt;
+
+/**
+ *  Converts an unsigned int value to a string with the specified numeric format.
+ *
+ *  @param anUngisnedInt
+ *  @param numericFormatSpecifier
+ *
+ *  @return The NSString representation of the specified unsigned int value.
+ */
++ (NSString *)stringFromUnsignedInt:(unsigned int)anUngisnedInt numericFormatSpecifier:(NSString *)numericFormatSpecifier;
+
+/**
+ *  Converts an unsigned int value to a string with the specified NSNumberFormatter instance.
+ *
+ *  @param anUngisnedInt
+ *  @param aNumberFormatter
+ *
+ *  @return The NSString representation of the specified unsigned int value.
+ */
++ (NSString *)stringFromUnsignedInt:(unsigned int)anUngisnedInt numberFormatter:(NSNumberFormatter *)aNumberFormatter;
+
+/**
+ *  Converts an unsigned int value to a string in the specified number system type.
+ *
+ *  @param anUngisnedInt
+ *  @param numberSystemType
+ *
+ *  @return The NSString representation of the specified unsigned int value in the specified number system type.
+ */
++ (NSString *)stringFromUnsignedInt:(unsigned int)anUngisnedInt numberSystem:(VSNumberSystemType)numberSystemType;
+
+/**
  *  Converts an unsigned long value to a string using the default "%lu" numeric format specifier.
  *
  *  @param anUnsignedLong

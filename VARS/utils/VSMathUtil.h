@@ -331,7 +331,7 @@ NS_ROOT_CLASS
  *
  *  @return Unsigned long long value result.
  */
-+ (unsigned long long)evaluateBitwiseOperation:(VSMathOperationType)operationType operand:(unsigned long long)operand;
++ (unsigned long long)evaluateBitwiseOperation:(VSMathOperationType)operationType operand:(unsigned long long)operand binaryDigitType:(VSBinaryDigitType)binaryDigitType;
 
 /**
  *  Evaluates the given bitwise operation type with two decimal operands.
@@ -342,7 +342,7 @@ NS_ROOT_CLASS
  *
  *  @return Unsigned long long value result.
  */
-+ (unsigned long long)evaluateBitwiseOperation:(VSMathOperationType)operationType operandX:(unsigned long long)operandX operandY:(unsigned long long)operandY;
++ (unsigned long long)evaluateBitwiseOperation:(VSMathOperationType)operationType operandX:(unsigned long long)operandX operandY:(unsigned long long)operandY binaryDigitType:(VSBinaryDigitType)binaryDigitType;
 
 /**
  *  Evaluates the given operation type with no operand.
@@ -545,21 +545,23 @@ NS_ROOT_CLASS
  *  of the truncated stack.
  *
  *  @param postfixStack
+ *  @param binaryDigitMode
  *
  *  @return An array of truncated tokens, nil if expression is invalid or contains syntax errors.
  */
-+ (NSArray *)postfixStackByTruncatingBitwisePostfixStack:(NSArray *)postfixStack;
++ (NSArray *)postfixStackByTruncatingBitwisePostfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode;
 
 /**
  *  Truncates a math expression in postfix notation (RPN) in unsigned long long values and returns an autoreleased array
  *  of the truncated stack, with the option to replace tokens by specifying a token map.
  *
  *  @param postfixStack
+ *  @param binaryDigitMode
  *  @param tokenMap
  *
  *  @return An array of truncated tokens, nil if expression is invalid or contains syntax errors.
  */
-+ (NSArray *)postfixStackByTruncatingBitwisePostfixStack:(NSArray *)postfixStack tokenMap:(NSDictionary *)tokenMap;
++ (NSArray *)postfixStackByTruncatingBitwisePostfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode tokenMap:(NSDictionary *)tokenMap;
 
 /**
  *  Truncates a math expression in postfix notation (RPN) in double values and stores the truncated stack 
@@ -592,10 +594,11 @@ NS_ROOT_CLASS
  *
  *  @param truncatedPostfixStack
  *  @param postfixStack
+ *  @param binaryDigitMode 
  *
  *  @return YES if successful, NO if something went wrong.
  */
-+ (BOOL)truncateBitwisePostfixStackIntoPostfixStack:(NSMutableArray *)truncatedPostfixStack postfixStack:(NSArray *)postfixStack;
++ (BOOL)truncateBitwisePostfixStackIntoPostfixStack:(NSMutableArray *)truncatedPostfixStack postfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode;
 
 /**
  *  Truncates a math expression in postfix notation (RPN) in unsigned long long values and stores the truncated
@@ -603,11 +606,12 @@ NS_ROOT_CLASS
  *
  *  @param truncatedPostfixStack
  *  @param postfixStack
+ *  @param binaryDigitMode
  *  @param tokenMap
  *
  *  @return YES if successful, NO if something went wrong.
  */
-+ (BOOL)truncateBitwisePostfixStackIntoPostfixStack:(NSMutableArray *)truncatedPostfixStack postfixStack:(NSArray *)postfixStack tokenMap:(NSDictionary *)tokenMap;
++ (BOOL)truncateBitwisePostfixStackIntoPostfixStack:(NSMutableArray *)truncatedPostfixStack postfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode tokenMap:(NSDictionary *)tokenMap;
 
 /**
  *  Evalutes the given infix math expression and returns the result.
@@ -658,21 +662,23 @@ NS_ROOT_CLASS
  *  Evaluates a math expression in postfix notation for unsigned long long values.
  *
  *  @param postfixStack
+ *  @param binaryDigitMode 
  *
  *  @return The evaluated NSNumber object, nil if expression is invalid or contains syntax errors.
  */
-+ (NSNumber *)evaluateBitwisePostfixStack:(NSArray *)postfixStack;
++ (NSNumber *)evaluateBitwisePostfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode;
 
 /**
  *  Evaluates a math expression in postfix notation for unsigned long long values with the option to replace tokens by specifying
  *  a token map.
  *
  *  @param postfixStack
+ *  @param binaryDigitMode
  *  @param tokenMap
  *
  *  @return The evaluated NSNumber object, nil if expression is invalid or contains syntax errors.
  */
-+ (NSNumber *)evaluateBitwisePostfixStack:(NSArray *)postfixStack tokenMap:(NSDictionary *)tokenMap;
++ (NSNumber *)evaluateBitwisePostfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode tokenMap:(NSDictionary *)tokenMap;
 
 /**
  *  Performs linear sampling on a math expression f(x) over the specified range.

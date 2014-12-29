@@ -13,6 +13,9 @@
  */
 #define VS_N_NUMERIC_FORMAT_DOUBLE                         @"%0.16g"
 #define VS_N_NUMERIC_FORMAT_FLOAT                          @"%0.16f"
+#define VS_N_NUMERIC_FORMAT_UNSIGNED_CHAR_DECIMAL          @"%c"
+#define VS_N_NUMERIC_FORMAT_UNSIGNED_SHORT_DECIMAL         @"%hu"
+#define VS_N_NUMERIC_FORMAT_UNSIGNED_INT_DECIMAL           @"%u"
 #define VS_N_NUMERIC_FORMAT_UNSIGNED_LONG_DECIMAL          @"%lu"
 #define VS_N_NUMERIC_FORMAT_UNSIGNED_LONG_HEXADECIMAL      @"%lX"
 #define VS_N_NUMERIC_FORMAT_UNSIGNED_LONG_OCTAL            @"%lo"
@@ -33,11 +36,11 @@
 typedef NS_ENUM(int, VSNumberSystemType)
 {
     VSNumberSystemTypeUnknown = -1,
+    VSNumberSystemTypeOctal,
     VSNumberSystemTypeDecimal,
     VSNumberSystemTypeHexadecimal,
-    VSNumberSystemTypeOctal,
-    VSNumberSystemTypeBinary,
-    VSNumberSystemTypeMaxTypes
+    VSNumberSystemTypeMaxTypes,
+    VSNumberSystemTypeBinary
 };
 
 /**
@@ -52,24 +55,24 @@ NSString *NSStringFromVSNumberSystemType(VSNumberSystemType type);
 /**
  *  Enums of all binary digit types.
  */
-typedef NS_ENUM(int, VSNumberBinaryDigitType)
+typedef NS_ENUM(int, VSBinaryDigitType)
 {
-    VSNumberBinaryDigitTypeUnknown = -1,
-    VSNumberBinaryDigitType8Bit,
-    VSNumberBinaryDigitType16Bit,
-    VSNumberBinaryDigitType32Bit,
-    VSNumberBinaryDigitType64Bit,
-    VSNumberBinaryDigitTypeMaxTypes
+    VSBinaryDigitTypeUnknown = -1,
+    VSBinaryDigitType8Bit,
+    VSBinaryDigitType16Bit,
+    VSBinaryDigitType32Bit,
+    VSBinaryDigitType64Bit,
+    VSBinaryDigitTypeMaxTypes
 };
 
 /**
- *  Translates VSNumberBinaryDigitType to string.
+ *  Translates VSBinaryDigitType to string.
  *
  *  @param type
  *
- *  @return NSString equivalent of the specified VSNumberBinaryDigitType.
+ *  @return NSString equivalent of the specified VSBinaryDigitType.
  */
-NSString *NSStringFromVSNumberBinaryDigitType(VSNumberBinaryDigitType type);
+NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type);
 
 #pragma mark - INTERFACE
 
@@ -239,6 +242,68 @@ NS_ROOT_CLASS
  *  @return The corresponding long long value if valid, 0 if invalid.
  */
 + (long long)longLongFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter;
+
+/**
+ *  Reads and returns an unsigned char value from an NSString.
+ *
+ *  @param aString
+ *
+ *  @return The corresponding unsigned char value if valid, 0 if invalid.
+ */
++ (unsigned char)unsignedCharFromString:(NSString *)aString;
+
+/**
+ *  Reads and returns an unsigned char value from an NSString using the specified NSNumberFormatter instance.
+ *  If no NSNumberFormatter instance is specified, the strtoul_l from stdlib will be used instead with
+ *  LC_GLOBAL_LOCALE.
+ *
+ *  @param aString
+ *  @param aNumberFormatter
+ *
+ *  @return The corresponding unsigned char value if valid, 0 if invalid.
+ */
++ (unsigned char)unsignedCharFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter;
+
+/**
+ *  Reads and returns an unsigned char value from an NSString using the specified number system type.
+ *
+ *  @param aString
+ *  @param numberSystemType
+ *
+ *  @return The corresponding unsigned char value if valid, 0 if invalid.
+ */
++ (unsigned char)unsignedCharFromString:(NSString *)aString numberSystem:(VSNumberSystemType)numberSystemType;
+
+/**
+ *  Reads and returns an unsigned short value from an NSString.
+ *
+ *  @param aString
+ *
+ *  @return The corresponding unsigned short value if valid, 0 if invalid.
+ */
++ (unsigned short)unsignedShortFromString:(NSString *)aString;
+
+/**
+ *  Reads and returns an unsigned short value from an NSString using the specified NSNumberFormatter instance.
+ *  If no NSNumberFormatter instance is specified, the strtoul_l from stdlib will be used instead with
+ *  LC_GLOBAL_LOCALE.
+ *
+ *  @param aString
+ *  @param aNumberFormatter
+ *
+ *  @return The corresponding unsigned short value if valid, 0 if invalid.
+ */
++ (unsigned short)unsignedShortFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter;
+
+/**
+ *  Reads and returns an unsigned short value from an NSString using the specified number system type.
+ *
+ *  @param aString
+ *  @param numberSystemType
+ *
+ *  @return The corresponding unsigned short value if valid, 0 if invalid.
+ */
++ (unsigned short)unsignedShortFromString:(NSString *)aString numberSystem:(VSNumberSystemType)numberSystemType;
 
 /**
  *  Reads and returns an unsigned int value from an NSString.

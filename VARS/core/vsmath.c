@@ -14,6 +14,9 @@
 
 #import "vsmath.h"
 
+#pragma mark - Trigonometry
+#pragma mark Angle Conversions
+
 /**
  *  Converts a float value in degrees to a float value in radians.
  *
@@ -182,6 +185,388 @@ double fgtor(double __n)
     return o;
 }
 
+#pragma mark Trigonometric Functions
+
+/**
+ *  Computes the sine of a float value in degrees.
+ *
+ *  @param __n
+ *
+ *  @return The computed float value.
+ */
+float fsindf(float __n)
+{
+    float o = fsinrf(fdtorf(__n));
+
+    return o;
+}
+
+/**
+ *  Computes the sine of a double value in degrees.
+ *
+ *  @param __n
+ *
+ *  @return The computed double value.
+ */
+double fsind(double __n)
+{
+    double o = fsinr(fdtor(__n));
+
+    return o;
+}
+
+/**
+ *  Computes the cosine of a float value in degrees.
+ *
+ *  @param __n
+ *
+ *  @return The computed float value.
+ */
+float fcosdf(float __n)
+{
+    float o = fcosrf(fdtorf(__n));
+
+    return o;
+}
+
+/**
+ *  Computes the cosine of a double value in degrees.
+ *
+ *  @param __n
+ *
+ *  @return The computed double value.
+ */
+double fcosd(double __n)
+{
+    double o = fcosr(fdtor(__n));
+
+    return o;
+}
+
+/**
+ *  Computes the tangent of a float value in degrees.
+ *
+ *  @param __n
+ *
+ *  @return The computed float value.
+ */
+float ftandf(float __n)
+{
+    float o = ftanrf(fdtorf(__n));
+
+    return o;
+}
+
+/**
+ *  Computes the tangent of a double value in degrees.
+ *
+ *  @param __n
+ *
+ *  @return The computed double value.
+ */
+double ftand(double __n)
+{
+    double o = ftanr(fdtor(__n));
+
+    return o;
+}
+
+/**
+ *  Computes the sine of a float value in radians.
+ *
+ *  @param __n
+ *
+ *  @return The computed float value.
+ */
+float fsinrf(float __n)
+{
+    float o = sinf(__n);
+
+    if ((1.0f - fabsf(o)) < FLT_EPSILON)
+    {
+        return roundf(o);
+    }
+    else if (fabs(o) < FLT_EPSILON)
+    {
+        return 0.0f;
+    }
+    else
+    {
+        return o;
+    }
+}
+
+/**
+ *  Computes the sine of a double value in radians.
+ *
+ *  @param __n
+ *
+ *  @return The computed double value.
+ */
+double fsinr(double __n)
+{
+    double o = sin(__n);
+
+    if ((1.0 - fabs(o)) < FLT_EPSILON)
+    {
+        return round(o);
+    }
+    else if (fabs(o) < FLT_EPSILON)
+    {
+        return 0.0;
+    }
+    else
+    {
+        return o;
+    }
+}
+
+/**
+ *  Computes the cosine of a float value in radians.
+ *
+ *  @param __n
+ *
+ *  @return The computed float value.
+ */
+float fcosrf(float __n)
+{
+    float o = cosf(__n);
+
+    if (fabsf(o) < FLT_EPSILON)
+    {
+        return 0.0f;
+    }
+    else
+    {
+        return o;
+    }
+}
+
+/**
+ *  Computes the cosine of a double value in radians.
+ *
+ *  @param __n
+ *
+ *  @return The computed double value.
+ */
+double fcosr(double __n)
+{
+    double o = cos(__n);
+
+    if (fabs(o) < FLT_EPSILON)
+    {
+        return 0.0;
+    }
+    else
+    {
+        return o;
+    }
+}
+
+/**
+ *  Computes the tangent of a float value in radians.
+ *
+ *  @param __n
+ *
+ *  @return The computed float value.
+ */
+float ftanrf(float __n)
+{
+    float o;
+
+    if (fcosrf(__n) == 0.0f)
+    {
+        o = NAN;
+    }
+    else
+    {
+        o = tanf(__n);
+    }
+
+    if (fabsf(o) < FLT_EPSILON)
+    {
+        o = 0.0f;
+    }
+
+    return o;
+}
+
+/**
+ *  Computes the tangent of a double value in radians.
+ *
+ *  @param __n
+ *
+ *  @return The computed double value.
+ */
+double ftanr(double __n)
+{
+    double o;
+
+    if (fcosr(__n) == 0.0)
+    {
+        o = NAN;
+    }
+    else
+    {
+        o = tan(__n);
+    }
+
+    if (fabs(o) < FLT_EPSILON)
+    {
+        o = 0.0;
+    }
+
+    return o;
+}
+
+/**
+ *  Computes the sine of a float value in gradians.
+ *
+ *  @param __n
+ *
+ *  @return The computed float value.
+ */
+float fsingf(float __n)
+{
+    float o = fsinrf(fgtorf(__n));
+
+    return o;
+}
+
+/**
+ *  Computes the sine of a double value in gradians.
+ *
+ *  @param __n
+ *
+ *  @return The computed double value.
+ */
+double fsing(double __n)
+{
+    double o = fsinr(fgtor(__n));
+
+    return o;
+}
+
+/**
+ *  Computes the cosine of a float value in gradians.
+ *
+ *  @param __n
+ *
+ *  @return The computed float value.
+ */
+float fcosgf(float __n)
+{
+    float o = fcosrf(fgtorf(__n));
+
+    return o;
+}
+
+/**
+ *  Computes the cosine of a double value in gradians.
+ *
+ *  @param __n
+ *
+ *  @return The computed double value.
+ */
+double fcosg(double __n)
+{
+    double o = fcosr(fgtor(__n));
+
+    return o;
+}
+
+/**
+ *  Computes the tangent of a float value in gradians.
+ *
+ *  @param __n
+ *
+ *  @return The computed float value.
+ */
+float ftangf(float __n)
+{
+    float o = ftanrf(fgtorf(__n));
+
+    return o;
+}
+
+/**
+ *  Computes the tangent of a double value in gradians.
+ *
+ *  @param __n
+ *
+ *  @return The computed double value.
+ */
+double ftang(double __n)
+{
+    double o = ftanr(fgtor(__n));
+    
+    return o;
+}
+
+#pragma mark - Differential Calculus
+
+/**
+ *  Evaluates the slope between two points.
+ *
+ *  @param __x1
+ *  @param __x2
+ *  @param __y1
+ *  @param __y2
+ *
+ *  @return The float value of the slope.
+ */
+float fslopef(float __x1, float __x2, float __y1, float __y2)
+{
+    if (isnan(__x1) || isnan(__x2) || isnan(__y1) || isnan(__y2))
+    {
+        return NAN;
+    }
+
+    if (fabsf(__y2 - __y1) < FLT_EPSILON)
+    {
+        return 0.0f;
+    }
+
+    if (fabsf(__x2 - __x1) < FLT_EPSILON)
+    {
+        return NAN;
+    }
+
+    return ((__y2 - __y1) / (__x2 - __x1));
+}
+
+/**
+ *  Evaluates the slope between two points.
+ *
+ *  @param __x1
+ *  @param __x2
+ *  @param __y1
+ *  @param __y2
+ *
+ *  @return The double value of the slope.
+ */
+double fslope(double __x1, double __x2, double __y1, double __y2)
+{
+    if (isnan(__x1) || isnan(__x2) || isnan(__y1) || isnan(__y2))
+    {
+        return NAN;
+    }
+
+    if (fabs(__y2 - __y1) < DBL_EPSILON)
+    {
+        return 0.0;
+    }
+
+    if (fabs(__x2 - __x1) < DBL_EPSILON)
+    {
+        return NAN;
+    }
+
+    return ((__y2 - __y1) / (__x2 - __x1));
+}
+
+#pragma mark - Logarithms
+
 /**
  *  Computes the natural logarithm of a float value.
  *
@@ -209,6 +594,8 @@ double fln(double __n)
 
     return o;
 }
+
+#pragma mark - Probability
 
 /**
  *  Computes the factorial of a float value. Supports the factorial computation
@@ -800,321 +1187,631 @@ double fnpr(double __n, double __r)
     return o;
 }
 
+#pragma mark - Bitwise Operations
+#pragma mark Bit Shifting
+
 /**
- *  Computes the sine of a float value in degrees.
+ *  Left shifts an unsigned char value.
  *
  *  @param __n
  *
- *  @return The computed float value.
+ *  @return The computed unsigned char value.
  */
-float fsindf(float __n)
+unsigned char clshift(unsigned char __n)
 {
-    float o = fsinrf(fdtorf(__n));
+    return (__n << 1);
+}
+
+/**
+ *  Left shifts an unsigned short value.
+ *
+ *  @param __n
+ *
+ *  @return The computed short value.
+ */
+unsigned short hulshift(unsigned short __n)
+{
+    return (__n << 1);
+}
+
+/**
+ *  Left shifts an unsigned int value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned int value.
+ */
+unsigned int ulshift(unsigned int __n)
+{
+    return (__n << 1);
+}
+
+/**
+ *  Left shifts an unsigned long value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned long value.
+ */
+unsigned long lulshift(unsigned long __n)
+{
+    return (__n << 1);
+}
+
+/**
+ *  Left shifts an unsigned long long value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned long long value.
+ */
+unsigned long long llulshift(unsigned long long __n)
+{
+    return (__n << 1);
+}
+
+/**
+ *  Right shifts an unsigned char value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned char value.
+ */
+unsigned char crshift(unsigned char __n)
+{
+    return (__n >> 1);
+}
+
+/**
+ *  Right shifts an unsigned short value.
+ *
+ *  @param __n
+ *
+ *  @return The computed short value.
+ */
+unsigned short hurshift(unsigned short __n)
+{
+    return (__n >> 1);
+}
+
+/**
+ *  Right shifts an unsigned int value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned int value.
+ */
+unsigned int urshift(unsigned int __n)
+{
+    return (__n >> 1);
+}
+
+/**
+ *  Right shifts an unsigned long value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned long value.
+ */
+unsigned long lurshift(unsigned long __n)
+{
+    return (__n >> 1);
+}
+
+/**
+ *  Right shifts an unsigned long long value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned long long value.
+ */
+unsigned long long llurshift(unsigned long long __n)
+{
+    return (__n >> 1);
+}
+
+/**
+ *  Left rotates an unsigned char value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned char value.
+ */
+unsigned char clrotate(unsigned char __n)
+{
+    return ((__n << 1) | (__n >> (sizeof(unsigned char)*8-1)));
+}
+
+/**
+ *  Left rotates an unsigned short value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned short value.
+ */
+unsigned short hulrotate(unsigned short __n)
+{
+    return ((__n << 1) | (__n >> (sizeof(unsigned short)*8-1)));
+}
+
+/**
+ *  Left rotates an unsigned int value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned int value.
+ */
+unsigned int ulrotate(unsigned int __n)
+{
+    return ((__n << 1) | (__n >> (sizeof(unsigned int)*8-1)));
+}
+
+/**
+ *  Left rotates an unsigned long value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned long value.
+ */
+unsigned long lulrotate(unsigned long __n)
+{
+    return ((__n << 1) | (__n >> (sizeof(unsigned long)*8-1)));
+}
+
+/**
+ *  Left rotates an unsigned long long value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned long long value.
+ */
+unsigned long long llulrotate(unsigned long long __n)
+{
+    return ((__n << 1) | (__n >> (sizeof(unsigned long long)*8-1)));
+}
+
+/**
+ *  Right rotates an unsigned char value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned char value.
+ */
+unsigned char crrotate(unsigned char __n)
+{
+    return ((__n >> 1) | (__n << (sizeof(unsigned char)*8-1)));
+}
+
+/**
+ *  Right rotates an unsigned short value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned short value.
+ */
+unsigned short hurrotate(unsigned short __n)
+{
+    return ((__n >> 1) | (__n << (sizeof(unsigned short)*8-1)));
+}
+
+/**
+ *  Right rotates an unsigned int value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned int value.
+ */
+unsigned int urrotate(unsigned int __n)
+{
+    return ((__n >> 1) | (__n << (sizeof(unsigned int)*8-1)));
+}
+
+/**
+ *  Right rotates an unsigned long value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned long value.
+ */
+unsigned long lurrotate(unsigned long __n)
+{
+    return ((__n >> 1) | (__n << (sizeof(unsigned long)*8-1)));
+}
+
+/**
+ *  Right rotates an unsigned long long value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned long long value.
+ */
+unsigned long long llurrotate(unsigned long long __n)
+{
+    return ((__n >> 1) | (__n << (sizeof(unsigned long long)*8-1)));
+}
+
+#pragma mark Inverse
+
+/**
+ *  Computes the 1's complement of an unsigned char value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned char value.
+ */
+unsigned char ccomp1(unsigned char __n)
+{
+    return (~__n);
+}
+
+/**
+ *  Computes the 1's complement of an unsigned short value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned short value.
+ */
+unsigned short hucomp1(unsigned short __n)
+{
+    return (~__n);
+}
+
+/**
+ *  Computes the 1's complement of an unsigned int value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned int value.
+ */
+unsigned int ucomp1(unsigned int __n)
+{
+    return (~__n);
+}
+
+/**
+ *  Computes the 1's complement of an unsigned long value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned long value.
+ */
+unsigned long lucomp1(unsigned long __n)
+{
+    return (~__n);
+}
+
+/**
+ *  Computes the 1's complement of an unsigned long long value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned long long value.
+ */
+unsigned long long llucomp1(unsigned long long __n)
+{
+    return (~__n);
+}
+
+/**
+ *  Computes the 2's complement of an unsigned char value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned char value.
+ */
+unsigned char ccomp2(unsigned char __n)
+{
+    return (~__n + 1);
+}
+
+/**
+ *  Computes the 2's complement of an unsigned short value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned short value.
+ */
+unsigned short hucomp2(unsigned short __n)
+{
+    return (~__n + 1);
+}
+
+/**
+ *  Computes the 2's complement of an unsigned int value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned int value.
+ */
+unsigned int ucomp2(unsigned int __n)
+{
+    return (~__n + 1);
+}
+
+/**
+ *  Computes the 2's complement of an unsigned long value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned long value.
+ */
+unsigned long lucomp2(unsigned long __n)
+{
+    return (~__n + 1);
+}
+
+/**
+ *  Computes the 2's complement of an unsigned long long value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned long long value.
+ */
+unsigned long long llucomp2(unsigned long long __n)
+{
+    return (~__n + 1);
+}
+
+/**
+ *  Flips the bytes of an unsigned char value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned char value.
+ */
+unsigned char cflipb(unsigned char __n)
+{
+    unsigned char o = __n;
+
+    if ((__n >> 0) & 0xFF)
+    {
+        o = __n;
+    }
 
     return o;
 }
 
 /**
- *  Computes the sine of a double value in degrees.
+ *  Flips the bytes of an unsigned short value.
  *
  *  @param __n
  *
- *  @return The computed double value.
+ *  @return The computed unsigned short value.
  */
-double fsind(double __n)
+unsigned short huflipb(unsigned short __n)
 {
-    double o = fsinr(fdtor(__n));
+    unsigned short o = __n;
 
-    return o;
-}
-
-/**
- *  Computes the cosine of a float value in degrees.
- *
- *  @param __n
- *
- *  @return The computed float value.
- */
-float fcosdf(float __n)
-{
-    float o = fcosrf(fdtorf(__n));
-
-    return o;
-}
-
-/**
- *  Computes the cosine of a double value in degrees.
- *
- *  @param __n
- *
- *  @return The computed double value.
- */
-double fcosd(double __n)
-{
-    double o = fcosr(fdtor(__n));
-
-    return o;
-}
-
-/**
- *  Computes the tangent of a float value in degrees.
- *
- *  @param __n
- *
- *  @return The computed float value.
- */
-float ftandf(float __n)
-{
-    float o = ftanrf(fdtorf(__n));
-
-    return o;
-}
-
-/**
- *  Computes the tangent of a double value in degrees.
- *
- *  @param __n
- *
- *  @return The computed double value.
- */
-double ftand(double __n)
-{
-    double o = ftanr(fdtor(__n));
-
-    return o;
-}
-
-/**
- *  Computes the sine of a float value in radians.
- *
- *  @param __n
- *
- *  @return The computed float value.
- */
-float fsinrf(float __n)
-{
-    float o = sinf(__n);
-
-    if ((1.0f - fabsf(o)) < FLT_EPSILON)
+    if ((__n >> 8) & 0xFF)
     {
-        return roundf(o);
+        o = (__n & 0xFF) << 8 | (__n >> 8 & 0xFF);
     }
-    else if (fabs(o) < FLT_EPSILON)
+    else if ((__n >> 0) & 0xFF)
     {
-        return 0.0f;
-    }
-    else
-    {
-        return o;
-    }
-}
-
-/**
- *  Computes the sine of a double value in radians.
- *
- *  @param __n
- *
- *  @return The computed double value.
- */
-double fsinr(double __n)
-{
-    double o = sin(__n);
-
-    if ((1.0 - fabs(o)) < FLT_EPSILON)
-    {
-        return round(o);
-    }
-    else if (fabs(o) < FLT_EPSILON)
-    {
-        return 0.0;
-    }
-    else
-    {
-        return o;
-    }
-}
-
-/**
- *  Computes the cosine of a float value in radians.
- *
- *  @param __n
- *
- *  @return The computed float value.
- */
-float fcosrf(float __n)
-{
-    float o = cosf(__n);
-
-    if (fabsf(o) < FLT_EPSILON)
-    {
-        return 0.0f;
-    }
-    else
-    {
-        return o;
-    }
-}
-
-/**
- *  Computes the cosine of a double value in radians.
- *
- *  @param __n
- *
- *  @return The computed double value.
- */
-double fcosr(double __n)
-{
-    double o = cos(__n);
-
-    if (fabs(o) < FLT_EPSILON)
-    {
-        return 0.0;
-    }
-    else
-    {
-        return o;
-    }
-}
-
-/**
- *  Computes the tangent of a float value in radians.
- *
- *  @param __n
- *
- *  @return The computed float value.
- */
-float ftanrf(float __n)
-{
-    float o;
-
-    if (fcosrf(__n) == 0.0f)
-    {
-        o = NAN;
-    }
-    else
-    {
-        o = tanf(__n);
-    }
-
-    if (fabsf(o) < FLT_EPSILON)
-    {
-        o = 0.0f;
+        o = __n;
     }
 
     return o;
 }
 
 /**
- *  Computes the tangent of a double value in radians.
+ *  Flips the bytes of an unsigned int value.
  *
  *  @param __n
  *
- *  @return The computed double value.
+ *  @return The computed unsigned int value.
  */
-double ftanr(double __n)
+unsigned int uflipb(unsigned int __n)
 {
-    double o;
+    unsigned int o = __n;
 
-    if (fcosr(__n) == 0.0)
+    if ((__n >> 24) & 0xFF)
     {
-        o = NAN;
+        o = (__n & 0xFF) << 24 | (__n >> 8 & 0xFF) << 16 | (__n >> 16 & 0xFF) << 8 | (__n >> 24 & 0xFF);
     }
-    else
+    else if ((__n >> 16) & 0xFF)
     {
-        o = tan(__n);
+        o = (__n & 0xFF) << 16 | (__n >> 8 & 0xFF) << 8 | (__n >> 16 & 0xFF);
     }
-
-    if (fabs(o) < FLT_EPSILON)
+    else if ((__n >> 8) & 0xFF)
     {
-        o = 0.0;
+        o = (__n & 0xFF) << 8 | (__n >> 8 & 0xFF);
+    }
+    else if ((__n >> 0) & 0xFF)
+    {
+        o = __n;
     }
 
     return o;
 }
 
 /**
- *  Computes the sine of a float value in gradians.
+ *  Flips the bytes of an unsigned long value.
  *
  *  @param __n
  *
- *  @return The computed float value.
+ *  @return The computed unsigned long value.
  */
-float fsingf(float __n)
+unsigned long luflipb(unsigned long __n)
 {
-    float o = fsinrf(fgtorf(__n));
+    unsigned long o = __n;
+
+    if ((__n >> 24) & 0xFF)
+    {
+        o = (__n & 0xFF) << 24 | (__n >> 8 & 0xFF) << 16 | (__n >> 16 & 0xFF) << 8 | (__n >> 24 & 0xFF);
+    }
+    else if ((__n >> 16) & 0xFF)
+    {
+        o = (__n & 0xFF) << 16 | (__n >> 8 & 0xFF) << 8 | (__n >> 16 & 0xFF);
+    }
+    else if ((__n >> 8) & 0xFF)
+    {
+        o = (__n & 0xFF) << 8 | (__n >> 8 & 0xFF);
+    }
+    else if ((__n >> 0) & 0xFF)
+    {
+        o = __n;
+    }
 
     return o;
 }
 
 /**
- *  Computes the sine of a double value in gradians.
+ *  Flips the bytes of an unsigned long long value.
  *
  *  @param __n
  *
- *  @return The computed double value.
+ *  @return The computed unsigned long long value.
  */
-double fsing(double __n)
+unsigned long long lluflipb(unsigned long long __n)
 {
-    double o = fsinr(fgtor(__n));
+    unsigned long long o = __n;
+
+    if ((__n >> 56) & 0xFF)
+    {
+        o = (__n & 0xFF) << 56 | (__n >> 8 & 0xFF) << 48 | (__n >> 16 & 0xFF) << 40 | (__n >> 24 & 0xFF) << 32 | (__n >> 32 & 0xFF) << 24 | (__n >> 40 & 0xFF) << 16 | (__n >> 48 & 0xFF) << 8 | (__n >> 56 & 0xFF);
+    }
+    else if ((__n >> 48) & 0xFF)
+    {
+        o = (__n & 0xFF) << 48 | (__n >> 8 & 0xFF) << 40 | (__n >> 16 & 0xFF) << 32 | (__n >> 24 & 0xFF) << 24 | (__n >> 32 & 0xFF) << 16 | (__n >> 40 & 0xFF) << 8 | (__n >> 48 & 0xFF);
+    }
+    else if ((__n >> 40) & 0xFF)
+    {
+        o = (__n & 0xFF) << 40 | (__n >> 8 & 0xFF) << 32 | (__n >> 16 & 0xFF) << 24 | (__n >> 24 & 0xFF) << 16 | (__n >> 32 & 0xFF) << 8 | (__n >> 40 & 0xFF);
+    }
+    else if ((__n >> 32) & 0xFF)
+    {
+        o = (__n & 0xFF) << 32 | (__n >> 8 & 0xFF) << 24 | (__n >> 16 & 0xFF) << 16 | (__n >> 24 & 0xFF) << 8 | (__n >> 32 & 0xFF);
+    }
+    else if ((__n >> 24) & 0xFF)
+    {
+        o = (__n & 0xFF) << 24 | (__n >> 8 & 0xFF) << 16 | (__n >> 16 & 0xFF) << 8 | (__n >> 24 & 0xFF);
+    }
+    else if ((__n >> 16) & 0xFF)
+    {
+        o = (__n & 0xFF) << 16 | (__n >> 8 & 0xFF) << 8 | (__n >> 16 & 0xFF);
+    }
+    else if ((__n >> 8) & 0xFF)
+    {
+        o = (__n & 0xFF) << 8 | (__n >> 8 & 0xFF);
+    }
+    else if ((__n >> 0) & 0xFF)
+    {
+        o = __n;
+    }
 
     return o;
 }
 
 /**
- *  Computes the cosine of a float value in gradians.
+ *  Flips the words of an unsigned char value.
  *
  *  @param __n
  *
- *  @return The computed float value.
+ *  @return The computed unsigned char value.
  */
-float fcosgf(float __n)
+unsigned char cflipw(unsigned char __n)
 {
-    float o = fcosrf(fgtorf(__n));
+    return __n;
+}
+
+/**
+ *  Flips the words of an unsigned short value.
+ *
+ *  @param __n
+ *
+ *  @return The computed unsigned short value.
+ */
+unsigned short huflipw(unsigned short __n)
+{
+    unsigned short o = __n;
+
+    if (__n & 0xFFFF)
+    {
+        o = __n;
+    }
 
     return o;
 }
 
 /**
- *  Computes the cosine of a double value in gradians.
+ *  Flips the words of an unsigned int value.
  *
  *  @param __n
  *
- *  @return The computed double value.
+ *  @return The computed unsigned int value.
  */
-double fcosg(double __n)
+unsigned int uflipw(unsigned int __n)
 {
-    double o = fcosr(fgtor(__n));
+    unsigned int o = __n;
+
+    if ((__n >> 16) & 0xFFFF)
+    {
+        o = (__n & 0xFFFF) << 16 | (__n >> 16 & 0xFFFF);
+    }
+    else if (__n & 0xFFFF)
+    {
+        o = __n;
+    }
 
     return o;
 }
 
 /**
- *  Computes the tangent of a float value in gradians.
+ *  Flips the words of an unsigned long value.
  *
  *  @param __n
  *
- *  @return The computed float value.
+ *  @return The computed unsigned long value.
  */
-float ftangf(float __n)
+unsigned long luflipw(unsigned long __n)
 {
-    float o = ftanrf(fgtorf(__n));
+    unsigned long o = __n;
+
+    if ((__n >> 16) & 0xFFFF)
+    {
+        o = (__n & 0xFFFF) << 16 | (__n >> 16 & 0xFFFF);
+    }
+    else if (__n & 0xFFFF)
+    {
+        o = __n;
+    }
 
     return o;
 }
 
 /**
- *  Computes the tangent of a double value in gradians.
+ *  Flips the words of an unsigned long long value.
  *
  *  @param __n
  *
- *  @return The computed double value.
+ *  @return The computed unsigned long long value.
  */
-double ftang(double __n)
+unsigned long long lluflipw(unsigned long long __n)
 {
-    double o = ftanr(fgtor(__n));
+    unsigned long long o = __n;
+
+    if ((__n >> 48) & 0xFFFF)
+    {
+        o = (__n & 0xFFFF) << 48 | (__n >> 16 & 0xFFFF) << 32 | (__n >> 32 & 0xFFFF) << 16 | (__n >> 48 & 0xFFFF);
+    }
+    else if ((__n >> 32) & 0xFFFF)
+    {
+        o = (__n & 0xFFFF) << 32 | (__n >> 16 & 0xFFFF) << 16 | (__n >> 32 & 0xFFFF);
+    }
+    else if ((__n >> 16) & 0xFFFF)
+    {
+        o = (__n & 0xFFFF) << 16 | (__n >> 16 & 0xFFFF);
+    }
+    else if (__n & 0xFFFF)
+    {
+        o = __n;
+    }
 
     return o;
 }
+
+#pragma mark - Number Moderations
 
 /**
  *  Validates that the specified float value is within the
@@ -1150,302 +1847,6 @@ double fbound(double __n, double __min, double __max)
     if (!isnan(__min) && (__n < __min)) o = __min;
 
     return o;
-}
-
-/**
- *  Evaluates the slope between two points.
- *
- *  @param __x1
- *  @param __x2
- *  @param __y1
- *  @param __y2
- *
- *  @return The float value of the slope.
- */
-float fslopef(float __x1, float __x2, float __y1, float __y2)
-{
-    if (isnan(__x1) || isnan(__x2) || isnan(__y1) || isnan(__y2))
-    {
-        return NAN;
-    }
-
-    if (fabsf(__y2 - __y1) < FLT_EPSILON)
-    {
-        return 0.0f;
-    }
-
-    if (fabsf(__x2 - __x1) < FLT_EPSILON)
-    {
-        return NAN;
-    }
-
-    return ((__y2 - __y1) / (__x2 - __x1));
-}
-
-/**
- *  Evaluates the slope between two points.
- *
- *  @param __x1
- *  @param __x2
- *  @param __y1
- *  @param __y2
- *
- *  @return The double value of the slope.
- */
-double fslope(double __x1, double __x2, double __y1, double __y2)
-{
-    if (isnan(__x1) || isnan(__x2) || isnan(__y1) || isnan(__y2))
-    {
-        return NAN;
-    }
-
-    if (fabs(__y2 - __y1) < DBL_EPSILON)
-    {
-        return 0.0;
-    }
-
-    if (fabs(__x2 - __x1) < DBL_EPSILON)
-    {
-        return NAN;
-    }
-
-    return ((__y2 - __y1) / (__x2 - __x1));
-}
-
-/**
- *  Normalizes a float value, checking against epsilon.
- *
- *  @param __n
- *
- *  @return The normalized float value.
- */
-float fnormf(float __n)
-{
-    return ((fabsf(roundf(__n) - __n) < FLT_EPSILON) ? roundf(__n) : __n);
-}
-
-/**
- *  Normalizes a double value, checking against epsilon.
- *
- *  @param __n
- *
- *  @return The normalized double value.
- */
-double fnorm(double __n)
-{
-    return ((fabs(round(__n) - __n) < DBL_EPSILON) ? round(__n) : __n);
-}
-
-/**
- *  Left shifts an unsigned long long value.
- *
- *  @param __n
- *
- *  @return The computed unsigned long long value.
- */
-unsigned long long lshift(unsigned long long __n)
-{
-    return (__n << 1);
-}
-
-/**
- *  Right shifts an unsigned long long value.
- *
- *  @param __n
- *
- *  @return The computed unsigned long long value.
- */
-unsigned long long rshift(unsigned long long __n)
-{
-    return (__n >> 1);
-}
-
-/**
- *  Left rotates an unsigned long long value.
- *
- *  @param __n
- *
- *  @return The computed unsigned long long value.
- */
-unsigned long long lrotate(unsigned long long __n)
-{
-    return ((__n << 1) | (__n >> (sizeof(unsigned long long)*8-1)));
-}
-
-/**
- *  Right rotates an unsigned long long value.
- *
- *  @param __n
- *
- *  @return The computed unsigned long long value.
- */
-unsigned long long rrotate(unsigned long long __n)
-{
-    return ((__n >> 1) | (__n << (sizeof(unsigned long long)*8-1)));
-}
-
-/**
- *  Computes the 1's complement of an unsigned long long value.
- *
- *  @param __n
- *
- *  @return The computed unsigned long long value.
- */
-unsigned long long comp1(unsigned long long __n)
-{
-    return (~__n);
-}
-
-/**
- *  Computes the 2's complement of an unsigned long long value.
- *
- *  @param __n
- *
- *  @return The computed unsigned long long value.
- */
-unsigned long long comp2(unsigned long long __n)
-{
-    return (~__n + 1);
-}
-
-/**
- *  Flips the bytes of an unsigned long long value.
- *
- *  @param __n
- *
- *  @return The computed unsigned long long value.
- */
-unsigned long long flipb(unsigned long long __n)
-{
-    unsigned long long o = __n;
-
-    if ((__n >> 56) & 0xFF)
-    {
-        o = (__n & 0xFF) << 56 | (__n >> 8 & 0xFF) << 48 | (__n >> 16 & 0xFF) << 40 | (__n >> 24 & 0xFF) << 32 | (__n >> 32 & 0xFF) << 24 | (__n >> 40 & 0xFF) << 16 | (__n >> 48 & 0xFF) << 8 | (__n >> 56 & 0xFF);
-    }
-    else if ((__n >> 48) & 0xFF)
-    {
-        o = (__n & 0xFF) << 48 | (__n >> 8 & 0xFF) << 40 | (__n >> 16 & 0xFF) << 32 | (__n >> 24 & 0xFF) << 24 | (__n >> 32 & 0xFF) << 16 | (__n >> 40 & 0xFF) << 8 | (__n >> 48 & 0xFF);
-    }
-    else if ((__n >> 40) & 0xFF)
-    {
-        o = (__n & 0xFF) << 40 | (__n >> 8 & 0xFF) << 32 | (__n >> 16 & 0xFF) << 24 | (__n >> 24 & 0xFF) << 16 | (__n >> 32 & 0xFF) << 8 | (__n >> 40 & 0xFF);
-    }
-    else if ((__n >> 32) & 0xFF)
-    {
-        o = (__n & 0xFF) << 32 | (__n >> 8 & 0xFF) << 24 | (__n >> 16 & 0xFF) << 16 | (__n >> 24 & 0xFF) << 8 | (__n >> 32 & 0xFF);
-    }
-    else if ((__n >> 24) & 0xFF)
-    {
-        o = (__n & 0xFF) << 24 | (__n >> 8 & 0xFF) << 16 | (__n >> 16 & 0xFF) << 8 | (__n >> 24 & 0xFF);
-    }
-    else if ((__n >> 16) & 0xFF)
-    {
-        o = (__n & 0xFF) << 16 | (__n >> 8 & 0xFF) << 8 | (__n >> 16 & 0xFF);
-    }
-    else if ((__n >> 8) & 0xFF)
-    {
-        o = (__n & 0xFF) << 8 | (__n >> 8 & 0xFF);
-    }
-    else if (__n & 0xFF)
-    {
-        o = __n;
-    }
-
-    return o;
-}
-
-/**
- *  Flips the words of an unsigned long long value.
- *
- *  @param __n
- *
- *  @return The computed unsigned long long value.
- */
-unsigned long long flipw(unsigned long long __n)
-{
-    unsigned long long o = __n;
-
-    if ((__n >> 48) & 0xFFFF)
-    {
-        o = (__n & 0xFFFF) << 48 | (__n >> 16 & 0xFFFF) << 32 | (__n >> 32 & 0xFFFF) << 16 | (__n >> 48 & 0xFFFF);
-    }
-    else if ((__n >> 32) & 0xFFFF)
-    {
-        o = (__n & 0xFFFF) << 32 | (__n >> 16 & 0xFFFF) << 16 | (__n >> 32 & 0xFFFF);
-    }
-    else if ((__n >> 16) & 0xFFFF)
-    {
-        o = (__n & 0xFFFF) << 16 | (__n >> 16 & 0xFFFF);
-    }
-    else if (__n & 0xFFFF)
-    {
-        o = __n;
-    }
-
-    return o;
-}
-
-/**
- *  Computes the number of digits in an int.
- *
- *  @param __n
- *
- *  @return The number of digits.
- */
-int ndigits(int __n)
-{
-    if (__n < 0)
-    {
-        return ndigits(-__n);
-    }
-
-    if (__n >= 10000)
-    {
-        if (__n >= 10000000)
-        {
-            if (__n >= 100000000)
-            {
-                if (__n >= 1000000000)
-                {
-                    return 10;
-                }
-
-                return 9;
-            }
-
-            return 8;
-        }
-
-        if (__n >= 100000)
-        {
-            if (__n >= 1000000)
-            {
-                return 7;
-            }
-
-            return 6;
-        }
-
-        return 5;
-    }
-
-    if (__n >= 100)
-    {
-        if (__n >= 1000)
-        {
-            return 4;
-        }
-
-        return 3;
-    }
-    
-    if (__n >= 10)
-    {
-        return 2;
-    }
-    
-    return 1;
 }
 
 /**
@@ -1627,6 +2028,95 @@ int isodd(int __n)
 }
 
 /**
+ *  Normalizes a float value, checking against epsilon.
+ *
+ *  @param __n
+ *
+ *  @return The normalized float value.
+ */
+float fnormf(float __n)
+{
+    return ((fabsf(roundf(__n) - __n) < FLT_EPSILON) ? roundf(__n) : __n);
+}
+
+/**
+ *  Normalizes a double value, checking against epsilon.
+ *
+ *  @param __n
+ *
+ *  @return The normalized double value.
+ */
+double fnorm(double __n)
+{
+    return ((fabs(round(__n) - __n) < DBL_EPSILON) ? round(__n) : __n);
+}
+
+/**
+ *  Computes the number of digits in an int.
+ *
+ *  @param __n
+ *
+ *  @return The number of digits.
+ */
+int ndigits(int __n)
+{
+    if (__n < 0)
+    {
+        return ndigits(-__n);
+    }
+
+    if (__n >= 10000)
+    {
+        if (__n >= 10000000)
+        {
+            if (__n >= 100000000)
+            {
+                if (__n >= 1000000000)
+                {
+                    return 10;
+                }
+
+                return 9;
+            }
+
+            return 8;
+        }
+
+        if (__n >= 100000)
+        {
+            if (__n >= 1000000)
+            {
+                return 7;
+            }
+
+            return 6;
+        }
+
+        return 5;
+    }
+
+    if (__n >= 100)
+    {
+        if (__n >= 1000)
+        {
+            return 4;
+        }
+
+        return 3;
+    }
+    
+    if (__n >= 10)
+    {
+        return 2;
+    }
+    
+    return 1;
+}
+
+#pragma mark - String Moderations
+#pragma mark Verifications
+
+/**
  *  Verifies that a string represents a float value.
  *
  *  @param __c
@@ -1707,7 +2197,7 @@ int llstrisnum(const char *__c)
 }
 
 /**
- *  Verifies that a string represents a unsigned long int value.
+ *  Verifies that a string represents an unsigned long int value.
  *
  *  @param __c
  *
@@ -1723,7 +2213,7 @@ int lustrisnum(const char *__c)
 }
 
 /**
- *  Verifies that a string represents a unsigned long long int value.
+ *  Verifies that a string represents an unsigned long long int value.
  *
  *  @param __c
  *
@@ -1737,6 +2227,8 @@ int llustrisnum(const char *__c)
 
     return (*t == 0);
 }
+
+#pragma mark Conversions
 
 /**
  *  Converts a string to a float value if applicable.
