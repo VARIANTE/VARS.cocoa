@@ -2706,14 +2706,30 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         case VSMathOperationTypeEqual:
             return 1;
 
+        case VSMathOperationTypeOr:
+        case VSMathOperationTypeNor:
+            return 2;
+
+        case VSMathOperationTypeXor:
+        case VSMathOperationTypeXnor:
+            return 3;
+
+        case VSMathOperationTypeAnd:
+        case VSMathOperationTypeNand:
+            return 4;
+
+        case VSMathOperationTypeLeftShiftBy:
+        case VSMathOperationTypeRightShiftBy:
+            return 5;
+
         case VSMathOperationTypeAdd:
         case VSMathOperationTypeSubtract:
-            return 2;
+            return 6;
 
         case VSMathOperationTypeMultiply:
         case VSMathOperationTypeDivide:
         case VSMathOperationTypeModulo:
-            return 3;
+            return 7;
 
         case VSMathOperationTypeExponent:
         case VSMathOperationTypeRoot:
@@ -2721,19 +2737,11 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         case VSMathOperationTypeChoose:
         case VSMathOperationTypePick:
         case VSMathOperationTypeNegative:
-            return 4;
+            return 8;
 
         case VSMathOperationTypeSquareRoot:
         case VSMathOperationTypeCubeRoot:
-        case VSMathOperationTypeLeftShiftBy:
-        case VSMathOperationTypeRightShiftBy:
-        case VSMathOperationTypeAnd:
-        case VSMathOperationTypeNand:
-        case VSMathOperationTypeOr:
-        case VSMathOperationTypeNor:
-        case VSMathOperationTypeXor:
-        case VSMathOperationTypeXnor:
-            return 5;
+            return 9;
 
         default:
             return -1;
