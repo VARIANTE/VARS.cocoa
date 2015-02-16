@@ -39,8 +39,8 @@ typedef NS_ENUM(int, VSNumberSystemType)
     VSNumberSystemTypeOctal,
     VSNumberSystemTypeDecimal,
     VSNumberSystemTypeHexadecimal,
-    VSNumberSystemTypeMaxTypes,
-    VSNumberSystemTypeBinary
+    VSNumberSystemTypeBinary,
+    VSNumberSystemTypeMaxTypes
 };
 
 /**
