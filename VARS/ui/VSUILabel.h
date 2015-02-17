@@ -21,7 +21,7 @@
 /**
  *  Unique ID of this VSUIViewing protocol instance, defaults to -1 if unset.
  */
-@property (nonatomic, readonly) int UUID;
+@property (nonatomic) int UUID;
 
 #pragma mark - Behaviors
 

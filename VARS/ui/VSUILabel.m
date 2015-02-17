@@ -25,14 +25,6 @@ static const int DEFAULT_UUID = -1;
     VSUIViewUpdate *_updateDelegate;
 }
 
-#pragma mark - PROPERTIES
-#pragma mark - Identifier
-
-/**
- *  @inheritdoc
- */
-@property (nonatomic) int UUID;
-
 #pragma mark - INTERFACE METHODS
 #pragma mark - Event Handling
 

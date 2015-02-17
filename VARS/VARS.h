@@ -24,6 +24,7 @@
 #import "VARS/VSUIModel.h"
 #import "VARS/VSUINotifications.h"
 #import "VARS/VSUIScrollView.h"
+#import "VARS/VSUITableView.h"
 #import "VARS/VSUITextField.h"
 #import "VARS/VSUITextView.h"
 #import "VARS/VSUIView.h"
