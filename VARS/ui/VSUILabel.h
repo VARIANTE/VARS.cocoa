@@ -36,6 +36,11 @@
  */
 @property (nonatomic) BOOL shouldRedirectTouchesToNextResponder;
 
+/**
+ *  Specifies whether the menu can be revealed with default gestures.
+ */
+@property (nonatomic) BOOL menuGesturesEnabled;
+
 #pragma mark - Styles
 
 /**

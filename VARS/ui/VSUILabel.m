@@ -128,6 +128,11 @@ static const int DEFAULT_UUID = -1;
  */
 @synthesize shouldRedirectTouchesToNextResponder = _shouldRedirectTouchesToNextResponder;
 
+/*
+ *  @inheritdoc
+ */
+@synthesize menuGesturesEnabled = _menuGesturesEnabled;
+
 #pragma mark - Styles
 
 /*
@@ -226,6 +231,7 @@ static const int DEFAULT_UUID = -1;
 {
     [self setTextEdgeInsets:UIEdgeInsetsZero];
     [self setShouldRedirectTouchesToNextResponder:NO];
+    [self setMenuGesturesEnabled:YES];
 
     UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(_onRevealMenu:)];
     [self addGestureRecognizer:longPressGestureRecognizer];
@@ -327,6 +333,8 @@ static const int DEFAULT_UUID = -1;
  */
 - (void)revealMenu
 {
+    if (!self.menuEnabled) return;
+
     [self becomeFirstResponder];
 
     UIMenuController *menu = [UIMenuController sharedMenuController];
@@ -339,6 +347,8 @@ static const int DEFAULT_UUID = -1;
  */
 - (void)hideMenu
 {
+    if (!self.menuEnabled) return;
+
     UIMenuController *menu = [UIMenuController sharedMenuController];
     [menu setMenuVisible:NO animated:YES];
 
@@ -397,6 +407,8 @@ static const int DEFAULT_UUID = -1;
  */
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if (!self.menuGesturesEnabled) return;
+
     if (self.shouldRedirectTouchesToNextResponder)
     {
         [self.nextResponder touchesCancelled:touches withEvent:event];
@@ -412,6 +424,8 @@ static const int DEFAULT_UUID = -1;
  */
 - (void)_onRevealMenu:(UIGestureRecognizer *)gestureRecognizer
 {
+    if (!self.menuGesturesEnabled) return;
+
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan)
     {
         [self revealMenu];
