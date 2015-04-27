@@ -20,8 +20,8 @@ static NSNumberFormatter *NUMBER_FORMATTER;
 
 #pragma mark - ENUMS
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 NSString *NSStringFromVSNumberSystemType(VSNumberSystemType type)
 {
@@ -37,8 +37,8 @@ NSString *NSStringFromVSNumberSystemType(VSNumberSystemType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
 {
@@ -56,8 +56,8 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
 
 #pragma mark - INTERFACE
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @interface VSNumberUtil()
 
@@ -75,16 +75,16 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
 
 #pragma mark - IMPLEMENTATION
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @implementation VSNumberUtil
 
 #pragma mark - CLASS METHODS
 #pragma mark - Formatting
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSNumberFormatter *)globalNumberFormatter
 {
@@ -100,8 +100,8 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     return NUMBER_FORMATTER;
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSNumberFormatter *)globalNumberFormatterWithDefaultLocale
 {
@@ -110,8 +110,8 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     return [VSNumberUtil globalNumberFormatter];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSNumberFormatter *)globalNumberFormatterWithCurrentLocale
 {
@@ -120,8 +120,8 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     return [VSNumberUtil globalNumberFormatter];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSNumberFormatter *)globalNumberFormatterWithLocale:(NSLocale *)locale
 {
@@ -130,8 +130,8 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     return [VSNumberUtil globalNumberFormatter];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (unsigned int)precisionFromNumericFormatSpecifier:(NSString *)numericFormatSpecifier
 {
@@ -156,16 +156,16 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
 
 #pragma mark - Type Conversion
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSNumber *)numberFromString:(NSString *)aString
 {
     return [VSNumberUtil numberFromString:aString numberFormatter:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSNumber *)numberFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter
 {
@@ -214,16 +214,16 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     return number;
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (float)floatFromString:(NSString *)aString
 {
     return [VSNumberUtil floatFromString:aString numberFormatter:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (float)floatFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter
 {
@@ -250,16 +250,16 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (double)doubleFromString:(NSString *)aString
 {
     return [VSNumberUtil doubleFromString:aString numberFormatter:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (double)doubleFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter
 {
@@ -286,16 +286,16 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (int)intFromString:(NSString *)aString
 {
     return [VSNumberUtil intFromString:aString numberFormatter:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (int)intFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter
 {
@@ -322,16 +322,16 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (long)longFromString:(NSString *)aString
 {
     return [VSNumberUtil longFromString:aString numberFormatter:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (long)longFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter
 {
@@ -358,16 +358,16 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (long long)longLongFromString:(NSString *)aString
 {
     return [VSNumberUtil longLongFromString:aString numberFormatter:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (long long)longLongFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter
 {
@@ -394,16 +394,16 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (unsigned char)unsignedCharFromString:(NSString *)aString
 {
     return [VSNumberUtil unsignedCharFromString:aString numberFormatter:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (unsigned char)unsignedCharFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter
 {
@@ -430,8 +430,8 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (unsigned char)unsignedCharFromString:(NSString *)aString numberSystem:(VSNumberSystemType)numberSystemType
 {
@@ -502,16 +502,16 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     return (unsigned short)output;
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (unsigned short)unsignedShortFromString:(NSString *)aString
 {
     return [VSNumberUtil unsignedShortFromString:aString numberFormatter:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (unsigned short)unsignedShortFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter
 {
@@ -538,8 +538,8 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (unsigned short)unsignedShortFromString:(NSString *)aString numberSystem:(VSNumberSystemType)numberSystemType
 {
@@ -610,16 +610,16 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     return (unsigned short)output;
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (unsigned int)unsignedIntFromString:(NSString *)aString
 {
     return [VSNumberUtil unsignedIntFromString:aString numberFormatter:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (unsigned int)unsignedIntFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter
 {
@@ -646,8 +646,8 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (unsigned int)unsignedIntFromString:(NSString *)aString numberSystem:(VSNumberSystemType)numberSystemType
 {
@@ -716,16 +716,16 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     return output;
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (unsigned long)unsignedLongFromString:(NSString *)aString
 {
     return [VSNumberUtil unsignedLongFromString:aString numberFormatter:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (unsigned long)unsignedLongFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter
 {
@@ -752,8 +752,8 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (unsigned long)unsignedLongFromString:(NSString *)aString numberSystem:(VSNumberSystemType)numberSystemType
 {
@@ -829,16 +829,16 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     return output;
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (unsigned long long)unsignedLongLongFromString:(NSString *)aString
 {
     return [VSNumberUtil unsignedLongLongFromString:aString numberFormatter:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (unsigned long long)unsignedLongLongFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter
 {
@@ -865,8 +865,8 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (unsigned long long)unsignedLongLongFromString:(NSString *)aString numberSystem:(VSNumberSystemType)numberSystemType
 {

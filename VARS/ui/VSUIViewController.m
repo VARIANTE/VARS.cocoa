@@ -15,8 +15,8 @@
 
 #pragma mark - INTERFACE
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @interface VSUIViewController ()
 {
@@ -67,23 +67,23 @@
 
 #pragma mark - IMPLEMENTATION
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @implementation VSUIViewController
 
 #pragma mark - PROPERTIES
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @synthesize model = _model;
 
 #pragma mark - INSTANCE METHODS
 #pragma mark - Lifecycle
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (id)init
 {
@@ -98,8 +98,8 @@
     return self;
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)dealloc
 {
@@ -110,16 +110,16 @@
 #endif
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)didInit
 {
 
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)willDealloc
 {
@@ -128,8 +128,8 @@
     vs_dealloc(_model);
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)loadModel
 {
@@ -138,8 +138,8 @@
 
 #pragma mark - Event Handling
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)viewDidLoad
 {
@@ -153,16 +153,16 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_onViewStyleDidChange:) name:VSUIStyleDidChangeNotification object:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)viewWillLayoutSubviews
 {
@@ -194,8 +194,8 @@
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)currentLocaleDidChange:(NSDictionary *)context
 {
@@ -207,8 +207,8 @@
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)applicationDidBecomeActive:(NSDictionary *)context
 {
@@ -220,8 +220,8 @@
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)viewConfigDidChange:(NSDictionary *)context
 {
@@ -233,8 +233,8 @@
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)viewStyleDidChange:(NSDictionary *)context
 {
@@ -246,8 +246,8 @@
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)_onCurrentLocaleDidChange:(NSNotification *)note
 {
@@ -260,24 +260,24 @@
     [self currentLocaleDidChange:context];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)_onApplicationDidBecomeActive:(NSNotification *)note
 {
     [self applicationDidBecomeActive:note.userInfo];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)_onViewConfigDidChange:(NSNotification *)note
 {
     [self viewConfigDidChange:note.userInfo];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)_onViewStyleDidChange:(NSNotification *)note
 {

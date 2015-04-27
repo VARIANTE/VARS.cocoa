@@ -8,16 +8,16 @@
 
 #import "VSArrayUtil.h"
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @implementation VSArrayUtil
 
 #pragma mark - CLASS METHODS
 #pragma mark - Manipulation
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (BOOL)arrayIsNilOrBlank:(NSArray *)anArray
 {
@@ -27,8 +27,8 @@
     return NO;
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSArray *)arrayByShiftingArray:(NSArray *)anArray
 {
@@ -46,8 +46,8 @@
 #endif
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (void)shiftArray:(NSMutableArray *)aMutableArray
 {
@@ -59,8 +59,8 @@
     [aMutableArray insertObject:lastObject atIndex:0];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSArray *)arrayByUnshiftingArray:(NSArray *)anArray
 {
@@ -78,8 +78,8 @@
 #endif
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (void)unshiftArray:(NSMutableArray *)aMutableArray
 {
@@ -91,8 +91,8 @@
     [aMutableArray addObject:firstObject];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSArray *)arrayBySwappingElementsInArray:(NSArray *)anArray index1:(unsigned long)index1 index2:(unsigned long)index2
 {
@@ -110,8 +110,8 @@
 #endif
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (void)swapElementsInArray:(NSMutableArray *)aMutableArray index1:(unsigned long)index1 index2:(unsigned long)index2
 {

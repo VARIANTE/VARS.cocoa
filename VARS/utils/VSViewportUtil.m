@@ -10,8 +10,8 @@
 
 #pragma mark - ENUMS
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 NSString *NSStringFromVSViewportAspectRatioType(VSViewportAspectRatioType type)
 {
@@ -29,23 +29,23 @@ NSString *NSStringFromVSViewportAspectRatioType(VSViewportAspectRatioType type)
 
 #pragma mark - IMPLEMENTATION
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @implementation VSViewportUtil
 
 #pragma mark - CLASS METHODS
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (CGRect)frameOfViewport
 {
     return [VSViewportUtil frameOfViewportWithStatusBar:NO];
 }
 
-/*
- *  @inheritdoc 
+/**
+ *  @inheritDoc 
  */
 + (CGRect)frameOfViewportWithStatusBar:(BOOL)withStatusBar
 {
@@ -54,16 +54,16 @@ NSString *NSStringFromVSViewportAspectRatioType(VSViewportAspectRatioType type)
     return [VSViewportUtil frameOfViewportForInterfaceOrientation:orientation withStatusBar:withStatusBar];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (CGRect)frameOfViewportForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return [VSViewportUtil frameOfViewportForInterfaceOrientation:interfaceOrientation withStatusBar:NO];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (CGRect)frameOfViewportForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation withStatusBar:(BOOL)withStatusBar
 {
@@ -81,8 +81,8 @@ NSString *NSStringFromVSViewportAspectRatioType(VSViewportAspectRatioType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (CGRect)frameOfStatusBarForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -99,8 +99,8 @@ NSString *NSStringFromVSViewportAspectRatioType(VSViewportAspectRatioType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (CGFloat)aspectRatioOfViewport
 {
@@ -109,8 +109,8 @@ NSString *NSStringFromVSViewportAspectRatioType(VSViewportAspectRatioType type)
     return MAX(viewportSize.width, viewportSize.height)/MIN(viewportSize.width, viewportSize.height);
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (CGFloat)aspectRatioOfType:(VSViewportAspectRatioType)type
 {
@@ -144,16 +144,16 @@ NSString *NSStringFromVSViewportAspectRatioType(VSViewportAspectRatioType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (UIInterfaceOrientation)orientationOfViewport
 {
     return [[UIApplication sharedApplication] statusBarOrientation];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (UIInterfaceOrientation)interfaceOrientationFromInterfaceOrientationMask:(UIInterfaceOrientationMask)interfaceOrientationMask
 {
@@ -182,8 +182,8 @@ NSString *NSStringFromVSViewportAspectRatioType(VSViewportAspectRatioType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (UIInterfaceOrientationMask)interfaceOrientationMaskFromInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {

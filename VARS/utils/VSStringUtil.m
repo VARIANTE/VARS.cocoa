@@ -16,8 +16,8 @@
 
 #pragma mark - ENUMS
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
 {
@@ -33,23 +33,23 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
 
 #pragma mark - IMPLEMENTATION
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @implementation VSStringUtil
 
 #pragma mark - CLASS METHODS
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (BOOL)stringIsNilOrBlank:(NSString *)aString
 {
     return ((aString == nil) || [aString isEqualToString:@""]);
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (unsigned long)occurancesOfString:(NSString *)aSubstring inString:(NSString *)aString
 {
@@ -61,16 +61,16 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
 
 #pragma mark - Type Conversion
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromDouble:(double)aDouble
 {
     return [VSStringUtil stringFromDouble:aDouble numericFormatSpecifier:nil exponentSymbol:nil NANSymbol:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromDouble:(double)aDouble numericFormatSpecifier:(NSString *)numericFormatSpecifier exponentSymbol:(NSString *)exponentSymbol NANSymbol:(NSString *)NANSymbol
 {
@@ -88,8 +88,8 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromDouble:(double)aDouble numberFormatter:(NSNumberFormatter *)aNumberFormatter
 {
@@ -103,16 +103,16 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromDouble:(double)aDouble inMultiplesOfConstant:(NSString *)symbol
 {
     return [VSStringUtil stringFromDouble:aDouble inMultiplesOfConstant:symbol numericFormatSpecifier:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromDouble:(double)aDouble inMultiplesOfConstant:(NSString *)symbol numericFormatSpecifier:(NSString *)numericFormatSpecifier
 {
@@ -167,8 +167,8 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromDouble:(double)aDouble inMultiplesOfConstant:(NSString *)symbol numberFormatter:(NSNumberFormatter *)aNumberFormatter
 {
@@ -228,16 +228,16 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromUnsignedChar:(unsigned char)anUnsignedChar
 {
     return [VSStringUtil stringFromUnsignedShort:anUnsignedChar numericFormatSpecifier:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromUnsignedChar:(unsigned char)anUnsignedChar numericFormatSpecifier:(NSString *)numericFormatSpecifier
 {
@@ -246,8 +246,8 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
     return [NSString stringWithFormat:numericFormatSpecifier, anUnsignedChar];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromUnsignedChar:(unsigned char)anUnsignedChar numberFormatter:(NSNumberFormatter *)aNumberFormatter
 {
@@ -261,8 +261,8 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromUnsignedChar:(unsigned char)anUnsignedChar numberSystem:(VSNumberSystemType)numberSystemType
 {
@@ -316,16 +316,16 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromUnsignedShort:(unsigned short)anUnsignedShort
 {
     return [VSStringUtil stringFromUnsignedShort:anUnsignedShort numericFormatSpecifier:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromUnsignedShort:(unsigned short)anUnsignedShort numericFormatSpecifier:(NSString *)numericFormatSpecifier
 {
@@ -334,8 +334,8 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
     return [NSString stringWithFormat:numericFormatSpecifier, anUnsignedShort];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromUnsignedShort:(unsigned short)anUnsignedShort numberFormatter:(NSNumberFormatter *)aNumberFormatter
 {
@@ -349,8 +349,8 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromUnsignedShort:(unsigned short)anUnsignedShort numberSystem:(VSNumberSystemType)numberSystemType
 {
@@ -404,16 +404,16 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromUnsignedInt:(unsigned int)anUnsignedInt
 {
     return [VSStringUtil stringFromUnsignedInt:anUnsignedInt numericFormatSpecifier:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromUnsignedInt:(unsigned int)anUnsignedInt numericFormatSpecifier:(NSString *)numericFormatSpecifier
 {
@@ -422,8 +422,8 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
     return [NSString stringWithFormat:numericFormatSpecifier, anUnsignedInt];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromUnsignedInt:(unsigned int)anUnsignedInt numberFormatter:(NSNumberFormatter *)aNumberFormatter
 {
@@ -437,8 +437,8 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromUnsignedInt:(unsigned int)anUnsignedInt numberSystem:(VSNumberSystemType)numberSystemType
 {
@@ -492,16 +492,16 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromUnsignedLong:(unsigned long)anUnsignedLong
 {
     return [VSStringUtil stringFromUnsignedLong:anUnsignedLong numericFormatSpecifier:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromUnsignedLong:(unsigned long)anUnsignedLong numericFormatSpecifier:(NSString *)numericFormatSpecifier
 {
@@ -510,8 +510,8 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
     return [NSString stringWithFormat:numericFormatSpecifier, anUnsignedLong];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromUnsignedLong:(unsigned long)anUnsignedLong numberFormatter:(NSNumberFormatter *)aNumberFormatter
 {
@@ -525,8 +525,8 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromUnsignedLong:(unsigned long)anUnsignedLong numberSystem:(VSNumberSystemType)numberSystemType
 {
@@ -580,16 +580,16 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromUnsignedLongLong:(unsigned long long)anUnsignedLongLong
 {
     return [VSStringUtil stringFromUnsignedLongLong:anUnsignedLongLong numericFormatSpecifier:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromUnsignedLongLong:(unsigned long long)anUnsignedLongLong numericFormatSpecifier:(NSString *)numericFormatSpecifier
 {
@@ -598,8 +598,8 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
     return [NSString stringWithFormat:numericFormatSpecifier, anUnsignedLongLong];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromUnsignedLongLong:(unsigned long long)anUnsignedLongLong numberFormatter:(NSNumberFormatter *)aNumberFormatter
 {
@@ -613,8 +613,8 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)stringFromUnsignedLongLong:(unsigned long long)anUnsignedLongLong numberSystem:(VSNumberSystemType)numberSystemType
 {
@@ -670,8 +670,8 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
 
 #pragma mark - Character Encoding
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (unichar)subscriptUnicharFromUnsignedInt:(unsigned int)anUnsignedInteger
 {
@@ -685,8 +685,8 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)encodedCharactersFromUnsignedLongLong:(unsigned long long)anUnsignedLongLong characterEncodingType:(VSCharacterEncodingType)characterEncodingType
 {

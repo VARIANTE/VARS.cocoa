@@ -10,15 +10,15 @@
 
 #pragma mark - IMPLEMENTATION
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @implementation VSQuartzUtil
 
 #pragma mark - CLASS METHODS
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (void)setAnchorPoint:(CGPoint)anchorPoint forView:(UIView *)view
 {
@@ -40,8 +40,8 @@
     view.layer.anchorPoint = anchorPoint;
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (CAShapeLayer *)linearCAShapeLayerFromPoint:(CGPoint)pointA toPoint:(CGPoint)pointB color:(UIColor *)color thickness:(CGFloat)thickness opacity:(float)opacity
 {
@@ -64,8 +64,8 @@
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (CAShapeLayer *)linearCAShapeLayerWithPoints:(NSArray *)points color:(UIColor *)color thickness:(CGFloat)thickness opacity:(float)opacity
 {
@@ -129,8 +129,8 @@
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (CAShapeLayer *)circularCAShapeLayerWithRadius:(CGFloat)radius color:(UIColor *)color position:(CGPoint)position
 {
@@ -149,8 +149,8 @@
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (CATextLayer *)CATextLayerWithText:(NSString *)text font:(UIFont *)font foregroundColor:(UIColor *)foregroundColor backgroundColor:(UIColor *)backgroundColor bounds:(CGRect)bounds position:(CGPoint)position alignment:(NSString *)alignment
 {

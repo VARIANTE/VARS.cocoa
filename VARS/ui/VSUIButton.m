@@ -18,8 +18,8 @@ static const int DEFAULT_UUID = -1;
 
 #pragma mark - INTERFACE
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @interface VSUIButton()
 {
@@ -31,8 +31,8 @@ static const int DEFAULT_UUID = -1;
 
 #pragma mark - PROPERTIES
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @property (nonatomic) int UUID;
 
@@ -71,16 +71,16 @@ static const int DEFAULT_UUID = -1;
 
 #pragma mark - IMPLEMENTATION
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @implementation VSUIButton
 
 #pragma mark - PROTOCOL PROPERTIES
 #pragma mark - Drawing
 
-/*
- *  @inheritdoc VSUIViewUpdateDelegate
+/**
+ *  @inheritDoc VSUIViewUpdateDelegate
  */
 - (VSUIViewUpdate *)updateDelegate
 {
@@ -92,16 +92,16 @@ static const int DEFAULT_UUID = -1;
     return _updateDelegate;
 }
 
-/*
- *  @inheritdoc VSUIViewUpdateDelegate
+/**
+ *  @inheritDoc VSUIViewUpdateDelegate
  */
 - (UIInterfaceOrientation)interfaceOrientation
 {
     return [self.updateDelegate interfaceOrientation];
 }
 
-/*
- *  @inheritdoc VSUIViewUpdateDelegate
+/**
+ *  @inheritDoc VSUIViewUpdateDelegate
  */
 - (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -111,8 +111,8 @@ static const int DEFAULT_UUID = -1;
 #pragma mark - PROPERTIES
 #pragma mark - States
 
-/*
- *  @inheritdoc UIControl
+/**
+ *  @inheritDoc UIControl
  */
 - (void)setHighlighted:(BOOL)highlighted
 {
@@ -121,8 +121,8 @@ static const int DEFAULT_UUID = -1;
     [self.updateDelegate setDirty:VSUIDirtyTypeState];
 }
 
-/*
- *  @inheritdoc UIControl
+/**
+ *  @inheritDoc UIControl
  */
 - (void)setSelected:(BOOL)selected
 {
@@ -130,8 +130,8 @@ static const int DEFAULT_UUID = -1;
     [self.updateDelegate setDirty:VSUIDirtyTypeState];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)setEnabled:(BOOL)enabled
 {
@@ -145,8 +145,8 @@ static const int DEFAULT_UUID = -1;
     [self.updateDelegate setDirty:VSUIDirtyTypeState];
 }
 
-/*
- *  @inheritdoc UIView
+/**
+ *  @inheritDoc UIView
  */
 - (void)setHidden:(BOOL)hidden
 {
@@ -164,15 +164,15 @@ static const int DEFAULT_UUID = -1;
 
 #pragma mark - Identifier
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @synthesize UUID = _uuid;
 
 #pragma mark - Styles
 
-/*
- *  @inheritdoc UIView
+/**
+ *  @inheritDoc UIView
  */
 - (void)setBackgroundColor:(UIColor *)backgroundColor
 {
@@ -197,8 +197,8 @@ static const int DEFAULT_UUID = -1;
     }
 }
 
-/*
- *  @inheritdoc UIButton
+/**
+ *  @inheritDoc UIButton
  */
 - (void)setTitle:(NSString *)title forState:(UIControlState)state
 {
@@ -207,8 +207,8 @@ static const int DEFAULT_UUID = -1;
     [self.updateDelegate setDirty:VSUIDirtyTypeData];
 }
 
-/*
- *  @inheritdoc UIButton
+/**
+ *  @inheritDoc UIButton
  */
 - (void)setAttributedTitle:(NSAttributedString *)title forState:(UIControlState)state
 {
@@ -222,8 +222,8 @@ static const int DEFAULT_UUID = -1;
     [self.updateDelegate setDirty:VSUIDirtyTypeData];
 }
 
-/*
- *  @inheritdoc UIButton
+/**
+ *  @inheritDoc UIButton
  */
 - (void)setTitleColor:(UIColor *)color forState:(UIControlState)state
 {
@@ -237,16 +237,16 @@ static const int DEFAULT_UUID = -1;
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (UIFont *)titleFont
 {
     return self.titleLabel.font;
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)setTitleFont:(UIFont *)titleFont
 {
@@ -255,54 +255,54 @@ static const int DEFAULT_UUID = -1;
 
 #pragma mark - Behaviors
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @synthesize shouldDimWhenHighlighted = _shouldDimWhenHighlighted;
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @synthesize shouldDimWhenSelected = _shouldDimWhenSelected;
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @synthesize shouldDimWhenDisabled = _shouldDimWhenDisabled;
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @synthesize shouldAnimateBackgroundColor = _shouldAnimateBackgroundColor;
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @synthesize shouldAnimateVisibility = _shouldAnimateVisibility;
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @synthesize shouldOverrideAccessibilityOption = _shouldOverrideAccessibilityOption;
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @synthesize shouldRedirectTouchesToNextResponder = _shouldRedirectTouchesToNextResponder;
 
 #pragma mark - PROTOCOL METHODS
 #pragma mark - Updating
 
-/*
- *  @inheritdoc VSUIViewUpdateDelegate
+/**
+ *  @inheritDoc VSUIViewUpdateDelegate
  */
 - (void)setNeedsUpdate
 {
     [self update];
 }
 
-/*
- *  @inheritdoc VSUIViewUpdateDelegate
+/**
+ *  @inheritDoc VSUIViewUpdateDelegate
  */
 - (void)update
 {
@@ -319,8 +319,8 @@ static const int DEFAULT_UUID = -1;
     [self.updateDelegate viewDidUpdate];
 }
 
-/*
- *  @inheritdoc VSUIViewUpdateDelegate
+/**
+ *  @inheritDoc VSUIViewUpdateDelegate
  */
 - (BOOL)isDirty:(VSUIDirtyType)dirtyType
 {
@@ -330,8 +330,8 @@ static const int DEFAULT_UUID = -1;
 #pragma mark - INSTANCE METHODS
 #pragma mark - Lifecycle
 
-/*
- *  @inheritdoc UIView
+/**
+ *  @inheritDoc UIView
  */
 - (id)initWithFrame:(CGRect)frame
 {
@@ -346,8 +346,8 @@ static const int DEFAULT_UUID = -1;
     return self;
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (id)initWithFrame:(CGRect)frame UUID:(int)UUID
 {
@@ -362,8 +362,8 @@ static const int DEFAULT_UUID = -1;
     return self;
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (id)initWithUUID:(int)UUID
 {
@@ -372,8 +372,8 @@ static const int DEFAULT_UUID = -1;
     return self;
 }
 
-/*
- *  @inheritdoc NSObject
+/**
+ *  @inheritDoc NSObject
  */
 - (void)dealloc
 {
@@ -384,8 +384,8 @@ static const int DEFAULT_UUID = -1;
 #endif
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)didInit
 {
@@ -402,8 +402,8 @@ static const int DEFAULT_UUID = -1;
     [self.updateDelegate viewDidInit];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)willDealloc
 {
@@ -413,8 +413,8 @@ static const int DEFAULT_UUID = -1;
 
 #pragma mark - Layout
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)layoutSubviews
 {
@@ -425,16 +425,16 @@ static const int DEFAULT_UUID = -1;
 
 #pragma mark - Updating
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)_updateState
 {
     [self setBackgroundColor:[self _getBackgroundColorForState:self.state]];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)_updateData
 {
@@ -453,8 +453,8 @@ static const int DEFAULT_UUID = -1;
 
 #pragma mark - Event Handling
 
-/*
- *  @inheritdoc UIResponder
+/**
+ *  @inheritDoc UIResponder
  */
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -468,8 +468,8 @@ static const int DEFAULT_UUID = -1;
     }
 }
 
-/*
- *  @inheritdoc UIResponder
+/**
+ *  @inheritDoc UIResponder
  */
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -483,8 +483,8 @@ static const int DEFAULT_UUID = -1;
     }
 }
 
-/*
- *  @inheritdoc UIResponder
+/**
+ *  @inheritDoc UIResponder
  */
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -498,8 +498,8 @@ static const int DEFAULT_UUID = -1;
     }
 }
 
-/*
- *  @inheritdoc UIResponder
+/**
+ *  @inheritDoc UIResponder
  */
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -515,8 +515,8 @@ static const int DEFAULT_UUID = -1;
 
 #pragma mark - Styling
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state
 {
@@ -534,8 +534,8 @@ static const int DEFAULT_UUID = -1;
     [self.updateDelegate setDirty:VSUIDirtyTypeStyle];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (UIColor *)_getBackgroundColorForState:(UIControlState)state
 {

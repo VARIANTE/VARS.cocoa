@@ -16,8 +16,8 @@ static const int DEFAULT_UUID = -1;
 
 #pragma mark - INTERFACE
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @interface VSUITextField()
 {
@@ -28,7 +28,7 @@ static const int DEFAULT_UUID = -1;
 #pragma mark - PROPERTIES
 
 /**
- *  @inheritdoc
+ *  @inheritDoc
  */
 @property (nonatomic) int UUID;
 
@@ -36,16 +36,16 @@ static const int DEFAULT_UUID = -1;
 
 #pragma mark - IMPLEMENTATION
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @implementation VSUITextField
 
 #pragma mark - PROTOCOL PROPERTIES
 #pragma mark - Drawing
 
-/*
- *  @inheritdoc VSUIViewUpdateDelegate
+/**
+ *  @inheritDoc VSUIViewUpdateDelegate
  */
 - (VSUIViewUpdate *)updateDelegate
 {
@@ -57,16 +57,16 @@ static const int DEFAULT_UUID = -1;
     return _updateDelegate;
 }
 
-/*
- *  @inheritdoc VSUIViewUpdateDelegate
+/**
+ *  @inheritDoc VSUIViewUpdateDelegate
  */
 - (UIInterfaceOrientation)interfaceOrientation
 {
     return [self.updateDelegate interfaceOrientation];
 }
 
-/*
- *  @inheritdoc VSUIViewUpdateDelegate
+/**
+ *  @inheritDoc VSUIViewUpdateDelegate
  */
 - (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -76,15 +76,15 @@ static const int DEFAULT_UUID = -1;
 #pragma mark - PROPERTIES
 #pragma mark - Identifier
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @synthesize UUID = _uUID;
 
 #pragma mark - Data
 
-/*
- *  @inheritdoc UITextField
+/**
+ *  @inheritDoc UITextField
  */
 - (void)setAttributedText:(NSAttributedString *)attributedText
 {
@@ -93,8 +93,8 @@ static const int DEFAULT_UUID = -1;
     [self.updateDelegate setDirty:VSUIDirtyTypeData];
 }
 
-/*
- *  @inheritdoc UITextField
+/**
+ *  @inheritDoc UITextField
  */
 - (void)setText:(NSString *)text
 {
@@ -103,8 +103,8 @@ static const int DEFAULT_UUID = -1;
     [self.updateDelegate setDirty:VSUIDirtyTypeData];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (NSRange)selectedRange
 {
@@ -119,8 +119,8 @@ static const int DEFAULT_UUID = -1;
     return NSMakeRange(location, length);
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)setSelectedRange:(NSRange)range
 {
@@ -134,20 +134,20 @@ static const int DEFAULT_UUID = -1;
 
 #pragma mark - Behaviors
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @synthesize shouldRedirectTouchesToNextResponder = _shouldRedirectTouchesToNextResponder;
 
 #pragma mark - Styles
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @synthesize shouldHideKeyboard = _shouldHideKeyboard;
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)setShouldHideKeyboard:(BOOL)shouldHideKeyboard
 {
@@ -161,24 +161,24 @@ static const int DEFAULT_UUID = -1;
 #pragma mark - PROTOCOL METHODS
 #pragma mark - Updating
 
-/*
- *  @inheritdoc VSUIViewUpdateDelegate
+/**
+ *  @inheritDoc VSUIViewUpdateDelegate
  */
 - (void)setNeedsUpdate
 {
     [self update];
 }
 
-/*
- *  @inheritdoc VSUIViewUpdateDelegate
+/**
+ *  @inheritDoc VSUIViewUpdateDelegate
  */
 - (void)update
 {
     [self.updateDelegate viewDidUpdate];
 }
 
-/*
- *  @inheritdoc VSUIViewUpdateDelegate
+/**
+ *  @inheritDoc VSUIViewUpdateDelegate
  */
 - (BOOL)isDirty:(VSUIDirtyType)dirtyType
 {
@@ -188,8 +188,8 @@ static const int DEFAULT_UUID = -1;
 #pragma mark - INSTANCE METHODS
 #pragma mark - Lifecycle
 
-/*
- *  @inheritdoc UIView
+/**
+ *  @inheritDoc UIView
  */
 - (id)initWithFrame:(CGRect)frame
 {
@@ -204,8 +204,8 @@ static const int DEFAULT_UUID = -1;
     return self;
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (id)initWithFrame:(CGRect)frame UUID:(int)UUID
 {
@@ -220,8 +220,8 @@ static const int DEFAULT_UUID = -1;
     return self;
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (id)initWithUUID:(int)UUID
 {
@@ -230,8 +230,8 @@ static const int DEFAULT_UUID = -1;
     return self;
 }
 
-/*
- *  @inheritdoc NSObject
+/**
+ *  @inheritDoc NSObject
  */
 - (void)dealloc
 {
@@ -242,8 +242,8 @@ static const int DEFAULT_UUID = -1;
 #endif
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)didInit
 {
@@ -252,8 +252,8 @@ static const int DEFAULT_UUID = -1;
     [self.updateDelegate viewDidInit];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)willDealloc
 {
@@ -262,8 +262,8 @@ static const int DEFAULT_UUID = -1;
 
 #pragma mark - Layout
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)layoutSubviews
 {
@@ -274,8 +274,8 @@ static const int DEFAULT_UUID = -1;
 
 #pragma mark - Event Handling
 
-/*
- *  @inheritdoc UIResponder
+/**
+ *  @inheritDoc UIResponder
  */
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -289,8 +289,8 @@ static const int DEFAULT_UUID = -1;
     }
 }
 
-/*
- *  @inheritdoc UIResponder
+/**
+ *  @inheritDoc UIResponder
  */
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -304,8 +304,8 @@ static const int DEFAULT_UUID = -1;
     }
 }
 
-/*
- *  @inheritdoc UIResponder
+/**
+ *  @inheritDoc UIResponder
  */
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -319,8 +319,8 @@ static const int DEFAULT_UUID = -1;
     }
 }
 
-/*
- *  @inheritdoc UIResponder
+/**
+ *  @inheritDoc UIResponder
  */
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {

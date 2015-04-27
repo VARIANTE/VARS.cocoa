@@ -14,8 +14,8 @@
 
 #pragma mark - ENUMS
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 NSString *NSStringFromVSMathAngleModeType(VSMathAngleModeType type)
 {
@@ -30,8 +30,8 @@ NSString *NSStringFromVSMathAngleModeType(VSMathAngleModeType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 NSString *NSStringFromVSMathSymbolType(VSMathSymbolType type)
 {
@@ -102,8 +102,8 @@ NSString *NSStringFromVSMathSymbolType(VSMathSymbolType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 NSString *NSStringFromVSMathOperationType(VSMathOperationType type)
 {
@@ -174,8 +174,8 @@ NSString *NSStringFromVSMathOperationType(VSMathOperationType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 NSString *NSStringFromVSMathOperatorUnaryType(VSMathOperatorUnaryType type)
 {
@@ -190,8 +190,8 @@ NSString *NSStringFromVSMathOperatorUnaryType(VSMathOperatorUnaryType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 NSString *NSStringFromVSMathOperatorAssociativeType(VSMathOperatorAssociativeType type)
 {
@@ -205,8 +205,8 @@ NSString *NSStringFromVSMathOperatorAssociativeType(VSMathOperatorAssociativeTyp
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 {
@@ -309,59 +309,59 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 
 #pragma mark - IMPLEMENTATION
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @implementation VSMathUtil
 
 #pragma mark - CLASS METHODS
 #pragma mark - Math Character Sets
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSCharacterSet *)numericCharacterSet { return [NSCharacterSet characterSetWithCharactersInString:@"0123456789.,"]; }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSCharacterSet *)functionCharacterSet { return [NSCharacterSet characterSetWithCharactersInString:@"abcdfghijklmnopqrstuvwz₁₂_"]; }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSCharacterSet *)operatorCharacterSet { return [NSCharacterSet characterSetWithCharactersInString:[NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@", VS_M_SYMBOL_ADD, VS_M_SYMBOL_SUBTRACT, VS_M_SYMBOL_MULTIPLY, VS_M_SYMBOL_MULTIPLY_ALTERNATE, VS_M_SYMBOL_DIVIDE, VS_M_SYMBOL_DIVIDE_ALTERNATE, VS_M_SYMBOL_EXPONENT, VS_M_SYMBOL_SCIENTIFIC_NOTATION, VS_M_SYMBOL_ROOT, VS_M_SYMBOL_CHOOSE, VS_M_SYMBOL_PICK, VS_M_SYMBOL_LEFT_SHIFT_BY, VS_M_SYMBOL_RIGHT_SHIFT_BY, VS_M_SYMBOL_AND, VS_M_SYMBOL_NAND, VS_M_SYMBOL_OR, VS_M_SYMBOL_NOR, VS_M_SYMBOL_XOR, VS_M_SYMBOL_XNOR]]; }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSCharacterSet *)unaryPrefixOperatorCharacterSet { return [NSCharacterSet characterSetWithCharactersInString:[NSString stringWithFormat:@"%@%@%@", VS_M_SYMBOL_NEGATIVE, VS_M_SYMBOL_SQUARE_ROOT, VS_M_SYMBOL_CUBE_ROOT]]; }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSCharacterSet *)unaryPostfixOperatorCharacterSet { return [NSCharacterSet characterSetWithCharactersInString:[NSString stringWithFormat:@"%@%@%@%@", VS_M_SYMBOL_FACTORIAL, VS_M_SYMBOL_PERCENT, VS_M_SYMBOL_SQUARE, VS_M_SYMBOL_CUBE]]; }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSCharacterSet *)constantCharacterSet { return [NSCharacterSet characterSetWithCharactersInString:[NSString stringWithFormat:@"%@%@%@", VS_M_SYMBOL_PI, VS_M_SYMBOL_EULER, VS_M_SYMBOL_RANDOM_NUMBER]]; }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSCharacterSet *)variableCharacterSet { return [NSCharacterSet characterSetWithCharactersInString:[NSString stringWithFormat:@"%@%@", VS_M_SYMBOL_X_VARIABLE, VS_M_SYMBOL_Y_VARIABLE]]; }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSCharacterSet *)parenthesisCharacterSet { return [NSCharacterSet characterSetWithCharactersInString:[NSString stringWithFormat:@"%@%@", VS_M_SYMBOL_LEFT_PARENTHESIS, VS_M_SYMBOL_RIGHT_PARENTHESIS]]; }
 
 #pragma mark - Math Operations
 #pragma mark Bitwise Operations
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (unsigned long long)evaluateBitwiseOperation:(VSMathOperationType)operationType operand:(unsigned long long)operand binaryDigitType:(VSBinaryDigitType)binaryDigitType
 {
@@ -521,8 +521,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     return (operand & ~mask) | result;
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (unsigned long long)evaluateBitwiseOperation:(VSMathOperationType)operationType operandX:(unsigned long long)operandX operandY:(unsigned long long)operandY binaryDigitType:(VSBinaryDigitType)binaryDigitType
 {
@@ -753,24 +753,24 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 
 #pragma mark Floating-Point Operations
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (double)evaluateOperation:(VSMathOperationType)operationType angleMode:(VSMathAngleModeType)angleMode
 {
     return [VSMathUtil evaluateOperation:operationType angleMode:angleMode operandX:NAN operandY:NAN];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (double)evaluateOperation:(VSMathOperationType)operationType angleMode:(VSMathAngleModeType)angleMode operand:(double)operand
 {
     return [VSMathUtil evaluateOperation:operationType angleMode:angleMode operandX:operand operandY:NAN];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (double)evaluateOperation:(VSMathOperationType)operationType angleMode:(VSMathAngleModeType)angleMode operandX:(double)operandX operandY:(double)operandY
 {
@@ -1249,24 +1249,24 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 
 #pragma mark - Expression Syntax Verification
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (BOOL)validateInfixExpressionSyntax:(NSString *)infixExpression
 {
     return [VSMathUtil validateInfixExpressionSyntax:infixExpression customVariableSets:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (BOOL)validateInfixExpressionSyntax:(NSString *)infixExpression customVariableSets:(NSArray *)customVariableSets
 {
     return [VSMathUtil validatePostfixStackSyntax:[VSMathUtil postfixStackFromInfixExpression:infixExpression customVariableSets:customVariableSets]];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (BOOL)validatePostfixStackSyntax:(NSArray *)postfixStack
 {
@@ -1275,8 +1275,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 
 #pragma mark - Expression Parsing
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSArray *)tokensInInfixExpression:(NSString *)infixExpression customVariableSets:(NSArray *)customVariableSets
 {
@@ -1303,8 +1303,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (BOOL)parseInfixExpressionIntoTokens:(NSMutableArray *)tokens infixExpression:(NSString *)infixExpression customVariableSets:(NSArray *)customVariableSets
 {
@@ -1409,8 +1409,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (double)doubleFromToken:(id)token
 {
@@ -1437,8 +1437,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (unsigned long long)unsignedLongLongFromToken:(id)token
 {
@@ -1465,8 +1465,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (unsigned long long)unsignedLongLongFromToken:(id)token numberSystem:(VSNumberSystemType)numberSystemType
 {
@@ -1491,16 +1491,16 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 
 #pragma mark - Infix-Postfix Conversions
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSArray *)postfixStackFromInfixExpression:(NSString *)infixExpression
 {
     return [VSMathUtil postfixStackFromInfixExpression:infixExpression customVariableSets:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSArray *)postfixStackFromInfixExpression:(NSString *)infixExpression customVariableSets:(NSArray *)customVariableSets
 {
@@ -1522,16 +1522,16 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (BOOL)parseInfixExpressionIntoPostfixStack:(NSMutableArray *)postfixStack infixExpression:(NSString *)infixExpression
 {
     return [VSMathUtil parseInfixExpressionIntoPostfixStack:postfixStack infixExpression:infixExpression customVariableSets:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (BOOL)parseInfixExpressionIntoPostfixStack:(NSMutableArray *)postfixStack infixExpression:(NSString *)infixExpression customVariableSets:(NSArray *)customVariableSets
 {
@@ -1596,24 +1596,24 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 
 #pragma mark - Shunting-Yard Algorithm
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (BOOL)processShuntingYardToken:(id)token stack:(NSMutableArray *)stack output:(NSMutableArray *)output
 {
     return [VSMathUtil processShuntingYardToken:token stack:stack output:output customVariableSets:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (BOOL)processShuntingYardToken:(id)token stack:(NSMutableArray *)stack output:(NSMutableArray *)output customVariableSets:(NSArray *)customVariableSets
 {
     return [VSMathUtil _processShuntingYardToken:token andPreviousToken:nil stack:stack output:output customVariableSets:customVariableSets contentAware:NO];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (BOOL)_processShuntingYardToken:(id)token andPreviousToken:(id)prevToken stack:(NSMutableArray *)stack output:(NSMutableArray *)output customVariableSets:(NSArray *)customVariableSets contentAware:(BOOL)isContentAware
 {
@@ -1840,8 +1840,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     return YES;
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (BOOL)_insertMultiplierAfterLinkableToken:(id)token stack:(NSMutableArray *)stack output:(NSMutableArray *)output customVariableSets:(NSArray *)customVariableSets;
 {
@@ -1855,8 +1855,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (BOOL)_validateLinkableToken:(id)token customVariableSets:(NSArray *)customVariableSets
 {
@@ -1922,8 +1922,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (BOOL)_validateCustomVariableSet:(id)customVariableSet
 {
@@ -1954,8 +1954,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     return YES;
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (id)_popNumericTokenOnStack:(NSMutableArray *)stack
 {
@@ -1979,16 +1979,16 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 
 #pragma mark - RPN Processing
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSArray *)postfixStackByTruncatingPostfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode
 {
     return [VSMathUtil postfixStackByTruncatingPostfixStack:postfixStack angleMode:angleMode tokenMap:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSArray *)postfixStackByTruncatingPostfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode tokenMap:(NSDictionary *)tokenMap
 {
@@ -2014,16 +2014,16 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSArray *)postfixStackByTruncatingBitwisePostfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode
 {
     return [VSMathUtil postfixStackByTruncatingBitwisePostfixStack:postfixStack binaryDigitMode:binaryDigitMode tokenMap:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSArray *)postfixStackByTruncatingBitwisePostfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode tokenMap:(NSDictionary *)tokenMap
 {
@@ -2049,16 +2049,16 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (BOOL)truncatePostfixStackIntoPostfixStack:(NSMutableArray *)truncatedPostfixStack postfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode;
 {
     return [VSMathUtil truncatePostfixStackIntoPostfixStack:truncatedPostfixStack postfixStack:postfixStack angleMode:angleMode tokenMap:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (BOOL)truncatePostfixStackIntoPostfixStack:(NSMutableArray *)truncatedPostfixStack postfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode tokenMap:(NSDictionary *)tokenMap;
 {
@@ -2216,16 +2216,16 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (BOOL)truncateBitwisePostfixStackIntoPostfixStack:(NSMutableArray *)truncatedPostfixStack postfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode
 {
     return [VSMathUtil truncateBitwisePostfixStackIntoPostfixStack:truncatedPostfixStack postfixStack:postfixStack binaryDigitMode:binaryDigitMode tokenMap:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (BOOL)truncateBitwisePostfixStackIntoPostfixStack:(NSMutableArray *)truncatedPostfixStack postfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode tokenMap:(NSDictionary *)tokenMap
 {
@@ -2385,32 +2385,32 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 
 #pragma mark - Expression Evaluation
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSNumber *)evaluateInfixExpression:(NSString *)infixExpression angleMode:(VSMathAngleModeType)angleMode
 {
     return [VSMathUtil evaluateInfixExpression:infixExpression angleMode:angleMode tokenMap:nil customVariableSets:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSNumber *)evaluateInfixExpression:(NSString *)infixExpression angleMode:(VSMathAngleModeType)angleMode tokenMap:(NSDictionary *)tokenMap customVariableSets:(NSArray *)customVariableSets
 {
     return [VSMathUtil evaluatePostfixStack:[VSMathUtil postfixStackFromInfixExpression:infixExpression customVariableSets:customVariableSets] angleMode:angleMode tokenMap:tokenMap];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSNumber *)evaluatePostfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode
 {
     return [VSMathUtil evaluatePostfixStack:postfixStack angleMode:angleMode tokenMap:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSNumber *)evaluatePostfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode tokenMap:(NSDictionary *)tokenMap
 {
@@ -2434,16 +2434,16 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSNumber *)evaluateBitwisePostfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode
 {
     return [VSMathUtil evaluateBitwisePostfixStack:postfixStack binaryDigitMode:binaryDigitMode tokenMap:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSNumber *)evaluateBitwisePostfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode tokenMap:(NSDictionary *)tokenMap
 {
@@ -2469,16 +2469,16 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 
 #pragma mark - Function Sampling
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSArray *)samplesFromLinearSamplingInfixExpression:(NSString *)infixExpression angleMode:(VSMathAngleModeType)angleMode xMin:(double)xMin xMax:(double)xMax numberOfSamples:(int)numberOfSamples
 {
     return [VSMathUtil samplesFromLinearSamplingPostfixStack:[VSMathUtil postfixStackFromInfixExpression:infixExpression] angleMode:angleMode xMin:xMin xMax:xMax numberOfSamples:numberOfSamples];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSArray *)samplesFromLinearSamplingPostfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode xMin:(double)xMin xMax:(double)xMax numberOfSamples:(int)numberOfSamples
 {
@@ -2513,16 +2513,16 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 #endif
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSArray *)samplesFromAdaptiveSamplingInfixExpression:(NSString *)infixExpression angleMode:(VSMathAngleModeType)angleMode xMin:(double)xMin xMax:(double)xMax tolerance:(double)tolerance depth:(int)depth
 {
     return [VSMathUtil samplesFromAdaptiveSamplingPostfixStack:[VSMathUtil postfixStackFromInfixExpression:infixExpression] angleMode:angleMode xMin:xMin xMax:xMax tolerance:tolerance depth:depth];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSArray *)samplesFromAdaptiveSamplingPostfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode xMin:(double)xMin xMax:(double)xMax tolerance:(double)tolerance depth:(int)depth
 {
@@ -2580,16 +2580,16 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     return [leftSamples arrayByAddingObjectsFromArray:rightSamples];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSArray *)samplesFromCustomSamplingInfixExpression:(NSString *)infixExpression angleMode:(VSMathAngleModeType)angleMode xMin:(double)xMin xMax:(double)xMax yMin:(double)yMin yMax:(double)yMax tolerance:(double)tolerance
 {
     return [VSMathUtil samplesFromCustomSamplingPostfixStack:[VSMathUtil postfixStackFromInfixExpression:infixExpression] angleMode:angleMode xMin:xMin xMax:xMax yMin:yMin yMax:yMax tolerance:tolerance];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSArray *)samplesFromCustomSamplingPostfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode xMin:(double)xMin xMax:(double)xMax yMin:(double)yMin yMax:(double)yMax tolerance:(double)tolerance
 {
@@ -2652,8 +2652,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 #endif
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (double)evaluateSlopeBetweenPoint:(CGPoint)pointA andPoint:(CGPoint)pointB
 {
@@ -2680,24 +2680,24 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 
 #pragma mark - Math Operator Properties
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (int)precedenceOfSymbol:(NSString *)symbol
 {
     return [VSMathUtil precedenceOfSymbolType:[VSMathUtil typeOfSymbol:symbol]];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (int)precedenceOfSymbolType:(VSMathSymbolType)symbolType
 {
     return [VSMathUtil precedenceOfOperationType:[VSMathUtil operationTypeOfSymbolType:symbolType]];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (int)precedenceOfOperationType:(VSMathOperationType)operationType
 {
@@ -2748,24 +2748,24 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (VSMathOperatorAssociativeType)operatorAssociativeTypeOfSymbol:(NSString *)symbol
 {
     return [VSMathUtil operatorAssociativeTypeOfSymbolType:[VSMathUtil typeOfSymbol:symbol]];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (VSMathOperatorAssociativeType)operatorAssociativeTypeOfSymbolType:(VSMathSymbolType)symbolType
 {
     return [VSMathUtil operatorAssociativeTypeOfOperationType:[VSMathUtil operationTypeOfSymbolType:symbolType]];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (VSMathOperatorAssociativeType)operatorAssociativeTypeOfOperationType:(VSMathOperationType)operationType
 {
@@ -2802,24 +2802,24 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (VSMathOperatorUnaryType)operatorUnaryTypeOfSymbol:(NSString *)symbol
 {
     return [VSMathUtil operatorUnaryTypeOfOperationType:[VSMathUtil operationTypeOfSymbol:symbol]];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (VSMathOperatorUnaryType)operatorUnaryTypeOfSymbolType:(VSMathSymbolType)symbolType
 {
     return [VSMathUtil operatorUnaryTypeOfOperationType:[VSMathUtil operationTypeOfSymbolType:symbolType]];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (VSMathOperatorUnaryType)operatorUnaryTypeOfOperationType:(VSMathOperationType)operationType
 {
@@ -2863,8 +2863,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 
 #pragma mark - Enum Translations
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (VSMathTokenType)typeOfToken:(id)token
 {
@@ -2971,8 +2971,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     return VSMathTokenTypeUnknown;
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (VSMathTokenType)typeOfTokenSubset:(id)tokenSubset
 {
@@ -3037,8 +3037,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)symbolWithType:(VSMathSymbolType)symbolType
 {
@@ -3107,8 +3107,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (VSMathSymbolType)typeOfSymbol:(NSString *)symbol
 {
@@ -3175,16 +3175,16 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     else                                                                      return VSMathSymbolTypeUnknown;
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (VSMathOperationType)operationTypeOfSymbol:(NSString *)symbol
 {
     return [VSMathUtil operationTypeOfSymbolType:[VSMathUtil typeOfSymbol:symbol]];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (VSMathOperationType)operationTypeOfSymbolType:(VSMathSymbolType)symbolType
 {
@@ -3251,8 +3251,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (VSMathSymbolType)symbolTypeOfOperationType:(VSMathOperationType)operationType
 {
@@ -3317,8 +3317,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (NSString *)symbolWithOperationType:(VSMathOperationType)operationType
 {

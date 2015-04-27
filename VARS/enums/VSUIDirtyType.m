@@ -10,8 +10,8 @@
 
 #pragma mark - ENUMS
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 NSString *NSStringFromVSUIDirtyType(VSUIDirtyType type)
 {

@@ -13,8 +13,8 @@
 
 #pragma mark - INTERFACE
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @interface VSUIViewUpdate()
 {
@@ -44,21 +44,21 @@
 #pragma mark - IMPLEMENTATION
 #pragma GCC diagnostic ignored "-Wundeclared-selector"
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @implementation VSUIViewUpdate
 
 #pragma mark - PROPERTIES
 #pragma mark - Protocol
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @synthesize delegate = _viewDelegate;
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)setDelegate:(UIView<VSUIViewUpdateDelegate> *)delegate
 {
@@ -74,13 +74,13 @@
 
 #pragma mark - Drawing
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @synthesize dirtyPropertyMap = _dirtyPropertyMap;
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (NSMutableDictionary *)dirtyPropertyMap
 {
@@ -91,23 +91,23 @@
     return _dirtyPropertyMap;
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @synthesize dirtyTable = _dirtyTable;
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @synthesize pendingUpdate = _pendingUpdate;
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @synthesize interfaceOrientation = _interfaceOrientation;
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -135,21 +135,21 @@
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @synthesize shouldAutomaticallyForwardUpdateMethods = _automaticallyForwardedDirtyTypes;
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @synthesize shouldAutomaticallyBlockForwardedUpdateMethods = _automaticallyBlockedForwardedDirtyTypes;
 
 #pragma mark - PROTOCOL METHODS
 #pragma mark - Event Handling
 
-/*
- *  @inheritdoc NSKeyValueObserving
+/**
+ *  @inheritDoc NSKeyValueObserving
  */
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -188,10 +188,10 @@
 }
 
 #pragma mark - INSTANCE METHODS
-#pragma mark - Lifetime
+#pragma mark - Lifecycle
 
-/*
- *  @inheritdoc NSObject
+/**
+ *  @inheritDoc NSObject
  */
 - (id)init
 {
@@ -212,8 +212,8 @@
     return self;
 }
 
-/*
- *  @inheritdoc NSObject
+/**
+ *  @inheritDoc NSObject
  */
 - (void)dealloc
 {
@@ -237,8 +237,8 @@
 
 #pragma mark - Event Handling
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)viewDidInit
 {
@@ -247,8 +247,8 @@
     [self setDirty:VSUIDirtyTypeMaxTypes];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)viewDidUpdate
 {
@@ -257,8 +257,8 @@
 
 #pragma mark - Updating
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (BOOL)isDirty:(VSUIDirtyType)dirtyType
 {
@@ -277,16 +277,16 @@
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)setDirty:(VSUIDirtyType)dirtyType
 {
     [self setDirty:dirtyType willUpdateImmediately:NO];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)setDirty:(VSUIDirtyType)dirtyType willUpdateImmediately:(BOOL)willUpdateImmediately
 {
@@ -352,32 +352,32 @@
     }
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)setDirtyObject:(NSNumber *)dirtyObject
 {
     [self setDirtyObject:dirtyObject willUpdateImmediately:NO];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)setDirtyObject:(NSNumber *)dirtyObject willUpdateImmediately:(BOOL)willUpdateImmediately
 {
     [self setDirty:(VSUIDirtyType)dirtyObject.intValue willUpdateImmediately:willUpdateImmediately];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)mapKeyPath:(NSString *)keyPath toDirtyType:(VSUIDirtyType)dirtyType
 {
     [self mapKeyPath:keyPath toDirtyType:dirtyType willUpdateImmediately:NO];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)mapKeyPath:(NSString *)keyPath toDirtyType:(VSUIDirtyType)dirtyType willUpdateImmediately:(BOOL)willUpdateImmediately
 {
@@ -389,8 +389,8 @@
     [self.delegate addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)unmapKeyPath:(NSString *)keyPath
 {

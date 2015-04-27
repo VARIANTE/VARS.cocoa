@@ -12,15 +12,15 @@
 
 #pragma mark - IMPLEMENTATION
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @implementation VSColorUtil
 
 #pragma mark - CLASS METHODS
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (UIColor *)modifyRGBOfColor:(UIColor *)color byUniformValue:(CGFloat)value
 {
@@ -34,8 +34,8 @@
     return [UIColor colorWithRed:newRed green:newGreen blue:newBlue alpha:newAlpha];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (UIColor *)modifyRGBOfColor:(UIColor *)color red:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue
 {
@@ -49,8 +49,8 @@
     return [UIColor colorWithRed:newRed green:newGreen blue:newBlue alpha:newAlpha];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (UIColor *)modifyAlphaOfColor:(UIColor *)color toValue:(CGFloat)value
 {
@@ -63,8 +63,8 @@
     return [UIColor colorWithRed:newRed green:newGreen blue:newBlue alpha:newAlpha];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (UIColor *)invertedColorOfColor:(UIColor *)color
 {
@@ -78,8 +78,8 @@
     return [UIColor colorWithRed:newRed green:newGreen blue:newBlue alpha:newAlpha];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (UIColor *)colorWithHex:(unsigned int)hex alpha:(CGFloat)alpha
 {
@@ -90,8 +90,8 @@
     return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (UIColor *)invertedColorWithHex:(unsigned int)hex alpha:(CGFloat)alpha
 {
@@ -102,24 +102,24 @@
     return [UIColor colorWithRed:1.0-red green:1.0-green blue:1.0-blue alpha:alpha];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (UIColor *)colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha
 {
     return [UIColor colorWithRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:alpha];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (UIColor *)invertedColorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha
 {
     return [UIColor colorWithRed:1.0-(red/255.0) green:1.0-(green/255.0) blue:1.0-(blue/255.0) alpha:alpha];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 + (BOOL)verifyRGBOfColor:(UIColor *)color hasRoomForDeltaUniformValue:(CGFloat)value
 {

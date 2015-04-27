@@ -10,16 +10,16 @@
 
 #pragma mark - IMPLEMENTATION
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @implementation VSUIModel
 
 #pragma mark - INSTANCE METHODS
 #pragma mark - Lifecycle
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (id)init
 {
@@ -33,8 +33,8 @@
     return self;
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)dealloc
 {
@@ -45,16 +45,16 @@
 #endif
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)didInit
 {
 
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)willDealloc
 {

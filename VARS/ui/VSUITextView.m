@@ -12,8 +12,8 @@
 
 #pragma mark - INTERFACE
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @interface VSUITextView()
 {
@@ -25,16 +25,16 @@
 
 #pragma mark - IMPLEMENTATION
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @implementation VSUITextView
 
 #pragma mark - PROTOCOL PROPERTIES
 #pragma mark - Drawing
 
-/*
- *  @inheritdoc VSUIViewUpdateDelegate
+/**
+ *  @inheritDoc VSUIViewUpdateDelegate
  */
 - (VSUIViewUpdate *)updateDelegate
 {
@@ -46,16 +46,16 @@
     return _updateDelegate;
 }
 
-/*
- *  @inheritdoc VSUIViewUpdateDelegate
+/**
+ *  @inheritDoc VSUIViewUpdateDelegate
  */
 - (UIInterfaceOrientation)interfaceOrientation
 {
     return [self.updateDelegate interfaceOrientation];
 }
 
-/*
- *  @inheritdoc VSUIViewUpdateDelegate
+/**
+ *  @inheritDoc VSUIViewUpdateDelegate
  */
 - (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -65,13 +65,13 @@
 #pragma mark - PROPERTIES
 #pragma mark - Behaviors
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @synthesize shouldHideKeyboard = _shouldHideKeyboard;
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)setShouldHideKeyboard:(BOOL)shouldHideKeyboard
 {
@@ -82,32 +82,32 @@
     vs_dealloc(dummyKeyboard);
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 @synthesize shouldRedirectTouchesToNextResponder = _shouldRedirectTouchesToNextResponder;
 
 #pragma mark - PROTOCOL METHODS
 #pragma mark - Updating
 
-/*
- *  @inheritdoc VSUIViewUpdateDelegate
+/**
+ *  @inheritDoc VSUIViewUpdateDelegate
  */
 - (void)setNeedsUpdate
 {
     [self update];
 }
 
-/*
- *  @inheritdoc VSUIViewUpdateDelegate
+/**
+ *  @inheritDoc VSUIViewUpdateDelegate
  */
 - (void)update
 {
     [self.updateDelegate viewDidUpdate];
 }
 
-/*
- *  @inheritdoc VSUIViewUpdateDelegate
+/**
+ *  @inheritDoc VSUIViewUpdateDelegate
  */
 - (BOOL)isDirty:(VSUIDirtyType)dirtyType
 {
@@ -117,8 +117,8 @@
 #pragma mark - INSTANCE METHODS
 #pragma mark - Lifecycle
 
-/*
- *  @inheritdoc UIView
+/**
+ *  @inheritDoc UIView
  */
 - (id)initWithFrame:(CGRect)frame
 {
@@ -132,8 +132,8 @@
     return self;
 }
 
-/*
- *  @inheritdoc UITextView
+/**
+ *  @inheritDoc UITextView
  */
 - (id)initWithFrame:(CGRect)frame textContainer:(NSTextContainer *)textContainer
 {
@@ -147,8 +147,8 @@
     return self;
 }
 
-/*
- *  @inheritdoc NSObject
+/**
+ *  @inheritDoc NSObject
  */
 - (void)dealloc
 {
@@ -159,8 +159,8 @@
 #endif
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)didInit
 {
@@ -169,8 +169,8 @@
     [self.updateDelegate viewDidInit];
 }
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)willDealloc
 {
@@ -179,8 +179,8 @@
 
 #pragma mark - Layout
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)layoutSubviews
 {
@@ -191,8 +191,8 @@
 
 #pragma mark - Behaviors
 
-/*
- *  @inheritdoc
+/**
+ *  @inheritDoc
  */
 - (void)scrollToBottom:(BOOL)animated
 {
@@ -230,8 +230,8 @@
 
 #pragma mark - Event Handling
 
-/*
- *  @inheritdoc UIResponder
+/**
+ *  @inheritDoc UIResponder
  */
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -245,8 +245,8 @@
     }
 }
 
-/*
- *  @inheritdoc UIResponder
+/**
+ *  @inheritDoc UIResponder
  */
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -260,8 +260,8 @@
     }
 }
 
-/*
- *  @inheritdoc UIResponder
+/**
+ *  @inheritDoc UIResponder
  */
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -275,8 +275,8 @@
     }
 }
 
-/*
- *  @inheritdoc UIResponder
+/**
+ *  @inheritDoc UIResponder
  */
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
