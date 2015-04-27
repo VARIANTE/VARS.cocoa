@@ -128,4 +128,35 @@
     [aMutableArray insertObject:object1 atIndex:index2];
 }
 
+/**
+ *  @inheritDoc
+ */
++ (unsigned long)binarySearch:(NSArray *)aSortedArray key:(int)key min:(unsigned long)min max:(unsigned long)max
+{
+    unsigned long m;
+    int k;
+
+    while (max >= min)
+    {
+        m = (min+max)/2;
+        k = [(NSNumber *)aSortedArray[m] intValue];
+
+        if (k == key)
+        {
+            return m;
+        }
+        else if (k < key)
+        {
+            min = min + 1;
+        }
+        else
+        {
+            max = max - 1;
+        }
+    }
+
+    // Return the closest index where its value is less than the specified key.
+    return max;
+}
+
 @end

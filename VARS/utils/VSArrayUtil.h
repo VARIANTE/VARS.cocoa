@@ -80,4 +80,17 @@ NS_ROOT_CLASS
  */
 + (void)swapElementsInArray:(NSMutableArray *)aMutableArray index1:(unsigned long)index1 index2:(unsigned long)index2;
 
+/**
+ *  Uses binary search to look for the index of the specified key in a sorted integer array. If none is found, the next closest index with
+ *  value less than the specified key will be returned.
+ *
+ *  @param aSortedArray
+ *  @param key 
+ *  @param min
+ *  @param max
+ *
+ *  @return The desired index.
+ */
++ (unsigned long)binarySearch:(NSArray *)aSortedArray key:(int)key min:(unsigned long)min max:(unsigned long)max;
+
 @end

@@ -53,4 +53,13 @@
  */
 - (void)scrollToBottom:(BOOL)animated;
 
+#pragma mark - Formatting
+
+/**
+ *  Gets the rect of the selected range.
+ *
+ *  @return CGRect value.
+ */
+- (CGRect)selectedRangeRect;
+
 @end

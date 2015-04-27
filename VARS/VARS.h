@@ -27,6 +27,7 @@
 #import "VARS/VSUITableView.h"
 #import "VARS/VSUITextField.h"
 #import "VARS/VSUITextView.h"
+#import "VARS/VSUIUtil.h"
 #import "VARS/VSUIView.h"
 #import "VARS/VSUIViewController.h"
 #import "VARS/VSUIViewUpdate.h"

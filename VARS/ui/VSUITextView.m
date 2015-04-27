@@ -201,6 +201,33 @@
     [self setContentOffset:offsetPoint animated:animated];
 }
 
+#pragma mark - Formatting
+
+/**
+ *  @inheritDoc
+ */
+- (CGRect)selectedRangeRect
+{
+    UITextRange *selectionRange = [self selectedTextRange];
+    NSArray *selectionRects = [self selectionRectsForRange:selectionRange];
+
+    CGRect completeRect = CGRectNull;
+
+    for (UITextSelectionRect *selectionRect in selectionRects)
+    {
+        if (CGRectIsNull(completeRect))
+        {
+            completeRect = selectionRect.rect;
+        }
+        else
+        {
+            completeRect = CGRectUnion(completeRect,selectionRect.rect);
+        }
+    }
+
+    return completeRect;
+}
+
 #pragma mark - Event Handling
 
 /*
