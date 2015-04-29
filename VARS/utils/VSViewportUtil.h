@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#pragma mark - ENUMS
-
 /**
  *  Enums of all numeral system types.
  */
@@ -33,12 +31,9 @@ typedef NS_ENUM(int, VSViewportAspectRatioType)
  */
 NSString *NSStringFromVSViewportAspectRatioType(VSViewportAspectRatioType type);
 
-#pragma mark - INTERFACE
+#pragma mark - --------------------------------------------------------------------------
 
-NS_ROOT_CLASS
-@interface VSViewportUtil
-
-#pragma mark - CLASS METHODS
+NS_ROOT_CLASS @interface VSViewportUtil
 
 /**
  *  Gets the frame of the viewport at the current interface orientation.

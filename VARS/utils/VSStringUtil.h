@@ -2,13 +2,13 @@
  *  VARSobjc
  *  (c) VARIANTE <http://variante.io>
  *
+ *  Utility for string operations.
+ *
  *  This software is released under the MIT License:
  *  http://www.opensource.org/licenses/mit-license.php
  */
 
 #import "VSNumberUtil.h"
-
-#pragma mark - ENUMS
 
 /**
  *  Enums of all numeral system types.
@@ -30,15 +30,10 @@ typedef NS_ENUM(int, VSCharacterEncodingType)
  */
 NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type);
 
-#pragma mark - INTERFACE
+#pragma mark - --------------------------------------------------------------------------
 
-/**
- *  VARS utility for string operations.
- */
-NS_ROOT_CLASS
-@interface VSStringUtil
+NS_ROOT_CLASS @interface VSStringUtil
 
-#pragma mark - CLASS METHODS
 #pragma mark - Sanity Checking
 
 /**

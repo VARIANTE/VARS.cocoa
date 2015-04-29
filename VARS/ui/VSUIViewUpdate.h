@@ -2,6 +2,13 @@
  *  VARSobjc
  *  (c) VARIANTE <http://variante.io>
  *
+ *  VARS UIView update protocol delegate. UIView instances that conform to this
+ *  protocol will immediately become a view that requires dirty invalidation prior
+ *  to updating (i.e. calling setNeedsUpdate). This protocol supports forwarding/blocking
+ *  update methods to/fro subviews/superview respectively, both of which are disabled
+ *  by default. Note that in order for update method forwarding/blocking to work properly,
+ *  the corresponding subview/superview must also conform to this protocol.
+ *
  *  This software is released under the MIT License:
  *  http://www.opensource.org/licenses/mit-license.php
  */
@@ -10,40 +17,37 @@
 
 #import "VSUIDirtyType.h"
 
-#pragma mark - PROTOCOL
-
-/**
- *  VARS UIView update protocol delegate.
- */
 @protocol VSUIViewUpdateDelegate
 
+
+#pragma mark - Delegation
+
 @required
-
-#pragma mark - PROTOCOL PROPERTIES
-#pragma mark - Drawing
-
 /**
  *  Read-only weak reference to update delegate instance.
  */
 @property (nonatomic, weak, readonly) id updateDelegate;
 
-/**
- *  Read-only interface orientation.
- */
-@property (nonatomic) UIInterfaceOrientation interfaceOrientation;
-
-#pragma mark - PROTOCOL METHODS
 #pragma mark - Updating
+
+/**
+ *  Current interface orientation.
+ *  TODO: This will soon be deprecated.
+ */
+@optional
+@property (nonatomic) UIInterfaceOrientation interfaceOrientation;
 
 /**
  *  Schedules for UI update.
  */
+@required
 - (void)setNeedsUpdate;
 
 /**
  *  Updates the delegate UIVIew instance. This needs to be scheduled by setNeedsUpdate, avoid invoking this directly.
  *  If overridden, invoke the predecessor's update method at the end.
  */
+@required
 - (void)update;
 
 /**
@@ -53,34 +57,27 @@
  *
  *  @return YES if dirty, NO otherwise.
  */
+@optional
 - (BOOL)isDirty:(VSUIDirtyType)dirtyType;
 
 @end
 
-#pragma mark - INTERFACE
+#pragma mark - --------------------------------------------------------------------------
 
-/**
- *  VARS UIView update protocol delegate. UIView instances that conform to this
- *  protocol will immediately become a view that requires dirty invalidation prior
- *  to updating (i.e. calling setNeedsUpdate). This protocol supports forwarding/blocking
- *  update methods to/fro subviews/superview respectively, both of which are disabled
- *  by default. Note that in order for update method forwarding/blocking to work properly,
- *  the corresponding subview/superview must also conform to this protocol.
- */
 @interface VSUIViewUpdate : NSObject
 
-#pragma mark - PROPERTIES
-#pragma mark - Protocol
+#pragma mark - Delegation
 
 /**
  *  Delegate instance.
  */
 @property (nonatomic, strong) UIView<VSUIViewUpdateDelegate> *delegate;
 
-#pragma mark - Drawing
+#pragma mark - Updating
 
 /**
  *  Interface orientation.
+ *  TODO: This will soon be deprecated.
  */
 @property (nonatomic) UIInterfaceOrientation interfaceOrientation;
 
@@ -96,7 +93,6 @@
  */
 @property (nonatomic) VSUIDirtyType shouldAutomaticallyBlockForwardedUpdateMethods;
 
-#pragma mark - INSTANCE METHODS
 #pragma mark - Event Handling
 
 /**

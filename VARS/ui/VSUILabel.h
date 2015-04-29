@@ -2,21 +2,17 @@
  *  VARSobjc
  *  (c) VARIANTE <http://variante.io>
  *
+ *  VARS UILabel.
+ *
  *  This software is released under the MIT License:
  *  http://www.opensource.org/licenses/mit-license.php
  */
 
 #import "VSUIViewUpdate.h"
 
-#pragma mark - INTERFACE
-
-/**
- *  VARS UILabel wrapper class.
- */
 @interface VSUILabel : UILabel <VSUIViewUpdateDelegate>
 
-#pragma mark - PROPERTIES
-#pragma mark - Identifier
+#pragma mark - Identifiers
 
 /**
  *  Unique ID of this VSUIViewing protocol instance, defaults to -1 if unset.
@@ -26,15 +22,17 @@
 #pragma mark - Behaviors
 
 /**
- *  Speicifies whether action menu is enabled.
- */
-@property (nonatomic) BOOL menuEnabled;
-
-/**
  *  Speicifies whether this button ignores touch events so they can be passed to the next object in the
  *  responder chain.
  */
 @property (nonatomic) BOOL shouldRedirectTouchesToNextResponder;
+
+#pragma mark - Context Menu
+
+/**
+ *  Speicifies whether action menu is enabled.
+ */
+@property (nonatomic) BOOL menuEnabled;
 
 /**
  *  Specifies whether the menu can be revealed with default gestures.
@@ -48,7 +46,6 @@
  */
 @property (nonatomic) UIEdgeInsets textEdgeInsets;
 
-#pragma mark - INSTANCE METHODS
 #pragma mark - Lifecycle
 
 /**
@@ -71,18 +68,24 @@
 - (id)initWithUUID:(int)UUID;
 
 /**
- *  Automatically invoked on init, do not call this manually. If overridden, invoke the predecessor's didInit
- *  method at the end.
+ *  Automatically invoked at the beginning of init, do not call this manually. If overridden, invoke [super willInit]
+ *  at the beginning of the method.
+ */
+- (void)willInit;
+
+/**
+ *  Automatically invoked at the end of init, do not call this manually. If overridden, invoke [super didInit] at the
+ *  end of the method.
  */
 - (void)didInit;
 
 /**
- *  Automatically invoked on dealloc, do not call this manually. If overridden, invoke the predecessor's willDealloc
- *  method at the end.
+ *  Automatically invoked at the beginning of dealloc, do not call this manually. If overridden, invoke [super willDealloc]
+ *  at the end of the method.
  */
 - (void)willDealloc;
 
-#pragma mark - Behaviors
+#pragma mark - Context Menu
 
 /**
  *  Reveals the menu.

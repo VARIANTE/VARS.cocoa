@@ -8,14 +8,8 @@
 
 #import "VSUIModel.h"
 
-#pragma mark - IMPLEMENTATION
-
-/**
- *  @inheritDoc
- */
 @implementation VSUIModel
 
-#pragma mark - INSTANCE METHODS
 #pragma mark - Lifecycle
 
 /**
@@ -27,6 +21,7 @@
 
     if (self)
     {
+        [self willInit];
         [self didInit];
     }
 
@@ -43,6 +38,14 @@
 #if !__has_feature(objc_arc)
     [super dealloc];
 #endif
+}
+
+/**
+ *  @inheritDoc
+ */
+- (void)willInit
+{
+
 }
 
 /**

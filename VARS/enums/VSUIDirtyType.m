@@ -8,8 +8,6 @@
 
 #import "VSUIDirtyType.h"
 
-#pragma mark - ENUMS
-
 /**
  *  @inheritDoc
  */

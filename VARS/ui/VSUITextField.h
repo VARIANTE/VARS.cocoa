@@ -2,6 +2,8 @@
  *  VARSobjc
  *  (c) VARIANTE <http://variante.io>
  *
+ *  VARS UITextField.
+ *
  *  This software is released under the MIT License:
  *  http://www.opensource.org/licenses/mit-license.php
  */
@@ -10,22 +12,16 @@
 
 #import "VSUIViewUpdate.h"
 
-#pragma mark - INTERFACE
-
-/**
- *  VARS UITextField wrapper class.
- */
 @interface VSUITextField : UITextField <VSUIViewUpdateDelegate>
 
-#pragma mark - PROPERTIES
-#pragma mark - Identifier
+#pragma mark - Identifiers
 
 /**
  *  Unique ID of this VSUIViewing protocol instance, defaults to -1 if unset.
  */
 @property (nonatomic, readonly) int UUID;
 
-#pragma mark - Data
+#pragma mark - Characteristics
 
 /**
  *  Current selected range.
@@ -47,7 +43,6 @@
  */
 @property (nonatomic) BOOL shouldHideKeyboard;
 
-#pragma mark - INSTANCE METHODS
 #pragma mark - Lifecycle
 
 /**
@@ -70,14 +65,20 @@
 - (id)initWithUUID:(int)UUID;
 
 /**
- *  Automatically invoked on init, do not call this manually. If overridden, invoke the predecessor's didInit
- *  method at the end.
+ *  Automatically invoked at the beginning of init, do not call this manually. If overridden, invoke [super willInit]
+ *  at the beginning of the method.
+ */
+- (void)willInit;
+
+/**
+ *  Automatically invoked at the end of init, do not call this manually. If overridden, invoke [super didInit] at the
+ *  end of the method.
  */
 - (void)didInit;
 
 /**
- *  Automatically invoked on dealloc, do not call this manually. If overridden, invoke the predecessor's willDealloc
- *  method at the end.
+ *  Automatically invoked at the beginning of dealloc, do not call this manually. If overridden, invoke [super willDealloc]
+ *  at the end of the method.
  */
 - (void)willDealloc;
 

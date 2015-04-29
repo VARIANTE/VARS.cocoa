@@ -8,12 +8,8 @@
 
 #import "VSArrayUtil.h"
 
-/**
- *  @inheritDoc
- */
 @implementation VSArrayUtil
 
-#pragma mark - CLASS METHODS
 #pragma mark - Manipulation
 
 /**

@@ -9,11 +9,6 @@
 #import "vsmem.h"
 #import "VSUIControl.h"
 
-#pragma mark - INTERFACE
-
-/**
- *  @inheritDoc
- */
 @interface VSUIControl()
 {
 @private
@@ -22,19 +17,17 @@
 
 @end
 
-#pragma mark - IMPLEMENTATION
+#pragma mark - --------------------------------------------------------------------------
 
-/**
- *  @inheritDoc
- */
 @implementation VSUIControl
 
-#pragma mark - PROTOCOL PROPERTIES
-#pragma mark - Drawing
+#pragma mark - VSUIViewUpdateDelegate
 
 /**
  *  @inheritDoc VSUIViewUpdateDelegate
  */
+@dynamic updateDelegate;
+
 - (VSUIViewUpdate *)updateDelegate
 {
     if (_updateDelegate != nil) return _updateDelegate;
@@ -48,20 +41,18 @@
 /**
  *  @inheritDoc VSUIViewUpdateDelegate
  */
+@dynamic interfaceOrientation;
+
 - (UIInterfaceOrientation)interfaceOrientation
 {
     return [self.updateDelegate interfaceOrientation];
 }
 
-/**
- *  @inheritDoc VSUIViewUpdateDelegate
- */
 - (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     [self.updateDelegate setInterfaceOrientation:interfaceOrientation];
 }
 
-#pragma mark - PROPERTIES
 #pragma mark - Behaviors
 
 /**
@@ -69,8 +60,7 @@
  */
 @synthesize shouldRedirectTouchesToNextResponder = _shouldRedirectTouchesToNextResponder;
 
-#pragma mark - PROTOCOL METHODS
-#pragma mark - Updating
+#pragma mark - VSUIViewUpdateDelegate
 
 /**
  *  @inheritDoc VSUIViewUpdateDelegate
@@ -96,7 +86,6 @@
     return [self.updateDelegate isDirty:dirtyType];
 }
 
-#pragma mark - INSTANCE METHODS
 #pragma mark - Lifecycle
 
 /**
@@ -108,6 +97,7 @@
 
     if (self)
     {
+        [self willInit];
         [self didInit];
     }
 
@@ -129,10 +119,16 @@
 /**
  *  @inheritDoc
  */
-- (void)didInit
+- (void)willInit
 {
     [self setShouldRedirectTouchesToNextResponder:NO];
+}
 
+/**
+ *  @inheritDoc
+ */
+- (void)didInit
+{
     [self.updateDelegate viewDidInit];
 }
 
@@ -144,7 +140,7 @@
     vs_dealloc(_updateDelegate);
 }
 
-#pragma mark - Layout
+#pragma mark - Drawing
 
 /**
  *  @inheritDoc

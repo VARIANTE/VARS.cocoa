@@ -2,21 +2,15 @@
  *  VARSobjc
  *  (c) VARIANTE <http://variante.io>
  *
+ *  Utility for processing colors.
+ *
  *  This software is released under the MIT License:
  *  http://www.opensource.org/licenses/mit-license.php
  */
 
 #import <UIKit/UIKit.h>
 
-#pragma mark - INTERFACE
-
-/**
- *  VARS utility for processing colors.
- */
-NS_ROOT_CLASS
-@interface VSColorUtil
-
-#pragma mark - CLASS METHODS
+NS_ROOT_CLASS @interface VSColorUtil
 
 /**
  *  Modifies the RGB scale of the specified color by a uniform value.

@@ -12,76 +12,42 @@
 #import "VSUIButton.h"
 
 /**
- *  Default properties.
+ *  Default UUID of this VSUIButton instance.
  */
 static const int DEFAULT_UUID = -1;
 
-#pragma mark - INTERFACE
+#pragma mark - --------------------------------------------------------------------------
 
-/**
- *  @inheritDoc
- */
 @interface VSUIButton()
 {
 @private
     VSUIViewUpdate *_updateDelegate;
-
     NSMutableDictionary *_backgroundColorTable;
 }
 
-#pragma mark - PROPERTIES
+#pragma mark - Private Accessors
 
 /**
  *  @inheritDoc
  */
 @property (nonatomic) int UUID;
 
-#pragma mark - INSTANCE METHODS
-#pragma mark - Updating
-
-/**
- *  @private
- *
- *  Applies state-specific update.
- */
-- (void)_updateState;
-
-/**
- *  @private
- *
- *  Applies data-specific update.
- */
-- (void)_updateData;
-
-#pragma mark - Styling
-
-/**
- *  @private
- *
- *  Gets the background color for the specified UIControlState.
- *
- *  @param state
- *
- *  @return The corresponding background color if specified; the normal background color if
- *          unspecified; nil if even the normal background is unspecified.
- */
-- (UIColor *)_getBackgroundColorForState:(UIControlState)state;
-
 @end
 
-#pragma mark - IMPLEMENTATION
+#pragma mark - --------------------------------------------------------------------------
 
 /**
  *  @inheritDoc
  */
 @implementation VSUIButton
 
-#pragma mark - PROTOCOL PROPERTIES
-#pragma mark - Drawing
+#pragma mark - VSUIViewUpdateDelegate
 
 /**
  *  @inheritDoc VSUIViewUpdateDelegate
  */
+@dynamic updateDelegate;
+
 - (VSUIViewUpdate *)updateDelegate
 {
     if (_updateDelegate != nil) return _updateDelegate;
@@ -95,20 +61,18 @@ static const int DEFAULT_UUID = -1;
 /**
  *  @inheritDoc VSUIViewUpdateDelegate
  */
+@dynamic interfaceOrientation;
+
 - (UIInterfaceOrientation)interfaceOrientation
 {
     return [self.updateDelegate interfaceOrientation];
 }
 
-/**
- *  @inheritDoc VSUIViewUpdateDelegate
- */
 - (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     [self.updateDelegate setInterfaceOrientation:interfaceOrientation];
 }
 
-#pragma mark - PROPERTIES
 #pragma mark - States
 
 /**
@@ -162,7 +126,7 @@ static const int DEFAULT_UUID = -1;
     }
 }
 
-#pragma mark - Identifier
+#pragma mark - Identifiers
 
 /**
  *  @inheritDoc
@@ -290,8 +254,7 @@ static const int DEFAULT_UUID = -1;
  */
 @synthesize shouldRedirectTouchesToNextResponder = _shouldRedirectTouchesToNextResponder;
 
-#pragma mark - PROTOCOL METHODS
-#pragma mark - Updating
+#pragma mark - VSUIViewUpdateDelegate
 
 /**
  *  @inheritDoc VSUIViewUpdateDelegate
@@ -327,7 +290,6 @@ static const int DEFAULT_UUID = -1;
     return [self.updateDelegate isDirty:dirtyType];
 }
 
-#pragma mark - INSTANCE METHODS
 #pragma mark - Lifecycle
 
 /**
@@ -340,6 +302,7 @@ static const int DEFAULT_UUID = -1;
     if (self)
     {
         [self setUUID:DEFAULT_UUID];
+        [self willInit];
         [self didInit];
     }
 
@@ -356,6 +319,7 @@ static const int DEFAULT_UUID = -1;
     if (self)
     {
         [self setUUID:UUID];
+        [self willInit];
         [self didInit];
     }
 
@@ -387,10 +351,8 @@ static const int DEFAULT_UUID = -1;
 /**
  *  @inheritDoc
  */
-- (void)didInit
+- (void)willInit
 {
-    _backgroundColorTable = [[NSMutableDictionary alloc] init];
-
     [self setShouldDimWhenHighlighted:NO];
     [self setShouldDimWhenSelected:NO];
     [self setShouldDimWhenDisabled:NO];
@@ -399,6 +361,14 @@ static const int DEFAULT_UUID = -1;
     [self setShouldOverrideAccessibilityOption:YES];
     [self setShouldRedirectTouchesToNextResponder:NO];
 
+    _backgroundColorTable = [[NSMutableDictionary alloc] init];
+}
+
+/**
+ *  @inheritDoc
+ */
+- (void)didInit
+{
     [self.updateDelegate viewDidInit];
 }
 
@@ -411,7 +381,7 @@ static const int DEFAULT_UUID = -1;
     vs_dealloc(_backgroundColorTable);
 }
 
-#pragma mark - Layout
+#pragma mark - Drawing
 
 /**
  *  @inheritDoc
@@ -426,7 +396,9 @@ static const int DEFAULT_UUID = -1;
 #pragma mark - Updating
 
 /**
- *  @inheritDoc
+ *  @private
+ *
+ *  Applies state-specific update.
  */
 - (void)_updateState
 {
@@ -434,7 +406,9 @@ static const int DEFAULT_UUID = -1;
 }
 
 /**
- *  @inheritDoc
+ *  @private
+ *
+ *  Applies data-specific update.
  */
 - (void)_updateData
 {
@@ -535,7 +509,14 @@ static const int DEFAULT_UUID = -1;
 }
 
 /**
- *  @inheritDoc
+ *  @private
+ *
+ *  Gets the background color for the specified UIControlState.
+ *
+ *  @param state
+ *
+ *  @return The corresponding background color if specified; the normal background color if
+ *          unspecified; nil if even the normal background is unspecified.
  */
 - (UIColor *)_getBackgroundColorForState:(UIControlState)state
 {

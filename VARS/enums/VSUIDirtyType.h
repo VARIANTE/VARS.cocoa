@@ -2,13 +2,14 @@
  *  VARSobjc
  *  (c) VARIANTE <http://variante.io>
  *
+ *  Enums for all UI update dirty types. To be used with 
+ *  VSUIUpdateDelegate.
+ *
  *  This software is released under the MIT License:
  *  http://www.opensource.org/licenses/mit-license.php
  */
 
 #import <Foundation/Foundation.h>
-
-#pragma mark - ENUMS
 
 /**
  *  All dirty invalidation types.

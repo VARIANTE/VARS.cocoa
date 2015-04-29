@@ -2,21 +2,16 @@
  *  VARSobjc
  *  (c) VARIANTE <http://variante.io>
  *
+ *  Utility for processing arrays.
+ *
  *  This software is released under the MIT License:
  *  http://www.opensource.org/licenses/mit-license.php
  */
 
 #import <Foundation/Foundation.h>
 
-#pragma mark - INTERFACE
+NS_ROOT_CLASS @interface VSArrayUtil
 
-/**
- *  VARS utility for processing arrays.
- */
-NS_ROOT_CLASS
-@interface VSArrayUtil
-
-#pragma mark - CLASS METHODS
 #pragma mark - Manipulation
 
 /**

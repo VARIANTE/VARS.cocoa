@@ -14,53 +14,27 @@
  */
 static const int DEFAULT_UUID = -1;
 
-#pragma mark - INTERFACE
+#pragma mark - --------------------------------------------------------------------------
 
-/**
- *  @inheritDoc
- */
 @interface VSUILabel()
 {
 @private
     VSUIViewUpdate *_updateDelegate;
 }
 
-#pragma mark - INTERFACE METHODS
-#pragma mark - Event Handling
-
-/**
- *  @private
- *
- *  Handler invoked when the menu should be revealed.
- *
- *  @param gestureRecognizer
- */
-- (void)_onRevealMenu:(UIGestureRecognizer *)gestureRecognizer;
-
-/**
- *  @private
- *
- *  Handler invoked when the menu should be hidden.
- *
- *  @param gestureRecognizer
- */
-- (void)_onHideMenu:(UIGestureRecognizer *)gestureRecognizer;
-
 @end
 
-#pragma mark - IMPLEMENTATION
+#pragma mark - --------------------------------------------------------------------------
 
-/**
- *  @inheritDoc
- */
 @implementation VSUILabel
 
-#pragma mark - PROTOCOL PROPERTIES
-#pragma mark - Drawing
+#pragma mark - VSUIViewUpdateDelegate
 
 /**
  *  @inheritDoc VSUIViewUpdateDelegate
  */
+@dynamic updateDelegate;
+
 - (VSUIViewUpdate *)updateDelegate
 {
     if (_updateDelegate != nil) return _updateDelegate;
@@ -74,28 +48,19 @@ static const int DEFAULT_UUID = -1;
 /**
  *  @inheritDoc VSUIViewUpdateDelegate
  */
+@dynamic interfaceOrientation;
+
 - (UIInterfaceOrientation)interfaceOrientation
 {
     return [self.updateDelegate interfaceOrientation];
 }
 
-/**
- *  @inheritDoc VSUIViewUpdateDelegate
- */
 - (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     [self.updateDelegate setInterfaceOrientation:interfaceOrientation];
 }
 
-#pragma mark - PROPERTIES
-#pragma mark - Identifier
-
-/**
- *  @inheritDoc
- */
-@synthesize UUID = _uUID;
-
-#pragma mark - Data
+#pragma mark - UILabel
 
 /**
  *  @inheritDoc UILabel
@@ -106,27 +71,33 @@ static const int DEFAULT_UUID = -1;
     [self.updateDelegate setDirty:VSUIDirtyTypeData];
 }
 
+#pragma mark - Identifiers
+
+/**
+ *  @inheritDoc
+ */
+@synthesize UUID = _uUID;
+
 #pragma mark - Behaviors
+
+/**
+ *  @inheritDoc
+ */
+@synthesize shouldRedirectTouchesToNextResponder = _shouldRedirectTouchesToNextResponder;
+
+#pragma mark - Context Menu
 
 /**
  *  @inheritDoc
  */
 @synthesize menuEnabled = _menuEnabled;
 
-/**
- *  @inheritDoc
- */
 - (void)setMenuEnabled:(BOOL)menuEnabled
 {
     _menuEnabled = menuEnabled;
 
     [self setUserInteractionEnabled:YES];
 }
-
-/**
- *  @inheritDoc
- */
-@synthesize shouldRedirectTouchesToNextResponder = _shouldRedirectTouchesToNextResponder;
 
 /**
  *  @inheritDoc
@@ -140,8 +111,7 @@ static const int DEFAULT_UUID = -1;
  */
 @synthesize textEdgeInsets = _textEdgeInsets;
 
-#pragma mark - PROTOCOL METHODS
-#pragma mark - Updating
+#pragma mark - VSUIViewUpdateDelegate
 
 /**
  *  @inheritDoc VSUIViewUpdateDelegate
@@ -167,7 +137,6 @@ static const int DEFAULT_UUID = -1;
     return [self.updateDelegate isDirty:dirtyType];
 }
 
-#pragma mark - INSTANCE METHODS
 #pragma mark - Lifecycle
 
 /**
@@ -180,6 +149,7 @@ static const int DEFAULT_UUID = -1;
     if (self)
     {
         [self setUUID:DEFAULT_UUID];
+        [self willInit];
         [self didInit];
     }
 
@@ -196,6 +166,7 @@ static const int DEFAULT_UUID = -1;
     if (self)
     {
         [self setUUID:UUID];
+        [self willInit];
         [self didInit];
     }
 
@@ -227,7 +198,7 @@ static const int DEFAULT_UUID = -1;
 /**
  *  @inheritDoc
  */
-- (void)didInit
+- (void)willInit
 {
     [self setTextEdgeInsets:UIEdgeInsetsZero];
     [self setShouldRedirectTouchesToNextResponder:NO];
@@ -241,7 +212,13 @@ static const int DEFAULT_UUID = -1;
     [singleTapGestureRecognizer setNumberOfTapsRequired:1];
     [self addGestureRecognizer:singleTapGestureRecognizer];
     vs_dealloc(singleTapGestureRecognizer);
+}
 
+/**
+ *  @inheritDoc
+ */
+- (void)didInit
+{
     [self.updateDelegate viewDidInit];
 }
 
@@ -253,10 +230,10 @@ static const int DEFAULT_UUID = -1;
     vs_dealloc(_updateDelegate);
 }
 
-#pragma mark - Layout
+#pragma mark - Drawing
 
 /**
- *  @inheritDoc
+ *  @inheritDoc UIView
  */
 - (void)layoutSubviews
 {
@@ -264,8 +241,6 @@ static const int DEFAULT_UUID = -1;
 
     [self.updateDelegate setDirty:VSUIDirtyTypeLayout];
 }
-
-#pragma mark - Drawing
 
 /**
  *  @inheritDoc UIView
@@ -295,6 +270,8 @@ static const int DEFAULT_UUID = -1;
     return self.menuEnabled;
 }
 
+#pragma mark - Context Menu
+
 /**
  *  @inheritDoc UIResponder
  */
@@ -311,7 +288,7 @@ static const int DEFAULT_UUID = -1;
 }
 
 /**
- *  @inheritDoc
+ *  @inheritDoc UIResponder
  */
 - (void)copy:(id)sender
 {
@@ -320,7 +297,7 @@ static const int DEFAULT_UUID = -1;
 }
 
 /**
- *  @inheritDoc
+ *  @inheritDoc UIResponder
  */
 - (void)paste:(id)sender
 {
@@ -353,6 +330,35 @@ static const int DEFAULT_UUID = -1;
     [menu setMenuVisible:NO animated:YES];
 
     [self resignFirstResponder];
+}
+
+/**
+ *  @private
+ *
+ *  Handler invoked when the menu should be revealed.
+ *
+ *  @param gestureRecognizer
+ */
+- (void)_onRevealMenu:(UIGestureRecognizer *)gestureRecognizer
+{
+    if (!self.menuGesturesEnabled) return;
+
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan)
+    {
+        [self revealMenu];
+    }
+}
+
+/**
+ *  @private
+ *
+ *  Handler invoked when the menu should be hidden.
+ *
+ *  @param gestureRecognizer
+ */
+- (void)_onHideMenu:(UIGestureRecognizer *)gestureRecognizer
+{
+    [self hideMenu];
 }
 
 #pragma mark - Event Handling
@@ -417,27 +423,6 @@ static const int DEFAULT_UUID = -1;
     {
         [super touchesCancelled:touches withEvent:event];
     }
-}
-
-/**
- *  @inheritDoc
- */
-- (void)_onRevealMenu:(UIGestureRecognizer *)gestureRecognizer
-{
-    if (!self.menuGesturesEnabled) return;
-
-    if (gestureRecognizer.state == UIGestureRecognizerStateBegan)
-    {
-        [self revealMenu];
-    }
-}
-
-/**
- *  @inheritDoc
- */
-- (void)_onHideMenu:(UIGestureRecognizer *)gestureRecognizer
-{
-    [self hideMenu];
 }
 
 @end

@@ -2,6 +2,8 @@
  *  VARSobjc
  *  (c) VARIANTE <http://variante.io>
  *
+ *  Utility for complex math operations.
+ *
  *  This software is released under the MIT License:
  *  http://www.opensource.org/licenses/mit-license.php
  */
@@ -11,12 +13,16 @@
 #import "VSNumberUtil.h"
 
 /**
- *  Dictionary properties.
+ *  Dictionary property for character sets.
  */
 #define VS_M_DICTIONARY_PROPERTY_CHARACTER_SET @"characterSet"
-#define VS_M_DICTIONARY_PROPERTY_MAX_RANGE     @"maxRange"
 
-#pragma mark - ENUMS
+/**
+ *  Dictionary property for max range.
+ */
+#define VS_M_DICTIONARY_PROPERTY_MAX_RANGE @"maxRange"
+
+#pragma mark - --------------------------------------------------------------------------
 
 /**
  *  Enums of all angle mode types (i.e. degrees, radians, etc).
@@ -261,15 +267,10 @@ typedef NS_ENUM(int, VSMathTokenType)
  */
 NSString *NSStringFromVSMathTokenType(VSMathTokenType type);
 
-#pragma mark - INTERFACE
+#pragma mark - --------------------------------------------------------------------------
 
-/**
- *  Utility for complex math operations.
- */
-NS_ROOT_CLASS
-@interface VSMathUtil
+NS_ROOT_CLASS @interface VSMathUtil
 
-#pragma mark - CLASS METHODS
 #pragma mark - Math Character Sets
 
 /**

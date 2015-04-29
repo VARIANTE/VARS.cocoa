@@ -10,14 +10,7 @@
 
 #import "VSColorUtil.h"
 
-#pragma mark - IMPLEMENTATION
-
-/**
- *  @inheritDoc
- */
 @implementation VSColorUtil
-
-#pragma mark - CLASS METHODS
 
 /**
  *  @inheritDoc

@@ -2,6 +2,9 @@
  *  VARSobjc
  *  (c) VARIANTE <http://variante.io>
  *
+ *  VARS UIControl that conforms to the VSUIViewUpdateDelegate protocol.
+ *
+ *
  *  This software is released under the MIT License:
  *  http://www.opensource.org/licenses/mit-license.php
  */
@@ -10,14 +13,8 @@
 
 #import "VSUIViewUpdate.h"
 
-#pragma mark - INTERFACE
-
-/**
- *  VARS UIControl wrapper class.
- */
 @interface VSUIControl : UIControl <VSUIViewUpdateDelegate>
 
-#pragma mark - PROPERTIES
 #pragma mark - Behaviors
 
 /**
@@ -26,18 +23,23 @@
  */
 @property (nonatomic) BOOL shouldRedirectTouchesToNextResponder;
 
-#pragma mark - INSTANCE METHODS
 #pragma mark - Lifecycle
 
 /**
- *  Automatically invoked on init, do not call this manually. If overridden, invoke the predecessor's didInit
- *  method at the end.
+ *  Automatically invoked at the beginning of init, do not call this manually. If overridden, invoke [super willInit]
+ *  at the beginning of the method.
+ */
+- (void)willInit;
+
+/**
+ *  Automatically invoked at the end of init, do not call this manually. If overridden, invoke [super didInit] at the
+ *  end of the method.
  */
 - (void)didInit;
 
 /**
- *  Automatically invoked on dealloc, do not call this manually. If overridden, invoke the predecessor's willDealloc
- *  method at the end.
+ *  Automatically invoked at the beginning of dealloc, do not call this manually. If overridden, invoke [super willDealloc]
+ *  at the end of the method.
  */
 - (void)willDealloc;
 

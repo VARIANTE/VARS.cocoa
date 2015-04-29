@@ -9,12 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <UIKit/UIKit.h>
 
-#pragma mark - INTERFACE
-
-NS_ROOT_CLASS
-@interface VSQuartzUtil
-
-#pragma mark - CLASS METHODS
+NS_ROOT_CLASS @interface VSQuartzUtil
 
 /**
  *  Sets the anchor point of a UIView instance, handling all position displacement issues.

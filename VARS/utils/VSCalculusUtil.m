@@ -8,11 +8,6 @@
 
 #import "VSCalculusUtil.h"
 
-#pragma mark - IMPLEMENTATION
-
-/**
- *  @inheritDoc
- */
 @implementation VSCalculusUtil
 
 @end

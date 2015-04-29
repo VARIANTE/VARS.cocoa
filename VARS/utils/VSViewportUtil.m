@@ -8,8 +8,6 @@
 
 #import "VSViewportUtil.h"
 
-#pragma mark - ENUMS
-
 /**
  *  @inheritDoc
  */
@@ -27,14 +25,9 @@ NSString *NSStringFromVSViewportAspectRatioType(VSViewportAspectRatioType type)
     }
 }
 
-#pragma mark - IMPLEMENTATION
+#pragma mark - --------------------------------------------------------------------------
 
-/**
- *  @inheritDoc
- */
 @implementation VSViewportUtil
-
-#pragma mark - CLASS METHODS
 
 /**
  *  @inheritDoc

@@ -14,11 +14,11 @@
 #import "VSStringUtil.h"
 
 /**
- *  Static NSNumberFormatter instnace.
+ *  Static NSNumberFormatter instance.
  */
 static NSNumberFormatter *NUMBER_FORMATTER;
 
-#pragma mark - ENUMS
+#pragma mark - --------------------------------------------------------------------------
 
 /**
  *  @inheritDoc
@@ -54,39 +54,23 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     }
 }
 
-#pragma mark - INTERFACE
-
-/**
- *  @inheritDoc
- */
-@interface VSNumberUtil()
-
-#pragma mark - CLASS METHODS
-#pragma mark - Formatting
-
-/**
- *  Gets the singleton NSNumberFormatter instance.
- *
- *  @return NSNumberFormatter instance.
- */
-+ (NSNumberFormatter *)globalNumberFormatter;
-
-@end
-
-#pragma mark - IMPLEMENTATION
+#pragma mark - --------------------------------------------------------------------------
 
 /**
  *  @inheritDoc
  */
 @implementation VSNumberUtil
 
-#pragma mark - CLASS METHODS
 #pragma mark - Formatting
 
 /**
- *  @inheritDoc
+ *  @private
+ *
+ *  Gets the singleton NSNumberFormatter instance.
+ *
+ *  @return NSNumberFormatter instance.
  */
-+ (NSNumberFormatter *)globalNumberFormatter
++ (NSNumberFormatter *)_globalNumberFormatter
 {
     static dispatch_once_t predicate;
 
@@ -105,9 +89,9 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
  */
 + (NSNumberFormatter *)globalNumberFormatterWithDefaultLocale
 {
-    [[VSNumberUtil globalNumberFormatter] setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US"]];
+    [[VSNumberUtil _globalNumberFormatter] setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US"]];
 
-    return [VSNumberUtil globalNumberFormatter];
+    return [VSNumberUtil _globalNumberFormatter];
 }
 
 /**
@@ -115,9 +99,9 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
  */
 + (NSNumberFormatter *)globalNumberFormatterWithCurrentLocale
 {
-    [[VSNumberUtil globalNumberFormatter] setLocale:[NSLocale currentLocale]];
+    [[VSNumberUtil _globalNumberFormatter] setLocale:[NSLocale currentLocale]];
 
-    return [VSNumberUtil globalNumberFormatter];
+    return [VSNumberUtil _globalNumberFormatter];
 }
 
 /**
@@ -125,9 +109,9 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
  */
 + (NSNumberFormatter *)globalNumberFormatterWithLocale:(NSLocale *)locale
 {
-    [[VSNumberUtil globalNumberFormatter] setLocale:locale];
+    [[VSNumberUtil _globalNumberFormatter] setLocale:locale];
 
-    return [VSNumberUtil globalNumberFormatter];
+    return [VSNumberUtil _globalNumberFormatter];
 }
 
 /**

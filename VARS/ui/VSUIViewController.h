@@ -2,6 +2,13 @@
  *  VARSobjc
  *  (c) VARIANTE <http://variante.io>
  *
+ *  VARS UIViewController wrapper class. This view controller subscribes to NSNotificationCenter
+ *  of NSCurrentLocaleDidChangeNotification, UIApplicationDidBecomeActiveNotification, VSUIConfigDidChangeNotification,
+ *  and VSUIStyleDidChangeNotification notifications, to notify the view (if it conforms to the VSUIViewUpdateDelegate
+ *  protocol). Additional conditions apply, such as the conforming view's redraw method forwarding and blocking rules.
+ *
+ *  @see VSUIViewUpdate.h
+ *
  *  This software is released under the MIT License:
  *  http://www.opensource.org/licenses/mit-license.php
  */
@@ -10,37 +17,32 @@
 
 #import "VSUIModel.h"
 
-#pragma mark - INTERFACE
-
-/**
- *  VARS UIViewController wrapper class. This view controller subscribes to NSNotificationCenter
- *  of NSCurrentLocaleDidChangeNotification, UIApplicationDidBecomeActiveNotification, VSUIConfigDidChangeNotification,
- *  and VSUIStyleDidChangeNotification notifications, to notify the view (if it conforms to the VSUIViewUpdateDelegate
- *  protocol). Additional conditions apply, such as the conforming view's redraw method forwarding and blocking rules.
- *
- *  @see VSUIViewUpdate.h
- */
 @interface VSUIViewController : UIViewController
 
-#pragma mark - PROPERTIES
+#pragma mark - Models
 
 /**
  *  Model of this view controller.
  */
 @property (nonatomic, strong) VSUIModel *model;
 
-#pragma mark - INSTANCE METHODS
 #pragma mark - Lifecycle
 
 /**
- *  Automatically invoked on init, do not call this manually. If overridden, invoke the predecessor's didInit
- *  method at the end.
+ *  Automatically invoked at the beginning of init, do not call this manually. If overridden, invoke [super willInit]
+ *  at the beginning of the method.
+ */
+- (void)willInit;
+
+/**
+ *  Automatically invoked at the end of init, do not call this manually. If overridden, invoke [super didInit] at the
+ *  end of the method.
  */
 - (void)didInit;
 
 /**
- *  Automatically invoked on dealloc, do not call this manually. If overridden, invoke the predecessor's willDealloc
- *  method at the end.
+ *  Automatically invoked at the beginning of dealloc, do not call this manually. If overridden, invoke [super willDealloc]
+ *  at the end of the method.
  */
 - (void)willDealloc;
 

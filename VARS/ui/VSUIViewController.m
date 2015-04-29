@@ -13,8 +13,6 @@
 #import "VSUIView.h"
 #import "VSUIViewUpdate.h"
 
-#pragma mark - INTERFACE
-
 /**
  *  @inheritDoc
  */
@@ -24,62 +22,17 @@
     NSString *_cachedLocaleIdentifier;
 }
 
-#pragma mark - INSTANCE METHODS
-#pragma mark - Event Handling
-
-/**
- *  @private
- *
- *  NSNotificationCenter selector invoked when NSCurrentLocale did change.
- *
- *  @param note
- */
-- (void)_onCurrentLocaleDidChange:(NSNotification *)note;
-
-/**
- *  @private
- *
- *  NSNotificationCenter selector invoked when application did become active.
- *
- *  @param note
- */
-- (void)_onApplicationDidBecomeActive:(NSNotification *)note;
-
-/**
- *  @private
- *
- *  NSNotificationCenter selector invoked when UI config did change.
- *
- *  @param note
- */
-- (void)_onViewConfigDidChange:(NSNotification *)note;
-
-/**
- *  @private
- *
- *  NSNotificationCenter selector invoked when UI style did change.
- *
- *  @param note
- */
-- (void)_onViewStyleDidChange:(NSNotification *)note;
-
 @end
 
-#pragma mark - IMPLEMENTATION
+#pragma mark - --------------------------------------------------------------------------
 
-/**
- *  @inheritDoc
- */
 @implementation VSUIViewController
-
-#pragma mark - PROPERTIES
 
 /**
  *  @inheritDoc
  */
 @synthesize model = _model;
 
-#pragma mark - INSTANCE METHODS
 #pragma mark - Lifecycle
 
 /**
@@ -92,6 +45,7 @@
     if (self)
     {
         [self loadModel];
+        [self willInit];
         [self didInit];
     }
 
@@ -108,6 +62,14 @@
 #if !__has_feature(objc_arc)
     [super dealloc];
 #endif
+}
+
+/**
+ *  @inheritDoc
+ */
+- (void)willInit
+{
+
 }
 
 /**
@@ -247,7 +209,11 @@
 }
 
 /**
- *  @inheritDoc
+ *  @private
+ *
+ *  NSNotificationCenter selector invoked when NSCurrentLocale did change.
+ *
+ *  @param note
  */
 - (void)_onCurrentLocaleDidChange:(NSNotification *)note
 {
@@ -261,7 +227,11 @@
 }
 
 /**
- *  @inheritDoc
+ *  @private
+ *
+ *  NSNotificationCenter selector invoked when application did become active.
+ *
+ *  @param note
  */
 - (void)_onApplicationDidBecomeActive:(NSNotification *)note
 {
@@ -269,7 +239,11 @@
 }
 
 /**
- *  @inheritDoc
+ *  @private
+ *
+ *  NSNotificationCenter selector invoked when UI config did change.
+ *
+ *  @param note
  */
 - (void)_onViewConfigDidChange:(NSNotification *)note
 {
@@ -277,7 +251,11 @@
 }
 
 /**
- *  @inheritDoc
+ *  @private
+ *
+ *  NSNotificationCenter selector invoked when UI style did change.
+ *
+ *  @param note
  */
 - (void)_onViewStyleDidChange:(NSNotification *)note
 {

@@ -14,18 +14,15 @@
  */
 static const int DEFAULT_UUID = -1;
 
-#pragma mark - INTERFACE
+#pragma mark - --------------------------------------------------------------------------
 
-/**
- *  @inheritDoc
- */
 @interface VSUITextField()
 {
 @private
     VSUIViewUpdate *_updateDelegate;
 }
 
-#pragma mark - PROPERTIES
+#pragma mark - Private Accessors.
 
 /**
  *  @inheritDoc
@@ -34,19 +31,17 @@ static const int DEFAULT_UUID = -1;
 
 @end
 
-#pragma mark - IMPLEMENTATION
+#pragma mark - --------------------------------------------------------------------------
 
-/**
- *  @inheritDoc
- */
 @implementation VSUITextField
 
-#pragma mark - PROTOCOL PROPERTIES
-#pragma mark - Drawing
+#pragma mark - VSUIViewUpdateDelegate
 
 /**
  *  @inheritDoc VSUIViewUpdateDelegate
  */
+@dynamic updateDelegate;
+
 - (VSUIViewUpdate *)updateDelegate
 {
     if (_updateDelegate != nil) return _updateDelegate;
@@ -60,21 +55,19 @@ static const int DEFAULT_UUID = -1;
 /**
  *  @inheritDoc VSUIViewUpdateDelegate
  */
+@dynamic interfaceOrientation;
+
 - (UIInterfaceOrientation)interfaceOrientation
 {
     return [self.updateDelegate interfaceOrientation];
 }
 
-/**
- *  @inheritDoc VSUIViewUpdateDelegate
- */
 - (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     [self.updateDelegate setInterfaceOrientation:interfaceOrientation];
 }
 
-#pragma mark - PROPERTIES
-#pragma mark - Identifier
+#pragma mark - Identifiers
 
 /**
  *  @inheritDoc
@@ -119,9 +112,6 @@ static const int DEFAULT_UUID = -1;
     return NSMakeRange(location, length);
 }
 
-/**
- *  @inheritDoc
- */
 - (void)setSelectedRange:(NSRange)range
 {
     UITextPosition *beginning = self.beginningOfDocument;
@@ -146,9 +136,6 @@ static const int DEFAULT_UUID = -1;
  */
 @synthesize shouldHideKeyboard = _shouldHideKeyboard;
 
-/**
- *  @inheritDoc
- */
 - (void)setShouldHideKeyboard:(BOOL)shouldHideKeyboard
 {
     _shouldHideKeyboard = shouldHideKeyboard;
@@ -158,8 +145,7 @@ static const int DEFAULT_UUID = -1;
     vs_dealloc(dummyKeyboard);
 }
 
-#pragma mark - PROTOCOL METHODS
-#pragma mark - Updating
+#pragma mark - VSUIViewUpdateDelegate
 
 /**
  *  @inheritDoc VSUIViewUpdateDelegate
@@ -185,7 +171,6 @@ static const int DEFAULT_UUID = -1;
     return [self.updateDelegate isDirty:dirtyType];
 }
 
-#pragma mark - INSTANCE METHODS
 #pragma mark - Lifecycle
 
 /**
@@ -198,6 +183,7 @@ static const int DEFAULT_UUID = -1;
     if (self)
     {
         [self setUUID:DEFAULT_UUID];
+        [self willInit];
         [self didInit];
     }
 
@@ -214,6 +200,7 @@ static const int DEFAULT_UUID = -1;
     if (self)
     {
         [self setUUID:UUID];
+        [self willInit];
         [self didInit];
     }
 
@@ -245,10 +232,16 @@ static const int DEFAULT_UUID = -1;
 /**
  *  @inheritDoc
  */
-- (void)didInit
+- (void)willInit
 {
     [self setShouldRedirectTouchesToNextResponder:NO];
-    
+}
+
+/**
+ *  @inheritDoc
+ */
+- (void)didInit
+{
     [self.updateDelegate viewDidInit];
 }
 
@@ -260,7 +253,7 @@ static const int DEFAULT_UUID = -1;
     vs_dealloc(_updateDelegate);
 }
 
-#pragma mark - Layout
+#pragma mark - Drawing
 
 /**
  *  @inheritDoc

@@ -28,7 +28,7 @@
  */
 #define VS_N_HEXADECIMAL_PREFIX @"0x"
 
-#pragma mark - ENUMS
+#pragma mark - --------------------------------------------------------------------------
 
 /**
  *  Enums of all numeral system types.
@@ -74,12 +74,10 @@ typedef NS_ENUM(int, VSBinaryDigitType)
  */
 NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type);
 
-#pragma mark - INTERFACE
+#pragma mark - --------------------------------------------------------------------------
 
-NS_ROOT_CLASS
-@interface VSNumberUtil
+NS_ROOT_CLASS @interface VSNumberUtil
 
-#pragma mark - CLASS METHODS
 #pragma mark - Formatting
 
 /**

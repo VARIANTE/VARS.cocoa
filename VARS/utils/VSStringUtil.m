@@ -14,8 +14,6 @@
 #import "VSMathUtil.h"
 #import "VSStringUtil.h"
 
-#pragma mark - ENUMS
-
 /**
  *  @inheritDoc
  */
@@ -31,14 +29,11 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
     }
 }
 
-#pragma mark - IMPLEMENTATION
+#pragma mark - --------------------------------------------------------------------------
 
-/**
- *  @inheritDoc
- */
 @implementation VSStringUtil
 
-#pragma mark - CLASS METHODS
+#pragma mark - Sanity Checking
 
 /**
  *  @inheritDoc

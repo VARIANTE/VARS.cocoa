@@ -11,18 +11,13 @@
 #import "VSUIViewUpdate.h"
 #import "VSViewportUtil.h"
 
-#pragma mark - INTERFACE
-
-/**
- *  @inheritDoc
- */
 @interface VSUIViewUpdate()
 {
 @private
     BOOL _viewDidInit;
 }
 
-#pragma mark - PROPERTIES
+#pragma mark - Updating
 
 /**
  *  Dictionary that maps a property to a dirty type.
@@ -41,25 +36,19 @@
 
 @end
 
-#pragma mark - IMPLEMENTATION
+#pragma mark - --------------------------------------------------------------------------
+
 #pragma GCC diagnostic ignored "-Wundeclared-selector"
 
-/**
- *  @inheritDoc
- */
 @implementation VSUIViewUpdate
 
-#pragma mark - PROPERTIES
-#pragma mark - Protocol
+#pragma mark - Delegation
 
 /**
  *  @inheritDoc
  */
 @synthesize delegate = _viewDelegate;
 
-/**
- *  @inheritDoc
- */
 - (void)setDelegate:(UIView<VSUIViewUpdateDelegate> *)delegate
 {
     vs_dealloc(_viewDelegate);
@@ -72,16 +61,13 @@
     [(UIView *)_viewDelegate addObserver:self forKeyPath:@"hidden" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew context:nil];
 }
 
-#pragma mark - Drawing
+#pragma mark - Updating
 
 /**
  *  @inheritDoc
  */
 @synthesize dirtyPropertyMap = _dirtyPropertyMap;
 
-/**
- *  @inheritDoc
- */
 - (NSMutableDictionary *)dirtyPropertyMap
 {
     if (_dirtyPropertyMap != nil) return _dirtyPropertyMap;
@@ -106,9 +92,6 @@
  */
 @synthesize interfaceOrientation = _interfaceOrientation;
 
-/**
- *  @inheritDoc
- */
 - (void)setInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     if (_interfaceOrientation != interfaceOrientation)
@@ -145,8 +128,7 @@
  */
 @synthesize shouldAutomaticallyBlockForwardedUpdateMethods = _automaticallyBlockedForwardedDirtyTypes;
 
-#pragma mark - PROTOCOL METHODS
-#pragma mark - Event Handling
+#pragma mark - NSKeyValueObserving
 
 /**
  *  @inheritDoc NSKeyValueObserving
@@ -187,7 +169,6 @@
     }
 }
 
-#pragma mark - INSTANCE METHODS
 #pragma mark - Lifecycle
 
 /**

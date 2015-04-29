@@ -12,8 +12,6 @@
 #import "VSMathUtil.h"
 #import "VSStringUtil.h"
 
-#pragma mark - ENUMS
-
 /**
  *  @inheritDoc
  */
@@ -226,95 +224,10 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
-#pragma mark - INTERFACE
+#pragma mark - --------------------------------------------------------------------------
 
-@interface VSMathUtil()
-
-#pragma mark - CLASS METHODS
-#pragma mark - Shunting-Yard Algorithm
-
-/**
- *  @private
- *
- *  Processes token and allocates them to the stack according to shunting-yard rules, with the option to
- *  specify custom variable sets. Setting contentAware as true means each token is processed separately independent 
- *  of each other. This process only fails under 3 conditions:
- *      1. Token is recorded as numeric but the operand is invalid (i.e. 1.2.3.4.5.6)
- *      2. Token is a right parenthesis, but no left parenthesis is found on the stack, hence parenthesis mismatch.
- *      3. Token is unrecognized.
- *
- *  @param token
- *  @param prevToken
- *  @param stack
- *  @param output
- *  @param customVariableSets
- *  @param isContentAware
- *
- *  @return YES if everything went fine, NO if anything went wrong.
- */
-+ (BOOL)_processShuntingYardToken:(id)token andPreviousToken:(id)prevToken stack:(NSMutableArray *)stack output:(NSMutableArray *)output customVariableSets:(NSArray *)customVariableSets contentAware:(BOOL)isContentAware;
-
-/**
- *  @private
- *
- *  Inserts a multiplier after a linkable token (i.e. 2sin(90) == 2*sin(90)).
- *
- *  @param token
- *  @param stack
- *  @param output
- *  @param customVariableSets
- *
- *  @return YES if successful, NO otherwise.
- */
-+ (BOOL)_insertMultiplierAfterLinkableToken:(id)token stack:(NSMutableArray *)stack output:(NSMutableArray *)output customVariableSets:(NSArray *)customVariableSets;
-
-/**
- *  @private
- *
- *  Verifies that a given token is product linkable (i.e. 3x = 3*x, meaning that 3 is linkable). Option
- *  to specify custom linkable variable sets.
- *
- *  @param token
- *  @param customVariableSets
- *
- *  @return YES if linkable, NO otherwise.
- */
-+ (BOOL)_validateLinkableToken:(id)token customVariableSets:(NSArray *)customVariableSets;
-
-/**
- *  @private
- *
- *  Verifies that a custom variable set is valid. A custom variable sets is defined by a NSDictionary object 
- *  containing a "characterSet" key (an NSCharacterSet object) and a "maxRange" key (an NSNumber object, 
- *  indicating the max character length of the token of associated type).
- *
- *  @param customVariableSet
- *
- *  @return YES if valid, NO otherwise.
- */
-+ (BOOL)_validateCustomVariableSet:(id)customVariableSet;
-
-/**
- *  @private
- *
- *  Gets the last numeric token on the stack and pops it on success.
- *
- *  @param stack
- *
- *  @return Last numeric token on the stack, nil if anything goes wrong.
- */
-+ (id)_popNumericTokenOnStack:(NSMutableArray *)stack;
-
-@end
-
-#pragma mark - IMPLEMENTATION
-
-/**
- *  @inheritDoc
- */
 @implementation VSMathUtil
 
-#pragma mark - CLASS METHODS
 #pragma mark - Math Character Sets
 
 /**
@@ -1613,7 +1526,23 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 }
 
 /**
- *  @inheritDoc
+ *  @private
+ *
+ *  Processes token and allocates them to the stack according to shunting-yard rules, with the option to
+ *  specify custom variable sets. Setting contentAware as true means each token is processed separately independent
+ *  of each other. This process only fails under 3 conditions:
+ *      1. Token is recorded as numeric but the operand is invalid (i.e. 1.2.3.4.5.6)
+ *      2. Token is a right parenthesis, but no left parenthesis is found on the stack, hence parenthesis mismatch.
+ *      3. Token is unrecognized.
+ *
+ *  @param token
+ *  @param prevToken
+ *  @param stack
+ *  @param output
+ *  @param customVariableSets
+ *  @param isContentAware
+ *
+ *  @return YES if everything went fine, NO if anything went wrong.
  */
 + (BOOL)_processShuntingYardToken:(id)token andPreviousToken:(id)prevToken stack:(NSMutableArray *)stack output:(NSMutableArray *)output customVariableSets:(NSArray *)customVariableSets contentAware:(BOOL)isContentAware
 {
@@ -1841,7 +1770,16 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 }
 
 /**
- *  @inheritDoc
+ *  @private
+ *
+ *  Inserts a multiplier after a linkable token (i.e. 2sin(90) == 2*sin(90)).
+ *
+ *  @param token
+ *  @param stack
+ *  @param output
+ *  @param customVariableSets
+ *
+ *  @return YES if successful, NO otherwise.
  */
 + (BOOL)_insertMultiplierAfterLinkableToken:(id)token stack:(NSMutableArray *)stack output:(NSMutableArray *)output customVariableSets:(NSArray *)customVariableSets;
 {
@@ -1856,7 +1794,15 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 }
 
 /**
- *  @inheritDoc
+ *  @private
+ *
+ *  Verifies that a given token is product linkable (i.e. 3x = 3*x, meaning that 3 is linkable). Option
+ *  to specify custom linkable variable sets.
+ *
+ *  @param token
+ *  @param customVariableSets
+ *
+ *  @return YES if linkable, NO otherwise.
  */
 + (BOOL)_validateLinkableToken:(id)token customVariableSets:(NSArray *)customVariableSets
 {
@@ -1923,7 +1869,15 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 }
 
 /**
- *  @inheritDoc
+ *  @private
+ *
+ *  Verifies that a custom variable set is valid. A custom variable sets is defined by a NSDictionary object
+ *  containing a "characterSet" key (an NSCharacterSet object) and a "maxRange" key (an NSNumber object,
+ *  indicating the max character length of the token of associated type).
+ *
+ *  @param customVariableSet
+ *
+ *  @return YES if valid, NO otherwise.
  */
 + (BOOL)_validateCustomVariableSet:(id)customVariableSet
 {
@@ -1955,7 +1909,13 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 }
 
 /**
- *  @inheritDoc
+ *  @private
+ *
+ *  Gets the last numeric token on the stack and pops it on success.
+ *
+ *  @param stack
+ *
+ *  @return Last numeric token on the stack, nil if anything goes wrong.
  */
 + (id)_popNumericTokenOnStack:(NSMutableArray *)stack
 {

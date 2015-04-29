@@ -8,14 +8,7 @@
 
 #import "VSQuartzUtil.h"
 
-#pragma mark - IMPLEMENTATION
-
-/**
- *  @inheritDoc
- */
 @implementation VSQuartzUtil
-
-#pragma mark - CLASS METHODS
 
 /**
  *  @inheritDoc

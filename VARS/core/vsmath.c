@@ -18,11 +18,7 @@
 #pragma mark Angle Conversions
 
 /**
- *  Converts a float value in degrees to a float value in radians.
- *
- *  @param __n
- *
- *  @return The converted float value in radians.
+ *  @inheritDoc
  */
 float fdtorf(float __n)
 {
@@ -32,11 +28,7 @@ float fdtorf(float __n)
 }
 
 /**
- *  Converts a double value in degrees to a double value in radians.
- *
- *  @param __n
- *
- *  @return The converted double value in radians.
+ *  @inheritDoc
  */
 double fdtor(double __n)
 {
@@ -46,11 +38,7 @@ double fdtor(double __n)
 }
 
 /**
- *  Converts a float value in degrees to a float value in gradians.
- *
- *  @param __n
- *
- *  @return The converted float value in gradians.
+ *  @inheritDoc
  */
 float fdtogf(float __n)
 {
@@ -60,11 +48,7 @@ float fdtogf(float __n)
 }
 
 /**
- *  Converts a double value in degrees to a double value in gradians.
- *
- *  @param __n
- *
- *  @return The converted double value in gradians.
+ *  @inheritDoc
  */
 double fdtog(double __n)
 {
@@ -74,11 +58,7 @@ double fdtog(double __n)
 }
 
 /**
- *  Converts a float value in radians to a float value in degrees.
- *
- *  @param __n
- *
- *  @return The converted float value in degrees.
+ *  @inheritDoc
  */
 float frtodf(float __n)
 {
@@ -88,11 +68,7 @@ float frtodf(float __n)
 }
 
 /**
- *  Converts a double value in radians to a double value in degrees.
- *
- *  @param __n
- *
- *  @return The converted double value in degrees.
+ *  @inheritDoc
  */
 double frtod(double __n)
 {
@@ -102,11 +78,7 @@ double frtod(double __n)
 }
 
 /**
- *  Converts a float value in radians to a float value in gradians.
- *
- *  @param __n
- *
- *  @return The converted float value in gradians.
+ *  @inheritDoc
  */
 float frtogf(float __n)
 {
@@ -116,11 +88,7 @@ float frtogf(float __n)
 }
 
 /**
- *  Converts a double value in radians to a double value in gradians.
- *
- *  @param __n
- *
- *  @return The converted double value in gradians.
+ *  @inheritDoc
  */
 double frtog(double __n)
 {
@@ -130,11 +98,7 @@ double frtog(double __n)
 }
 
 /**
- *  Converts a float value in gradians to a float value in degrees.
- *
- *  @param __n
- *
- *  @return The converted float value in degrees.
+ *  @inheritDoc
  */
 float fgtodf(float __n)
 {
@@ -144,11 +108,7 @@ float fgtodf(float __n)
 }
 
 /**
- *  Converts a double value in gradians to a double value in degrees.
- *
- *  @param __n
- *
- *  @return The converted double value in degrees.
+ *  @inheritDoc
  */
 double fgtod(double __n)
 {
@@ -158,11 +118,7 @@ double fgtod(double __n)
 }
 
 /**
- *  Converts a float value in gradians to a float value in radians.
- *
- *  @param __n
- *
- *  @return The converted float value in radians.
+ *  @inheritDoc
  */
 float fgtorf(float __n)
 {
@@ -172,11 +128,7 @@ float fgtorf(float __n)
 }
 
 /**
- *  Converts a double value in gradians to a double value in radians.
- *
- *  @param __n
- *
- *  @return The converted double value in radians.
+ *  @inheritDoc
  */
 double fgtor(double __n)
 {
@@ -188,11 +140,7 @@ double fgtor(double __n)
 #pragma mark Trigonometric Functions
 
 /**
- *  Computes the sine of a float value in degrees.
- *
- *  @param __n
- *
- *  @return The computed float value.
+ *  @inheritDoc
  */
 float fsindf(float __n)
 {
@@ -202,11 +150,7 @@ float fsindf(float __n)
 }
 
 /**
- *  Computes the sine of a double value in degrees.
- *
- *  @param __n
- *
- *  @return The computed double value.
+ *  @inheritDoc
  */
 double fsind(double __n)
 {
@@ -216,11 +160,7 @@ double fsind(double __n)
 }
 
 /**
- *  Computes the cosine of a float value in degrees.
- *
- *  @param __n
- *
- *  @return The computed float value.
+ *  @inheritDoc
  */
 float fcosdf(float __n)
 {
@@ -230,11 +170,7 @@ float fcosdf(float __n)
 }
 
 /**
- *  Computes the cosine of a double value in degrees.
- *
- *  @param __n
- *
- *  @return The computed double value.
+ *  @inheritDoc
  */
 double fcosd(double __n)
 {
@@ -244,11 +180,7 @@ double fcosd(double __n)
 }
 
 /**
- *  Computes the tangent of a float value in degrees.
- *
- *  @param __n
- *
- *  @return The computed float value.
+ *  @inheritDoc
  */
 float ftandf(float __n)
 {
@@ -258,11 +190,7 @@ float ftandf(float __n)
 }
 
 /**
- *  Computes the tangent of a double value in degrees.
- *
- *  @param __n
- *
- *  @return The computed double value.
+ *  @inheritDoc
  */
 double ftand(double __n)
 {
@@ -272,11 +200,7 @@ double ftand(double __n)
 }
 
 /**
- *  Computes the sine of a float value in radians.
- *
- *  @param __n
- *
- *  @return The computed float value.
+ *  @inheritDoc
  */
 float fsinrf(float __n)
 {
@@ -297,11 +221,7 @@ float fsinrf(float __n)
 }
 
 /**
- *  Computes the sine of a double value in radians.
- *
- *  @param __n
- *
- *  @return The computed double value.
+ *  @inheritDoc
  */
 double fsinr(double __n)
 {
@@ -322,11 +242,7 @@ double fsinr(double __n)
 }
 
 /**
- *  Computes the cosine of a float value in radians.
- *
- *  @param __n
- *
- *  @return The computed float value.
+ *  @inheritDoc
  */
 float fcosrf(float __n)
 {
@@ -343,11 +259,7 @@ float fcosrf(float __n)
 }
 
 /**
- *  Computes the cosine of a double value in radians.
- *
- *  @param __n
- *
- *  @return The computed double value.
+ *  @inheritDoc
  */
 double fcosr(double __n)
 {
@@ -364,11 +276,7 @@ double fcosr(double __n)
 }
 
 /**
- *  Computes the tangent of a float value in radians.
- *
- *  @param __n
- *
- *  @return The computed float value.
+ *  @inheritDoc
  */
 float ftanrf(float __n)
 {
@@ -392,11 +300,7 @@ float ftanrf(float __n)
 }
 
 /**
- *  Computes the tangent of a double value in radians.
- *
- *  @param __n
- *
- *  @return The computed double value.
+ *  @inheritDoc
  */
 double ftanr(double __n)
 {
@@ -420,11 +324,7 @@ double ftanr(double __n)
 }
 
 /**
- *  Computes the sine of a float value in gradians.
- *
- *  @param __n
- *
- *  @return The computed float value.
+ *  @inheritDoc
  */
 float fsingf(float __n)
 {
@@ -434,11 +334,7 @@ float fsingf(float __n)
 }
 
 /**
- *  Computes the sine of a double value in gradians.
- *
- *  @param __n
- *
- *  @return The computed double value.
+ *  @inheritDoc
  */
 double fsing(double __n)
 {
@@ -448,11 +344,7 @@ double fsing(double __n)
 }
 
 /**
- *  Computes the cosine of a float value in gradians.
- *
- *  @param __n
- *
- *  @return The computed float value.
+ *  @inheritDoc
  */
 float fcosgf(float __n)
 {
@@ -462,11 +354,7 @@ float fcosgf(float __n)
 }
 
 /**
- *  Computes the cosine of a double value in gradians.
- *
- *  @param __n
- *
- *  @return The computed double value.
+ *  @inheritDoc
  */
 double fcosg(double __n)
 {
@@ -476,11 +364,7 @@ double fcosg(double __n)
 }
 
 /**
- *  Computes the tangent of a float value in gradians.
- *
- *  @param __n
- *
- *  @return The computed float value.
+ *  @inheritDoc
  */
 float ftangf(float __n)
 {
@@ -490,11 +374,7 @@ float ftangf(float __n)
 }
 
 /**
- *  Computes the tangent of a double value in gradians.
- *
- *  @param __n
- *
- *  @return The computed double value.
+ *  @inheritDoc
  */
 double ftang(double __n)
 {
@@ -506,14 +386,7 @@ double ftang(double __n)
 #pragma mark - Differential Calculus
 
 /**
- *  Evaluates the slope between two points.
- *
- *  @param __x1
- *  @param __x2
- *  @param __y1
- *  @param __y2
- *
- *  @return The float value of the slope.
+ *  @inheritDoc
  */
 float fslopef(float __x1, float __x2, float __y1, float __y2)
 {
@@ -536,14 +409,7 @@ float fslopef(float __x1, float __x2, float __y1, float __y2)
 }
 
 /**
- *  Evaluates the slope between two points.
- *
- *  @param __x1
- *  @param __x2
- *  @param __y1
- *  @param __y2
- *
- *  @return The double value of the slope.
+ *  @inheritDoc
  */
 double fslope(double __x1, double __x2, double __y1, double __y2)
 {
@@ -568,11 +434,7 @@ double fslope(double __x1, double __x2, double __y1, double __y2)
 #pragma mark - Logarithms
 
 /**
- *  Computes the natural logarithm of a float value.
- *
- *  @param __n
- *
- *  @return The computed float value.
+ *  @inheritDoc
  */
 float flnf(float __n)
 {
@@ -582,11 +444,7 @@ float flnf(float __n)
 }
 
 /**
- *  Computes the natural logarithm of a double value.
- *
- *  @param __n
- *
- *  @return The computed double value.
+ *  @inheritDoc
  */
 double fln(double __n)
 {
@@ -598,13 +456,7 @@ double fln(double __n)
 #pragma mark - Probability
 
 /**
- *  Computes the factorial of a float value. Supports the factorial computation
- *  of positive/negative non-integers.
- *
- *  @param __n
- *
- *  @return The computed float value if applicable, NAN otherwise (i.e. computing the factorial of
- *          a negative integer).
+ *  @inheritDoc
  */
 float ffactf(float __n)
 {
@@ -645,13 +497,7 @@ float ffactf(float __n)
 }
 
 /**
- *  Computes the factorial of a double value. Supports the factorial computation
- *  of positive/negative non-integers.
- *
- *  @param __n
- *
- *  @return The computed double value if applicable, NAN otherwise (i.e. computing the factorial of
- *          a negative integer).
+ *  @inheritDoc
  */
 double ffact(double __n)
 {
@@ -692,15 +538,7 @@ double ffact(double __n)
 }
 
 /**
- *  Computes n choose r. If both n and r are positive integers, the output
- *  would be the binomial coefficient, involving Stirling's approximation for
- *  larger values of r. If either is a complex/negative number, the gamma function Γ would
- *  be used.
- *
- *  @param __n
- *  @param __r
- *
- *  @return The computed float value.
+ *  @inheritDoc
  */
 float fncrf(float __n, float __r)
 {
@@ -824,15 +662,7 @@ float fncrf(float __n, float __r)
 }
 
 /**
- *  Computes n choose r. If both n and r are positive integers, the output
- *  would be the binomial coefficient, involving Stirling's approximation for
- *  larger values of r. If either is a complex/negative number, the gamma function Γ would
- *  be used.
- *
- *  @param __n
- *  @param __r
- *
- *  @return The computed double value.
+ *  @inheritDoc
  */
 double fncr(double __n, double __r)
 {
@@ -956,15 +786,7 @@ double fncr(double __n, double __r)
 }
 
 /**
- *  Computes n pick r. If both n and r are positive integers, the output
- *  would be the standard r-permutations of n involving Stirling's approximation for
- *  larger values of r. If either is a complex/negative number, the gamma function Γ would
- *  be used.
- *
- *  @param __n
- *  @param __r
- *
- *  @return The computed float value.
+ *  @inheritDoc
  */
 float fnprf(float __n, float __r)
 {
@@ -1072,15 +894,7 @@ float fnprf(float __n, float __r)
 }
 
 /**
- *  Computes n pick r. If both n and r are positive integers, the output
- *  would be the standard r-permutations of n involving Stirling's approximation for
- *  larger values of r. If either is a complex/negative number, the gamma function Γ would
- *  be used.
- *
- *  @param __n
- *  @param __r
- *
- *  @return The computed double value.
+ *  @inheritDoc
  */
 double fnpr(double __n, double __r)
 {
@@ -1191,11 +1005,7 @@ double fnpr(double __n, double __r)
 #pragma mark Bit Shifting
 
 /**
- *  Left shifts an unsigned char value.
- *
- *  @param __n
- *
- *  @return The computed unsigned char value.
+ *  @inheritDoc
  */
 unsigned char clshift(unsigned char __n)
 {
@@ -1203,11 +1013,7 @@ unsigned char clshift(unsigned char __n)
 }
 
 /**
- *  Left shifts an unsigned short value.
- *
- *  @param __n
- *
- *  @return The computed short value.
+ *  @inheritDoc
  */
 unsigned short hulshift(unsigned short __n)
 {
@@ -1215,11 +1021,7 @@ unsigned short hulshift(unsigned short __n)
 }
 
 /**
- *  Left shifts an unsigned int value.
- *
- *  @param __n
- *
- *  @return The computed unsigned int value.
+ *  @inheritDoc
  */
 unsigned int ulshift(unsigned int __n)
 {
@@ -1227,11 +1029,7 @@ unsigned int ulshift(unsigned int __n)
 }
 
 /**
- *  Left shifts an unsigned long value.
- *
- *  @param __n
- *
- *  @return The computed unsigned long value.
+ *  @inheritDoc
  */
 unsigned long lulshift(unsigned long __n)
 {
@@ -1239,11 +1037,7 @@ unsigned long lulshift(unsigned long __n)
 }
 
 /**
- *  Left shifts an unsigned long long value.
- *
- *  @param __n
- *
- *  @return The computed unsigned long long value.
+ *  @inheritDoc
  */
 unsigned long long llulshift(unsigned long long __n)
 {
@@ -1251,11 +1045,7 @@ unsigned long long llulshift(unsigned long long __n)
 }
 
 /**
- *  Right shifts an unsigned char value.
- *
- *  @param __n
- *
- *  @return The computed unsigned char value.
+ *  @inheritDoc
  */
 unsigned char crshift(unsigned char __n)
 {
@@ -1263,11 +1053,7 @@ unsigned char crshift(unsigned char __n)
 }
 
 /**
- *  Right shifts an unsigned short value.
- *
- *  @param __n
- *
- *  @return The computed short value.
+ *  @inheritDoc
  */
 unsigned short hurshift(unsigned short __n)
 {
@@ -1275,11 +1061,7 @@ unsigned short hurshift(unsigned short __n)
 }
 
 /**
- *  Right shifts an unsigned int value.
- *
- *  @param __n
- *
- *  @return The computed unsigned int value.
+ *  @inheritDoc
  */
 unsigned int urshift(unsigned int __n)
 {
@@ -1287,11 +1069,7 @@ unsigned int urshift(unsigned int __n)
 }
 
 /**
- *  Right shifts an unsigned long value.
- *
- *  @param __n
- *
- *  @return The computed unsigned long value.
+ *  @inheritDoc
  */
 unsigned long lurshift(unsigned long __n)
 {
@@ -1299,11 +1077,7 @@ unsigned long lurshift(unsigned long __n)
 }
 
 /**
- *  Right shifts an unsigned long long value.
- *
- *  @param __n
- *
- *  @return The computed unsigned long long value.
+ *  @inheritDoc
  */
 unsigned long long llurshift(unsigned long long __n)
 {
@@ -1311,11 +1085,7 @@ unsigned long long llurshift(unsigned long long __n)
 }
 
 /**
- *  Left rotates an unsigned char value.
- *
- *  @param __n
- *
- *  @return The computed unsigned char value.
+ *  @inheritDoc
  */
 unsigned char clrotate(unsigned char __n)
 {
@@ -1323,11 +1093,7 @@ unsigned char clrotate(unsigned char __n)
 }
 
 /**
- *  Left rotates an unsigned short value.
- *
- *  @param __n
- *
- *  @return The computed unsigned short value.
+ *  @inheritDoc
  */
 unsigned short hulrotate(unsigned short __n)
 {
@@ -1335,11 +1101,7 @@ unsigned short hulrotate(unsigned short __n)
 }
 
 /**
- *  Left rotates an unsigned int value.
- *
- *  @param __n
- *
- *  @return The computed unsigned int value.
+ *  @inheritDoc
  */
 unsigned int ulrotate(unsigned int __n)
 {
@@ -1347,11 +1109,7 @@ unsigned int ulrotate(unsigned int __n)
 }
 
 /**
- *  Left rotates an unsigned long value.
- *
- *  @param __n
- *
- *  @return The computed unsigned long value.
+ *  @inheritDoc
  */
 unsigned long lulrotate(unsigned long __n)
 {
@@ -1359,11 +1117,7 @@ unsigned long lulrotate(unsigned long __n)
 }
 
 /**
- *  Left rotates an unsigned long long value.
- *
- *  @param __n
- *
- *  @return The computed unsigned long long value.
+ *  @inheritDoc
  */
 unsigned long long llulrotate(unsigned long long __n)
 {
@@ -1371,11 +1125,7 @@ unsigned long long llulrotate(unsigned long long __n)
 }
 
 /**
- *  Right rotates an unsigned char value.
- *
- *  @param __n
- *
- *  @return The computed unsigned char value.
+ *  @inheritDoc
  */
 unsigned char crrotate(unsigned char __n)
 {
@@ -1383,11 +1133,7 @@ unsigned char crrotate(unsigned char __n)
 }
 
 /**
- *  Right rotates an unsigned short value.
- *
- *  @param __n
- *
- *  @return The computed unsigned short value.
+ *  @inheritDoc
  */
 unsigned short hurrotate(unsigned short __n)
 {
@@ -1395,11 +1141,7 @@ unsigned short hurrotate(unsigned short __n)
 }
 
 /**
- *  Right rotates an unsigned int value.
- *
- *  @param __n
- *
- *  @return The computed unsigned int value.
+ *  @inheritDoc
  */
 unsigned int urrotate(unsigned int __n)
 {
@@ -1407,11 +1149,7 @@ unsigned int urrotate(unsigned int __n)
 }
 
 /**
- *  Right rotates an unsigned long value.
- *
- *  @param __n
- *
- *  @return The computed unsigned long value.
+ *  @inheritDoc
  */
 unsigned long lurrotate(unsigned long __n)
 {
@@ -1419,11 +1157,7 @@ unsigned long lurrotate(unsigned long __n)
 }
 
 /**
- *  Right rotates an unsigned long long value.
- *
- *  @param __n
- *
- *  @return The computed unsigned long long value.
+ *  @inheritDoc
  */
 unsigned long long llurrotate(unsigned long long __n)
 {
@@ -1433,11 +1167,7 @@ unsigned long long llurrotate(unsigned long long __n)
 #pragma mark Inverse
 
 /**
- *  Computes the 1's complement of an unsigned char value.
- *
- *  @param __n
- *
- *  @return The computed unsigned char value.
+ *  @inheritDoc
  */
 unsigned char ccomp1(unsigned char __n)
 {
@@ -1445,11 +1175,7 @@ unsigned char ccomp1(unsigned char __n)
 }
 
 /**
- *  Computes the 1's complement of an unsigned short value.
- *
- *  @param __n
- *
- *  @return The computed unsigned short value.
+ *  @inheritDoc
  */
 unsigned short hucomp1(unsigned short __n)
 {
@@ -1457,11 +1183,7 @@ unsigned short hucomp1(unsigned short __n)
 }
 
 /**
- *  Computes the 1's complement of an unsigned int value.
- *
- *  @param __n
- *
- *  @return The computed unsigned int value.
+ *  @inheritDoc
  */
 unsigned int ucomp1(unsigned int __n)
 {
@@ -1469,11 +1191,7 @@ unsigned int ucomp1(unsigned int __n)
 }
 
 /**
- *  Computes the 1's complement of an unsigned long value.
- *
- *  @param __n
- *
- *  @return The computed unsigned long value.
+ *  @inheritDoc
  */
 unsigned long lucomp1(unsigned long __n)
 {
@@ -1481,11 +1199,7 @@ unsigned long lucomp1(unsigned long __n)
 }
 
 /**
- *  Computes the 1's complement of an unsigned long long value.
- *
- *  @param __n
- *
- *  @return The computed unsigned long long value.
+ *  @inheritDoc
  */
 unsigned long long llucomp1(unsigned long long __n)
 {
@@ -1493,11 +1207,7 @@ unsigned long long llucomp1(unsigned long long __n)
 }
 
 /**
- *  Computes the 2's complement of an unsigned char value.
- *
- *  @param __n
- *
- *  @return The computed unsigned char value.
+ *  @inheritDoc
  */
 unsigned char ccomp2(unsigned char __n)
 {
@@ -1505,11 +1215,7 @@ unsigned char ccomp2(unsigned char __n)
 }
 
 /**
- *  Computes the 2's complement of an unsigned short value.
- *
- *  @param __n
- *
- *  @return The computed unsigned short value.
+ *  @inheritDoc
  */
 unsigned short hucomp2(unsigned short __n)
 {
@@ -1517,11 +1223,7 @@ unsigned short hucomp2(unsigned short __n)
 }
 
 /**
- *  Computes the 2's complement of an unsigned int value.
- *
- *  @param __n
- *
- *  @return The computed unsigned int value.
+ *  @inheritDoc
  */
 unsigned int ucomp2(unsigned int __n)
 {
@@ -1529,11 +1231,7 @@ unsigned int ucomp2(unsigned int __n)
 }
 
 /**
- *  Computes the 2's complement of an unsigned long value.
- *
- *  @param __n
- *
- *  @return The computed unsigned long value.
+ *  @inheritDoc
  */
 unsigned long lucomp2(unsigned long __n)
 {
@@ -1541,11 +1239,7 @@ unsigned long lucomp2(unsigned long __n)
 }
 
 /**
- *  Computes the 2's complement of an unsigned long long value.
- *
- *  @param __n
- *
- *  @return The computed unsigned long long value.
+ *  @inheritDoc
  */
 unsigned long long llucomp2(unsigned long long __n)
 {
@@ -1553,11 +1247,7 @@ unsigned long long llucomp2(unsigned long long __n)
 }
 
 /**
- *  Flips the bytes of an unsigned char value.
- *
- *  @param __n
- *
- *  @return The computed unsigned char value.
+ *  @inheritDoc
  */
 unsigned char cflipb(unsigned char __n)
 {
@@ -1572,11 +1262,7 @@ unsigned char cflipb(unsigned char __n)
 }
 
 /**
- *  Flips the bytes of an unsigned short value.
- *
- *  @param __n
- *
- *  @return The computed unsigned short value.
+ *  @inheritDoc
  */
 unsigned short huflipb(unsigned short __n)
 {
@@ -1595,11 +1281,7 @@ unsigned short huflipb(unsigned short __n)
 }
 
 /**
- *  Flips the bytes of an unsigned int value.
- *
- *  @param __n
- *
- *  @return The computed unsigned int value.
+ *  @inheritDoc
  */
 unsigned int uflipb(unsigned int __n)
 {
@@ -1626,11 +1308,7 @@ unsigned int uflipb(unsigned int __n)
 }
 
 /**
- *  Flips the bytes of an unsigned long value.
- *
- *  @param __n
- *
- *  @return The computed unsigned long value.
+ *  @inheritDoc
  */
 unsigned long luflipb(unsigned long __n)
 {
@@ -1657,11 +1335,7 @@ unsigned long luflipb(unsigned long __n)
 }
 
 /**
- *  Flips the bytes of an unsigned long long value.
- *
- *  @param __n
- *
- *  @return The computed unsigned long long value.
+ *  @inheritDoc
  */
 unsigned long long lluflipb(unsigned long long __n)
 {
@@ -1704,11 +1378,7 @@ unsigned long long lluflipb(unsigned long long __n)
 }
 
 /**
- *  Flips the words of an unsigned char value.
- *
- *  @param __n
- *
- *  @return The computed unsigned char value.
+ *  @inheritDoc
  */
 unsigned char cflipw(unsigned char __n)
 {
@@ -1716,11 +1386,7 @@ unsigned char cflipw(unsigned char __n)
 }
 
 /**
- *  Flips the words of an unsigned short value.
- *
- *  @param __n
- *
- *  @return The computed unsigned short value.
+ *  @inheritDoc
  */
 unsigned short huflipw(unsigned short __n)
 {
@@ -1735,11 +1401,7 @@ unsigned short huflipw(unsigned short __n)
 }
 
 /**
- *  Flips the words of an unsigned int value.
- *
- *  @param __n
- *
- *  @return The computed unsigned int value.
+ *  @inheritDoc
  */
 unsigned int uflipw(unsigned int __n)
 {
@@ -1758,11 +1420,7 @@ unsigned int uflipw(unsigned int __n)
 }
 
 /**
- *  Flips the words of an unsigned long value.
- *
- *  @param __n
- *
- *  @return The computed unsigned long value.
+ *  @inheritDoc
  */
 unsigned long luflipw(unsigned long __n)
 {
@@ -1781,11 +1439,7 @@ unsigned long luflipw(unsigned long __n)
 }
 
 /**
- *  Flips the words of an unsigned long long value.
- *
- *  @param __n
- *
- *  @return The computed unsigned long long value.
+ *  @inheritDoc
  */
 unsigned long long lluflipw(unsigned long long __n)
 {
@@ -1814,12 +1468,7 @@ unsigned long long lluflipw(unsigned long long __n)
 #pragma mark - Number Moderations
 
 /**
- *  Validates that the specified float value is within the
- *  specified bounds, returns the moderated specified value.
- *
- *  @param __n
- *
- *  @return The moderated float value.
+ *  @inheritDoc
  */
 float fboundf(float __n, float __min, float __max)
 {
@@ -1832,12 +1481,7 @@ float fboundf(float __n, float __min, float __max)
 }
 
 /**
- *  Validates that the specified double value is within the
- *  specified bounds, returns the moderated specified value.
- *
- *  @param __n
- *
- *  @return The moderated double value.
+ *  @inheritDoc
  */
 double fbound(double __n, double __min, double __max)
 {
@@ -1850,13 +1494,7 @@ double fbound(double __n, double __min, double __max)
 }
 
 /**
- *  Verifies that a float value is within the specified bounds.
- *
- *  @param __n
- *  @param __min
- *  @param __max
- *
- *  @return 1 if bounded, 0 otherwise.
+ *  @inheritDoc
  */
 int fisboundedf(float __n, float __min, float __max)
 {
@@ -1897,13 +1535,7 @@ int fisboundedf(float __n, float __min, float __max)
 }
 
 /**
- *  Verifies that a double value is within the specified bounds.
- *
- *  @param __n
- *  @param __min
- *  @param __max
- *
- *  @return 1 if bounded, 0 otherwise.
+ *  @inheritDoc
  */
 int fisbounded(double __n, double __min, double __max)
 {
@@ -1944,11 +1576,7 @@ int fisbounded(double __n, double __min, double __max)
 }
 
 /**
- *  Verifies that a float value is an integer.
- *
- *  @param __n
- *
- *  @return 1 if specified float value is an integer, 0 otherwise.
+ *  @inheritDoc
  */
 int fisintf(float __n)
 {
@@ -1967,11 +1595,7 @@ int fisintf(float __n)
 }
 
 /**
- *  Verifies that a double value is an integer.
- *
- *  @param __n
- *
- *  @return 1 if specified double value is an integer, 0 otherwise.
+ *  @inheritDoc
  */
 int fisint(double __n)
 {
@@ -1990,11 +1614,7 @@ int fisint(double __n)
 }
 
 /**
- *  Verifies that an int value is even. 0 is considered even.
- *
- *  @param __n
- *
- *  @return 1 if even, 0 otherwise.
+ *  @inheritDoc
  */
 int iseven(int __n)
 {
@@ -2016,11 +1636,7 @@ int iseven(int __n)
 }
 
 /**
- *  Verifies that an int value is odd.
- *
- *  @param __n
- *
- *  @return 1 if odd, 0 otherwise.
+ *  @inheritDoc
  */
 int isodd(int __n)
 {
@@ -2028,11 +1644,7 @@ int isodd(int __n)
 }
 
 /**
- *  Normalizes a float value, checking against epsilon.
- *
- *  @param __n
- *
- *  @return The normalized float value.
+ *  @inheritDoc
  */
 float fnormf(float __n)
 {
@@ -2040,11 +1652,7 @@ float fnormf(float __n)
 }
 
 /**
- *  Normalizes a double value, checking against epsilon.
- *
- *  @param __n
- *
- *  @return The normalized double value.
+ *  @inheritDoc
  */
 double fnorm(double __n)
 {
@@ -2052,11 +1660,7 @@ double fnorm(double __n)
 }
 
 /**
- *  Computes the number of digits in an int.
- *
- *  @param __n
- *
- *  @return The number of digits.
+ *  @inheritDoc
  */
 int ndigits(int __n)
 {
@@ -2117,11 +1721,7 @@ int ndigits(int __n)
 #pragma mark Verifications
 
 /**
- *  Verifies that a string represents a float value.
- *
- *  @param __c
- *
- *  @return 1 if true, 0 otherwise.
+ *  @inheritDoc
  */
 int fstrisnumf(const char *__c)
 {
@@ -2133,11 +1733,7 @@ int fstrisnumf(const char *__c)
 }
 
 /**
- *  Verifies that a string represents a double value.
- *
- *  @param __c
- *
- *  @return 1 if true, 0 otherwise.
+ *  @inheritDoc
  */
 int fstrisnum(const char *__c)
 {
@@ -2149,11 +1745,7 @@ int fstrisnum(const char *__c)
 }
 
 /**
- *  Verifies that a string represents a long double value.
- *
- *  @param __c
- *
- *  @return 1 if true, 0 otherwise.
+ *  @inheritDoc
  */
 int fstrisnuml(const char *__c)
 {
@@ -2165,11 +1757,7 @@ int fstrisnuml(const char *__c)
 }
 
 /**
- *  Verifies that a string represents a long int value.
- *
- *  @param __c
- *
- *  @return 1 if true, 0 otherwise.
+ *  @inheritDoc
  */
 int lstrisnum(const char *__c)
 {
@@ -2181,11 +1769,7 @@ int lstrisnum(const char *__c)
 }
 
 /**
- *  Verifies that a string represents a long long int value.
- *
- *  @param __c
- *
- *  @return 1 if true, 0 otherwise.
+ *  @inheritDoc
  */
 int llstrisnum(const char *__c)
 {
@@ -2197,11 +1781,7 @@ int llstrisnum(const char *__c)
 }
 
 /**
- *  Verifies that a string represents an unsigned long int value.
- *
- *  @param __c
- *
- *  @return 1 if true, 0 otherwise.
+ *  @inheritDoc
  */
 int lustrisnum(const char *__c)
 {
@@ -2213,11 +1793,7 @@ int lustrisnum(const char *__c)
 }
 
 /**
- *  Verifies that a string represents an unsigned long long int value.
- *
- *  @param __c
- *
- *  @return 1 if true, 0 otherwise.
+ *  @inheritDoc
  */
 int llustrisnum(const char *__c)
 {
@@ -2231,11 +1807,7 @@ int llustrisnum(const char *__c)
 #pragma mark Conversions
 
 /**
- *  Converts a string to a float value if applicable.
- *
- *  @param __c
- *
- *  @return Float value of the string if applicable, NAN otherwise.
+ *  @inheritDoc
  */
 float fstrtonumf(const char *__c)
 {
@@ -2253,11 +1825,7 @@ float fstrtonumf(const char *__c)
 }
 
 /**
- *  Converts a string to a double value if applicable. Precision accurate to 16 decimals.
- *
- *  @param __c
- *
- *  @return Double value of the string if applicable, NAN otherwise.
+ *  @inheritDoc
  */
 double fstrtonum(const char *__c)
 {
@@ -2275,11 +1843,7 @@ double fstrtonum(const char *__c)
 }
 
 /**
- *  Converts a string to a long double value if applicable. 
- *
- *  @param __c
- *
- *  @return Long double value of the string if applicable, NAN otherwise.
+ *  @inheritDoc
  */
 long double fstrtonuml(const char *__c)
 {
@@ -2297,11 +1861,7 @@ long double fstrtonuml(const char *__c)
 }
 
 /**
- *  Converts a string to a long int value if applicable.
- *
- *  @param __c
- *
- *  @return Long int value of the string if applicable, 0 otherwise.
+ *  @inheritDoc
  */
 long int lstrtonum(const char *__c)
 {
@@ -2319,11 +1879,7 @@ long int lstrtonum(const char *__c)
 }
 
 /**
- *  Converts a string to a long long int value if applicable.
- *
- *  @param __c
- *
- *  @return Long long int value of the string if applicable, 0 otherwise.
+ *  @inheritDoc
  */
 long long int llstrtonum(const char *__c)
 {
@@ -2341,11 +1897,7 @@ long long int llstrtonum(const char *__c)
 }
 
 /**
- *  Converts a string to an unsigned long int value if applicable.
- *
- *  @param __c
- *
- *  @return Unsigned long int value of the string if applicable, 0 otherwise.
+ *  @inheritDoc
  */
 unsigned long int lustrtonum(const char *__c)
 {
@@ -2363,11 +1915,7 @@ unsigned long int lustrtonum(const char *__c)
 }
 
 /**
- *  Converts a string to an unsigned long long int value if applicable.
- *
- *  @param __c
- *
- *  @return Unsigned long long int value of the string if applicable, 0 otherwise.
+ *  @inheritDoc
  */
 unsigned long long int llustrtonum(const char *__c)
 {
