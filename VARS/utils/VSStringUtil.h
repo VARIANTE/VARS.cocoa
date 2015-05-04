@@ -34,7 +34,7 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type);
 
 NS_ROOT_CLASS @interface VSStringUtil
 
-#pragma mark - Sanity Checking
+#pragma mark - Validating
 
 /**
  *  Checks if string is nil or blank.
@@ -54,6 +54,47 @@ NS_ROOT_CLASS @interface VSStringUtil
  *  @return Number of occurances.
  */
 + (unsigned long)occurancesOfString:(NSString *)aSubstring inString:(NSString *)aString;
+
+#pragma mark - Versioning
+
+/**
+ *  Checks if string is a version number.
+ *
+ *  @param aString
+ *
+ *  @return YES if it is, NO otherwise.
+ */
++ (BOOL)stringIsVersionNumber:(NSString *)aString;
+
+/**
+ *  Checks if a verion is earlier than the target version.
+ *
+ *  @param version
+ *  @param targetVersion
+ *
+ *  @return YES if it is, NO otherwise.
+ */
++ (BOOL)version:(NSString *)version isEarlierThanVersion:(NSString *)targetVersion;
+
+/**
+ *  Checks if a version is equal to the target version.
+ *
+ *  @param version
+ *  @param targetVersion
+ *
+ *  @return YES if it is, NO otherwise.
+ */
++ (BOOL)version:(NSString *)version isEqualToVersion:(NSString *)targetVersion;
+
+/**
+ *  Checks if a version is newer than the target version.
+ *
+ *  @param version
+ *  @param targetVersion
+ *
+ *  @return YES if it is, NO otherwise.
+ */
++ (BOOL)version:(NSString *)version isNewerThanVersion:(NSString *)targetVersion;
 
 #pragma mark - Type Conversion
 
