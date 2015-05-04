@@ -100,6 +100,7 @@
 
     if (self)
     {
+        [self willInit];
         [self didInit];
     }
 
