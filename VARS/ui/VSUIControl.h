@@ -1,5 +1,5 @@
 /**
- *  VARSobjc
+ *  VARS
  *  (c) VARIANTE <http://variante.io>
  *
  *  VARS UIControl that conforms to the VSUIViewUpdateDelegate protocol.

@@ -1,5 +1,5 @@
 /**
- *  VARSobjc
+ *  VARS
  *  (c) VARIANTE <http://variante.io>
  *
  *  Enums for all UI update dirty types. To be used with 

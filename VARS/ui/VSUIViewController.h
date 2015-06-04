@@ -1,5 +1,5 @@
 /**
- *  VARSobjc
+ *  VARS
  *  (c) VARIANTE <http://variante.io>
  *
  *  VARS UIViewController wrapper class. This view controller subscribes to NSNotificationCenter
