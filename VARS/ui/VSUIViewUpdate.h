@@ -17,6 +17,17 @@
 
 #import "VSUIDirtyType.h"
 
+#define VS_UPDATE_ON_DRAWRECT   - (void)setNeedsUpdate          \
+                                {                               \
+                                    [self setNeedsDisplay];     \
+                                }                               \
+                                                                \
+                                - (void)drawRect:(CGRect)rect   \
+                                {                               \
+                                    [self update];              \
+                                    [super drawRect:rect];      \
+                                }
+
 @protocol VSUIViewUpdateDelegate
 
 

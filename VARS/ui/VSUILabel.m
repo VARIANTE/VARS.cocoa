@@ -26,7 +26,7 @@ static const int DEFAULT_UUID = -1;
 
 #pragma mark - --------------------------------------------------------------------------
 
-@implementation VSUILabel
+@implementation VSUILabel VS_UPDATE_ON_DRAWRECT
 
 #pragma mark - VSUIViewUpdateDelegate
 
@@ -110,16 +110,6 @@ static const int DEFAULT_UUID = -1;
  *  @inheritDoc
  */
 @synthesize textEdgeInsets = _textEdgeInsets;
-
-#pragma mark - VSUIViewUpdateDelegate
-
-/**
- *  @inheritDoc VSUIViewUpdateDelegate
- */
-- (void)setNeedsUpdate
-{
-    [self setNeedsDisplay];
-}
 
 /**
  *  @inheritDoc VSUIViewUpdateDelegate
@@ -240,16 +230,6 @@ static const int DEFAULT_UUID = -1;
     [super layoutSubviews];
 
     [self.updateDelegate setDirty:VSUIDirtyTypeLayout];
-}
-
-/**
- *  @inheritDoc UIView
- */
-- (void)drawRect:(CGRect)rect
-{
-    [self update];
-
-    [super drawRect:rect];
 }
 
 /**
