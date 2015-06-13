@@ -565,6 +565,38 @@ float fnprf(float __n, float __r);
  */
 double fnpr(double __n, double __r);
 
+/**
+ *  Computes x to the power of n.
+ *
+ *  @param __x
+ *  @param __n
+ */
+float fpowf(float __x, float __n);
+
+/**
+ *  Computes x to the power of n.
+ *
+ *  @param __x
+ *  @param __n
+ */
+double fpow(double __x, double __n);
+
+/**
+ *  Computes x to the nth root.
+ *
+ *  @param __x
+ *  @param __n
+ */
+float frootf(float __x, float __n);
+
+/**
+ *  Computes x to the nth root.
+ *
+ *  @param __x
+ *  @param __n
+ */
+double froot(float __x, float __n);
+
 #pragma mark - Bitwise Operations
 #pragma mark Bit Shifting
 
@@ -934,7 +966,7 @@ unsigned long long lluflipw(unsigned long long __n);
 
 /**
  *  Validates that the specified float value is within the
- *  specified bounds, returns the moderated specified value.
+ *  specified bounds, inclusive, returns the moderated specified value.
  *
  *  @param __n
  *
@@ -944,7 +976,7 @@ float fboundf(float __n, float __min, float __max);
 
 /**
  *  Validates that the specified double value is within the
- *  specified bounds, returns the moderated specified value.
+ *  specified bounds, inclusive, returns the moderated specified value.
  *
  *  @param __n
  *
@@ -953,7 +985,7 @@ float fboundf(float __n, float __min, float __max);
 double fbound(double __n, double __min, double __max);
 
 /**
- *  Verifies that a float value is within the specified bounds.
+ *  Verifies that a float value is within the specified bounds, inclusive.
  *
  *  @param __n
  *  @param __min
@@ -964,7 +996,7 @@ double fbound(double __n, double __min, double __max);
 int fisboundedf(float __n, float __min, float __max);
 
 /**
- *  Verifies that a double value is within the specified bounds.
+ *  Verifies that a double value is within the specified bounds, inclusive.
  *
  *  @param __n
  *  @param __min

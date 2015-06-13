@@ -708,7 +708,7 @@ double fncr(double __n, double __r)
                 }
                 else
                 {
-                    o = pow(10.0, o);
+                    o = fpow(10.0, o);
                 }
             }
             else
@@ -735,7 +735,7 @@ double fncr(double __n, double __r)
                 }
                 else
                 {
-                    o = pow(10.0, o);
+                    o = fpow(10.0, o);
                 }
             }
         }
@@ -831,7 +831,7 @@ float fnprf(float __n, float __r)
                 }
                 else
                 {
-                    o = pow(10.0f, o);
+                    o = fpowf(10.0f, o);
                 }
             }
             else
@@ -857,7 +857,7 @@ float fnprf(float __n, float __r)
                 }
                 else
                 {
-                    o = powf(10.0f, o);
+                    o = fpowf(10.0f, o);
                 }
             }
         }
@@ -939,7 +939,7 @@ double fnpr(double __n, double __r)
                 }
                 else
                 {
-                    o = pow(10.0, o);
+                    o = fpow(10.0, o);
                 }
             }
             else
@@ -965,7 +965,7 @@ double fnpr(double __n, double __r)
                 }
                 else
                 {
-                    o = pow(10.0, o);
+                    o = fpow(10.0, o);
                 }
             }
         }
@@ -999,6 +999,72 @@ double fnpr(double __n, double __r)
     }
     
     return o;
+}
+
+/**
+ *  @inheritDoc
+ */
+float fpowf(float __x, float __n)
+{
+    if ((__x < 0.0f) && (__n > 0.0f) && (__n < 1.0f))
+    {
+        float inv = fabsf(1.0f/__n);
+
+        if (((inv - roundf(inv)) < FLT_EPSILON) && isodd(roundf(inv)))
+        {
+            return frootf(__x, roundf(inv));
+        }
+    }
+
+    return powf(__x, __n);
+}
+
+/**
+ *  @inheritDoc
+ */
+double fpow(double __x, double __n)
+{
+    if ((__x < 0.0) && (__n > 0.0) && (__n < 1.0))
+    {
+        double inv = fabs(1.0/__n);
+
+        if (((inv - round(inv)) < FLT_EPSILON) && isodd(round(inv)))
+        {
+            return froot(__x, round(inv));
+        }
+    }
+
+    return pow(__x, __n);
+}
+
+/**
+ *  @inheritDoc
+ */
+float frootf(float __x, float __n)
+{
+    if ((__x < 0.0f) && fisintf(__n) && isodd(__n))
+    {
+        return -powf(fabsf(__x), 1.0f/__n);
+    }
+    else
+    {
+        return powf(__x, 1.0f/__n);
+    }
+}
+
+/**
+ *  @inheritDoc
+ */
+double froot(float __x, float __n)
+{
+    if ((__x < 0.0) && fisint(__n) && isodd(__n))
+    {
+        return -pow(fabs(__x), 1.0/__n);
+    }
+    else
+    {
+        return pow(__x, 1.0/__n);
+    }
 }
 
 #pragma mark - Bitwise Operations

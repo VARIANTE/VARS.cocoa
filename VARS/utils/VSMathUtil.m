@@ -735,7 +735,7 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         {
             if (isnan(operandX)) return NAN;
             if (isnan(operandY)) return NAN;
-            result = pow(operandX, operandY);
+            result = fpow(operandX, operandY);
             break;
         }
 
@@ -743,7 +743,7 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         {
             if (isnan(operandX)) return NAN;
             if (isnan(operandY)) return NAN;
-            result = pow(operandY, (1/operandX));
+            result = froot(operandX, operandY);
             break;
         }
 
@@ -751,7 +751,7 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         {
             if (isnan(operandX)) return NAN;
             if (isnan(operandY)) return NAN;
-            result = operandX * pow(10, operandY);
+            result = operandX * fpow(10.0, operandY);
             break;
         }
 
@@ -1027,7 +1027,7 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         case VSMathOperationTypeInverseLogarithm10:
         {
             if (isnan(operandX)) return NAN;
-            result = pow(10.0, operandX);
+            result = fpow(10.0, operandX);
             break;
         }
 
@@ -1041,7 +1041,7 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         case VSMathOperationTypeInverseLogarithm2:
         {
             if (isnan(operandX)) return NAN;
-            result = pow(2.0, operandX);
+            result = fpow(2.0, operandX);
             break;
         }
 
@@ -1069,7 +1069,7 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         case VSMathOperationTypeSquare:
         {
             if (isnan(operandX)) return NAN;
-            result = pow(operandX, 2.0);
+            result = fpow(operandX, 2.0);
             break;
         }
 
@@ -1083,7 +1083,7 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         case VSMathOperationTypeCube:
         {
             if (isnan(operandX)) return NAN;
-            result = pow(operandX, 3.0);
+            result = fpow(operandX, 3.0);
             break;
         }
 
@@ -1136,7 +1136,7 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         case VSMathOperationTypeInverse:
         {
             if (isnan(operandX)) return NAN;
-            result = 1/operandX;
+            result = 1.0/operandX;
             break;
         }
 

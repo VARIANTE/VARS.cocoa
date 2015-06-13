@@ -448,7 +448,7 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
             for (int i = 0; i < strlen; i++)
             {
                 unsigned int temp = [aString characterAtIndex:i] - 48;
-                temp *= pow(8, strlen - 1 - i);
+                temp *= fpow(8, strlen - 1 - i);
 
                 output += (unsigned char)temp;
             }
@@ -556,7 +556,7 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
             for (int i = 0; i < strlen; i++)
             {
                 unsigned int temp = [aString characterAtIndex:i] - 48;
-                temp *= pow(8, strlen - 1 - i);
+                temp *= fpow(8, strlen - 1 - i);
 
                 output += temp;
             }
@@ -660,7 +660,7 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
             for (int i = 0; i < strlen; i++)
             {
                 unsigned int temp = [aString characterAtIndex:i] - 48;
-                temp *= pow(8, strlen - 1 - i);
+                temp *= fpow(8, strlen - 1 - i);
 
                 output += temp;
             }
@@ -770,7 +770,7 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
             for (int i = 0; i < strlen; i++)
             {
                 unsigned long temp = [aString characterAtIndex:i] - 48;
-                temp *= pow(8, strlen - 1 - i);
+                temp *= fpow(8, strlen - 1 - i);
 
                 output += temp;
             }
@@ -879,7 +879,7 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
             for (int i = 0; i < strlen; i++)
             {
                 unsigned long long temp = [aString characterAtIndex:i] - 48;
-                temp *= pow(8, strlen - 1 - i);
+                temp *= fpow(8, strlen - 1 - i);
 
                 output += temp;
             }
