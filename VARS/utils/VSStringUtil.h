@@ -67,36 +67,29 @@ NS_ROOT_CLASS @interface VSStringUtil
 + (BOOL)stringIsVersionNumber:(NSString *)aString;
 
 /**
- *  Checks if a verion is earlier than the target version.
+ *  Compares the specified version against another version.
  *
  *  @param version
- *  @param targetVersion
+ *  @param anotherVersion
  *
- *  @return YES if it is, NO otherwise.
+ *  @return NSComparisonResult where:
+ *                     NSOrderedSame: aVersion is the same as anotherVersion
+ *               NSOrderedDescending: aVersion is newer than anotherVersion
+ *                NSOrderedAscending: aVersion is older than anotherVersion
+ *                        NSNotFound: unable to determine
  */
-+ (BOOL)version:(NSString *)version isEarlierThanVersion:(NSString *)targetVersion;
-
-/**
- *  Checks if a version is equal to the target version.
- *
- *  @param version
- *  @param targetVersion
- *
- *  @return YES if it is, NO otherwise.
- */
-+ (BOOL)version:(NSString *)version isEqualToVersion:(NSString *)targetVersion;
-
-/**
- *  Checks if a version is newer than the target version.
- *
- *  @param version
- *  @param targetVersion
- *
- *  @return YES if it is, NO otherwise.
- */
-+ (BOOL)version:(NSString *)version isNewerThanVersion:(NSString *)targetVersion;
++ (NSComparisonResult)compareVersion:(NSString *)aVersion againstAnotherVersion:(NSString *)anotherVersion;
 
 #pragma mark - Type Conversion
+
+/**
+ *  Gets the string from the specified NSComparisonResult enum. Supports NSNotFound as well.
+ *
+ *  @param comparisonResult
+ *
+ *  @return The NSString representation of the specified NSComparisonResult.
+ */
++ (NSString *)stringFromComparisonResult:(NSComparisonResult)comparisonResult;
 
 /**
  *  Converts a double value to a string using the default "%0.15g" numeric format specifier.

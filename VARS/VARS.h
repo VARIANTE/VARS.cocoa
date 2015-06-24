@@ -16,6 +16,7 @@
 #import "VARS/VSMathUtil.h"
 #import "VARS/VSNumberUtil.h"
 #import "VARS/VSQuartzUtil.h"
+#import "VARS/VSStoreKitUtil.h"
 #import "VARS/VSStringUtil.h"
 #import "VARS/VSUIButton.h"
 #import "VARS/VSUIControl.h"

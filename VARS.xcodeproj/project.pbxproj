@@ -79,6 +79,8 @@
 		6BE546A01A1365FF009B2CDC /* VSUIDirtyType.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE5469F1A1365FF009B2CDC /* VSUIDirtyType.m */; };
 		6BEB22FA1A04539800E50AC7 /* VSCalculusUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BEB22F81A04539800E50AC7 /* VSCalculusUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6BEB22FB1A04539800E50AC7 /* VSCalculusUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEB22F91A04539800E50AC7 /* VSCalculusUtil.m */; };
+		6BFD1EF41B3B547B004D7F54 /* VSStoreKitUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BFD1EF21B3B547B004D7F54 /* VSStoreKitUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BFD1EF51B3B547B004D7F54 /* VSStoreKitUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BFD1EF31B3B547B004D7F54 /* VSStoreKitUtil.m */; };
 		6BFD7BA419EF4AE00065D557 /* VSArrayUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BFD7BA219EF4AE00065D557 /* VSArrayUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6BFD7BA519EF4AE00065D557 /* VSArrayUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BFD7BA319EF4AE00065D557 /* VSArrayUtil.m */; };
 /* End PBXBuildFile section */
@@ -158,6 +160,8 @@
 		6BE5469F1A1365FF009B2CDC /* VSUIDirtyType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSUIDirtyType.m; sourceTree = "<group>"; };
 		6BEB22F81A04539800E50AC7 /* VSCalculusUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCalculusUtil.h; sourceTree = "<group>"; };
 		6BEB22F91A04539800E50AC7 /* VSCalculusUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSCalculusUtil.m; sourceTree = "<group>"; };
+		6BFD1EF21B3B547B004D7F54 /* VSStoreKitUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSStoreKitUtil.h; sourceTree = "<group>"; };
+		6BFD1EF31B3B547B004D7F54 /* VSStoreKitUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSStoreKitUtil.m; sourceTree = "<group>"; };
 		6BFD7BA219EF4AE00065D557 /* VSArrayUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSArrayUtil.h; sourceTree = "<group>"; };
 		6BFD7BA319EF4AE00065D557 /* VSArrayUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSArrayUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -336,6 +340,8 @@
 				6BFD7BA319EF4AE00065D557 /* VSArrayUtil.m */,
 				6B9E28B91AEB214C00645BE4 /* VSUIUtil.h */,
 				6B9E28BA1AEB214C00645BE4 /* VSUIUtil.m */,
+				6BFD1EF21B3B547B004D7F54 /* VSStoreKitUtil.h */,
+				6BFD1EF31B3B547B004D7F54 /* VSStoreKitUtil.m */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -372,6 +378,7 @@
 				6B7245711A92A36A0002DFC6 /* VSUITableView.h in Headers */,
 				6B9E28BB1AEB214C00645BE4 /* VSUIUtil.h in Headers */,
 				6BCB9E9D1A27E594004D681D /* VSUIControl.h in Headers */,
+				6BFD1EF41B3B547B004D7F54 /* VSStoreKitUtil.h in Headers */,
 				6BD0335A1988CE5D00AF9866 /* VSUILabel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,6 +505,7 @@
 				6BD11FBD1A2820F10077411A /* VSUIButton.m in Sources */,
 				6BD0335F1988CE5D00AF9866 /* VSUITextView.m in Sources */,
 				6B9E28BC1AEB214C00645BE4 /* VSUIUtil.m in Sources */,
+				6BFD1EF51B3B547B004D7F54 /* VSStoreKitUtil.m in Sources */,
 				6BCA158919BD995F00968347 /* VSViewportUtil.m in Sources */,
 				6BD0336B1988CE5D00AF9866 /* VSNumberUtil.m in Sources */,
 				6BD033631988CE5D00AF9866 /* VSUIViewController.m in Sources */,

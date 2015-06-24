@@ -72,12 +72,12 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
 /**
  *  @inheritDoc
  */
-+ (BOOL)version:(NSString *)version isEarlierThanVersion:(NSString *)targetVersion
++ (NSComparisonResult)compareVersion:(NSString *)aVersion againstAnotherVersion:(NSString *)anotherVersion
 {
-    if (![VSStringUtil stringIsVersionNumber:version] || ![VSStringUtil stringIsVersionNumber:targetVersion]) return NO;
+    if (![VSStringUtil stringIsVersionNumber:aVersion] || ![VSStringUtil stringIsVersionNumber:anotherVersion]) return NSNotFound;
 
-    NSArray *parts1 = [version componentsSeparatedByString:@"."];
-    NSArray *parts2 = [targetVersion componentsSeparatedByString:@"."];
+    NSArray *parts1 = [aVersion componentsSeparatedByString:@"."];
+    NSArray *parts2 = [anotherVersion componentsSeparatedByString:@"."];
 
     NSUInteger count1 = parts1.count;
     NSUInteger count2 = parts2.count;
@@ -92,46 +92,11 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
 
             if (part2 > part1)
             {
-                return YES;
+                return NSOrderedAscending;
             }
             else if (part2 < part1)
             {
-                return NO;
-            }
-        }
-        else
-        {
-            return NO;
-        }
-    }
-
-    return NO;
-}
-
-/**
- *  @inheritDoc
- */
-+ (BOOL)version:(NSString *)version isEqualToVersion:(NSString *)targetVersion
-{
-    if (![VSStringUtil stringIsVersionNumber:version] || ![VSStringUtil stringIsVersionNumber:targetVersion]) return NO;
-
-    NSArray *parts1 = [version componentsSeparatedByString:@"."];
-    NSArray *parts2 = [targetVersion componentsSeparatedByString:@"."];
-
-    NSUInteger count1 = parts1.count;
-    NSUInteger count2 = parts2.count;
-
-    for (uint i = 0; i < count1; i++)
-    {
-        int part1 = [(NSString *)parts1[i] intValue];
-
-        if (i < count2)
-        {
-            int part2 = [(NSString *)parts2[i] intValue];
-
-            if (part2 != part1)
-            {
-                return NO;
+                return NSOrderedDescending;
             }
         }
         else
@@ -141,7 +106,7 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
 
             if (sum != 0)
             {
-                return NO;
+                return NSOrderedDescending;
             }
         }
     }
@@ -153,53 +118,28 @@ NSString *NSStringFromVSCharacterEncodingType(VSCharacterEncodingType type)
 
         if (sum != 0)
         {
-            return NO;
+            return NSOrderedAscending;
         }
     }
-
-    return YES;
+    
+    return NSOrderedSame;
 }
+
+#pragma mark - Type Conversion
 
 /**
  *  @inheritDoc
  */
-+ (BOOL)version:(NSString *)version isNewerThanVersion:(NSString *)targetVersion
++ (NSString *)stringFromComparisonResult:(NSComparisonResult)comparisonResult
 {
-    if (![VSStringUtil stringIsVersionNumber:version] || ![VSStringUtil stringIsVersionNumber:targetVersion]) return NO;
-
-    NSArray *parts1 = [version componentsSeparatedByString:@"."];
-    NSArray *parts2 = [targetVersion componentsSeparatedByString:@"."];
-
-    NSUInteger count1 = parts1.count;
-    NSUInteger count2 = parts2.count;
-
-    for (uint i = 0; i < count1; i++)
+    switch (comparisonResult)
     {
-        int part1 = [(NSString *)parts1[i] intValue];
-
-        if (i < count2)
-        {
-            int part2 = [(NSString *)parts2[i] intValue];
-
-            if (part2 > part1)
-            {
-                return NO;
-            }
-            else if (part2 < part1)
-            {
-                return YES;
-            }
-        }
-        else
-        {
-            return YES;
-        }
+        case NSOrderedAscending: return @"NSOrderedAscending";
+        case NSOrderedDescending: return @"NSOrderedDescending";
+        case NSOrderedSame: return @"NSOrderedSame";
+        default: return @"Unknown";
     }
-
-    return NO;
 }
-
-#pragma mark - Type Conversion
 
 /**
  *  @inheritDoc
