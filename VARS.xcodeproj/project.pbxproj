@@ -24,6 +24,8 @@
 /* Begin PBXBuildFile section */
 		6B1CC1F619DB5C2D00079144 /* VSUIViewUpdate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B1CC1F419DB5C2D00079144 /* VSUIViewUpdate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6B1CC1F719DB5C2D00079144 /* VSUIViewUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1CC1F519DB5C2D00079144 /* VSUIViewUpdate.m */; };
+		6B30EFA51B3C30460085903E /* VSDeviceUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B30EFA31B3C30460085903E /* VSDeviceUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6B30EFA61B3C30460085903E /* VSDeviceUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B30EFA41B3C30460085903E /* VSDeviceUtil.m */; };
 		6B7245711A92A36A0002DFC6 /* VSUITableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B72456F1A92A36A0002DFC6 /* VSUITableView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6B7245721A92A36A0002DFC6 /* VSUITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B7245701A92A36A0002DFC6 /* VSUITableView.m */; };
 		6B74723E19E5300D0065970E /* VSUITextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B74723C19E5300D0065970E /* VSUITextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -105,6 +107,8 @@
 /* Begin PBXFileReference section */
 		6B1CC1F419DB5C2D00079144 /* VSUIViewUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSUIViewUpdate.h; sourceTree = "<group>"; };
 		6B1CC1F519DB5C2D00079144 /* VSUIViewUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSUIViewUpdate.m; sourceTree = "<group>"; };
+		6B30EFA31B3C30460085903E /* VSDeviceUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSDeviceUtil.h; sourceTree = "<group>"; };
+		6B30EFA41B3C30460085903E /* VSDeviceUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSDeviceUtil.m; sourceTree = "<group>"; };
 		6B72456F1A92A36A0002DFC6 /* VSUITableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSUITableView.h; sourceTree = "<group>"; };
 		6B7245701A92A36A0002DFC6 /* VSUITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSUITableView.m; sourceTree = "<group>"; };
 		6B74723C19E5300D0065970E /* VSUITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSUITextField.h; sourceTree = "<group>"; };
@@ -342,6 +346,8 @@
 				6B9E28BA1AEB214C00645BE4 /* VSUIUtil.m */,
 				6BFD1EF21B3B547B004D7F54 /* VSStoreKitUtil.h */,
 				6BFD1EF31B3B547B004D7F54 /* VSStoreKitUtil.m */,
+				6B30EFA31B3C30460085903E /* VSDeviceUtil.h */,
+				6B30EFA41B3C30460085903E /* VSDeviceUtil.m */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -370,6 +376,7 @@
 				6BD0334F1988CE5D00AF9866 /* vsdebug.h in Headers */,
 				6BD033601988CE5D00AF9866 /* VSUIView.h in Headers */,
 				6BCA158819BD995F00968347 /* VSViewportUtil.h in Headers */,
+				6B30EFA51B3C30460085903E /* VSDeviceUtil.h in Headers */,
 				6B1CC1F619DB5C2D00079144 /* VSUIViewUpdate.h in Headers */,
 				6BDCCFA419E0E59300A86FCA /* VSUIModel.h in Headers */,
 				6B74723E19E5300D0065970E /* VSUITextField.h in Headers */,
@@ -504,6 +511,7 @@
 			files = (
 				6BD11FBD1A2820F10077411A /* VSUIButton.m in Sources */,
 				6BD0335F1988CE5D00AF9866 /* VSUITextView.m in Sources */,
+				6B30EFA61B3C30460085903E /* VSDeviceUtil.m in Sources */,
 				6B9E28BC1AEB214C00645BE4 /* VSUIUtil.m in Sources */,
 				6BFD1EF51B3B547B004D7F54 /* VSStoreKitUtil.m in Sources */,
 				6BCA158919BD995F00968347 /* VSViewportUtil.m in Sources */,

@@ -19,19 +19,7 @@
  */
 + (NSComparisonResult)compareVersion:(NSString *)aVersion againstOriginalApplicationVersionInReceipt:(NSDictionary *)receipt
 {
-    if ((receipt == nil) || (receipt[@"receipt"] == nil) || (receipt[@"receipt"] == [NSNull null]))
-    {
-        return NSNotFound;
-    }
-
-    id value = receipt[@"receipt"][@"original_application_version"];
-
-    if ((value == nil) || (value == [NSNull null]))
-    {
-        return NSNotFound;
-    }
-
-    NSString *originalApplicationVersion = (NSString *)value;
+    NSString *originalApplicationVersion = [VSStoreKitUtil valueForKey:VS_S_APP_RECEIPT_KEY_ORIGINAL_APPLICATION_VERSION inReceipt:receipt];
 
     return [VSStringUtil compareVersion:aVersion againstAnotherVersion:originalApplicationVersion];
 }
@@ -41,28 +29,20 @@
  */
 + (NSComparisonResult)compareDate:(NSString *)aDate againstOriginalPurchaseDateInReceipt:(NSDictionary *)receipt
 {
-    if ((receipt == nil) || (receipt[@"receipt"] == nil) || (receipt[@"receipt"] == [NSNull null]))
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss VV"];
+    NSDate *date = [df dateFromString:aDate];
+    vs_dealloc(df);
+
+    NSDate *gmt = [VSStoreKitUtil valueForKey:VS_S_APP_RECEIPT_KEY_ORIGINAL_PURCHASE_DATE inReceipt:receipt];
+    NSDate *pst = [VSStoreKitUtil valueForKey:VS_S_APP_RECEIPT_KEY_ORIGINAL_PURCHASE_DATE_PST inReceipt:receipt];
+    NSDate *ms = [VSStoreKitUtil valueForKey:VS_S_APP_RECEIPT_KEY_ORIGINAL_PURCHASE_DATE_MS inReceipt:receipt];;
+
+    if (date == nil)
     {
         return NSNotFound;
     }
-
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"yyyy-MM-dd HH:mm:ss VV"];
-
-    id gmtValue = receipt[@"receipt"][@"original_purchase_date"];
-    id pstValue = receipt[@"receipt"][@"original_purchase_date_pst"];
-    id msValue = receipt[@"receipt"][@"original_purchase_date_ms"];
-
-    NSDate *date = [df dateFromString:aDate];
-    NSDate *gmt = [df dateFromString:((gmtValue == [NSNull null]) ? nil : (NSString *)gmtValue)];
-    NSDate *pst = [df dateFromString:((pstValue == [NSNull null]) ? nil : (NSString *)pstValue)];
-    NSDate *ms = (msValue == nil || msValue == [NSNull null]) ? nil : [NSDate dateWithTimeIntervalSince1970:([(NSString *)msValue doubleValue])/1000];
-
-    vs_dealloc(df);
-
-    if (date == nil) return NSNotFound;
-
-    if (gmt != nil)
+    else if (gmt != nil)
     {
         return [date compare:gmt];
     }
@@ -83,19 +63,14 @@
  */
 + (NSComparisonResult)compareTimeIntervalSince1970:(NSTimeInterval)aTimeIntervalSince1970 againstOriginalPurchaseDateInReceipt:(NSDictionary *)receipt
 {
-    if ((receipt == nil) || (receipt[@"receipt"] == nil) || (receipt[@"receipt"] == [NSNull null]))
+    NSString *value = [VSStoreKitUtil valueForKey:VS_S_APP_RECEIPT_KEY_ORIGINAL_PURCHASE_DATE_MS inReceipt:receipt isTypeCasted:NO];
+
+    if (value == nil)
     {
         return NSNotFound;
     }
 
-    id value = receipt[@"receipt"][@"original_purchase_date_ms"];
-
-    if (value == nil || value == [NSNull null])
-    {
-        return NSNotFound;
-    }
-
-    NSTimeInterval timeInterval = [(NSString *)value doubleValue]/1000;
+    NSTimeInterval timeInterval = [value doubleValue]/1000;
 
     if (aTimeIntervalSince1970 > timeInterval)
     {
@@ -109,6 +84,78 @@
     {
         return NSOrderedSame;
     }
+}
+
+/**
+ *  @inheritDoc
+ */
++ (id)valueForKey:(NSString *)key inReceipt:(NSDictionary *)receipt isTypeCasted:(BOOL)isTypeCasted
+{
+    if ((key == nil) || (receipt == nil) || (receipt[@"receipt"] == nil) || (receipt[@"receipt"] == [NSNull null]))
+    {
+        return nil;
+    }
+
+    id value = receipt[@"receipt"][key];
+
+    if ((value == nil) || (value == [NSNull null]))
+    {
+        return nil;
+    }
+
+    if (isTypeCasted)
+    {
+        if (([key isEqualToString:VS_S_APP_RECEIPT_KEY_ADAM_ID]) ||
+            ([key isEqualToString:VS_S_APP_RECEIPT_KEY_APP_ITEM_ID]) ||
+            ([key isEqualToString:VS_S_APP_RECEIPT_KEY_APPLICATION_VERSION]) ||
+            ([key isEqualToString:VS_S_APP_RECEIPT_KEY_BUNDLE_ID]) ||
+            ([key isEqualToString:VS_S_APP_RECEIPT_KEY_DOWNLOAD_ID]) ||
+            ([key isEqualToString:VS_S_APP_RECEIPT_KEY_ORIGINAL_APPLICATION_VERSION]) ||
+            ([key isEqualToString:VS_S_APP_RECEIPT_KEY_VERSION_EXTERNAL_IDENTIFIER]) ||
+            ([key isEqualToString:VS_S_APP_RECEIPT_KEY_RECEIPT_TYPE]))
+        {
+            return (NSString *)value;
+        }
+        else if ([key isEqualToString:VS_S_APP_RECEIPT_KEY_IN_APP])
+        {
+            return (NSArray *)value;
+        }
+        else if (([key isEqualToString:VS_S_APP_RECEIPT_KEY_ORIGINAL_PURCHASE_DATE]) ||
+                 ([key isEqualToString:VS_S_APP_RECEIPT_KEY_ORIGINAL_PURCHASE_DATE_PST]) ||
+                 ([key isEqualToString:VS_S_APP_RECEIPT_KEY_ORIGINAL_REQUEST_DATE]) ||
+                 ([key isEqualToString:VS_S_APP_RECEIPT_KEY_ORIGINAL_REQUEST_DATE_PST]))
+        {
+            NSDateFormatter *df = [[NSDateFormatter alloc] init];
+            [df setDateFormat:@"yyyy-MM-dd HH:mm:ss VV"];
+            NSDate *date = [df dateFromString:(NSString *)value];
+            vs_dealloc(df);
+
+            return date;
+        }
+        else if (([key isEqualToString:VS_S_APP_RECEIPT_KEY_ORIGINAL_PURCHASE_DATE_MS]) ||
+                 ([key isEqualToString:VS_S_APP_RECEIPT_KEY_ORIGINAL_REQUEST_DATE_MS]))
+        {
+            if (value == nil || isnan([(NSString *)value doubleValue])) return nil;
+
+            return [NSDate dateWithTimeIntervalSince1970:[(NSString *)value doubleValue]/1000];
+        }
+        else
+        {
+            return nil;
+        }
+    }
+    else
+    {
+        return value;
+    }
+}
+
+/**
+ *  @inheritDoc
+ */
++ (id)valueForKey:(NSString *)key inReceipt:(NSDictionary *)receipt
+{
+    return [VSStoreKitUtil valueForKey:key inReceipt:receipt isTypeCasted:YES];
 }
 
 @end

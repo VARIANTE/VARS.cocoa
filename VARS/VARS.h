@@ -13,6 +13,7 @@
 #import "VARS/VSArrayUtil.h"
 #import "VARS/VSCalculusUtil.h"
 #import "VARS/VSColorUtil.h"
+#import "VARS/VSDeviceUtil.h"
 #import "VARS/VSMathUtil.h"
 #import "VARS/VSNumberUtil.h"
 #import "VARS/VSQuartzUtil.h"

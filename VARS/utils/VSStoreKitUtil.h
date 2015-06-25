@@ -10,6 +10,22 @@
 
 #import <Foundation/Foundation.h>
 
+#define VS_S_APP_RECEIPT_KEY_ADAM_ID                      @"adam_id"
+#define VS_S_APP_RECEIPT_KEY_APP_ITEM_ID                  @"app_item_id"
+#define VS_S_APP_RECEIPT_KEY_APPLICATION_VERSION          @"application_version"
+#define VS_S_APP_RECEIPT_KEY_BUNDLE_ID                    @"bundle_id"
+#define VS_S_APP_RECEIPT_KEY_DOWNLOAD_ID                  @"download_id"
+#define VS_S_APP_RECEIPT_KEY_IN_APP                       @"in_app"
+#define VS_S_APP_RECEIPT_KEY_ORIGINAL_APPLICATION_VERSION @"original_application_version"
+#define VS_S_APP_RECEIPT_KEY_ORIGINAL_PURCHASE_DATE       @"original_purchase_date"
+#define VS_S_APP_RECEIPT_KEY_ORIGINAL_PURCHASE_DATE_MS    @"original_purchase_date_ms"
+#define VS_S_APP_RECEIPT_KEY_ORIGINAL_PURCHASE_DATE_PST   @"original_purchase_date_pst"
+#define VS_S_APP_RECEIPT_KEY_ORIGINAL_REQUEST_DATE        @"request_date"
+#define VS_S_APP_RECEIPT_KEY_ORIGINAL_REQUEST_DATE_MS     @"request_date_ms"
+#define VS_S_APP_RECEIPT_KEY_ORIGINAL_REQUEST_DATE_PST    @"request_date_pst"
+#define VS_S_APP_RECEIPT_KEY_VERSION_EXTERNAL_IDENTIFIER  @"version_external_identifier"
+#define VS_S_APP_RECEIPT_KEY_RECEIPT_TYPE                 @"receipt_type"
+
 NS_ROOT_CLASS @interface VSStoreKitUtil
 
 /**
@@ -56,5 +72,27 @@ NS_ROOT_CLASS @interface VSStoreKitUtil
  *                        NSNotFound: unable to determine
  */
 + (NSComparisonResult)compareTimeIntervalSince1970:(NSTimeInterval)aTimeIntervalSince1970 againstOriginalPurchaseDateInReceipt:(NSDictionary *)receipt;
+
+/**
+ *  Gets the value of the specified key in the specified app receipt. Option to type cast the value into
+ *  corresponding data types.
+ *
+ *  @param key
+ *  @param receipt
+ *  @param isProcessed
+ *
+ *  @return Object of corresponding value (type casted if enabled).
+ */
++ (id)valueForKey:(NSString *)key inReceipt:(NSDictionary *)receipt isTypeCasted:(BOOL)isTypeCasted;
+
+/**
+ *  Gets the raw value of the specified key in the specified app receipt.
+ *
+ *  @param key
+ *  @param receipt
+ *
+ *  @return Object of corresponding value.
+ */
++ (id)valueForKey:(NSString *)key inReceipt:(NSDictionary *)receipt;
 
 @end
