@@ -10,6 +10,7 @@
 
 #import "VSColorUtil.h"
 #import "VSUIButton.h"
+#import "VSUIUtil.h"
 
 /**
  *  Default UUID of this VSUIButton instance.
@@ -164,16 +165,6 @@ static const int DEFAULT_UUID = -1;
 /**
  *  @inheritDoc UIButton
  */
-- (void)setTitle:(NSString *)title forState:(UIControlState)state
-{
-    [super setTitle:title forState:state];
-
-    [self.updateDelegate setDirty:VSUIDirtyTypeData];
-}
-
-/**
- *  @inheritDoc UIButton
- */
 - (void)setAttributedTitle:(NSAttributedString *)title forState:(UIControlState)state
 {
     NSRange range = NSMakeRange(0, title.string.length);
@@ -182,8 +173,6 @@ static const int DEFAULT_UUID = -1;
     [mas addAttribute:NSForegroundColorAttributeName value:[self titleColorForState:state] range:range];
     [super setAttributedTitle:mas forState:state];
     vs_dealloc(mas);
-
-    [self.updateDelegate setDirty:VSUIDirtyTypeData];
 }
 
 /**
@@ -272,11 +261,6 @@ static const int DEFAULT_UUID = -1;
     if ([self isDirty:VSUIDirtyTypeStyle|VSUIDirtyTypeState])
     {
         [self _updateState];
-    }
-
-    if ([self isDirty:VSUIDirtyTypeState|VSUIDirtyTypeData])
-    {
-        [self _updateData];
     }
 
     [self.updateDelegate viewDidUpdate];
@@ -369,6 +353,16 @@ static const int DEFAULT_UUID = -1;
  */
 - (void)didInit
 {
+    // HACK: Set transparent 1x1 image background so accessibility underlines won't appear.
+    if (self.shouldOverrideAccessibilityOption)
+    {
+        UIImage *image = [VSUIUtil imageWithColor:[UIColor clearColor] size:CGSizeMake(1.0f, 1.0f)];
+        [self setBackgroundImage:image forState:UIControlStateNormal];
+        [self setBackgroundImage:image forState:UIControlStateHighlighted];
+        [self setBackgroundImage:image forState:UIControlStateSelected];
+        [self setBackgroundImage:image forState:UIControlStateDisabled];
+    }
+
     [self.updateDelegate viewDidInit];
 }
 
@@ -403,26 +397,6 @@ static const int DEFAULT_UUID = -1;
 - (void)_updateState
 {
     [self setBackgroundColor:[self _getBackgroundColorForState:self.state]];
-}
-
-/**
- *  @private
- *
- *  Applies data-specific update.
- */
-- (void)_updateData
-{
-    if (self.shouldOverrideAccessibilityOption)
-    {
-        NSMutableAttributedString *mas = [[NSMutableAttributedString alloc] initWithAttributedString:[self.titleLabel attributedText]];
-        NSRange range = NSMakeRange(0, mas.string.length);
-
-        [mas removeAttribute:NSUnderlineStyleAttributeName range:range];
-        [mas addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithUnsignedInteger:NSUnderlineStyleNone] range:range];
-        [self.titleLabel setAttributedText:mas];
-
-        vs_dealloc(mas);
-    }
 }
 
 #pragma mark - Event Handling

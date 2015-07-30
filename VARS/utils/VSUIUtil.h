@@ -22,5 +22,15 @@ NS_ROOT_CLASS @interface VSUIUtil
  *  @return CGFloat value of the height.
  */
 + (CGFloat)heightOfTextViewWithText:(NSString *)text font:(UIFont *)font width:(CGFloat)width;
+
+/**
+ *  Generates a rectangular UIImage instance with the specified color and size.
+ *
+ *  @param color
+ *  @param size
+ *
+ *  @return UIImage instance.
+ */
++ (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size;
  
 @end
