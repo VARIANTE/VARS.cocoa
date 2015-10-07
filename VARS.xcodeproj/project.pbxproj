@@ -291,7 +291,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n\n# Kill current session if a prior session is still running.\nif [ -n \"$VARS_MULTIPLATFORM_BUILD_IN_PROGRESS\" ]; then\nexit 0\nfi\n\n# Set environment variable to mark this session in progress.\nexport VARS_MULTIPLATFORM_BUILD_IN_PROGRESS=1\n\nVARS_FRAMEWORK_NAME=\"${PROJECT_NAME}.framework\"\nVARS_LIPO_INPUTS=()\n\n# Builds the static library using the specified SDK.\n# @param sdk  The SDK used (i.e. macosx, iphoneos, iphonesimulator, watchos, watchsimulator)\nfunction build_static_library {\n    xcodebuild \\\n    -target \"${PROJECT_NAME}\" \\\n    -configuration \"${CONFIGURATION}\" \\\n    -sdk \"${1}\" \\\n    ONLY_ACTIVE_ARCH=NO \\\n    BUILD_DIR=\"${BUILD_DIR}\" \\\n    BUILD_ROOT=\"${BUILD_ROOT}\" \\\n    clean build\n\n    if [ \"${1}\" == \"macosx\" ]; then\n    VARS_LIPO_INPUTS+=(\"${BUILD_DIR}/${CONFIGURATION}/${VARS_FRAMEWORK_NAME}/${PROJECT_NAME}\")\n    else\n    VARS_LIPO_INPUTS+=(\"${BUILD_DIR}/${CONFIGURATION}-${1}/${VARS_FRAMEWORK_NAME}/${PROJECT_NAME}\")\n    fi\n}\n\nfor platform in ${SUPPORTED_PLATFORMS}\ndo\nbuild_static_library \"$platform\"\ndone\n\nrm -rf \"${INSTALL_DIR}/${VARS_FRAMEWORK_NAME}\"\ncp -a \"${BUILD_DIR}/${CONFIGURATION}/${VARS_FRAMEWORK_NAME}\" \"${INSTALL_DIR}\"\n\nlipo -create -output \"${INSTALL_DIR}/${VARS_FRAMEWORK_NAME}/Versions/A/${PROJECT_NAME}\" \"${VARS_LIPO_INPUTS[@]}\"\n\n\n";
+			shellScript = "set -e\n\n# Kill current session if a prior session is still running.\nif [ -n \"$VARS_MULTIPLATFORM_BUILD_IN_PROGRESS\" ]; then\nexit 0\nfi\n\n# Set environment variable to mark this session in progress.\nexport VARS_MULTIPLATFORM_BUILD_IN_PROGRESS=1\n\nVARS_FRAMEWORK_NAME=\"${PROJECT_NAME}.framework\"\nVARS_LIPO_INPUTS=()\n\n# Builds the static library using the specified SDK.\n# @param sdk  The SDK used (i.e. macosx, iphoneos, iphonesimulator, watchos, watchsimulator)\nfunction build_static_library {\n    xcodebuild \\\n    -target \"${PROJECT_NAME}\" \\\n    -configuration \"${CONFIGURATION}\" \\\n    -sdk \"${1}\" \\\n    ONLY_ACTIVE_ARCH=NO \\\n    BUILD_DIR=\"${BUILD_DIR}\" \\\n    BUILD_ROOT=\"${BUILD_ROOT}\" \\\n    clean build\n\n    if [ \"${1}\" == \"macosx\" ]; then\n    VARS_LIPO_INPUTS+=(\"${BUILD_DIR}/${CONFIGURATION}/${VARS_FRAMEWORK_NAME}/${PROJECT_NAME}\")\n    else\n    VARS_LIPO_INPUTS+=(\"${BUILD_DIR}/${CONFIGURATION}-${1}/${VARS_FRAMEWORK_NAME}/${PROJECT_NAME}\")\n    fi\n}\n\nfor platform in ${SUPPORTED_PLATFORMS}\ndo\nbuild_static_library \"$platform\"\ndone\n\nrm -rf \"${INSTALL_DIR}/${VARS_FRAMEWORK_NAME}\"\ncp -a \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${VARS_FRAMEWORK_NAME}\" \"${INSTALL_DIR}\"\n\nlipo -create -output \"${INSTALL_DIR}/${VARS_FRAMEWORK_NAME}/${PROJECT_NAME}\" \"${VARS_LIPO_INPUTS[@]}\"\n\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -337,9 +337,10 @@
 				DEAD_CODE_STRIPPING = NO;
 				ENABLE_BITCODE = YES;
 				MACH_O_TYPE = staticlib;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "macosx iphoneos watchos watchsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator watchos";
 				VALID_ARCHS = "x86_64 arm64 armv7 armv7s armv7k i386";
 			};
 			name = Debug;
@@ -351,9 +352,10 @@
 				DEAD_CODE_STRIPPING = NO;
 				ENABLE_BITCODE = YES;
 				MACH_O_TYPE = staticlib;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "macosx iphoneos watchos watchsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator watchos";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "x86_64 arm64 armv7 armv7s armv7k i386";
 			};
