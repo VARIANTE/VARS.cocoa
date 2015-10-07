@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6BD032F91988CE0500AF9866"
-               BuildableName = "libVARS.a"
+               BlueprintIdentifier = "6B0EEC3F1BBB6C6A0047BFF6"
+               BuildableName = "VARS.framework"
                BlueprintName = "VARS"
                ReferencedContainer = "container:VARS.xcodeproj">
             </BuildableReference>
@@ -28,16 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6BD033091988CE0500AF9866"
-               BuildableName = "VARSTests.xctest"
-               BlueprintName = "VARSTests"
-               ReferencedContainer = "container:VARS.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <AdditionalOptions>
       </AdditionalOptions>
@@ -55,8 +45,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6BD032F91988CE0500AF9866"
-            BuildableName = "libVARS.a"
+            BlueprintIdentifier = "6B0EEC3F1BBB6C6A0047BFF6"
+            BuildableName = "VARS.framework"
             BlueprintName = "VARS"
             ReferencedContainer = "container:VARS.xcodeproj">
          </BuildableReference>
@@ -70,6 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "6B0EEC3F1BBB6C6A0047BFF6"
+            BuildableName = "VARS.framework"
+            BlueprintName = "VARS"
+            ReferencedContainer = "container:VARS.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

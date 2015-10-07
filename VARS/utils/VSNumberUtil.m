@@ -780,7 +780,6 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
 
         case VSNumberSystemTypeBinary:
         {
-            unsigned long output = 0;
             unsigned long strlen = aString.length;
 
             for (unsigned long i = 0; i < strlen; i++)

@@ -7,400 +7,193 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		6B9557CF19E25EF40007D3B8 /* VARS.framework */ = {
+		6B0EEC361BBB5F380047BFF6 /* VARS.framework */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 6B9557D019E25EF40007D3B8 /* Build configuration list for PBXAggregateTarget "VARS.framework" */;
+			buildConfigurationList = 6B0EEC371BBB5F380047BFF6 /* Build configuration list for PBXAggregateTarget "VARS.framework" */;
 			buildPhases = (
-				6B9557D519E25F2E0007D3B8 /* Multi-Platform Build */,
+				6B0EEC3A1BBB60A00047BFF6 /* Multi-Architecture Build Script */,
 			);
 			dependencies = (
-				6B9557D419E25F150007D3B8 /* PBXTargetDependency */,
 			);
 			name = VARS.framework;
-			productName = Framework;
+			productName = VARS;
 		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		6B1CC1F619DB5C2D00079144 /* VSUIViewUpdate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B1CC1F419DB5C2D00079144 /* VSUIViewUpdate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6B1CC1F719DB5C2D00079144 /* VSUIViewUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1CC1F519DB5C2D00079144 /* VSUIViewUpdate.m */; };
-		6B30EFA51B3C30460085903E /* VSDeviceUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B30EFA31B3C30460085903E /* VSDeviceUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6B30EFA61B3C30460085903E /* VSDeviceUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B30EFA41B3C30460085903E /* VSDeviceUtil.m */; };
-		6B7245711A92A36A0002DFC6 /* VSUITableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B72456F1A92A36A0002DFC6 /* VSUITableView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6B7245721A92A36A0002DFC6 /* VSUITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B7245701A92A36A0002DFC6 /* VSUITableView.m */; };
-		6B74723E19E5300D0065970E /* VSUITextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B74723C19E5300D0065970E /* VSUITextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6B74723F19E5300D0065970E /* VSUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B74723D19E5300D0065970E /* VSUITextField.m */; };
-		6B9557CC19E25B3F0007D3B8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BD033231988CE3200AF9866 /* UIKit.framework */; };
-		6B9557E019E28C590007D3B8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B9557D619E25FBE0007D3B8 /* CoreGraphics.framework */; };
-		6B9557E119E28C5A0007D3B8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B9557D619E25FBE0007D3B8 /* CoreGraphics.framework */; };
-		6B9E28BB1AEB214C00645BE4 /* VSUIUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B9E28B91AEB214C00645BE4 /* VSUIUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6B9E28BC1AEB214C00645BE4 /* VSUIUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9E28BA1AEB214C00645BE4 /* VSUIUtil.m */; };
-		6BCA158819BD995F00968347 /* VSViewportUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BCA158619BD995F00968347 /* VSViewportUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BCA158919BD995F00968347 /* VSViewportUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCA158719BD995F00968347 /* VSViewportUtil.m */; };
-		6BCB9E9D1A27E594004D681D /* VSUIControl.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BCB9E9B1A27E594004D681D /* VSUIControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BCB9E9E1A27E594004D681D /* VSUIControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCB9E9C1A27E594004D681D /* VSUIControl.m */; };
-		6BD032FE1988CE0500AF9866 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BD032FD1988CE0500AF9866 /* Foundation.framework */; };
-		6BD0330D1988CE0500AF9866 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BD032FD1988CE0500AF9866 /* Foundation.framework */; };
-		6BD033121988CE0500AF9866 /* libVARS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BD032FA1988CE0500AF9866 /* libVARS.a */; };
-		6BD033181988CE0500AF9866 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6BD033161988CE0500AF9866 /* InfoPlist.strings */; };
-		6BD0331A1988CE0500AF9866 /* VARSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD033191988CE0500AF9866 /* VARSTests.m */; };
-		6BD033241988CE3200AF9866 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BD033231988CE3200AF9866 /* UIKit.framework */; };
-		6BD033261988CE4500AF9866 /* VARS.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD033021988CE0500AF9866 /* VARS.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BD0334E1988CE5D00AF9866 /* vsdebug.c in Sources */ = {isa = PBXBuildFile; fileRef = 6BD033281988CE5D00AF9866 /* vsdebug.c */; };
-		6BD0334F1988CE5D00AF9866 /* vsdebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD033291988CE5D00AF9866 /* vsdebug.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BD033501988CE5D00AF9866 /* vsmath.c in Sources */ = {isa = PBXBuildFile; fileRef = 6BD0332A1988CE5D00AF9866 /* vsmath.c */; };
-		6BD033511988CE5D00AF9866 /* vsmath.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD0332B1988CE5D00AF9866 /* vsmath.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BD033521988CE5D00AF9866 /* vsmem.c in Sources */ = {isa = PBXBuildFile; fileRef = 6BD0332C1988CE5D00AF9866 /* vsmem.c */; };
-		6BD033531988CE5D00AF9866 /* vsmem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD0332D1988CE5D00AF9866 /* vsmem.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BD033541988CE5D00AF9866 /* VSUIDirtyType.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD0332F1988CE5D00AF9866 /* VSUIDirtyType.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BD033551988CE5D00AF9866 /* VSUINotifications.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD033311988CE5D00AF9866 /* VSUINotifications.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BD033581988CE5D00AF9866 /* VSUIButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD033351988CE5D00AF9866 /* VSUIButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BD0335A1988CE5D00AF9866 /* VSUILabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD033371988CE5D00AF9866 /* VSUILabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BD0335B1988CE5D00AF9866 /* VSUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD033381988CE5D00AF9866 /* VSUILabel.m */; };
-		6BD0335C1988CE5D00AF9866 /* VSUIScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD033391988CE5D00AF9866 /* VSUIScrollView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BD0335D1988CE5D00AF9866 /* VSUIScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD0333A1988CE5D00AF9866 /* VSUIScrollView.m */; };
-		6BD0335E1988CE5D00AF9866 /* VSUITextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD0333B1988CE5D00AF9866 /* VSUITextView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BD0335F1988CE5D00AF9866 /* VSUITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD0333C1988CE5D00AF9866 /* VSUITextView.m */; };
-		6BD033601988CE5D00AF9866 /* VSUIView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD0333D1988CE5D00AF9866 /* VSUIView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BD033611988CE5D00AF9866 /* VSUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD0333E1988CE5D00AF9866 /* VSUIView.m */; };
-		6BD033621988CE5D00AF9866 /* VSUIViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD0333F1988CE5D00AF9866 /* VSUIViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BD033631988CE5D00AF9866 /* VSUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD033401988CE5D00AF9866 /* VSUIViewController.m */; };
-		6BD033661988CE5D00AF9866 /* VSColorUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD033441988CE5D00AF9866 /* VSColorUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BD033671988CE5D00AF9866 /* VSColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD033451988CE5D00AF9866 /* VSColorUtil.m */; };
-		6BD033681988CE5D00AF9866 /* VSMathUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD033461988CE5D00AF9866 /* VSMathUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BD033691988CE5D00AF9866 /* VSMathUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD033471988CE5D00AF9866 /* VSMathUtil.m */; };
-		6BD0336A1988CE5D00AF9866 /* VSNumberUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD033481988CE5D00AF9866 /* VSNumberUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BD0336B1988CE5D00AF9866 /* VSNumberUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD033491988CE5D00AF9866 /* VSNumberUtil.m */; };
-		6BD0336C1988CE5D00AF9866 /* VSQuartzUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD0334A1988CE5D00AF9866 /* VSQuartzUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BD0336D1988CE5D00AF9866 /* VSQuartzUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD0334B1988CE5D00AF9866 /* VSQuartzUtil.m */; };
-		6BD0336E1988CE5D00AF9866 /* VSStringUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD0334C1988CE5D00AF9866 /* VSStringUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BD0336F1988CE5D00AF9866 /* VSStringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD0334D1988CE5D00AF9866 /* VSStringUtil.m */; };
-		6BD11FBD1A2820F10077411A /* VSUIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD033361988CE5D00AF9866 /* VSUIButton.m */; };
-		6BDCCFA419E0E59300A86FCA /* VSUIModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BDCCFA219E0E59300A86FCA /* VSUIModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BDCCFA519E0E59300A86FCA /* VSUIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BDCCFA319E0E59300A86FCA /* VSUIModel.m */; };
-		6BE546A01A1365FF009B2CDC /* VSUIDirtyType.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE5469F1A1365FF009B2CDC /* VSUIDirtyType.m */; };
-		6BEB22FA1A04539800E50AC7 /* VSCalculusUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BEB22F81A04539800E50AC7 /* VSCalculusUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BEB22FB1A04539800E50AC7 /* VSCalculusUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEB22F91A04539800E50AC7 /* VSCalculusUtil.m */; };
-		6BFD1EF41B3B547B004D7F54 /* VSStoreKitUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BFD1EF21B3B547B004D7F54 /* VSStoreKitUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BFD1EF51B3B547B004D7F54 /* VSStoreKitUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BFD1EF31B3B547B004D7F54 /* VSStoreKitUtil.m */; };
-		6BFD7BA419EF4AE00065D557 /* VSArrayUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BFD7BA219EF4AE00065D557 /* VSArrayUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BFD7BA519EF4AE00065D557 /* VSArrayUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BFD7BA319EF4AE00065D557 /* VSArrayUtil.m */; };
+		6B0EEC431BBB6C6A0047BFF6 /* VARS.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B0EEC421BBB6C6A0047BFF6 /* VARS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6B0EEC4A1BBB6C6B0047BFF6 /* VARS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B0EEC401BBB6C6A0047BFF6 /* VARS.framework */; settings = {ASSET_TAGS = (); }; };
+		6B0EEC4F1BBB6C6B0047BFF6 /* VARSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0EEC4E1BBB6C6B0047BFF6 /* VARSTests.m */; };
+		6B0EEC691BBB6DAD0047BFF6 /* vsdebug.c in Sources */ = {isa = PBXBuildFile; fileRef = 6B0EEC581BBB6DAD0047BFF6 /* vsdebug.c */; settings = {ASSET_TAGS = (); }; };
+		6B0EEC6A1BBB6DAD0047BFF6 /* vsdebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B0EEC591BBB6DAD0047BFF6 /* vsdebug.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6B0EEC6B1BBB6DAD0047BFF6 /* vsmath.c in Sources */ = {isa = PBXBuildFile; fileRef = 6B0EEC5A1BBB6DAD0047BFF6 /* vsmath.c */; settings = {ASSET_TAGS = (); }; };
+		6B0EEC6C1BBB6DAD0047BFF6 /* vsmath.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B0EEC5B1BBB6DAD0047BFF6 /* vsmath.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6B0EEC6D1BBB6DAD0047BFF6 /* vsmem.c in Sources */ = {isa = PBXBuildFile; fileRef = 6B0EEC5C1BBB6DAD0047BFF6 /* vsmem.c */; settings = {ASSET_TAGS = (); }; };
+		6B0EEC6E1BBB6DAD0047BFF6 /* vsmem.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B0EEC5D1BBB6DAD0047BFF6 /* vsmem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6B0EEC6F1BBB6DAD0047BFF6 /* VSArrayUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B0EEC5F1BBB6DAD0047BFF6 /* VSArrayUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6B0EEC701BBB6DAD0047BFF6 /* VSArrayUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0EEC601BBB6DAD0047BFF6 /* VSArrayUtil.m */; settings = {ASSET_TAGS = (); }; };
+		6B0EEC711BBB6DAD0047BFF6 /* VSCalculusUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B0EEC611BBB6DAD0047BFF6 /* VSCalculusUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6B0EEC721BBB6DAD0047BFF6 /* VSCalculusUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0EEC621BBB6DAD0047BFF6 /* VSCalculusUtil.m */; settings = {ASSET_TAGS = (); }; };
+		6B0EEC731BBB6DAD0047BFF6 /* VSMathUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B0EEC631BBB6DAD0047BFF6 /* VSMathUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6B0EEC741BBB6DAD0047BFF6 /* VSMathUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0EEC641BBB6DAD0047BFF6 /* VSMathUtil.m */; settings = {ASSET_TAGS = (); }; };
+		6B0EEC751BBB6DAD0047BFF6 /* VSNumberUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B0EEC651BBB6DAD0047BFF6 /* VSNumberUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6B0EEC761BBB6DAD0047BFF6 /* VSNumberUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0EEC661BBB6DAD0047BFF6 /* VSNumberUtil.m */; settings = {ASSET_TAGS = (); }; };
+		6B0EEC771BBB6DAD0047BFF6 /* VSStringUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B0EEC671BBB6DAD0047BFF6 /* VSStringUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6B0EEC781BBB6DAD0047BFF6 /* VSStringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0EEC681BBB6DAD0047BFF6 /* VSStringUtil.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		6B9557D319E25F150007D3B8 /* PBXContainerItemProxy */ = {
+		6B0EEC4B1BBB6C6B0047BFF6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 6BD032F21988CE0500AF9866 /* Project object */;
+			containerPortal = 6BF34A871BBA1EEC00CC4088 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 6BD032F91988CE0500AF9866;
-			remoteInfo = VARS;
-		};
-		6BD033101988CE0500AF9866 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6BD032F21988CE0500AF9866 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6BD032F91988CE0500AF9866;
+			remoteGlobalIDString = 6B0EEC3F1BBB6C6A0047BFF6;
 			remoteInfo = VARS;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6B1CC1F419DB5C2D00079144 /* VSUIViewUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSUIViewUpdate.h; sourceTree = "<group>"; };
-		6B1CC1F519DB5C2D00079144 /* VSUIViewUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSUIViewUpdate.m; sourceTree = "<group>"; };
-		6B30EFA31B3C30460085903E /* VSDeviceUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSDeviceUtil.h; sourceTree = "<group>"; };
-		6B30EFA41B3C30460085903E /* VSDeviceUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSDeviceUtil.m; sourceTree = "<group>"; };
-		6B72456F1A92A36A0002DFC6 /* VSUITableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSUITableView.h; sourceTree = "<group>"; };
-		6B7245701A92A36A0002DFC6 /* VSUITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSUITableView.m; sourceTree = "<group>"; };
-		6B74723C19E5300D0065970E /* VSUITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSUITextField.h; sourceTree = "<group>"; };
-		6B74723D19E5300D0065970E /* VSUITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSUITextField.m; sourceTree = "<group>"; };
-		6B9557D619E25FBE0007D3B8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		6B9E28B91AEB214C00645BE4 /* VSUIUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSUIUtil.h; sourceTree = "<group>"; };
-		6B9E28BA1AEB214C00645BE4 /* VSUIUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSUIUtil.m; sourceTree = "<group>"; };
-		6BCA158619BD995F00968347 /* VSViewportUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSViewportUtil.h; sourceTree = "<group>"; };
-		6BCA158719BD995F00968347 /* VSViewportUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSViewportUtil.m; sourceTree = "<group>"; };
-		6BCB9E9B1A27E594004D681D /* VSUIControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSUIControl.h; sourceTree = "<group>"; };
-		6BCB9E9C1A27E594004D681D /* VSUIControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSUIControl.m; sourceTree = "<group>"; };
-		6BD032FA1988CE0500AF9866 /* libVARS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVARS.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		6BD032FD1988CE0500AF9866 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		6BD033011988CE0500AF9866 /* VARS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VARS-Prefix.pch"; sourceTree = "<group>"; };
-		6BD033021988CE0500AF9866 /* VARS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VARS.h; sourceTree = "<group>"; };
-		6BD0330A1988CE0500AF9866 /* VARSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VARSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6BD033151988CE0500AF9866 /* VARSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VARSTests-Info.plist"; sourceTree = "<group>"; };
-		6BD033171988CE0500AF9866 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6BD033191988CE0500AF9866 /* VARSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VARSTests.m; sourceTree = "<group>"; };
-		6BD033231988CE3200AF9866 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		6BD033281988CE5D00AF9866 /* vsdebug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vsdebug.c; sourceTree = "<group>"; };
-		6BD033291988CE5D00AF9866 /* vsdebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vsdebug.h; sourceTree = "<group>"; };
-		6BD0332A1988CE5D00AF9866 /* vsmath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vsmath.c; sourceTree = "<group>"; };
-		6BD0332B1988CE5D00AF9866 /* vsmath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vsmath.h; sourceTree = "<group>"; };
-		6BD0332C1988CE5D00AF9866 /* vsmem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vsmem.c; sourceTree = "<group>"; };
-		6BD0332D1988CE5D00AF9866 /* vsmem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vsmem.h; sourceTree = "<group>"; };
-		6BD0332F1988CE5D00AF9866 /* VSUIDirtyType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSUIDirtyType.h; sourceTree = "<group>"; };
-		6BD033311988CE5D00AF9866 /* VSUINotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSUINotifications.h; sourceTree = "<group>"; };
-		6BD033351988CE5D00AF9866 /* VSUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSUIButton.h; sourceTree = "<group>"; };
-		6BD033361988CE5D00AF9866 /* VSUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSUIButton.m; sourceTree = "<group>"; };
-		6BD033371988CE5D00AF9866 /* VSUILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSUILabel.h; sourceTree = "<group>"; };
-		6BD033381988CE5D00AF9866 /* VSUILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSUILabel.m; sourceTree = "<group>"; };
-		6BD033391988CE5D00AF9866 /* VSUIScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSUIScrollView.h; sourceTree = "<group>"; };
-		6BD0333A1988CE5D00AF9866 /* VSUIScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSUIScrollView.m; sourceTree = "<group>"; };
-		6BD0333B1988CE5D00AF9866 /* VSUITextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSUITextView.h; sourceTree = "<group>"; };
-		6BD0333C1988CE5D00AF9866 /* VSUITextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSUITextView.m; sourceTree = "<group>"; };
-		6BD0333D1988CE5D00AF9866 /* VSUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSUIView.h; sourceTree = "<group>"; };
-		6BD0333E1988CE5D00AF9866 /* VSUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSUIView.m; sourceTree = "<group>"; };
-		6BD0333F1988CE5D00AF9866 /* VSUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSUIViewController.h; sourceTree = "<group>"; };
-		6BD033401988CE5D00AF9866 /* VSUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSUIViewController.m; sourceTree = "<group>"; };
-		6BD033441988CE5D00AF9866 /* VSColorUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSColorUtil.h; sourceTree = "<group>"; };
-		6BD033451988CE5D00AF9866 /* VSColorUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSColorUtil.m; sourceTree = "<group>"; };
-		6BD033461988CE5D00AF9866 /* VSMathUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSMathUtil.h; sourceTree = "<group>"; };
-		6BD033471988CE5D00AF9866 /* VSMathUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSMathUtil.m; sourceTree = "<group>"; };
-		6BD033481988CE5D00AF9866 /* VSNumberUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSNumberUtil.h; sourceTree = "<group>"; };
-		6BD033491988CE5D00AF9866 /* VSNumberUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSNumberUtil.m; sourceTree = "<group>"; };
-		6BD0334A1988CE5D00AF9866 /* VSQuartzUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSQuartzUtil.h; sourceTree = "<group>"; };
-		6BD0334B1988CE5D00AF9866 /* VSQuartzUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSQuartzUtil.m; sourceTree = "<group>"; };
-		6BD0334C1988CE5D00AF9866 /* VSStringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSStringUtil.h; sourceTree = "<group>"; };
-		6BD0334D1988CE5D00AF9866 /* VSStringUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSStringUtil.m; sourceTree = "<group>"; };
-		6BDCCFA219E0E59300A86FCA /* VSUIModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSUIModel.h; sourceTree = "<group>"; };
-		6BDCCFA319E0E59300A86FCA /* VSUIModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSUIModel.m; sourceTree = "<group>"; };
-		6BE5469F1A1365FF009B2CDC /* VSUIDirtyType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSUIDirtyType.m; sourceTree = "<group>"; };
-		6BEB22F81A04539800E50AC7 /* VSCalculusUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCalculusUtil.h; sourceTree = "<group>"; };
-		6BEB22F91A04539800E50AC7 /* VSCalculusUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSCalculusUtil.m; sourceTree = "<group>"; };
-		6BFD1EF21B3B547B004D7F54 /* VSStoreKitUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSStoreKitUtil.h; sourceTree = "<group>"; };
-		6BFD1EF31B3B547B004D7F54 /* VSStoreKitUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSStoreKitUtil.m; sourceTree = "<group>"; };
-		6BFD7BA219EF4AE00065D557 /* VSArrayUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSArrayUtil.h; sourceTree = "<group>"; };
-		6BFD7BA319EF4AE00065D557 /* VSArrayUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSArrayUtil.m; sourceTree = "<group>"; };
+		6B0EEC401BBB6C6A0047BFF6 /* VARS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VARS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B0EEC421BBB6C6A0047BFF6 /* VARS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VARS.h; sourceTree = "<group>"; };
+		6B0EEC441BBB6C6A0047BFF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6B0EEC491BBB6C6A0047BFF6 /* VARSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VARSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B0EEC4E1BBB6C6B0047BFF6 /* VARSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VARSTests.m; sourceTree = "<group>"; };
+		6B0EEC501BBB6C6B0047BFF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6B0EEC581BBB6DAD0047BFF6 /* vsdebug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vsdebug.c; sourceTree = "<group>"; };
+		6B0EEC591BBB6DAD0047BFF6 /* vsdebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vsdebug.h; sourceTree = "<group>"; };
+		6B0EEC5A1BBB6DAD0047BFF6 /* vsmath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vsmath.c; sourceTree = "<group>"; };
+		6B0EEC5B1BBB6DAD0047BFF6 /* vsmath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vsmath.h; sourceTree = "<group>"; };
+		6B0EEC5C1BBB6DAD0047BFF6 /* vsmem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vsmem.c; sourceTree = "<group>"; };
+		6B0EEC5D1BBB6DAD0047BFF6 /* vsmem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vsmem.h; sourceTree = "<group>"; };
+		6B0EEC5F1BBB6DAD0047BFF6 /* VSArrayUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSArrayUtil.h; sourceTree = "<group>"; };
+		6B0EEC601BBB6DAD0047BFF6 /* VSArrayUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSArrayUtil.m; sourceTree = "<group>"; };
+		6B0EEC611BBB6DAD0047BFF6 /* VSCalculusUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSCalculusUtil.h; sourceTree = "<group>"; };
+		6B0EEC621BBB6DAD0047BFF6 /* VSCalculusUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSCalculusUtil.m; sourceTree = "<group>"; };
+		6B0EEC631BBB6DAD0047BFF6 /* VSMathUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSMathUtil.h; sourceTree = "<group>"; };
+		6B0EEC641BBB6DAD0047BFF6 /* VSMathUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSMathUtil.m; sourceTree = "<group>"; };
+		6B0EEC651BBB6DAD0047BFF6 /* VSNumberUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSNumberUtil.h; sourceTree = "<group>"; };
+		6B0EEC661BBB6DAD0047BFF6 /* VSNumberUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSNumberUtil.m; sourceTree = "<group>"; };
+		6B0EEC671BBB6DAD0047BFF6 /* VSStringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSStringUtil.h; sourceTree = "<group>"; };
+		6B0EEC681BBB6DAD0047BFF6 /* VSStringUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSStringUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		6BD032F71988CE0500AF9866 /* Frameworks */ = {
+		6B0EEC3C1BBB6C6A0047BFF6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B9557E119E28C5A0007D3B8 /* CoreGraphics.framework in Frameworks */,
-				6BD032FE1988CE0500AF9866 /* Foundation.framework in Frameworks */,
-				6BD033241988CE3200AF9866 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6BD033071988CE0500AF9866 /* Frameworks */ = {
+		6B0EEC461BBB6C6A0047BFF6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6BD0330D1988CE0500AF9866 /* Foundation.framework in Frameworks */,
-				6B9557CC19E25B3F0007D3B8 /* UIKit.framework in Frameworks */,
-				6BD033121988CE0500AF9866 /* libVARS.a in Frameworks */,
-				6B9557E019E28C590007D3B8 /* CoreGraphics.framework in Frameworks */,
+				6B0EEC4A1BBB6C6B0047BFF6 /* VARS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6BD032F11988CE0500AF9866 = {
+		6B0EEC411BBB6C6A0047BFF6 /* VARS */ = {
 			isa = PBXGroup;
 			children = (
-				6BD032FF1988CE0500AF9866 /* VARS */,
-				6BD033131988CE0500AF9866 /* VARSTests */,
-				6BD032FC1988CE0500AF9866 /* Frameworks */,
-				6BD032FB1988CE0500AF9866 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		6BD032FB1988CE0500AF9866 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				6BD032FA1988CE0500AF9866 /* libVARS.a */,
-				6BD0330A1988CE0500AF9866 /* VARSTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		6BD032FC1988CE0500AF9866 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				6B9557D619E25FBE0007D3B8 /* CoreGraphics.framework */,
-				6BD033231988CE3200AF9866 /* UIKit.framework */,
-				6BD032FD1988CE0500AF9866 /* Foundation.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		6BD032FF1988CE0500AF9866 /* VARS */ = {
-			isa = PBXGroup;
-			children = (
-				6BD033271988CE5D00AF9866 /* core */,
-				6BD0332E1988CE5D00AF9866 /* enums */,
-				6BD033301988CE5D00AF9866 /* notifications */,
-				6BD033321988CE5D00AF9866 /* ui */,
-				6BD033431988CE5D00AF9866 /* utils */,
-				6BD033021988CE0500AF9866 /* VARS.h */,
-				6BD033001988CE0500AF9866 /* Supporting Files */,
+				6B0EEC571BBB6DAD0047BFF6 /* core */,
+				6B0EEC5E1BBB6DAD0047BFF6 /* utils */,
+				6B0EEC421BBB6C6A0047BFF6 /* VARS.h */,
+				6B0EEC441BBB6C6A0047BFF6 /* Info.plist */,
 			);
 			path = VARS;
 			sourceTree = "<group>";
 		};
-		6BD033001988CE0500AF9866 /* Supporting Files */ = {
+		6B0EEC4D1BBB6C6B0047BFF6 /* VARSTests */ = {
 			isa = PBXGroup;
 			children = (
-				6BD033011988CE0500AF9866 /* VARS-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		6BD033131988CE0500AF9866 /* VARSTests */ = {
-			isa = PBXGroup;
-			children = (
-				6BD033191988CE0500AF9866 /* VARSTests.m */,
-				6BD033141988CE0500AF9866 /* Supporting Files */,
+				6B0EEC4E1BBB6C6B0047BFF6 /* VARSTests.m */,
+				6B0EEC501BBB6C6B0047BFF6 /* Info.plist */,
 			);
 			path = VARSTests;
 			sourceTree = "<group>";
 		};
-		6BD033141988CE0500AF9866 /* Supporting Files */ = {
+		6B0EEC571BBB6DAD0047BFF6 /* core */ = {
 			isa = PBXGroup;
 			children = (
-				6BD033151988CE0500AF9866 /* VARSTests-Info.plist */,
-				6BD033161988CE0500AF9866 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		6BD033271988CE5D00AF9866 /* core */ = {
-			isa = PBXGroup;
-			children = (
-				6BD033281988CE5D00AF9866 /* vsdebug.c */,
-				6BD033291988CE5D00AF9866 /* vsdebug.h */,
-				6BD0332A1988CE5D00AF9866 /* vsmath.c */,
-				6BD0332B1988CE5D00AF9866 /* vsmath.h */,
-				6BD0332C1988CE5D00AF9866 /* vsmem.c */,
-				6BD0332D1988CE5D00AF9866 /* vsmem.h */,
+				6B0EEC581BBB6DAD0047BFF6 /* vsdebug.c */,
+				6B0EEC591BBB6DAD0047BFF6 /* vsdebug.h */,
+				6B0EEC5A1BBB6DAD0047BFF6 /* vsmath.c */,
+				6B0EEC5B1BBB6DAD0047BFF6 /* vsmath.h */,
+				6B0EEC5C1BBB6DAD0047BFF6 /* vsmem.c */,
+				6B0EEC5D1BBB6DAD0047BFF6 /* vsmem.h */,
 			);
 			path = core;
 			sourceTree = "<group>";
 		};
-		6BD0332E1988CE5D00AF9866 /* enums */ = {
+		6B0EEC5E1BBB6DAD0047BFF6 /* utils */ = {
 			isa = PBXGroup;
 			children = (
-				6BD0332F1988CE5D00AF9866 /* VSUIDirtyType.h */,
-				6BE5469F1A1365FF009B2CDC /* VSUIDirtyType.m */,
-			);
-			path = enums;
-			sourceTree = "<group>";
-		};
-		6BD033301988CE5D00AF9866 /* notifications */ = {
-			isa = PBXGroup;
-			children = (
-				6BD033311988CE5D00AF9866 /* VSUINotifications.h */,
-			);
-			path = notifications;
-			sourceTree = "<group>";
-		};
-		6BD033321988CE5D00AF9866 /* ui */ = {
-			isa = PBXGroup;
-			children = (
-				6BD033351988CE5D00AF9866 /* VSUIButton.h */,
-				6BD033361988CE5D00AF9866 /* VSUIButton.m */,
-				6BCB9E9B1A27E594004D681D /* VSUIControl.h */,
-				6BCB9E9C1A27E594004D681D /* VSUIControl.m */,
-				6BD033371988CE5D00AF9866 /* VSUILabel.h */,
-				6BD033381988CE5D00AF9866 /* VSUILabel.m */,
-				6BD033391988CE5D00AF9866 /* VSUIScrollView.h */,
-				6BD0333A1988CE5D00AF9866 /* VSUIScrollView.m */,
-				6BD0333B1988CE5D00AF9866 /* VSUITextView.h */,
-				6BD0333C1988CE5D00AF9866 /* VSUITextView.m */,
-				6BD0333D1988CE5D00AF9866 /* VSUIView.h */,
-				6BD0333E1988CE5D00AF9866 /* VSUIView.m */,
-				6BD0333F1988CE5D00AF9866 /* VSUIViewController.h */,
-				6BD033401988CE5D00AF9866 /* VSUIViewController.m */,
-				6B1CC1F419DB5C2D00079144 /* VSUIViewUpdate.h */,
-				6B1CC1F519DB5C2D00079144 /* VSUIViewUpdate.m */,
-				6BDCCFA219E0E59300A86FCA /* VSUIModel.h */,
-				6BDCCFA319E0E59300A86FCA /* VSUIModel.m */,
-				6B74723C19E5300D0065970E /* VSUITextField.h */,
-				6B74723D19E5300D0065970E /* VSUITextField.m */,
-				6B72456F1A92A36A0002DFC6 /* VSUITableView.h */,
-				6B7245701A92A36A0002DFC6 /* VSUITableView.m */,
-			);
-			path = ui;
-			sourceTree = "<group>";
-		};
-		6BD033431988CE5D00AF9866 /* utils */ = {
-			isa = PBXGroup;
-			children = (
-				6BEB22F81A04539800E50AC7 /* VSCalculusUtil.h */,
-				6BEB22F91A04539800E50AC7 /* VSCalculusUtil.m */,
-				6BD033441988CE5D00AF9866 /* VSColorUtil.h */,
-				6BD033451988CE5D00AF9866 /* VSColorUtil.m */,
-				6BD033461988CE5D00AF9866 /* VSMathUtil.h */,
-				6BD033471988CE5D00AF9866 /* VSMathUtil.m */,
-				6BD033481988CE5D00AF9866 /* VSNumberUtil.h */,
-				6BD033491988CE5D00AF9866 /* VSNumberUtil.m */,
-				6BD0334A1988CE5D00AF9866 /* VSQuartzUtil.h */,
-				6BD0334B1988CE5D00AF9866 /* VSQuartzUtil.m */,
-				6BD0334C1988CE5D00AF9866 /* VSStringUtil.h */,
-				6BD0334D1988CE5D00AF9866 /* VSStringUtil.m */,
-				6BCA158619BD995F00968347 /* VSViewportUtil.h */,
-				6BCA158719BD995F00968347 /* VSViewportUtil.m */,
-				6BFD7BA219EF4AE00065D557 /* VSArrayUtil.h */,
-				6BFD7BA319EF4AE00065D557 /* VSArrayUtil.m */,
-				6B9E28B91AEB214C00645BE4 /* VSUIUtil.h */,
-				6B9E28BA1AEB214C00645BE4 /* VSUIUtil.m */,
-				6BFD1EF21B3B547B004D7F54 /* VSStoreKitUtil.h */,
-				6BFD1EF31B3B547B004D7F54 /* VSStoreKitUtil.m */,
-				6B30EFA31B3C30460085903E /* VSDeviceUtil.h */,
-				6B30EFA41B3C30460085903E /* VSDeviceUtil.m */,
+				6B0EEC5F1BBB6DAD0047BFF6 /* VSArrayUtil.h */,
+				6B0EEC601BBB6DAD0047BFF6 /* VSArrayUtil.m */,
+				6B0EEC611BBB6DAD0047BFF6 /* VSCalculusUtil.h */,
+				6B0EEC621BBB6DAD0047BFF6 /* VSCalculusUtil.m */,
+				6B0EEC631BBB6DAD0047BFF6 /* VSMathUtil.h */,
+				6B0EEC641BBB6DAD0047BFF6 /* VSMathUtil.m */,
+				6B0EEC651BBB6DAD0047BFF6 /* VSNumberUtil.h */,
+				6B0EEC661BBB6DAD0047BFF6 /* VSNumberUtil.m */,
+				6B0EEC671BBB6DAD0047BFF6 /* VSStringUtil.h */,
+				6B0EEC681BBB6DAD0047BFF6 /* VSStringUtil.m */,
 			);
 			path = utils;
+			sourceTree = "<group>";
+		};
+		6BF34A861BBA1EEC00CC4088 = {
+			isa = PBXGroup;
+			children = (
+				6B0EEC411BBB6C6A0047BFF6 /* VARS */,
+				6B0EEC4D1BBB6C6B0047BFF6 /* VARSTests */,
+				6BF34A911BBA1EEC00CC4088 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6BF34A911BBA1EEC00CC4088 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6B0EEC401BBB6C6A0047BFF6 /* VARS.framework */,
+				6B0EEC491BBB6C6A0047BFF6 /* VARSTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		6BD033251988CE3C00AF9866 /* Headers */ = {
+		6B0EEC3D1BBB6C6A0047BFF6 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6BD0336E1988CE5D00AF9866 /* VSStringUtil.h in Headers */,
-				6BD033541988CE5D00AF9866 /* VSUIDirtyType.h in Headers */,
-				6BD033511988CE5D00AF9866 /* vsmath.h in Headers */,
-				6BD0336A1988CE5D00AF9866 /* VSNumberUtil.h in Headers */,
-				6BD0335E1988CE5D00AF9866 /* VSUITextView.h in Headers */,
-				6BD033531988CE5D00AF9866 /* vsmem.h in Headers */,
-				6BD0336C1988CE5D00AF9866 /* VSQuartzUtil.h in Headers */,
-				6BD033581988CE5D00AF9866 /* VSUIButton.h in Headers */,
-				6BD033261988CE4500AF9866 /* VARS.h in Headers */,
-				6BD0335C1988CE5D00AF9866 /* VSUIScrollView.h in Headers */,
-				6BD033661988CE5D00AF9866 /* VSColorUtil.h in Headers */,
-				6BD033681988CE5D00AF9866 /* VSMathUtil.h in Headers */,
-				6BD033621988CE5D00AF9866 /* VSUIViewController.h in Headers */,
-				6BD033551988CE5D00AF9866 /* VSUINotifications.h in Headers */,
-				6BD0334F1988CE5D00AF9866 /* vsdebug.h in Headers */,
-				6BD033601988CE5D00AF9866 /* VSUIView.h in Headers */,
-				6BCA158819BD995F00968347 /* VSViewportUtil.h in Headers */,
-				6B30EFA51B3C30460085903E /* VSDeviceUtil.h in Headers */,
-				6B1CC1F619DB5C2D00079144 /* VSUIViewUpdate.h in Headers */,
-				6BDCCFA419E0E59300A86FCA /* VSUIModel.h in Headers */,
-				6B74723E19E5300D0065970E /* VSUITextField.h in Headers */,
-				6BFD7BA419EF4AE00065D557 /* VSArrayUtil.h in Headers */,
-				6BEB22FA1A04539800E50AC7 /* VSCalculusUtil.h in Headers */,
-				6B7245711A92A36A0002DFC6 /* VSUITableView.h in Headers */,
-				6B9E28BB1AEB214C00645BE4 /* VSUIUtil.h in Headers */,
-				6BCB9E9D1A27E594004D681D /* VSUIControl.h in Headers */,
-				6BFD1EF41B3B547B004D7F54 /* VSStoreKitUtil.h in Headers */,
-				6BD0335A1988CE5D00AF9866 /* VSUILabel.h in Headers */,
+				6B0EEC6C1BBB6DAD0047BFF6 /* vsmath.h in Headers */,
+				6B0EEC6E1BBB6DAD0047BFF6 /* vsmem.h in Headers */,
+				6B0EEC431BBB6C6A0047BFF6 /* VARS.h in Headers */,
+				6B0EEC771BBB6DAD0047BFF6 /* VSStringUtil.h in Headers */,
+				6B0EEC711BBB6DAD0047BFF6 /* VSCalculusUtil.h in Headers */,
+				6B0EEC751BBB6DAD0047BFF6 /* VSNumberUtil.h in Headers */,
+				6B0EEC731BBB6DAD0047BFF6 /* VSMathUtil.h in Headers */,
+				6B0EEC6F1BBB6DAD0047BFF6 /* VSArrayUtil.h in Headers */,
+				6B0EEC6A1BBB6DAD0047BFF6 /* vsdebug.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		6BD032F91988CE0500AF9866 /* VARS */ = {
+		6B0EEC3F1BBB6C6A0047BFF6 /* VARS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6BD0331D1988CE0500AF9866 /* Build configuration list for PBXNativeTarget "VARS" */;
+			buildConfigurationList = 6B0EEC511BBB6C6B0047BFF6 /* Build configuration list for PBXNativeTarget "VARS" */;
 			buildPhases = (
-				6BD032F61988CE0500AF9866 /* Sources */,
-				6BD032F71988CE0500AF9866 /* Frameworks */,
-				6BD033251988CE3C00AF9866 /* Headers */,
-				6B9557CE19E25D160007D3B8 /* Build Framework */,
+				6B0EEC3B1BBB6C6A0047BFF6 /* Sources */,
+				6B0EEC3C1BBB6C6A0047BFF6 /* Frameworks */,
+				6B0EEC3D1BBB6C6A0047BFF6 /* Headers */,
+				6B0EEC3E1BBB6C6A0047BFF6 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -408,186 +201,251 @@
 			);
 			name = VARS;
 			productName = VARS;
-			productReference = 6BD032FA1988CE0500AF9866 /* libVARS.a */;
-			productType = "com.apple.product-type.library.static";
+			productReference = 6B0EEC401BBB6C6A0047BFF6 /* VARS.framework */;
+			productType = "com.apple.product-type.framework";
 		};
-		6BD033091988CE0500AF9866 /* VARSTests */ = {
+		6B0EEC481BBB6C6A0047BFF6 /* VARSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6BD033201988CE0500AF9866 /* Build configuration list for PBXNativeTarget "VARSTests" */;
+			buildConfigurationList = 6B0EEC541BBB6C6B0047BFF6 /* Build configuration list for PBXNativeTarget "VARSTests" */;
 			buildPhases = (
-				6BD033061988CE0500AF9866 /* Sources */,
-				6BD033071988CE0500AF9866 /* Frameworks */,
-				6BD033081988CE0500AF9866 /* Resources */,
+				6B0EEC451BBB6C6A0047BFF6 /* Sources */,
+				6B0EEC461BBB6C6A0047BFF6 /* Frameworks */,
+				6B0EEC471BBB6C6A0047BFF6 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				6BD033111988CE0500AF9866 /* PBXTargetDependency */,
+				6B0EEC4C1BBB6C6B0047BFF6 /* PBXTargetDependency */,
 			);
 			name = VARSTests;
 			productName = VARSTests;
-			productReference = 6BD0330A1988CE0500AF9866 /* VARSTests.xctest */;
+			productReference = 6B0EEC491BBB6C6A0047BFF6 /* VARSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		6BD032F21988CE0500AF9866 /* Project object */ = {
+		6BF34A871BBA1EEC00CC4088 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = VARIANTE;
 				TargetAttributes = {
-					6B9557CF19E25EF40007D3B8 = {
-						CreatedOnToolsVersion = 6.0;
+					6B0EEC361BBB5F380047BFF6 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					6B0EEC3F1BBB6C6A0047BFF6 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					6B0EEC481BBB6C6A0047BFF6 = {
+						CreatedOnToolsVersion = 7.0;
 					};
 				};
 			};
-			buildConfigurationList = 6BD032F51988CE0500AF9866 /* Build configuration list for PBXProject "VARS" */;
+			buildConfigurationList = 6BF34A8A1BBA1EEC00CC4088 /* Build configuration list for PBXProject "VARS" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 6BD032F11988CE0500AF9866;
-			productRefGroup = 6BD032FB1988CE0500AF9866 /* Products */;
+			mainGroup = 6BF34A861BBA1EEC00CC4088;
+			productRefGroup = 6BF34A911BBA1EEC00CC4088 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6BD032F91988CE0500AF9866 /* VARS */,
-				6BD033091988CE0500AF9866 /* VARSTests */,
-				6B9557CF19E25EF40007D3B8 /* VARS.framework */,
+				6B0EEC3F1BBB6C6A0047BFF6 /* VARS */,
+				6B0EEC481BBB6C6A0047BFF6 /* VARSTests */,
+				6B0EEC361BBB5F380047BFF6 /* VARS.framework */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		6BD033081988CE0500AF9866 /* Resources */ = {
+		6B0EEC3E1BBB6C6A0047BFF6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6BD033181988CE0500AF9866 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6B0EEC471BBB6C6A0047BFF6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6B9557CE19E25D160007D3B8 /* Build Framework */ = {
+		6B0EEC3A1BBB60A00047BFF6 /* Multi-Architecture Build Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Build Framework";
+			name = "Multi-Architecture Build Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n\nexport FRAMEWORK_LOCN=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework\"\n\n# Create the path to the real Headers die\nmkdir -p \"${FRAMEWORK_LOCN}/Versions/A/Headers\"\n\n# Create the required symlinks\n/bin/ln -sfh A \"${FRAMEWORK_LOCN}/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${FRAMEWORK_LOCN}/Headers\"\n/bin/ln -sfh \"Versions/Current/${PRODUCT_NAME}\" \\\n\"${FRAMEWORK_LOCN}/${PRODUCT_NAME}\"\n\n# Copy the public headers into the framework\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \\\n\"${FRAMEWORK_LOCN}/Versions/A/Headers\"";
-		};
-		6B9557D519E25F2E0007D3B8 /* Multi-Platform Build */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Multi-Platform Build";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -e\n\n# If we're already inside this script then die\nif [ -n \"$VARS_MULTIPLATFORM_BUILD_IN_PROGRESS\" ]; then\nexit 0\nfi\nexport VARS_MULTIPLATFORM_BUILD_IN_PROGRESS=1\n\nVARS_FRAMEWORK_NAME=${PROJECT_NAME}\nVARS_INPUT_STATIC_LIB=\"lib${PROJECT_NAME}.a\"\nVARS_FRAMEWORK_LOCATION=\"${BUILT_PRODUCTS_DIR}/${VARS_FRAMEWORK_NAME}.framework\"\n\nfunction build_static_library {\n    # Will rebuild the static library as specified\n    #     build_static_library sdk\n    xcrun xcodebuild -project \"${PROJECT_FILE_PATH}\" \\\n    -target \"${TARGET_NAME}\" \\\n    -configuration \"${CONFIGURATION}\" \\\n    -sdk \"${1}\" \\\n    ONLY_ACTIVE_ARCH=NO \\\n    BUILD_DIR=\"${BUILD_DIR}\" \\\n    OBJROOT=\"${OBJROOT}\" \\\n    BUILD_ROOT=\"${BUILD_ROOT}\" \\\n    SYMROOT=\"${SYMROOT}\" $ACTION\n}\n\nfunction make_fat_library {\n    # Will smash 2 static libs together\n    #     make_fat_library in1 in2 out\n    xcrun lipo -create \"${1}\" \"${2}\" -output \"${3}\"\n}\n\n# 1 - Extract the platform (iphoneos/iphonesimulator) from the SDK name\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]; then\nVARS_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\n# 2 - Extract the version from the SDK\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]; then\nVARS_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\n# 3 - Determine the other platform\nif [ \"$VARS_SDK_PLATFORM\" == \"iphoneos\" ]; then\nVARS_OTHER_PLATFORM=iphonesimulator\nelse\nVARS_OTHER_PLATFORM=iphoneos\nfi\n\n# 4 - Find the build directory\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$VARS_SDK_PLATFORM$ ]]; then\nVARS_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${VARS_OTHER_PLATFORM}\"\nelse\necho \"Could not find other platform build directory.\"\nexit 1\nfi\n\n# Build the other platform.\nbuild_static_library \"${VARS_OTHER_PLATFORM}${VARS_SDK_VERSION}\"\n\n# If we're currently building for iphonesimulator, then need to rebuild\n#   to ensure that we get both i386 and x86_64\nif [ \"$VARS_SDK_PLATFORM\" == \"iphonesimulator\" ]; then\nbuild_static_library \"${SDK_NAME}\"\nfi\n\n# Join the 2 static libs into 1 and push into the .framework\nmake_fat_library \"${BUILT_PRODUCTS_DIR}/${VARS_INPUT_STATIC_LIB}\" \\\n\"${VARS_OTHER_BUILT_PRODUCTS_DIR}/${VARS_INPUT_STATIC_LIB}\" \\\n\"${VARS_FRAMEWORK_LOCATION}/Versions/A/${VARS_FRAMEWORK_NAME}\"\n\n# Ensure that the framework is present in both platform's build directories\ncp -a \"${VARS_FRAMEWORK_LOCATION}/Versions/A/${VARS_FRAMEWORK_NAME}\" \\\n\"${VARS_OTHER_BUILT_PRODUCTS_DIR}/${VARS_FRAMEWORK_NAME}.framework/Versions/A/${VARS_FRAMEWORK_NAME}\"\n\n# Copy the framework to the user's desktop\nditto \"${VARS_FRAMEWORK_LOCATION}\" \"${SRCROOT}/${VARS_FRAMEWORK_NAME}.framework\"";
+			shellScript = "set -e\n\n# Kill current session if a prior session is still running.\nif [ -n \"$VARS_MULTIPLATFORM_BUILD_IN_PROGRESS\" ]; then\nexit 0\nfi\n\n# Set environment variable to mark this session in progress.\nexport VARS_MULTIPLATFORM_BUILD_IN_PROGRESS=1\n\nVARS_FRAMEWORK_NAME=\"${PROJECT_NAME}.framework\"\nVARS_LIPO_INPUTS=()\n\n# Builds the static library using the specified SDK.\n# @param sdk  The SDK used (i.e. macosx, iphoneos, iphonesimulator, watchos, watchsimulator)\nfunction build_static_library {\n    xcodebuild \\\n    -target \"${PROJECT_NAME}\" \\\n    -configuration \"${CONFIGURATION}\" \\\n    -sdk \"${1}\" \\\n    ONLY_ACTIVE_ARCH=NO \\\n    BUILD_DIR=\"${BUILD_DIR}\" \\\n    BUILD_ROOT=\"${BUILD_ROOT}\" \\\n    clean build\n\n    if [ \"${1}\" == \"macosx\" ]; then\n    VARS_LIPO_INPUTS+=(\"${BUILD_DIR}/${CONFIGURATION}/${VARS_FRAMEWORK_NAME}/${PROJECT_NAME}\")\n    else\n    VARS_LIPO_INPUTS+=(\"${BUILD_DIR}/${CONFIGURATION}-${1}/${VARS_FRAMEWORK_NAME}/${PROJECT_NAME}\")\n    fi\n}\n\nfor platform in ${SUPPORTED_PLATFORMS}\ndo\nbuild_static_library \"$platform\"\ndone\n\nrm -rf \"${INSTALL_DIR}/${VARS_FRAMEWORK_NAME}\"\ncp -a \"${BUILD_DIR}/${CONFIGURATION}/${VARS_FRAMEWORK_NAME}\" \"${INSTALL_DIR}\"\n\nlipo -create -output \"${INSTALL_DIR}/${VARS_FRAMEWORK_NAME}/Versions/A/${PROJECT_NAME}\" \"${VARS_LIPO_INPUTS[@]}\"\n\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6BD032F61988CE0500AF9866 /* Sources */ = {
+		6B0EEC3B1BBB6C6A0047BFF6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6BD11FBD1A2820F10077411A /* VSUIButton.m in Sources */,
-				6BD0335F1988CE5D00AF9866 /* VSUITextView.m in Sources */,
-				6B30EFA61B3C30460085903E /* VSDeviceUtil.m in Sources */,
-				6B9E28BC1AEB214C00645BE4 /* VSUIUtil.m in Sources */,
-				6BFD1EF51B3B547B004D7F54 /* VSStoreKitUtil.m in Sources */,
-				6BCA158919BD995F00968347 /* VSViewportUtil.m in Sources */,
-				6BD0336B1988CE5D00AF9866 /* VSNumberUtil.m in Sources */,
-				6BD033631988CE5D00AF9866 /* VSUIViewController.m in Sources */,
-				6BFD7BA519EF4AE00065D557 /* VSArrayUtil.m in Sources */,
-				6BD0335D1988CE5D00AF9866 /* VSUIScrollView.m in Sources */,
-				6BD033521988CE5D00AF9866 /* vsmem.c in Sources */,
-				6B74723F19E5300D0065970E /* VSUITextField.m in Sources */,
-				6B1CC1F719DB5C2D00079144 /* VSUIViewUpdate.m in Sources */,
-				6BD0336D1988CE5D00AF9866 /* VSQuartzUtil.m in Sources */,
-				6BEB22FB1A04539800E50AC7 /* VSCalculusUtil.m in Sources */,
-				6BD033691988CE5D00AF9866 /* VSMathUtil.m in Sources */,
-				6BD033501988CE5D00AF9866 /* vsmath.c in Sources */,
-				6BDCCFA519E0E59300A86FCA /* VSUIModel.m in Sources */,
-				6BE546A01A1365FF009B2CDC /* VSUIDirtyType.m in Sources */,
-				6B7245721A92A36A0002DFC6 /* VSUITableView.m in Sources */,
-				6BD0336F1988CE5D00AF9866 /* VSStringUtil.m in Sources */,
-				6BD0334E1988CE5D00AF9866 /* vsdebug.c in Sources */,
-				6BD033671988CE5D00AF9866 /* VSColorUtil.m in Sources */,
-				6BD0335B1988CE5D00AF9866 /* VSUILabel.m in Sources */,
-				6BCB9E9E1A27E594004D681D /* VSUIControl.m in Sources */,
-				6BD033611988CE5D00AF9866 /* VSUIView.m in Sources */,
+				6B0EEC721BBB6DAD0047BFF6 /* VSCalculusUtil.m in Sources */,
+				6B0EEC6D1BBB6DAD0047BFF6 /* vsmem.c in Sources */,
+				6B0EEC6B1BBB6DAD0047BFF6 /* vsmath.c in Sources */,
+				6B0EEC701BBB6DAD0047BFF6 /* VSArrayUtil.m in Sources */,
+				6B0EEC741BBB6DAD0047BFF6 /* VSMathUtil.m in Sources */,
+				6B0EEC691BBB6DAD0047BFF6 /* vsdebug.c in Sources */,
+				6B0EEC761BBB6DAD0047BFF6 /* VSNumberUtil.m in Sources */,
+				6B0EEC781BBB6DAD0047BFF6 /* VSStringUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6BD033061988CE0500AF9866 /* Sources */ = {
+		6B0EEC451BBB6C6A0047BFF6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6BD0331A1988CE0500AF9866 /* VARSTests.m in Sources */,
+				6B0EEC4F1BBB6C6B0047BFF6 /* VARSTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		6B9557D419E25F150007D3B8 /* PBXTargetDependency */ = {
+		6B0EEC4C1BBB6C6B0047BFF6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6BD032F91988CE0500AF9866 /* VARS */;
-			targetProxy = 6B9557D319E25F150007D3B8 /* PBXContainerItemProxy */;
-		};
-		6BD033111988CE0500AF9866 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6BD032F91988CE0500AF9866 /* VARS */;
-			targetProxy = 6BD033101988CE0500AF9866 /* PBXContainerItemProxy */;
+			target = 6B0EEC3F1BBB6C6A0047BFF6 /* VARS */;
+			targetProxy = 6B0EEC4B1BBB6C6B0047BFF6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		6BD033161988CE0500AF9866 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6BD033171988CE0500AF9866 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		6B9557D119E25EF40007D3B8 /* Debug */ = {
+		6B0EEC381BBB5F380047BFF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application: VARIANTE Studios Inc. (FBA3ZNAVY6)";
+				DEAD_CODE_STRIPPING = NO;
+				ENABLE_BITCODE = YES;
+				MACH_O_TYPE = staticlib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "macosx iphoneos watchos watchsimulator";
+				VALID_ARCHS = "x86_64 arm64 armv7 armv7s armv7k i386";
 			};
 			name = Debug;
 		};
-		6B9557D219E25EF40007D3B8 /* Release */ = {
+		6B0EEC391BBB5F380047BFF6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application: VARIANTE Studios Inc. (FBA3ZNAVY6)";
+				DEAD_CODE_STRIPPING = NO;
+				ENABLE_BITCODE = YES;
+				MACH_O_TYPE = staticlib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "macosx iphoneos watchos watchsimulator";
+				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "x86_64 arm64 armv7 armv7s armv7k i386";
 			};
 			name = Release;
 		};
-		6BD0331B1988CE0500AF9866 /* Debug */ = {
+		6B0EEC521BBB6C6B0047BFF6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEAD_CODE_STRIPPING = NO;
+				DEFINES_MODULE = YES;
+				DEPLOYMENT_LOCATION = NO;
+				DEPLOYMENT_POSTPROCESSING = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = YES;
+				INFOPLIST_FILE = VARS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = io.variante.VARS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator watchos watchsimulator";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "x86_64 arm64 armv7 armv7s armv7k i386";
+			};
+			name = Debug;
+		};
+		6B0EEC531BBB6C6B0047BFF6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEAD_CODE_STRIPPING = NO;
+				DEFINES_MODULE = YES;
+				DEPLOYMENT_LOCATION = NO;
+				DEPLOYMENT_POSTPROCESSING = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = YES;
+				INFOPLIST_FILE = VARS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = io.variante.VARS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator watchos watchsimulator";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "x86_64 arm64 armv7 armv7s armv7k i386";
+			};
+			name = Release;
+		};
+		6B0EEC551BBB6C6B0047BFF6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = VARSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.variante.VARSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator watchos watchsimulator";
+				VALID_ARCHS = "x86_64 arm64 armv7 armv7s armv7k i386";
+			};
+			name = Debug;
+		};
+		6B0EEC561BBB6C6B0047BFF6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = VARSTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.variante.VARSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator watchos watchsimulator";
+				VALID_ARCHS = "x86_64 arm64 armv7 armv7s armv7k i386";
+			};
+			name = Release;
+		};
+		6BF34AA21BBA1EED00CC4088 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -602,30 +460,47 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Developer ID Application: VARIANTE Studios Inc. (FBA3ZNAVY6)";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DSTROOT = /;
+				ENABLE_BITCODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				INSTALL_PATH = /Library/Frameworks;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = "";
+				SKIP_INSTALL = NO;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator watchos watchsimulator";
+				VALID_ARCHS = "x86_64 arm64 armv7 armv7s armv7k i386";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
-		6BD0331C1988CE0500AF9866 /* Release */ = {
+		6BF34AA31BBA1EED00CC4088 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -640,138 +515,82 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
+				CODE_SIGN_IDENTITY = "Developer ID Application: VARIANTE Studios Inc. (FBA3ZNAVY6)";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DSTROOT = /;
+				ENABLE_BITCODE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				SDKROOT = iphoneos;
+				INSTALL_PATH = /Library/Frameworks;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = "";
+				SKIP_INSTALL = NO;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator watchos watchsimulator";
 				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		6BD0331E1988CE0500AF9866 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEAD_CODE_STRIPPING = NO;
-				DSTROOT = /tmp/VARS.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "VARS/VARS-Prefix.pch";
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)";
-				SKIP_INSTALL = YES;
-				STRIP_STYLE = "non-global";
-			};
-			name = Debug;
-		};
-		6BD0331F1988CE0500AF9866 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = NO;
-				DSTROOT = /tmp/VARS.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "VARS/VARS-Prefix.pch";
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)";
-				SKIP_INSTALL = YES;
-				STRIP_STYLE = "non-global";
-			};
-			name = Release;
-		};
-		6BD033211988CE0500AF9866 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "VARS/VARS-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "VARSTests/VARSTests-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.variante.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		6BD033221988CE0500AF9866 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "VARS/VARS-Prefix.pch";
-				INFOPLIST_FILE = "VARSTests/VARSTests-Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "io.variante.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = xctest;
+				VALID_ARCHS = "x86_64 arm64 armv7 armv7s armv7k i386";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6B9557D019E25EF40007D3B8 /* Build configuration list for PBXAggregateTarget "VARS.framework" */ = {
+		6B0EEC371BBB5F380047BFF6 /* Build configuration list for PBXAggregateTarget "VARS.framework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6B9557D119E25EF40007D3B8 /* Debug */,
-				6B9557D219E25EF40007D3B8 /* Release */,
+				6B0EEC381BBB5F380047BFF6 /* Debug */,
+				6B0EEC391BBB5F380047BFF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6BD032F51988CE0500AF9866 /* Build configuration list for PBXProject "VARS" */ = {
+		6B0EEC511BBB6C6B0047BFF6 /* Build configuration list for PBXNativeTarget "VARS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6BD0331B1988CE0500AF9866 /* Debug */,
-				6BD0331C1988CE0500AF9866 /* Release */,
+				6B0EEC521BBB6C6B0047BFF6 /* Debug */,
+				6B0EEC531BBB6C6B0047BFF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6BD0331D1988CE0500AF9866 /* Build configuration list for PBXNativeTarget "VARS" */ = {
+		6B0EEC541BBB6C6B0047BFF6 /* Build configuration list for PBXNativeTarget "VARSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6BD0331E1988CE0500AF9866 /* Debug */,
-				6BD0331F1988CE0500AF9866 /* Release */,
+				6B0EEC551BBB6C6B0047BFF6 /* Debug */,
+				6B0EEC561BBB6C6B0047BFF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6BD033201988CE0500AF9866 /* Build configuration list for PBXNativeTarget "VARSTests" */ = {
+		6BF34A8A1BBA1EEC00CC4088 /* Build configuration list for PBXProject "VARS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6BD033211988CE0500AF9866 /* Debug */,
-				6BD033221988CE0500AF9866 /* Release */,
+				6BF34AA21BBA1EED00CC4088 /* Debug */,
+				6BF34AA31BBA1EED00CC4088 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 6BD032F21988CE0500AF9866 /* Project object */;
+	rootObject = 6BF34A871BBA1EEC00CC4088 /* Project object */;
 }

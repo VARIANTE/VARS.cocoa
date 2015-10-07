@@ -8,7 +8,9 @@
  *  http://www.opensource.org/licenses/mit-license.php
  */
 
-#import <UIKit/UIKit.h>
+#if ! TARGET_OS_MAC
+#import <CoreGraphics/CoreGraphics.h>
+#endif
 
 #import "VSNumberUtil.h"
 

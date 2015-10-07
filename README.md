@@ -1,3 +1,7 @@
-# VARIANTE Stack (VARS) for iOS
+# VARS (VARIANTE Stack) for Cocoa/Cocoa Touch
 
-iOS UI framework for in-house apps.
+This framework contains many utility classes meant for internal use only.
+
+## License
+
+MIT

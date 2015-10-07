@@ -2463,8 +2463,13 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         double y = [VSMathUtil doubleFromToken:output];
 
         CGPoint sample = CGPointMake(x, y);
+
+#if ! TARGET_OS_MAC
         [samples addObject:[NSValue valueWithCGPoint:sample]];
+#else
+        [samples addObject:[NSValue valueWithBytes:&sample objCType:@encode(CGPoint)]];
     }
+#endif
 
 #if !__has_feature(objc_arc)
     return [samples autorelease];
@@ -2499,7 +2504,29 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     double yab = [[VSMathUtil evaluatePostfixStack:postfixStack angleMode:angleMode tokenMap:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:xab], VS_M_SYMBOL_X_VARIABLE, nil]] doubleValue];
     double ybc = [[VSMathUtil evaluatePostfixStack:postfixStack angleMode:angleMode tokenMap:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:xbc], VS_M_SYMBOL_X_VARIABLE, nil]] doubleValue];
 
-    NSArray *localSamples = [NSArray arrayWithObjects:[NSValue valueWithCGPoint:CGPointMake(xa, ya)], [NSValue valueWithCGPoint:CGPointMake(xab, yab)], [NSValue valueWithCGPoint:CGPointMake(xb, yb)], [NSValue valueWithCGPoint:CGPointMake(xbc, ybc)], [NSValue valueWithCGPoint:CGPointMake(xc, yc)], nil];
+    CGPoint p1 = CGPointMake(xa, ya);
+    CGPoint p2 = CGPointMake(xab, yab);
+    CGPoint p3 = CGPointMake(xb, yb);
+    CGPoint p4 = CGPointMake(xbc, ybc);
+    CGPoint p5 = CGPointMake(xc, yc);
+
+#if ! TARGET_OS_MAC
+    NSArray *localSamples = [NSArray arrayWithObjects:
+                             [NSValue valueWithCGPoint:p1],
+                             [NSValue valueWithCGPoint:p2],
+                             [NSValue valueWithCGPoint:p3],
+                             [NSValue valueWithCGPoint:p4],
+                             [NSValue valueWithCGPoint:p5],
+                             nil];
+#else
+    NSArray *localSamples = [NSArray arrayWithObjects:
+                             [NSValue valueWithBytes:&p1 objCType:@encode(CGPoint)],
+                             [NSValue valueWithBytes:&p2 objCType:@encode(CGPoint)],
+                             [NSValue valueWithBytes:&p3 objCType:@encode(CGPoint)],
+                             [NSValue valueWithBytes:&p4 objCType:@encode(CGPoint)],
+                             [NSValue valueWithBytes:&p5 objCType:@encode(CGPoint)],
+                             nil];
+#endif
 
     if (depth <= 0)
     {
@@ -2511,9 +2538,21 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 
     for (int i = 1; i < 4; i++)
     {
+#if ! TARGET_OS_MAC
         double prevValue = [(NSValue *)localSamples[i-1] CGPointValue].y;
         double currValue = [(NSValue *)localSamples[i] CGPointValue].y;
         double nextValue = [(NSValue *)localSamples[i+1] CGPointValue].y;
+#else
+        CGPoint t1, t2, t3;
+
+        [(NSValue *)localSamples[i-1] getValue:&t1];
+        [(NSValue *)localSamples[i] getValue:&t2];
+        [(NSValue *)localSamples[i+1] getValue:&t3];
+
+        double prevValue = t1.y;
+        double currValue = t2.y;
+        double nextValue = t3.y;
+#endif
 
         if (isnan(prevValue) || isnan(currValue) || isnan(nextValue) || ((currValue > prevValue) && (currValue > nextValue)) || ((currValue < prevValue) && (currValue < nextValue)))
         {
@@ -2576,12 +2615,20 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             if (!(isnan(prevY) || isnan(currY)) && (fisbounded(prevY, yMin, yMax) || fisbounded(currY, yMin, yMax)))
             {
                 CGPoint sample = CGPointMake(x, currY);
+#if ! TARGET_OS_MAC
                 [samples addObject:[NSValue valueWithCGPoint:sample]];
+#else
+                [samples addObject:[NSValue valueWithBytes:&sample objCType:@encode(CGPoint)]];
+#endif
             }
             else
             {
                 CGPoint sample = CGPointMake(x, currY);
+#if ! TARGET_OS_MAC
                 [samples addObject:[NSValue valueWithCGPoint:sample]];
+#else
+                [samples addObject:[NSValue valueWithBytes:&sample objCType:@encode(CGPoint)]];
+#endif
             }
 
             if (fisbounded(currY, yMin, yMax))
