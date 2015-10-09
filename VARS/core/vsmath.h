@@ -1,11 +1,11 @@
 /**
- *  VARS
- *  (c) VARIANTE <http://variante.io>
+ * VARS
+ * (c) VARIANTE <http://variante.io>
  *
- *  VARS math tools.
+ * VARS math tools.
  *
- *  This software is released under the MIT License:
- *  http://www.opensource.org/licenses/mit-license.php
+ * This software is released under the MIT License:
+ * http://www.opensource.org/licenses/mit-license.php
  */
 
 #ifndef vsmath_h
@@ -168,1035 +168,1032 @@
 #define VS_M_REGEX_PARENTHESIS_SET			   "(\\(|\\))"
 #endif // __OBJC__
 
-#pragma mark - Trigonometry
 #pragma mark Angle Conversions
 
 /**
- *  Converts a float value in degrees to a float value in radians.
+ * Converts a float value in degrees to a float value in radians.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The converted float value in radians.
+ * @return The converted float value in radians.
  */
 float fdtorf(float __n);
 
 /**
- *  Converts a double value in degrees to a double value in radians.
+ * Converts a double value in degrees to a double value in radians.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The converted double value in radians.
+ * @return The converted double value in radians.
  */
 double fdtor(double __n);
 
 /**
- *  Converts a float value in degrees to a float value in gradians.
+ * Converts a float value in degrees to a float value in gradians.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The converted float value in gradians.
+ * @return The converted float value in gradians.
  */
 float fdtogf(float __n);
 
 /**
- *  Converts a double value in degrees to a double value in gradians.
+ * Converts a double value in degrees to a double value in gradians.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The converted double value in gradians.
+ * @return The converted double value in gradians.
  */
 double fdtog(double __n);
 
 /**
- *  Converts a float value in radians to a float value in degrees.
+ * Converts a float value in radians to a float value in degrees.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The converted float value in degrees.
+ * @return The converted float value in degrees.
  */
 float frtodf(float __n);
 
 /**
- *  Converts a double value in radians to a double value in degrees.
+ * Converts a double value in radians to a double value in degrees.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The converted double value in degrees.
+ * @return The converted double value in degrees.
  */
 double frtod(double __n);
 
 /**
- *  Converts a float value in radians to a float value in gradians.
+ * Converts a float value in radians to a float value in gradians.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The converted float value in gradians.
+ * @return The converted float value in gradians.
  */
 float frtogf(float __n);
 
 /**
- *  Converts a double value in radians to a double value in gradians.
+ * Converts a double value in radians to a double value in gradians.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The converted double value in gradians.
+ * @return The converted double value in gradians.
  */
 double frtog(double __n);
 
 /**
- *  Converts a float value in gradians to a float value in degrees.
+ * Converts a float value in gradians to a float value in degrees.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The converted float value in degrees.
+ * @return The converted float value in degrees.
  */
 float fgtodf(float __n);
 
 /**
- *  Converts a double value in gradians to a double value in degrees.
+ * Converts a double value in gradians to a double value in degrees.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The converted double value in degrees.
+ * @return The converted double value in degrees.
  */
 double fgtod(double __n);
 
 /**
- *  Converts a float value in gradians to a float value in radians.
+ * Converts a float value in gradians to a float value in radians.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The converted float value in radians.
+ * @return The converted float value in radians.
  */
 float fgtorf(float __n);
 
 /**
- *  Converts a double value in gradians to a double value in radians.
+ * Converts a double value in gradians to a double value in radians.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The converted double value in radians.
+ * @return The converted double value in radians.
  */
 double fgtor(double __n);
 
 #pragma mark Trigonometric Functions
 
 /**
- *  Computes the sine of a float value in degrees.
+ * Computes the sine of a float value in degrees.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed float value.
+ * @return The computed float value.
  */
 float fsindf(float __n);
 
 /**
- *  Computes the sine of a double value in degrees.
+ * Computes the sine of a double value in degrees.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed double value.
+ * @return The computed double value.
  */
 double fsind(double __n);
 
 /**
- *  Computes the cosine of a float value in degrees.
+ * Computes the cosine of a float value in degrees.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed float value.
+ * @return The computed float value.
  */
 float fcosdf(float __n);
 
 /**
- *  Computes the cosine of a double value in degrees.
+ * Computes the cosine of a double value in degrees.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed double value.
+ * @return The computed double value.
  */
 double fcosd(double __n);
 
 /**
- *  Computes the tangent of a float value in degrees.
+ * Computes the tangent of a float value in degrees.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed float value.
+ * @return The computed float value.
  */
 float ftandf(float __n);
 
 /**
- *  Computes the tangent of a double value in degrees.
+ * Computes the tangent of a double value in degrees.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed double value.
+ * @return The computed double value.
  */
 double ftand(double __n);
 
 /**
- *  Computes the sine of a float value in radians.
+ * Computes the sine of a float value in radians.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed float value.
+ * @return The computed float value.
  */
 float fsinrf(float __n);
 
 /**
- *  Computes the sine of a double value in radians.
+ * Computes the sine of a double value in radians.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed double value.
+ * @return The computed double value.
  */
 double fsinr(double __n);
 
 /**
- *  Computes the cosine of a float value in radians.
+ * Computes the cosine of a float value in radians.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed float value.
+ * @return The computed float value.
  */
 float fcosrf(float __n);
 
 /**
- *  Computes the cosine of a double value in radians.
+ * Computes the cosine of a double value in radians.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed double value.
+ * @return The computed double value.
  */
 double fcosr(double __n);
 
 /**
- *  Computes the tangent of a float value in radians.
+ * Computes the tangent of a float value in radians.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed float value.
+ * @return The computed float value.
  */
 float ftanrf(float __n);
 
 /**
- *  Computes the tangent of a double value in radians.
+ * Computes the tangent of a double value in radians.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed double value.
+ * @return The computed double value.
  */
 double ftanr(double __n);
 
 /**
- *  Computes the sine of a float value in gradians.
+ * Computes the sine of a float value in gradians.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed float value.
+ * @return The computed float value.
  */
 float fsingf(float __n);
 
 /**
- *  Computes the sine of a double value in gradians.
+ * Computes the sine of a double value in gradians.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed double value.
+ * @return The computed double value.
  */
 double fsing(double __n);
 
 /**
- *  Computes the cosine of a float value in gradians.
+ * Computes the cosine of a float value in gradians.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed float value.
+ * @return The computed float value.
  */
 float fcosgf(float __n);
 
 /**
- *  Computes the cosine of a double value in gradians.
+ * Computes the cosine of a double value in gradians.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed double value.
+ * @return The computed double value.
  */
 double fcosg(double __n);
 
 /**
- *  Computes the tangent of a float value in gradians.
+ * Computes the tangent of a float value in gradians.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed float value.
+ * @return The computed float value.
  */
 float ftangf(float __n);
 
 /**
- *  Computes the tangent of a double value in gradians.
+ * Computes the tangent of a double value in gradians.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed double value.
+ * @return The computed double value.
  */
 double ftang(double __n);
 
-#pragma mark - Differential Calculus
+#pragma mark Differential Calculus
 
 /**
- *  Evaluates the slope between two points.
+ * Evaluates the slope between two points.
  *
- *  @param __x1
- *  @param __x2
- *  @param __y1
- *  @param __y2
+ * @param __x1
+ * @param __x2
+ * @param __y1
+ * @param __y2
  *
- *  @return The float value of the slope.
+ * @return The float value of the slope.
  */
 float fslopef(float __x1, float __x2, float __y1, float __y2);
 
 /**
- *  Evaluates the slope between two points.
+ * Evaluates the slope between two points.
  *
- *  @param __x1
- *  @param __x2
- *  @param __y1
- *  @param __y2
+ * @param __x1
+ * @param __x2
+ * @param __y1
+ * @param __y2
  *
- *  @return The double value of the slope.
+ * @return The double value of the slope.
  */
 double fslope(double __x1, double __x2, double __y1, double __y2);
 
-#pragma mark - Logarithms
+#pragma mark Logarithms
 
 /**
- *  Computes the natural logarithm of a float value.
+ * Computes the natural logarithm of a float value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed float value.
+ * @return The computed float value.
  */
 float flnf(float __n);
 
 /**
- *  Computes the natural logarithm of a double value.
+ * Computes the natural logarithm of a double value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed double value.
+ * @return The computed double value.
  */
 double fln(double __n);
 
-#pragma mark - Probability
+#pragma mark Probability
 
 /**
- *  Computes the factorial of a float value. Supports the factorial computation
- *  of positive/negative non-integers.
+ * Computes the factorial of a float value. Supports the factorial computation
+ * of positive/negative non-integers.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed float value if applicable, otherwise (i.e. computing the factorial of
- *          a negative integer).
+ * @return The computed float value if applicable, otherwise (i.e. computing the factorial of
+ *         a negative integer).
  */
 float ffactf(float __n);
 
 /**
- *  Computes the factorial of a double value. Supports the factorial computation
- *  of positive/negative non-integers.
+ * Computes the factorial of a double value. Supports the factorial computation
+ * of positive/negative non-integers.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed double value if applicable, NAN otherwise (i.e. computing the factorial of
- *          a negative integer).
+ * @return The computed double value if applicable, NAN otherwise (i.e. computing the factorial of
+ *         a negative integer).
  */
 double ffact(double __n);
 
 /**
- *  Computes n choose r. If both n and r are positive integers, the output
- *  would be the binomial coefficient, involving Stirling's approximation for
- *  larger values of r. If either is a complex/negative number, the gamma function Γ would
- *  be used.
+ * Computes n choose r. If both n and r are positive integers, the output
+ * would be the binomial coefficient, involving Stirling's approximation for
+ * larger values of r. If either is a complex/negative number, the gamma function Γ would
+ * be used.
  *
- *  @param __n
- *  @param __r
+ * @param __n
+ * @param __r
  *
- *  @return The computed float value.
+ * @return The computed float value.
  */
 float fncrf(float __n, float __r);
 
 /**
- *  Computes n choose r. If both n and r are positive integers, the output
- *  would be the binomial coefficient, involving Stirling's approximation for
- *  larger values of r. If either is a complex/negative number, the gamma function Γ would
- *  be used.
+ * Computes n choose r. If both n and r are positive integers, the output
+ * would be the binomial coefficient, involving Stirling's approximation for
+ * larger values of r. If either is a complex/negative number, the gamma function Γ would
+ * be used.
  *
- *  @param __n
- *  @param __r
+ * @param __n
+ * @param __r
  *
- *  @return The computed double value.
+ * @return The computed double value.
  */
 double fncr(double __n, double __r);
 
 /**
- *  Computes n pick r. If both n and r are positive integers, the output
- *  would be the standard r-permutations of n involving Stirling's approximation for
- *  larger values of r. If either is a complex/negative number, the gamma function Γ would
- *  be used.
+ * Computes n pick r. If both n and r are positive integers, the output
+ * would be the standard r-permutations of n involving Stirling's approximation for
+ * larger values of r. If either is a complex/negative number, the gamma function Γ would
+ * be used.
  *
- *  @param __n
- *  @param __r
+ * @param __n
+ * @param __r
  *
- *  @return The computed float value.
+ * @return The computed float value.
  */
 float fnprf(float __n, float __r);
 
 /**
- *  Computes n pick r. If both n and r are positive integers, the output
- *  would be the standard r-permutations of n involving Stirling's approximation for
- *  larger values of r. If either is a complex/negative number, the gamma function Γ would
- *  be used.
+ * Computes n pick r. If both n and r are positive integers, the output
+ * would be the standard r-permutations of n involving Stirling's approximation for
+ * larger values of r. If either is a complex/negative number, the gamma function Γ would
+ * be used.
  *
- *  @param __n
- *  @param __r
+ * @param __n
+ * @param __r
  *
- *  @return The computed double value.
+ * @return The computed double value.
  */
 double fnpr(double __n, double __r);
 
 /**
- *  Computes x to the power of n.
+ * Computes x to the power of n.
  *
- *  @param __x
- *  @param __n
+ * @param __x
+ * @param __n
  */
 float fpowf(float __x, float __n);
 
 /**
- *  Computes x to the power of n.
+ * Computes x to the power of n.
  *
- *  @param __x
- *  @param __n
+ * @param __x
+ * @param __n
  */
 double fpow(double __x, double __n);
 
 /**
- *  Computes x to the nth root.
+ * Computes x to the nth root.
  *
- *  @param __x
- *  @param __n
+ * @param __x
+ * @param __n
  */
 float frootf(float __x, float __n);
 
 /**
- *  Computes x to the nth root.
+ * Computes x to the nth root.
  *
- *  @param __x
- *  @param __n
+ * @param __x
+ * @param __n
  */
 double froot(float __x, float __n);
 
-#pragma mark - Bitwise Operations
 #pragma mark Bit Shifting
 
 /**
- *  Left shifts an unsigned char value.
+ * Left shifts an unsigned char value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned char value.
+ * @return The computed unsigned char value.
  */
 unsigned char clshift(unsigned char __n);
 
 /**
- *  Left shifts an unsigned short value.
+ * Left shifts an unsigned short value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed short value.
+ * @return The computed short value.
  */
 unsigned short hulshift(unsigned short __n);
 
 /**
- *  Left shifts an unsigned int value.
+ * Left shifts an unsigned int value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned int value.
+ * @return The computed unsigned int value.
  */
 unsigned int ulshift(unsigned int __n);
 
 /**
- *  Left shifts an unsigned long value.
+ * Left shifts an unsigned long value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned long value.
+ * @return The computed unsigned long value.
  */
 unsigned long lulshift(unsigned long __n);
 
 /**
- *  Left shifts an unsigned long long value.
+ * Left shifts an unsigned long long value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned long long value.
+ * @return The computed unsigned long long value.
  */
 unsigned long long llulshift(unsigned long long __n);
 
 /**
- *  Right shifts an unsigned char value.
+ * Right shifts an unsigned char value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned char value.
+ * @return The computed unsigned char value.
  */
 unsigned char crshift(unsigned char __n);
 
 /**
- *  Right shifts an unsigned short value.
+ * Right shifts an unsigned short value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed short value.
+ * @return The computed short value.
  */
 unsigned short hurshift(unsigned short __n);
 
 /**
- *  Right shifts an unsigned int value.
+ * Right shifts an unsigned int value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned int value.
+ * @return The computed unsigned int value.
  */
 unsigned int urshift(unsigned int __n);
 
 /**
- *  Right shifts an unsigned long value.
+ * Right shifts an unsigned long value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned long value.
+ * @return The computed unsigned long value.
  */
 unsigned long lurshift(unsigned long __n);
 
 /**
- *  Right shifts an unsigned long long value.
+ * Right shifts an unsigned long long value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned long long value.
+ * @return The computed unsigned long long value.
  */
 unsigned long long llurshift(unsigned long long __n);
 
 /**
- *  Left rotates an unsigned char value.
+ * Left rotates an unsigned char value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned char value.
+ * @return The computed unsigned char value.
  */
 unsigned char clrotate(unsigned char __n);
 
 /**
- *  Left rotates an unsigned short value.
+ * Left rotates an unsigned short value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned short value.
+ * @return The computed unsigned short value.
  */
 unsigned short hulrotate(unsigned short __n);
 
 /**
- *  Left rotates an unsigned int value.
+ * Left rotates an unsigned int value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned int value.
+ * @return The computed unsigned int value.
  */
 unsigned int ulrotate(unsigned int __n);
 
 /**
- *  Left rotates an unsigned long value.
+ * Left rotates an unsigned long value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned long value.
+ * @return The computed unsigned long value.
  */
 unsigned long lulrotate(unsigned long __n);
 
 /**
- *  Left rotates an unsigned long long value.
+ * Left rotates an unsigned long long value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned long long value.
+ * @return The computed unsigned long long value.
  */
 unsigned long long llulrotate(unsigned long long __n);
 
 /**
- *  Right rotates an unsigned char value.
+ * Right rotates an unsigned char value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned char value.
+ * @return The computed unsigned char value.
  */
 unsigned char crrotate(unsigned char __n);
 
 /**
- *  Right rotates an unsigned short value.
+ * Right rotates an unsigned short value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned short value.
+ * @return The computed unsigned short value.
  */
 unsigned short hurrotate(unsigned short __n);
 
 /**
- *  Right rotates an unsigned int value.
+ * Right rotates an unsigned int value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned int value.
+ * @return The computed unsigned int value.
  */
 unsigned int urrotate(unsigned int __n);
 
 /**
- *  Right rotates an unsigned long value.
+ * Right rotates an unsigned long value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned long value.
+ * @return The computed unsigned long value.
  */
 unsigned long lurrotate(unsigned long __n);
 
 /**
- *  Right rotates an unsigned long long value.
+ * Right rotates an unsigned long long value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned long long value.
+ * @return The computed unsigned long long value.
  */
 unsigned long long llurrotate(unsigned long long __n);
 
-#pragma mark Inverse
+#pragma mark Bitwise Inverse
 
 /**
- *  Computes the 1's complement of an unsigned char value.
+ * Computes the 1's complement of an unsigned char value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned char value.
+ * @return The computed unsigned char value.
  */
 unsigned char ccomp1(unsigned char __n);
 
 /**
- *  Computes the 1's complement of an unsigned short value.
+ * Computes the 1's complement of an unsigned short value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned short value.
+ * @return The computed unsigned short value.
  */
 unsigned short hucomp1(unsigned short __n);
 
 /**
- *  Computes the 1's complement of an unsigned int value.
+ * Computes the 1's complement of an unsigned int value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned int value.
+ * @return The computed unsigned int value.
  */
 unsigned int ucomp1(unsigned int __n);
 
 /**
- *  Computes the 1's complement of an unsigned long value.
+ * Computes the 1's complement of an unsigned long value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned long value.
+ * @return The computed unsigned long value.
  */
 unsigned long lucomp1(unsigned long __n);
 
 /**
- *  Computes the 1's complement of an unsigned long long value.
+ * Computes the 1's complement of an unsigned long long value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned long long value.
+ * @return The computed unsigned long long value.
  */
 unsigned long long llucomp1(unsigned long long __n);
 
 /**
- *  Computes the 2's complement of an unsigned char value.
+ * Computes the 2's complement of an unsigned char value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned char value.
+ * @return The computed unsigned char value.
  */
 unsigned char ccomp2(unsigned char __n);
 
 /**
- *  Computes the 2's complement of an unsigned short value.
+ * Computes the 2's complement of an unsigned short value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned short value.
+ * @return The computed unsigned short value.
  */
 unsigned short hucomp2(unsigned short __n);
 
 /**
- *  Computes the 2's complement of an unsigned int value.
+ * Computes the 2's complement of an unsigned int value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned int value.
+ * @return The computed unsigned int value.
  */
 unsigned int ucomp2(unsigned int __n);
 
 /**
- *  Computes the 2's complement of an unsigned long value.
+ * Computes the 2's complement of an unsigned long value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned long value.
+ * @return The computed unsigned long value.
  */
 unsigned long lucomp2(unsigned long __n);
 
 /**
- *  Computes the 2's complement of an unsigned long long value.
+ * Computes the 2's complement of an unsigned long long value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned long long value.
+ * @return The computed unsigned long long value.
  */
 unsigned long long llucomp2(unsigned long long __n);
 
 /**
- *  Flips the bytes of an unsigned char value.
+ * Flips the bytes of an unsigned char value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned char value.
+ * @return The computed unsigned char value.
  */
 unsigned char cflipb(unsigned char __n);
 
 /**
- *  Flips the bytes of an unsigned short value.
+ * Flips the bytes of an unsigned short value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned short value.
+ * @return The computed unsigned short value.
  */
 unsigned short huflipb(unsigned short __n);
 
 /**
- *  Flips the bytes of an unsigned int value.
+ * Flips the bytes of an unsigned int value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned int value.
+ * @return The computed unsigned int value.
  */
 unsigned int uflipb(unsigned int __n);
 
 /**
- *  Flips the bytes of an unsigned long value.
+ * Flips the bytes of an unsigned long value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned long value.
+ * @return The computed unsigned long value.
  */
 unsigned long luflipb(unsigned long __n);
 
 /**
- *  Flips the bytes of an unsigned long long value.
+ * Flips the bytes of an unsigned long long value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned long long value.
+ * @return The computed unsigned long long value.
  */
 unsigned long long lluflipb(unsigned long long __n);
 
 /**
- *  Flips the words of an unsigned char value.
+ * Flips the words of an unsigned char value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned char value.
+ * @return The computed unsigned char value.
  */
 unsigned char cflipw(unsigned char __n);
 
 /**
- *  Flips the words of an unsigned short value.
+ * Flips the words of an unsigned short value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned short value.
+ * @return The computed unsigned short value.
  */
 unsigned short huflipw(unsigned short __n);
 
 /**
- *  Flips the words of an unsigned int value.
+ * Flips the words of an unsigned int value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned int value.
+ * @return The computed unsigned int value.
  */
 unsigned int uflipw(unsigned int __n);
 
 /**
- *  Flips the words of an unsigned long value.
+ * Flips the words of an unsigned long value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned long value.
+ * @return The computed unsigned long value.
  */
 unsigned long luflipw(unsigned long __n);
 
 /**
- *  Flips the words of an unsigned long long value.
+ * Flips the words of an unsigned long long value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The computed unsigned long long value.
+ * @return The computed unsigned long long value.
  */
 unsigned long long lluflipw(unsigned long long __n);
 
-#pragma mark - Number Moderations
+#pragma mark Number Moderations
 
 /**
- *  Validates that the specified float value is within the
- *  specified bounds, inclusive, returns the moderated specified value.
+ * Validates that the specified float value is within the
+ * specified bounds, inclusive, returns the moderated specified value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The moderated float value.
+ * @return The moderated float value.
  */
 float fboundf(float __n, float __min, float __max);
 
 /**
- *  Validates that the specified double value is within the
- *  specified bounds, inclusive, returns the moderated specified value.
+ * Validates that the specified double value is within the
+ * specified bounds, inclusive, returns the moderated specified value.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The moderated double value.
+ * @return The moderated double value.
  */
 double fbound(double __n, double __min, double __max);
 
 /**
- *  Verifies that a float value is within the specified bounds, inclusive.
+ * Verifies that a float value is within the specified bounds, inclusive.
  *
- *  @param __n
- *  @param __min
- *  @param __max
+ * @param __n
+ * @param __min
+ * @param __max
  *
- *  @return 1 if bounded, 0 otherwise.
+ * @return 1 if bounded, 0 otherwise.
  */
 int fisboundedf(float __n, float __min, float __max);
 
 /**
- *  Verifies that a double value is within the specified bounds, inclusive.
+ * Verifies that a double value is within the specified bounds, inclusive.
  *
- *  @param __n
- *  @param __min
- *  @param __max
+ * @param __n
+ * @param __min
+ * @param __max
  *
- *  @return 1 if bounded, 0 otherwise.
+ * @return 1 if bounded, 0 otherwise.
  */
 int fisbounded(double __n, double __min, double __max);
 
 /**
- *  Verifies that a float value is an integer.
+ * Verifies that a float value is an integer.
  *
- *  @param __n
+ * @param __n
  *
- *  @return 1 if specified float value is an integer, 0 otherwise.
+ * @return 1 if specified float value is an integer, 0 otherwise.
  */
 int fisintf(float __n);
 
 /**
- *  Verifies that a double value is an integer.
+ * Verifies that a double value is an integer.
  *
- *  @param __n
+ * @param __n
  *
- *  @return 1 if specified double value is an integer, 0 otherwise.
+ * @return 1 if specified double value is an integer, 0 otherwise.
  */
 int fisint(double __n);
 
 /**
- *  Verifies that an int value is even. 0 is considered even.
+ * Verifies that an int value is even. 0 is considered even.
  *
- *  @param __n
+ * @param __n
  *
- *  @return 1 if even, 0 otherwise.
+ * @return 1 if even, 0 otherwise.
  */
 int iseven(int __n);
 
 /**
- *  Verifies that an int value is odd.
+ * Verifies that an int value is odd.
  *
- *  @param __n
+ * @param __n
  *
- *  @return 1 if odd, 0 otherwise.
+ * @return 1 if odd, 0 otherwise.
  */
 int isodd(int __n);
 
 /**
- *  Normalizes a float value, checking against epsilon.
+ * Normalizes a float value, checking against epsilon.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The normalized float value.
+ * @return The normalized float value.
  */
 float fnormf(float __n);
 
 /**
- *  Normalizes a double value, checking against epsilon.
+ * Normalizes a double value, checking against epsilon.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The normalized double value.
+ * @return The normalized double value.
  */
 double fnorm(double __n);
 
 /**
- *  Computes the number of digits in an int.
+ * Computes the number of digits in an int.
  *
- *  @param __n
+ * @param __n
  *
- *  @return The number of digits.
+ * @return The number of digits.
  */
 int ndigits(int __n);
 
-#pragma mark - String Moderations
-#pragma mark Verifications
+#pragma mark String Validations
 
 /**
- *  Verifies that a string represents a float value.
+ * Verifies that a string represents a float value.
  *
- *  @param __c
+ * @param __c
  *
- *  @return 1 if true, 0 otherwise.
+ * @return 1 if true, 0 otherwise.
  */
 int fstrisnumf(const char *__c);
 
 /**
- *  Verifies that a string represents a double value.
- *  
- *  @param __c
+ * Verifies that a string represents a double value.
  *
- *  @return 1 if true, 0 otherwise.
+ * @param __c
+ *
+ * @return 1 if true, 0 otherwise.
  */
 int fstrisnum(const char *__c);
 
 /**
- *  Verifies that a string represents a long double value.
+ * Verifies that a string represents a long double value.
  *
- *  @param __c
+ * @param __c
  *
- *  @return 1 if true, 0 otherwise.
+ * @return 1 if true, 0 otherwise.
  */
 int fstrisnuml(const char *__c);
 
 /**
- *  Verifies that a string represents a long int value.
+ * Verifies that a string represents a long int value.
  *
- *  @param __c
+ * @param __c
  *
- *  @return 1 if true, 0 otherwise.
+ * @return 1 if true, 0 otherwise.
  */
 int lstrisnum(const char *__c);
 
 /**
- *  Verifies that a string represents a long long int value.
+ * Verifies that a string represents a long long int value.
  *
- *  @param __c
+ * @param __c
  *
- *  @return 1 if true, 0 otherwise.
+ * @return 1 if true, 0 otherwise.
  */
 int llstrisnum(const char *__c);
 
 /**
- *  Verifies that a string represents an unsigned long int value.
+ * Verifies that a string represents an unsigned long int value.
  *
- *  @param __c
+ * @param __c
  *
- *  @return 1 if true, 0 otherwise.
+ * @return 1 if true, 0 otherwise.
  */
 int lustrisnum(const char *__c);
 
 /**
- *  Verifies that a string represents an unsigned long long int value.
+ * Verifies that a string represents an unsigned long long int value.
  *
- *  @param __c
+ * @param __c
  *
- *  @return 1 if true, 0 otherwise.
+ * @return 1 if true, 0 otherwise.
  */
 int llustrisnum(const char *__c);
 
-#pragma mark Conversions
+#pragma mark String Conversions
 
 /**
- *  Converts a string to a float value if applicable.
+ * Converts a string to a float value if applicable.
  *
- *  @param __c
+ * @param __c
  *
- *  @return Float value of the string if applicable, NAN otherwise.
+ * @return Float value of the string if applicable, NAN otherwise.
  */
 float fstrtonumf(const char *__c);
 
 /**
- *  Converts a string to a double value if applicable.
+ * Converts a string to a double value if applicable.
  *
- *  @param __c
+ * @param __c
  *
- *  @return Double value of the string if applicable, NAN otherwise.
+ * @return Double value of the string if applicable, NAN otherwise.
  */
 double fstrtonum(const char *__c);
 
 /**
- *  Converts a string to a long double value if applicable.
+ * Converts a string to a long double value if applicable.
  *
- *  @param __c
+ * @param __c
  *
- *  @return Long double value of the string if applicable, NAN otherwise.
+ * @return Long double value of the string if applicable, NAN otherwise.
  */
 long double fstrtonuml(const char *__c);
 
 /**
- *  Converts a string to a long int value if applicable.
+ * Converts a string to a long int value if applicable.
  *
- *  @param __c
+ * @param __c
  *
- *  @return Long int value of the string if applicable, 0 otherwise.
+ * @return Long int value of the string if applicable, 0 otherwise.
  */
 long int lstrtonum(const char *__c);
 
 /**
- *  Converts a string to a long long int value if applicable.
+ * Converts a string to a long long int value if applicable.
  *
- *  @param __c
+ * @param __c
  *
- *  @return Long long int value of the string if applicable, 0 otherwise.
+ * @return Long long int value of the string if applicable, 0 otherwise.
  */
 long long int llstrtonum(const char *__c);
 
 /**
- *  Converts a string to an unsigned long int value if applicable.
+ * Converts a string to an unsigned long int value if applicable.
  *
- *  @param __c
+ * @param __c
  *
- *  @return Unsigned long int value of the string if applicable, 0 otherwise.
+ * @return Unsigned long int value of the string if applicable, 0 otherwise.
  */
 unsigned long int lustrtonum(const char *__c);
 
 /**
- *  Converts a string to an unsigned long long int value if applicable.
+ * Converts a string to an unsigned long long int value if applicable.
  *
- *  @param __c
+ * @param __c
  *
- *  @return Unsigned long long int value of the string if applicable, 0 otherwise.
+ * @return Unsigned long long int value of the string if applicable, 0 otherwise.
  */
 unsigned long long int llustrtonum(const char *__c);
 

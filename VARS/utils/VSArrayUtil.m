@@ -1,33 +1,25 @@
 /**
- *  VARS
- *  (c) VARIANTE <http://variante.io>
+ * VARS
+ * (c) VARIANTE <http://variante.io>
  *
- *  This software is released under the MIT License:
- *  http://www.opensource.org/licenses/mit-license.php
+ * This software is released under the MIT License:
+ * http://www.opensource.org/licenses/mit-license.php
  */
 
 #import "VSArrayUtil.h"
 
 @implementation VSArrayUtil
 
-#pragma mark - Manipulation
+#pragma mark Manipulation
 
-/**
- *  @inheritDoc
- */
-+ (BOOL)arrayIsNilOrBlank:(NSArray *)anArray
-{
++ (BOOL)arrayIsNilOrBlank:(NSArray *)anArray {
     if (anArray == nil) return YES;
     if (anArray.count == 0) return YES;
 
     return NO;
 }
 
-/**
- *  @inheritDoc
- */
-+ (NSArray *)arrayByShiftingArray:(NSArray *)anArray
-{
++ (NSArray *)arrayByShiftingArray:(NSArray *)anArray {
     if (anArray == nil) return nil;
     if (anArray.count <= 1) return [NSArray arrayWithArray:anArray];
 
@@ -42,11 +34,7 @@
 #endif
 }
 
-/**
- *  @inheritDoc
- */
-+ (void)shiftArray:(NSMutableArray *)aMutableArray
-{
++ (void)shiftArray:(NSMutableArray *)aMutableArray {
     if ([VSArrayUtil arrayIsNilOrBlank:aMutableArray]) return;
 
     id lastObject = aMutableArray.lastObject;
@@ -55,9 +43,6 @@
     [aMutableArray insertObject:lastObject atIndex:0];
 }
 
-/**
- *  @inheritDoc
- */
 + (NSArray *)arrayByUnshiftingArray:(NSArray *)anArray
 {
     if (anArray == nil) return nil;
@@ -74,11 +59,7 @@
 #endif
 }
 
-/**
- *  @inheritDoc
- */
-+ (void)unshiftArray:(NSMutableArray *)aMutableArray
-{
++ (void)unshiftArray:(NSMutableArray *)aMutableArray {
     if ([VSArrayUtil arrayIsNilOrBlank:aMutableArray]) return;
 
     id firstObject = aMutableArray.firstObject;
@@ -87,11 +68,7 @@
     [aMutableArray addObject:firstObject];
 }
 
-/**
- *  @inheritDoc
- */
-+ (NSArray *)arrayBySwappingElementsInArray:(NSArray *)anArray index1:(unsigned long)index1 index2:(unsigned long)index2
-{
++ (NSArray *)arrayBySwappingElementsInArray:(NSArray *)anArray index1:(unsigned long)index1 index2:(unsigned long)index2 {
     if (anArray == nil) return nil;
     if (index1 >= anArray.count || index2 >= anArray.count || index1 == index2) return [NSArray arrayWithArray:anArray];
 
@@ -106,11 +83,7 @@
 #endif
 }
 
-/**
- *  @inheritDoc
- */
-+ (void)swapElementsInArray:(NSMutableArray *)aMutableArray index1:(unsigned long)index1 index2:(unsigned long)index2
-{
++ (void)swapElementsInArray:(NSMutableArray *)aMutableArray index1:(unsigned long)index1 index2:(unsigned long)index2 {
     if ([VSArrayUtil arrayIsNilOrBlank:aMutableArray]) return;
     if (index1 >= aMutableArray.count || index2 >= aMutableArray.count || index1 == index2) return;
 
@@ -124,29 +97,21 @@
     [aMutableArray insertObject:object1 atIndex:index2];
 }
 
-/**
- *  @inheritDoc
- */
-+ (unsigned long)binarySearch:(NSArray *)aSortedArray key:(int)key min:(unsigned long)min max:(unsigned long)max
-{
++ (unsigned long)binarySearch:(NSArray *)aSortedArray key:(int)key min:(unsigned long)min max:(unsigned long)max {
     unsigned long m;
     int k;
 
-    while (max >= min)
-    {
+    while (max >= min) {
         m = (min+max)/2;
         k = [(NSNumber *)aSortedArray[m] intValue];
 
-        if (k == key)
-        {
+        if (k == key) {
             return m;
         }
-        else if (k < key)
-        {
+        else if (k < key) {
             min = min + 1;
         }
-        else
-        {
+        else {
             max = max - 1;
         }
     }

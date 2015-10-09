@@ -1,9 +1,9 @@
 /**
- *  VARS
- *  (c) VARIANTE <http://variante.io>
+ * VARS
+ * (c) VARIANTE <http://variante.io>
  *
- *  This software is released under the MIT License:
- *  http://www.opensource.org/licenses/mit-license.php
+ * This software is released under the MIT License:
+ * http://www.opensource.org/licenses/mit-license.php
  */
 
 #import "vsmath.h"
@@ -14,19 +14,14 @@
 #import "VSStringUtil.h"
 
 /**
- *  Static NSNumberFormatter instance.
+ * Static NSNumberFormatter instance.
  */
 static NSNumberFormatter *NUMBER_FORMATTER;
 
-#pragma mark - --------------------------------------------------------------------------
+#pragma mark -
 
-/**
- *  @inheritDoc
- */
-NSString *NSStringFromVSNumberSystemType(VSNumberSystemType type)
-{
-    switch (type)
-    {
+NSString *NSStringFromVSNumberSystemType(VSNumberSystemType type) {
+    switch (type) {
         case VSNumberSystemTypeUnknown:     return @"VSNumberSystemTypeUnknown";
         case VSNumberSystemTypeDecimal:     return @"VSNumberSystemTypeDecimal";
         case VSNumberSystemTypeHexadecimal: return @"VSNumberSystemTypeHexadecimal";
@@ -37,13 +32,8 @@ NSString *NSStringFromVSNumberSystemType(VSNumberSystemType type)
     }
 }
 
-/**
- *  @inheritDoc
- */
-NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
-{
-    switch (type)
-    {
+NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type) {
+    switch (type) {
         case VSBinaryDigitTypeUnknown:  return @"VSBinaryDigitTypeUnknown";
         case VSBinaryDigitType8Bit:     return @"VSBinaryDigitType8Bit";
         case VSBinaryDigitType16Bit:    return @"VSBinaryDigitType16Bit";
@@ -54,29 +44,24 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     }
 }
 
-#pragma mark - --------------------------------------------------------------------------
+#pragma mark -
 
-/**
- *  @inheritDoc
- */
 @implementation VSNumberUtil
 
-#pragma mark - Formatting
+#pragma mark Formatting
 
 /**
- *  @private
+ * @private
  *
- *  Gets the singleton NSNumberFormatter instance.
+ * Gets the singleton NSNumberFormatter instance.
  *
- *  @return NSNumberFormatter instance.
+ * @return NSNumberFormatter instance.
  */
-+ (NSNumberFormatter *)_globalNumberFormatter
-{
++ (NSNumberFormatter *)_globalNumberFormatter {
     static dispatch_once_t predicate;
 
     dispatch_once(&predicate, ^{
-        if (NUMBER_FORMATTER == nil)
-        {
+        if (NUMBER_FORMATTER == nil) {
             NUMBER_FORMATTER = [[NSNumberFormatter alloc] init];
         }
     });
@@ -84,47 +69,30 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     return NUMBER_FORMATTER;
 }
 
-/**
- *  @inheritDoc
- */
-+ (NSNumberFormatter *)globalNumberFormatterWithDefaultLocale
-{
++ (NSNumberFormatter *)globalNumberFormatterWithDefaultLocale {
     [[VSNumberUtil _globalNumberFormatter] setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US"]];
 
     return [VSNumberUtil _globalNumberFormatter];
 }
 
-/**
- *  @inheritDoc
- */
-+ (NSNumberFormatter *)globalNumberFormatterWithCurrentLocale
-{
++ (NSNumberFormatter *)globalNumberFormatterWithCurrentLocale {
     [[VSNumberUtil _globalNumberFormatter] setLocale:[NSLocale currentLocale]];
 
     return [VSNumberUtil _globalNumberFormatter];
 }
 
-/**
- *  @inheritDoc
- */
-+ (NSNumberFormatter *)globalNumberFormatterWithLocale:(NSLocale *)locale
-{
++ (NSNumberFormatter *)globalNumberFormatterWithLocale:(NSLocale *)locale {
     [[VSNumberUtil _globalNumberFormatter] setLocale:locale];
 
     return [VSNumberUtil _globalNumberFormatter];
 }
 
-/**
- *  @inheritDoc
- */
-+ (unsigned int)precisionFromNumericFormatSpecifier:(NSString *)numericFormatSpecifier
-{
++ (unsigned int)precisionFromNumericFormatSpecifier:(NSString *)numericFormatSpecifier {
     if (([numericFormatSpecifier rangeOfString:@"."].location == NSNotFound) ||
         (([numericFormatSpecifier rangeOfString:@"g"].location == NSNotFound) &&
          ([numericFormatSpecifier rangeOfString:@"G"].location == NSNotFound) &&
          ([numericFormatSpecifier rangeOfString:@"f"].location == NSNotFound) &&
-         ([numericFormatSpecifier rangeOfString:@"F"].location == NSNotFound)))
-    {
+         ([numericFormatSpecifier rangeOfString:@"F"].location == NSNotFound))) {
         return 0;
     }
 
@@ -138,59 +106,42 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     return [VSNumberUtil intFromString:[buffer substringToIndex:len-1]];
 }
 
-#pragma mark - Type Conversion
+#pragma mark Type Conversion
 
-/**
- *  @inheritDoc
- */
-+ (NSNumber *)numberFromString:(NSString *)aString
-{
++ (NSNumber *)numberFromString:(NSString *)aString {
     return [VSNumberUtil numberFromString:aString numberFormatter:nil];
 }
 
-/**
- *  @inheritDoc
- */
-+ (NSNumber *)numberFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter
-{
++ (NSNumber *)numberFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter {
     NSNumber *number = nil;
 
-    if (aString == nil)
-    {
+    if (aString == nil) {
         // Do nothing.
     }
-    else if (aNumberFormatter == nil)
-    {
-        if ([[aString lowercaseString] isEqualToString:[VS_M_SYMBOL_NAN lowercaseString]])
-        {
+    else if (aNumberFormatter == nil) {
+        if ([[aString lowercaseString] isEqualToString:[VS_M_SYMBOL_NAN lowercaseString]]) {
             number = [NSNumber numberWithDouble:NAN];
         }
-        else
-        {
+        else {
             // Somehow grouping separators invalidates the numeric value in the string, remove them.
             aString = [aString stringByReplacingOccurrencesOfString:[VSNumberUtil globalNumberFormatterWithDefaultLocale].groupingSeparator withString:@""];
 
             number = [[VSNumberUtil globalNumberFormatterWithDefaultLocale] numberFromString:aString];
 
             // Double check.
-            if (number != nil)
-            {
+            if (number != nil) {
                 number = [NSNumber numberWithDouble:[VSNumberUtil doubleFromString:aString]];
             }
         }
     }
-    else
-    {
-        if ([[aString lowercaseString] isEqualToString:[VS_M_SYMBOL_NAN lowercaseString]])
-        {
+    else {
+        if ([[aString lowercaseString] isEqualToString:[VS_M_SYMBOL_NAN lowercaseString]]) {
             number = [NSNumber numberWithDouble:NAN];
         }
-        else if ([[aString lowercaseString] isEqualToString:[aNumberFormatter.notANumberSymbol lowercaseString]])
-        {
+        else if ([[aString lowercaseString] isEqualToString:[aNumberFormatter.notANumberSymbol lowercaseString]]) {
             number = [NSNumber numberWithDouble:NAN];
         }
-        else
-        {
+        else {
             number = [aNumberFormatter numberFromString:aString];
         }
     }
@@ -198,239 +149,154 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     return number;
 }
 
-/**
- *  @inheritDoc
- */
-+ (float)floatFromString:(NSString *)aString
-{
++ (float)floatFromString:(NSString *)aString {
     return [VSNumberUtil floatFromString:aString numberFormatter:nil];
 }
 
-/**
- *  @inheritDoc
- */
-+ (float)floatFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter
-{
-    if (aString == nil)
-    {
++ (float)floatFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter {
+    if (aString == nil) {
         return NAN;
     }
-    else if (aNumberFormatter == nil)
-    {
+    else if (aNumberFormatter == nil) {
         return fstrtonumf([aString UTF8String]);
     }
-    else
-    {
+    else {
         NSNumber *number = [aNumberFormatter numberFromString:aString];
 
-        if (number == nil)
-        {
+        if (number == nil) {
             return NAN;
         }
-        else
-        {
+        else {
             return [number floatValue];
         }
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (double)doubleFromString:(NSString *)aString
-{
++ (double)doubleFromString:(NSString *)aString {
     return [VSNumberUtil doubleFromString:aString numberFormatter:nil];
 }
 
-/**
- *  @inheritDoc
- */
-+ (double)doubleFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter
-{
-    if (aString == nil)
-    {
++ (double)doubleFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter {
+    if (aString == nil) {
         return NAN;
     }
-    else if (aNumberFormatter == nil)
-    {
+    else if (aNumberFormatter == nil) {
         return fstrtonum([aString UTF8String]);
     }
-    else
-    {
+    else {
         NSNumber *number = [aNumberFormatter numberFromString:aString];
 
-        if (number == nil)
-        {
+        if (number == nil) {
             return NAN;
         }
-        else
-        {
+        else {
             return [number doubleValue];
         }
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (int)intFromString:(NSString *)aString
-{
++ (int)intFromString:(NSString *)aString {
     return [VSNumberUtil intFromString:aString numberFormatter:nil];
 }
 
-/**
- *  @inheritDoc
- */
-+ (int)intFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter
-{
-    if (aString == nil)
-    {
++ (int)intFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter {
+    if (aString == nil) {
         return 0;
     }
-    else if (aNumberFormatter == nil)
-    {
+    else if (aNumberFormatter == nil) {
         return (int)lstrtonum([aString UTF8String]);
     }
-    else
-    {
+    else {
         NSNumber *number = [aNumberFormatter numberFromString:aString];
 
-        if (number == nil)
-        {
+        if (number == nil) {
             return 0;
         }
-        else
-        {
+        else {
             return [number intValue];
         }
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (long)longFromString:(NSString *)aString
-{
++ (long)longFromString:(NSString *)aString {
     return [VSNumberUtil longFromString:aString numberFormatter:nil];
 }
 
-/**
- *  @inheritDoc
- */
-+ (long)longFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter
-{
-    if (aString == nil)
-    {
++ (long)longFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter {
+    if (aString == nil) {
         return 0;
     }
-    else if (aNumberFormatter == nil)
-    {
+    else if (aNumberFormatter == nil) {
         return lstrtonum([aString UTF8String]);
     }
-    else
-    {
+    else {
         NSNumber *number = [aNumberFormatter numberFromString:aString];
 
-        if (number == nil)
-        {
+        if (number == nil) {
             return 0;
         }
-        else
-        {
+        else {
             return [number longValue];
         }
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (long long)longLongFromString:(NSString *)aString
-{
++ (long long)longLongFromString:(NSString *)aString {
     return [VSNumberUtil longLongFromString:aString numberFormatter:nil];
 }
 
-/**
- *  @inheritDoc
- */
-+ (long long)longLongFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter
-{
-    if (aString == nil)
-    {
++ (long long)longLongFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter {
+    if (aString == nil) {
         return 0;
     }
-    else if (aNumberFormatter == nil)
-    {
+    else if (aNumberFormatter == nil) {
         return llstrtonum([aString UTF8String]);
     }
-    else
-    {
+    else {
         NSNumber *number = [aNumberFormatter numberFromString:aString];
 
-        if (number == nil)
-        {
+        if (number == nil) {
             return 0;
         }
-        else
-        {
+        else {
             return [number longLongValue];
         }
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (unsigned char)unsignedCharFromString:(NSString *)aString
-{
++ (unsigned char)unsignedCharFromString:(NSString *)aString {
     return [VSNumberUtil unsignedCharFromString:aString numberFormatter:nil];
 }
 
-/**
- *  @inheritDoc
- */
-+ (unsigned char)unsignedCharFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter
-{
-    if (aString == nil)
-    {
++ (unsigned char)unsignedCharFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter {
+    if (aString == nil) {
         return 0;
     }
-    else if (aNumberFormatter == nil)
-    {
+    else if (aNumberFormatter == nil) {
         return (unsigned char)lustrtonum([aString UTF8String]);
     }
-    else
-    {
+    else {
         NSNumber *number = [aNumberFormatter numberFromString:aString];
 
-        if (number == nil)
-        {
+        if (number == nil) {
             return 0;
         }
-        else
-        {
+        else {
             return [number unsignedCharValue];
         }
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (unsigned char)unsignedCharFromString:(NSString *)aString numberSystem:(VSNumberSystemType)numberSystemType
-{
-    if ((aString == nil) || [aString isEqualToString:@""])
-    {
++ (unsigned char)unsignedCharFromString:(NSString *)aString numberSystem:(VSNumberSystemType)numberSystemType {
+    if ((aString == nil) || [aString isEqualToString:@""]) {
         return 0;
     }
 
     unsigned char output = 0;
     unsigned long strlen = aString.length;
 
-    switch (numberSystemType)
-    {
-        case VSNumberSystemTypeHexadecimal:
-        {
+    switch (numberSystemType) {
+        case VSNumberSystemTypeHexadecimal: {
             unsigned int tmp = 0;
 
             NSScanner *hexScanner = [NSScanner scannerWithString:aString];
@@ -443,10 +309,8 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
             break;
         }
 
-        case VSNumberSystemTypeOctal:
-        {
-            for (int i = 0; i < strlen; i++)
-            {
+        case VSNumberSystemTypeOctal: {
+            for (int i = 0; i < strlen; i++) {
                 unsigned int temp = [aString characterAtIndex:i] - 48;
                 temp *= fpow(8, strlen - 1 - i);
 
@@ -456,18 +320,14 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
             break;
         }
 
-        case VSNumberSystemTypeBinary:
-        {
-            for (unsigned long i = 0; i < strlen; i++)
-            {
+        case VSNumberSystemTypeBinary: {
+            for (unsigned long i = 0; i < strlen; i++) {
                 unichar c = [aString characterAtIndex:(strlen - i - 1)];
 
-                if (c == '1')
-                {
+                if (c == '1') {
                     output += (unsigned char)1 << (unsigned char)i;
                 }
-                else if (c != '0')
-                {
+                else if (c != '0') {
                     output = 0;
                     break;
                 }
@@ -477,68 +337,47 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
         }
 
         case VSNumberSystemTypeDecimal:
-        default:
-        {
+        default: {
             output = [VSNumberUtil unsignedCharFromString:aString];
         }
     }
-    
+
     return (unsigned short)output;
 }
 
-/**
- *  @inheritDoc
- */
-+ (unsigned short)unsignedShortFromString:(NSString *)aString
-{
++ (unsigned short)unsignedShortFromString:(NSString *)aString {
     return [VSNumberUtil unsignedShortFromString:aString numberFormatter:nil];
 }
 
-/**
- *  @inheritDoc
- */
-+ (unsigned short)unsignedShortFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter
-{
-    if (aString == nil)
-    {
++ (unsigned short)unsignedShortFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter {
+    if (aString == nil) {
         return 0;
     }
-    else if (aNumberFormatter == nil)
-    {
+    else if (aNumberFormatter == nil) {
         return (unsigned short)lustrtonum([aString UTF8String]);
     }
-    else
-    {
+    else {
         NSNumber *number = [aNumberFormatter numberFromString:aString];
 
-        if (number == nil)
-        {
+        if (number == nil) {
             return 0;
         }
-        else
-        {
+        else {
             return [number unsignedShortValue];
         }
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (unsigned short)unsignedShortFromString:(NSString *)aString numberSystem:(VSNumberSystemType)numberSystemType
-{
-    if ((aString == nil) || [aString isEqualToString:@""])
-    {
++ (unsigned short)unsignedShortFromString:(NSString *)aString numberSystem:(VSNumberSystemType)numberSystemType {
+    if ((aString == nil) || [aString isEqualToString:@""]) {
         return 0;
     }
 
     unsigned short output = 0;
     unsigned long strlen = aString.length;
 
-    switch (numberSystemType)
-    {
-        case VSNumberSystemTypeHexadecimal:
-        {
+    switch (numberSystemType) {
+        case VSNumberSystemTypeHexadecimal: {
             unsigned int tmp = 0;
 
             NSScanner *hexScanner = [NSScanner scannerWithString:aString];
@@ -551,10 +390,8 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
             break;
         }
 
-        case VSNumberSystemTypeOctal:
-        {
-            for (int i = 0; i < strlen; i++)
-            {
+        case VSNumberSystemTypeOctal: {
+            for (int i = 0; i < strlen; i++) {
                 unsigned int temp = [aString characterAtIndex:i] - 48;
                 temp *= fpow(8, strlen - 1 - i);
 
@@ -564,18 +401,14 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
             break;
         }
 
-        case VSNumberSystemTypeBinary:
-        {
-            for (unsigned long i = 0; i < strlen; i++)
-            {
+        case VSNumberSystemTypeBinary: {
+            for (unsigned long i = 0; i < strlen; i++) {
                 unichar c = [aString characterAtIndex:(strlen - i - 1)];
 
-                if (c == '1')
-                {
+                if (c == '1') {
                     output += (unsigned short)1 << (unsigned short)i;
                 }
-                else if (c != '0')
-                {
+                else if (c != '0') {
                     output = 0;
                     break;
                 }
@@ -585,8 +418,7 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
         }
 
         case VSNumberSystemTypeDecimal:
-        default:
-        {
+        default: {
             output = [VSNumberUtil unsignedIntFromString:aString];
         }
     }
@@ -594,59 +426,39 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     return (unsigned short)output;
 }
 
-/**
- *  @inheritDoc
- */
-+ (unsigned int)unsignedIntFromString:(NSString *)aString
-{
++ (unsigned int)unsignedIntFromString:(NSString *)aString {
     return [VSNumberUtil unsignedIntFromString:aString numberFormatter:nil];
 }
 
-/**
- *  @inheritDoc
- */
-+ (unsigned int)unsignedIntFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter
-{
-    if (aString == nil)
-    {
++ (unsigned int)unsignedIntFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter {
+    if (aString == nil) {
         return 0;
     }
-    else if (aNumberFormatter == nil)
-    {
+    else if (aNumberFormatter == nil) {
         return (unsigned int)lustrtonum([aString UTF8String]);
     }
-    else
-    {
+    else {
         NSNumber *number = [aNumberFormatter numberFromString:aString];
 
-        if (number == nil)
-        {
+        if (number == nil) {
             return 0;
         }
-        else
-        {
+        else {
             return [number unsignedIntValue];
         }
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (unsigned int)unsignedIntFromString:(NSString *)aString numberSystem:(VSNumberSystemType)numberSystemType
-{
-    if ((aString == nil) || [aString isEqualToString:@""])
-    {
++ (unsigned int)unsignedIntFromString:(NSString *)aString numberSystem:(VSNumberSystemType)numberSystemType {
+    if ((aString == nil) || [aString isEqualToString:@""]) {
         return 0;
     }
 
     unsigned int output = 0;
     unsigned long strlen = aString.length;
 
-    switch (numberSystemType)
-    {
-        case VSNumberSystemTypeHexadecimal:
-        {
+    switch (numberSystemType) {
+        case VSNumberSystemTypeHexadecimal: {
             NSScanner *hexScanner = [NSScanner scannerWithString:aString];
             [hexScanner setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US"]];
             [hexScanner scanHexInt:&output];
@@ -655,10 +467,8 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
             break;
         }
 
-        case VSNumberSystemTypeOctal:
-        {
-            for (int i = 0; i < strlen; i++)
-            {
+        case VSNumberSystemTypeOctal: {
+            for (int i = 0; i < strlen; i++) {
                 unsigned int temp = [aString characterAtIndex:i] - 48;
                 temp *= fpow(8, strlen - 1 - i);
 
@@ -668,18 +478,14 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
             break;
         }
 
-        case VSNumberSystemTypeBinary:
-        {
-            for (unsigned long i = 0; i < strlen; i++)
-            {
+        case VSNumberSystemTypeBinary: {
+            for (unsigned long i = 0; i < strlen; i++) {
                 unichar c = [aString characterAtIndex:(strlen - i - 1)];
 
-                if (c == '1')
-                {
+                if (c == '1') {
                     output += (unsigned int)1 << (unsigned int)i;
                 }
-                else if (c != '0')
-                {
+                else if (c != '0') {
                     output = 0;
                     break;
                 }
@@ -689,8 +495,7 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
         }
 
         case VSNumberSystemTypeDecimal:
-        default:
-        {
+        default: {
             output = [VSNumberUtil unsignedIntFromString:aString];
 
             break;
@@ -700,59 +505,39 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     return output;
 }
 
-/**
- *  @inheritDoc
- */
-+ (unsigned long)unsignedLongFromString:(NSString *)aString
-{
++ (unsigned long)unsignedLongFromString:(NSString *)aString {
     return [VSNumberUtil unsignedLongFromString:aString numberFormatter:nil];
 }
 
-/**
- *  @inheritDoc
- */
-+ (unsigned long)unsignedLongFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter
-{
-    if (aString == nil)
-    {
++ (unsigned long)unsignedLongFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter {
+    if (aString == nil) {
         return 0;
     }
-    else if (aNumberFormatter == nil)
-    {
+    else if (aNumberFormatter == nil) {
         return lustrtonum([aString UTF8String]);
     }
-    else
-    {
+    else {
         NSNumber *number = [aNumberFormatter numberFromString:aString];
 
-        if (number == nil)
-        {
+        if (number == nil) {
             return 0;
         }
-        else
-        {
+        else {
             return [number unsignedLongValue];
         }
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (unsigned long)unsignedLongFromString:(NSString *)aString numberSystem:(VSNumberSystemType)numberSystemType
-{
-    if ((aString == nil) || [aString isEqualToString:@""])
-    {
++ (unsigned long)unsignedLongFromString:(NSString *)aString numberSystem:(VSNumberSystemType)numberSystemType {
+    if ((aString == nil) || [aString isEqualToString:@""]) {
         return 0;
     }
 
     unsigned long output = 0;
     unsigned long strlen = aString.length;
 
-    switch (numberSystemType)
-    {
-        case VSNumberSystemTypeHexadecimal:
-        {
+    switch (numberSystemType) {
+        case VSNumberSystemTypeHexadecimal: {
             unsigned long long tmp = 0;
 
             NSScanner *hexScanner = [NSScanner scannerWithString:aString];
@@ -765,10 +550,8 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
             break;
         }
 
-        case VSNumberSystemTypeOctal:
-        {
-            for (int i = 0; i < strlen; i++)
-            {
+        case VSNumberSystemTypeOctal: {
+            for (int i = 0; i < strlen; i++) {
                 unsigned long temp = [aString characterAtIndex:i] - 48;
                 temp *= fpow(8, strlen - 1 - i);
 
@@ -778,20 +561,16 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
             break;
         }
 
-        case VSNumberSystemTypeBinary:
-        {
+        case VSNumberSystemTypeBinary: {
             unsigned long strlen = aString.length;
 
-            for (unsigned long i = 0; i < strlen; i++)
-            {
+            for (unsigned long i = 0; i < strlen; i++) {
                 unichar c = [aString characterAtIndex:(strlen - i - 1)];
 
-                if (c == '1')
-                {
+                if (c == '1') {
                     output += (unsigned long)1 << (unsigned long)i;
                 }
-                else if (c != '0')
-                {
+                else if (c != '0') {
                     output = 0;
                     break;
                 }
@@ -801,8 +580,7 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
         }
 
         case VSNumberSystemTypeDecimal:
-        default:
-        {
+        default: {
             output = [VSNumberUtil unsignedLongFromString:aString];
 
             break;
@@ -812,59 +590,39 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
     return output;
 }
 
-/**
- *  @inheritDoc
- */
-+ (unsigned long long)unsignedLongLongFromString:(NSString *)aString
-{
++ (unsigned long long)unsignedLongLongFromString:(NSString *)aString {
     return [VSNumberUtil unsignedLongLongFromString:aString numberFormatter:nil];
 }
 
-/**
- *  @inheritDoc
- */
-+ (unsigned long long)unsignedLongLongFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter
-{
-    if (aString == nil)
-    {
++ (unsigned long long)unsignedLongLongFromString:(NSString *)aString numberFormatter:(NSNumberFormatter *)aNumberFormatter {
+    if (aString == nil) {
         return 0;
     }
-    else if (aNumberFormatter == nil)
-    {
+    else if (aNumberFormatter == nil) {
         return llustrtonum([aString UTF8String]);
     }
-    else
-    {
+    else {
         NSNumber *number = [aNumberFormatter numberFromString:aString];
 
-        if (number == nil)
-        {
+        if (number == nil) {
             return NAN;
         }
-        else
-        {
+        else {
             return [number unsignedLongLongValue];
         }
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (unsigned long long)unsignedLongLongFromString:(NSString *)aString numberSystem:(VSNumberSystemType)numberSystemType
-{
-    if ((aString == nil) || [aString isEqualToString:@""])
-    {
++ (unsigned long long)unsignedLongLongFromString:(NSString *)aString numberSystem:(VSNumberSystemType)numberSystemType {
+    if ((aString == nil) || [aString isEqualToString:@""]) {
         return 0;
     }
 
     unsigned long long output = 0;
     unsigned long strlen = aString.length;
 
-    switch (numberSystemType)
-    {
-        case VSNumberSystemTypeHexadecimal:
-        {
+    switch (numberSystemType) {
+        case VSNumberSystemTypeHexadecimal: {
             NSScanner *hexScanner = [NSScanner scannerWithString:aString];
             [hexScanner setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US"]];
             [hexScanner scanHexLongLong:&output];
@@ -873,10 +631,8 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
             break;
         }
 
-        case VSNumberSystemTypeOctal:
-        {
-            for (int i = 0; i < strlen; i++)
-            {
+        case VSNumberSystemTypeOctal: {
+            for (int i = 0; i < strlen; i++) {
                 unsigned long long temp = [aString characterAtIndex:i] - 48;
                 temp *= fpow(8, strlen - 1 - i);
 
@@ -886,18 +642,14 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
             break;
         }
 
-        case VSNumberSystemTypeBinary:
-        {
-            for (unsigned long i = 0; i < strlen; i++)
-            {
+        case VSNumberSystemTypeBinary: {
+            for (unsigned long i = 0; i < strlen; i++) {
                 unichar c = [aString characterAtIndex:(strlen - i - 1)];
 
-                if (c == '1')
-                {
+                if (c == '1') {
                     output += (unsigned long long)1 << (unsigned long long)i;
                 }
-                else if (c != '0')
-                {
+                else if (c != '0') {
                     output = 0;
                     break;
                 }
@@ -905,10 +657,9 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type)
 
             break;
         }
-            
+
         case VSNumberSystemTypeDecimal:
-        default:
-        {
+        default: {
             output = [VSNumberUtil unsignedLongLongFromString:aString];
 
             break;

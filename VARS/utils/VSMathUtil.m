@@ -1,9 +1,9 @@
 /**
- *  VARS
- *  (c) VARIANTE <http://variante.io>
+ * VARS
+ * (c) VARIANTE <http://variante.io>
  *
- *  This software is released under the MIT License:
- *  http://www.opensource.org/licenses/mit-license.php
+ * This software is released under the MIT License:
+ * http://www.opensource.org/licenses/mit-license.php
  */
 
 #import "vsmath.h"
@@ -12,13 +12,8 @@
 #import "VSMathUtil.h"
 #import "VSStringUtil.h"
 
-/**
- *  @inheritDoc
- */
-NSString *NSStringFromVSMathAngleModeType(VSMathAngleModeType type)
-{
-    switch (type)
-    {
+NSString *NSStringFromVSMathAngleModeType(VSMathAngleModeType type) {
+    switch (type) {
         case VSMathAngleModeTypeUnknown:  return @"VSMathAngleModeTypeUnknown";
         case VSMathAngleModeTypeDegree:   return @"VSMathAngleModeTypeDegree";
         case VSMathAngleModeTypeRadian:   return @"VSMathAngleModeTypeRadian";
@@ -28,13 +23,8 @@ NSString *NSStringFromVSMathAngleModeType(VSMathAngleModeType type)
     }
 }
 
-/**
- *  @inheritDoc
- */
-NSString *NSStringFromVSMathSymbolType(VSMathSymbolType type)
-{
-    switch (type)
-    {
+NSString *NSStringFromVSMathSymbolType(VSMathSymbolType type) {
+    switch (type) {
         case VSMathSymbolTypeUnknown:                  return @"VSMathSymbolTypeUnknown";
         case VSMathSymbolTypeEqual:                    return @"VSMathSymbolTypeEqual";
         case VSMathSymbolTypeAdd:                      return @"VSMathSymbolTypeAdd";
@@ -100,13 +90,8 @@ NSString *NSStringFromVSMathSymbolType(VSMathSymbolType type)
     }
 }
 
-/**
- *  @inheritDoc
- */
-NSString *NSStringFromVSMathOperationType(VSMathOperationType type)
-{
-    switch (type)
-    {
+NSString *NSStringFromVSMathOperationType(VSMathOperationType type) {
+    switch (type) {
         case VSMathOperationTypeUnknown:                  return @"VSMathOperationTypeUnknown";
         case VSMathOperationTypeExponent:                 return @"VSMathOperationTypeExponent";
         case VSMathOperationTypeRoot:                     return @"VSMathOperationTypeRoot";
@@ -172,13 +157,8 @@ NSString *NSStringFromVSMathOperationType(VSMathOperationType type)
     }
 }
 
-/**
- *  @inheritDoc
- */
-NSString *NSStringFromVSMathOperatorUnaryType(VSMathOperatorUnaryType type)
-{
-    switch (type)
-    {
+NSString *NSStringFromVSMathOperatorUnaryType(VSMathOperatorUnaryType type) {
+    switch (type) {
         case VSMathOperatorUnaryTypeUnknown:      return @"VSMathOperatorUnaryTypeUnknown";
         case VSMathOperatorUnaryTypeNonUnary:     return @"VSMathOperatorUnaryTypeNonUnary";
         case VSMathOperatorUnaryTypeUnaryPrefix:  return @"VSMathOperatorUnaryTypeUnaryPrefix";
@@ -188,13 +168,8 @@ NSString *NSStringFromVSMathOperatorUnaryType(VSMathOperatorUnaryType type)
     }
 }
 
-/**
- *  @inheritDoc
- */
-NSString *NSStringFromVSMathOperatorAssociativeType(VSMathOperatorAssociativeType type)
-{
-    switch (type)
-    {
+NSString *NSStringFromVSMathOperatorAssociativeType(VSMathOperatorAssociativeType type) {
+    switch (type) {
         case VSMathOperatorAssociativeTypeUnknown:  return @"VSMathOperatorAssociativeTypeUnknown";
         case VSMathOperatorAssociativeTypeLeft:     return @"VSMathOperatorAssociativeTypeLeft";
         case VSMathOperatorAssociativeTypeRight:    return @"VSMathOperatorAssociativeTypeRight";
@@ -203,13 +178,8 @@ NSString *NSStringFromVSMathOperatorAssociativeType(VSMathOperatorAssociativeTyp
     }
 }
 
-/**
- *  @inheritDoc
- */
-NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
-{
-    switch (type)
-    {
+NSString *NSStringFromVSMathTokenType(VSMathTokenType type) {
+    switch (type) {
         case VSMathTokenTypeUnknown:              return @"VSMathTokenTypeUnknown";
         case VSMathTokenTypeNumeric:              return @"VSMathTokenTypeNumeric";
         case VSMathTokenTypeFunction:             return @"VSMathTokenTypeFunction";
@@ -224,98 +194,54 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
-#pragma mark - --------------------------------------------------------------------------
+#pragma mark -
 
 @implementation VSMathUtil
 
-#pragma mark - Math Character Sets
+#pragma mark Math Character Sets
 
-/**
- *  @inheritDoc
- */
 + (NSCharacterSet *)numericCharacterSet { return [NSCharacterSet characterSetWithCharactersInString:@"0123456789.,"]; }
-
-/**
- *  @inheritDoc
- */
 + (NSCharacterSet *)functionCharacterSet { return [NSCharacterSet characterSetWithCharactersInString:@"abcdfghijklmnopqrstuvwz₁₂_"]; }
-
-/**
- *  @inheritDoc
- */
 + (NSCharacterSet *)operatorCharacterSet { return [NSCharacterSet characterSetWithCharactersInString:[NSString stringWithFormat:@"%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@%@", VS_M_SYMBOL_ADD, VS_M_SYMBOL_SUBTRACT, VS_M_SYMBOL_MULTIPLY, VS_M_SYMBOL_MULTIPLY_ALTERNATE, VS_M_SYMBOL_DIVIDE, VS_M_SYMBOL_DIVIDE_ALTERNATE, VS_M_SYMBOL_EXPONENT, VS_M_SYMBOL_SCIENTIFIC_NOTATION, VS_M_SYMBOL_ROOT, VS_M_SYMBOL_CHOOSE, VS_M_SYMBOL_PICK, VS_M_SYMBOL_LEFT_SHIFT_BY, VS_M_SYMBOL_RIGHT_SHIFT_BY, VS_M_SYMBOL_AND, VS_M_SYMBOL_NAND, VS_M_SYMBOL_OR, VS_M_SYMBOL_NOR, VS_M_SYMBOL_XOR, VS_M_SYMBOL_XNOR]]; }
-
-/**
- *  @inheritDoc
- */
 + (NSCharacterSet *)unaryPrefixOperatorCharacterSet { return [NSCharacterSet characterSetWithCharactersInString:[NSString stringWithFormat:@"%@%@%@", VS_M_SYMBOL_NEGATIVE, VS_M_SYMBOL_SQUARE_ROOT, VS_M_SYMBOL_CUBE_ROOT]]; }
-
-/**
- *  @inheritDoc
- */
 + (NSCharacterSet *)unaryPostfixOperatorCharacterSet { return [NSCharacterSet characterSetWithCharactersInString:[NSString stringWithFormat:@"%@%@%@%@", VS_M_SYMBOL_FACTORIAL, VS_M_SYMBOL_PERCENT, VS_M_SYMBOL_SQUARE, VS_M_SYMBOL_CUBE]]; }
-
-/**
- *  @inheritDoc
- */
 + (NSCharacterSet *)constantCharacterSet { return [NSCharacterSet characterSetWithCharactersInString:[NSString stringWithFormat:@"%@%@%@", VS_M_SYMBOL_PI, VS_M_SYMBOL_EULER, VS_M_SYMBOL_RANDOM_NUMBER]]; }
-
-/**
- *  @inheritDoc
- */
 + (NSCharacterSet *)variableCharacterSet { return [NSCharacterSet characterSetWithCharactersInString:[NSString stringWithFormat:@"%@%@", VS_M_SYMBOL_X_VARIABLE, VS_M_SYMBOL_Y_VARIABLE]]; }
-
-/**
- *  @inheritDoc
- */
 + (NSCharacterSet *)parenthesisCharacterSet { return [NSCharacterSet characterSetWithCharactersInString:[NSString stringWithFormat:@"%@%@", VS_M_SYMBOL_LEFT_PARENTHESIS, VS_M_SYMBOL_RIGHT_PARENTHESIS]]; }
 
-#pragma mark - Math Operations
 #pragma mark Bitwise Operations
 
-/**
- *  @inheritDoc
- */
-+ (unsigned long long)evaluateBitwiseOperation:(VSMathOperationType)operationType operand:(unsigned long long)operand binaryDigitType:(VSBinaryDigitType)binaryDigitType
-{
++ (unsigned long long)evaluateBitwiseOperation:(VSMathOperationType)operationType operand:(unsigned long long)operand binaryDigitType:(VSBinaryDigitType)binaryDigitType {
     unsigned long long result = 0;
     unsigned long long mask = 0;
 
     // Depending on the specified binary digit type, a bit mask needs to be applied to preserve bits.
-    switch (binaryDigitType)
-    {
-        case VSBinaryDigitType8Bit:
-        {
+    switch (binaryDigitType) {
+        case VSBinaryDigitType8Bit: {
             mask = 0xFF;
             break;
         }
 
-        case VSBinaryDigitType16Bit:
-        {
+        case VSBinaryDigitType16Bit: {
             mask = 0xFFFF;
             break;
         }
 
-        case VSBinaryDigitType32Bit:
-        {
+        case VSBinaryDigitType32Bit: {
             mask = 0xFFFFFFFF;
             break;
         }
 
         case VSBinaryDigitType64Bit:
-        default:
-        {
+        default: {
             mask = 0xFFFFFFFFFFFFFFFF;
             break;
         }
     }
 
-    switch (operationType)
-    {
-        case VSMathOperationTypeLeftShift:
-        {
-            switch (binaryDigitType)
-            {
+    switch (operationType) {
+        case VSMathOperationTypeLeftShift: {
+            switch (binaryDigitType) {
                 case VSBinaryDigitType8Bit:  result = clshift((unsigned char)operand);        break;
                 case VSBinaryDigitType16Bit: result = hulshift((unsigned short)operand);      break;
                 case VSBinaryDigitType32Bit: result = ulshift((unsigned int)operand);         break;
@@ -326,10 +252,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeRightShift:
-        {
-            switch (binaryDigitType)
-            {
+        case VSMathOperationTypeRightShift: {
+            switch (binaryDigitType) {
                 case VSBinaryDigitType8Bit:  result = crshift((unsigned char)operand);        break;
                 case VSBinaryDigitType16Bit: result = hurshift((unsigned short)operand);      break;
                 case VSBinaryDigitType32Bit: result = urshift((unsigned int)operand);         break;
@@ -340,10 +264,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeRoL:
-        {
-            switch (binaryDigitType)
-            {
+        case VSMathOperationTypeRoL: {
+            switch (binaryDigitType) {
                 case VSBinaryDigitType8Bit:  result = clrotate((unsigned char)operand);        break;
                 case VSBinaryDigitType16Bit: result = hulrotate((unsigned short)operand);      break;
                 case VSBinaryDigitType32Bit: result = ulrotate((unsigned int)operand);         break;
@@ -354,10 +276,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeRoR:
-        {
-            switch (binaryDigitType)
-            {
+        case VSMathOperationTypeRoR: {
+            switch (binaryDigitType) {
                 case VSBinaryDigitType8Bit:  result = crrotate((unsigned char)operand);        break;
                 case VSBinaryDigitType16Bit: result = hurrotate((unsigned short)operand);      break;
                 case VSBinaryDigitType32Bit: result = urrotate((unsigned int)operand);         break;
@@ -368,10 +288,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeOnesComplement:
-        {
-            switch (binaryDigitType)
-            {
+        case VSMathOperationTypeOnesComplement: {
+            switch (binaryDigitType) {
                 case VSBinaryDigitType8Bit:  result = ccomp1((unsigned char)operand);        break;
                 case VSBinaryDigitType16Bit: result = hucomp1((unsigned short)operand);      break;
                 case VSBinaryDigitType32Bit: result = ucomp1((unsigned int)operand);         break;
@@ -382,10 +300,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeTwosComplement:
-        {
-            switch (binaryDigitType)
-            {
+        case VSMathOperationTypeTwosComplement: {
+            switch (binaryDigitType) {
                 case VSBinaryDigitType8Bit:  result = ccomp2((unsigned char)operand);        break;
                 case VSBinaryDigitType16Bit: result = hucomp2((unsigned short)operand);      break;
                 case VSBinaryDigitType32Bit: result = ucomp2((unsigned int)operand);         break;
@@ -396,10 +312,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeFlipWord:
-        {
-            switch (binaryDigitType)
-            {
+        case VSMathOperationTypeFlipWord: {
+            switch (binaryDigitType) {
                 case VSBinaryDigitType8Bit:  result = cflipw((unsigned char)operand);        break;
                 case VSBinaryDigitType16Bit: result = huflipw((unsigned short)operand);      break;
                 case VSBinaryDigitType32Bit: result = uflipw((unsigned int)operand);         break;
@@ -410,10 +324,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeFlipByte:
-        {
-            switch (binaryDigitType)
-            {
+        case VSMathOperationTypeFlipByte: {
+            switch (binaryDigitType) {
                 case VSBinaryDigitType8Bit:  result = cflipb((unsigned char)operand);        break;
                 case VSBinaryDigitType16Bit: result = huflipb((unsigned short)operand);      break;
                 case VSBinaryDigitType32Bit: result = uflipb((unsigned int)operand);         break;
@@ -424,8 +336,7 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        default:
-        {
+        default: {
             // Do nothing.
             break;
         }
@@ -434,49 +345,37 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     return (operand & ~mask) | result;
 }
 
-/**
- *  @inheritDoc
- */
-+ (unsigned long long)evaluateBitwiseOperation:(VSMathOperationType)operationType operandX:(unsigned long long)operandX operandY:(unsigned long long)operandY binaryDigitType:(VSBinaryDigitType)binaryDigitType
-{
++ (unsigned long long)evaluateBitwiseOperation:(VSMathOperationType)operationType operandX:(unsigned long long)operandX operandY:(unsigned long long)operandY binaryDigitType:(VSBinaryDigitType)binaryDigitType {
     unsigned long long result = 0;
     unsigned long long mask = 0;
 
     // Depending on the specified binary digit type, a bit mask needs to be applied to preserve bits.
-    switch (binaryDigitType)
-    {
-        case VSBinaryDigitType8Bit:
-        {
+    switch (binaryDigitType) {
+        case VSBinaryDigitType8Bit: {
             mask = 0xFF;
             break;
         }
 
-        case VSBinaryDigitType16Bit:
-        {
+        case VSBinaryDigitType16Bit: {
             mask = 0xFFFF;
             break;
         }
 
-        case VSBinaryDigitType32Bit:
-        {
+        case VSBinaryDigitType32Bit: {
             mask = 0xFFFFFFFF;
             break;
         }
 
         case VSBinaryDigitType64Bit:
-        default:
-        {
+        default: {
             mask = 0xFFFFFFFFFFFFFFFF;
             break;
         }
     }
 
-    switch (operationType)
-    {
-        case VSMathOperationTypeAdd:
-        {
-            switch (binaryDigitType)
-            {
+    switch (operationType) {
+        case VSMathOperationTypeAdd: {
+            switch (binaryDigitType) {
                 case VSBinaryDigitType8Bit:  result = (unsigned char)operandX + (unsigned char)operandY;           break;
                 case VSBinaryDigitType16Bit: result = (unsigned short)operandX + (unsigned short)operandY;         break;
                 case VSBinaryDigitType32Bit: result = (unsigned int)operandX + (unsigned int)operandY;             break;
@@ -487,10 +386,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeSubtract:
-        {
-            switch (binaryDigitType)
-            {
+        case VSMathOperationTypeSubtract: {
+            switch (binaryDigitType) {
                 case VSBinaryDigitType8Bit:  result = (unsigned char)operandX - (unsigned char)operandY;           break;
                 case VSBinaryDigitType16Bit: result = (unsigned short)operandX - (unsigned short)operandY;         break;
                 case VSBinaryDigitType32Bit: result = (unsigned int)operandX - (unsigned int)operandY;             break;
@@ -501,10 +398,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeMultiply:
-        {
-            switch (binaryDigitType)
-            {
+        case VSMathOperationTypeMultiply: {
+            switch (binaryDigitType) {
                 case VSBinaryDigitType8Bit:  result = (unsigned char)operandX * (unsigned char)operandY;           break;
                 case VSBinaryDigitType16Bit: result = (unsigned short)operandX * (unsigned short)operandY;         break;
                 case VSBinaryDigitType32Bit: result = (unsigned int)operandX * (unsigned int)operandY;             break;
@@ -515,10 +410,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeDivide:
-        {
-            switch (binaryDigitType)
-            {
+        case VSMathOperationTypeDivide: {
+            switch (binaryDigitType) {
                 case VSBinaryDigitType8Bit:  result = floor((unsigned char)operandX / (unsigned char)operandY);           break;
                 case VSBinaryDigitType16Bit: result = floor((unsigned short)operandX / (unsigned short)operandY);         break;
                 case VSBinaryDigitType32Bit: result = floor((unsigned int)operandX / (unsigned int)operandY);             break;
@@ -529,10 +422,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeModulo:
-        {
-            switch (binaryDigitType)
-            {
+        case VSMathOperationTypeModulo: {
+            switch (binaryDigitType) {
                 case VSBinaryDigitType8Bit:  result = (unsigned char)operandX % (unsigned char)operandY;           break;
                 case VSBinaryDigitType16Bit: result = (unsigned short)operandX % (unsigned short)operandY;         break;
                 case VSBinaryDigitType32Bit: result = (unsigned int)operandX % (unsigned int)operandY;             break;
@@ -543,10 +434,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeLeftShiftBy:
-        {
-            switch (binaryDigitType)
-            {
+        case VSMathOperationTypeLeftShiftBy: {
+            switch (binaryDigitType) {
                 case VSBinaryDigitType8Bit:  result = ((unsigned char)operandX << (unsigned char)operandY);           break;
                 case VSBinaryDigitType16Bit: result = ((unsigned short)operandX << (unsigned short)operandY);         break;
                 case VSBinaryDigitType32Bit: result = ((unsigned int)operandX << (unsigned int)operandY);             break;
@@ -557,10 +446,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeRightShiftBy:
-        {
-            switch (binaryDigitType)
-            {
+        case VSMathOperationTypeRightShiftBy: {
+            switch (binaryDigitType) {
                 case VSBinaryDigitType8Bit:  result = ((unsigned char)operandX >> (unsigned char)operandY);           break;
                 case VSBinaryDigitType16Bit: result = ((unsigned short)operandX >> (unsigned short)operandY);         break;
                 case VSBinaryDigitType32Bit: result = ((unsigned int)operandX >> (unsigned int)operandY);             break;
@@ -571,10 +458,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeAnd:
-        {
-            switch (binaryDigitType)
-            {
+        case VSMathOperationTypeAnd: {
+            switch (binaryDigitType) {
                 case VSBinaryDigitType8Bit:  result = ((unsigned char)operandX & (unsigned char)operandY);           break;
                 case VSBinaryDigitType16Bit: result = ((unsigned short)operandX & (unsigned short)operandY);         break;
                 case VSBinaryDigitType32Bit: result = ((unsigned int)operandX & (unsigned int)operandY);             break;
@@ -585,10 +470,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeNand:
-        {
-            switch (binaryDigitType)
-            {
+        case VSMathOperationTypeNand: {
+            switch (binaryDigitType) {
                 case VSBinaryDigitType8Bit:  result = ~((unsigned char)operandX & (unsigned char)operandY);           break;
                 case VSBinaryDigitType16Bit: result = ~((unsigned short)operandX & (unsigned short)operandY);         break;
                 case VSBinaryDigitType32Bit: result = ~((unsigned int)operandX & (unsigned int)operandY);             break;
@@ -599,10 +482,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeOr:
-        {
-            switch (binaryDigitType)
-            {
+        case VSMathOperationTypeOr: {
+            switch (binaryDigitType) {
                 case VSBinaryDigitType8Bit:  result = ((unsigned char)operandX | (unsigned char)operandY);           break;
                 case VSBinaryDigitType16Bit: result = ((unsigned short)operandX | (unsigned short)operandY);         break;
                 case VSBinaryDigitType32Bit: result = ((unsigned int)operandX | (unsigned int)operandY);             break;
@@ -613,10 +494,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeNor:
-        {
-            switch (binaryDigitType)
-            {
+        case VSMathOperationTypeNor: {
+            switch (binaryDigitType) {
                 case VSBinaryDigitType8Bit:  result = ~((unsigned char)operandX | (unsigned char)operandY);           break;
                 case VSBinaryDigitType16Bit: result = ~((unsigned short)operandX | (unsigned short)operandY);         break;
                 case VSBinaryDigitType32Bit: result = ~((unsigned int)operandX | (unsigned int)operandY);             break;
@@ -627,10 +506,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeXor:
-        {
-            switch (binaryDigitType)
-            {
+        case VSMathOperationTypeXor: {
+            switch (binaryDigitType) {
                 case VSBinaryDigitType8Bit:  result = ((unsigned char)operandX ^ (unsigned char)operandY);           break;
                 case VSBinaryDigitType16Bit: result = ((unsigned short)operandX ^ (unsigned short)operandY);         break;
                 case VSBinaryDigitType32Bit: result = ((unsigned int)operandX ^ (unsigned int)operandY);             break;
@@ -641,10 +518,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeXnor:
-        {
-            switch (binaryDigitType)
-            {
+        case VSMathOperationTypeXnor: {
+            switch (binaryDigitType) {
                 case VSBinaryDigitType8Bit:  result = ~((unsigned char)operandX ^ (unsigned char)operandY);           break;
                 case VSBinaryDigitType16Bit: result = ~((unsigned short)operandX ^ (unsigned short)operandY);         break;
                 case VSBinaryDigitType32Bit: result = ~((unsigned int)operandX ^ (unsigned int)operandY);             break;
@@ -655,8 +530,7 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        default:
-        {
+        default: {
             break;
         }
     }
@@ -666,137 +540,108 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 
 #pragma mark Floating-Point Operations
 
-/**
- *  @inheritDoc
- */
-+ (double)evaluateOperation:(VSMathOperationType)operationType angleMode:(VSMathAngleModeType)angleMode
-{
++ (double)evaluateOperation:(VSMathOperationType)operationType angleMode:(VSMathAngleModeType)angleMode {
     return [VSMathUtil evaluateOperation:operationType angleMode:angleMode operandX:NAN operandY:NAN];
 }
 
-/**
- *  @inheritDoc
- */
-+ (double)evaluateOperation:(VSMathOperationType)operationType angleMode:(VSMathAngleModeType)angleMode operand:(double)operand
-{
++ (double)evaluateOperation:(VSMathOperationType)operationType angleMode:(VSMathAngleModeType)angleMode operand:(double)operand {
     return [VSMathUtil evaluateOperation:operationType angleMode:angleMode operandX:operand operandY:NAN];
 }
 
-/**
- *  @inheritDoc
- */
-+ (double)evaluateOperation:(VSMathOperationType)operationType angleMode:(VSMathAngleModeType)angleMode operandX:(double)operandX operandY:(double)operandY
-{
++ (double)evaluateOperation:(VSMathOperationType)operationType angleMode:(VSMathAngleModeType)angleMode operandX:(double)operandX operandY:(double)operandY {
     double result = NAN;
 
-    switch (operationType)
-    {
-        case VSMathOperationTypeAdd:
-        {
+    switch (operationType) {
+        case VSMathOperationTypeAdd: {
             if (isnan(operandX)) return NAN;
             if (isnan(operandY)) return NAN;
             result = operandX + operandY;
             break;
         }
 
-        case VSMathOperationTypeSubtract:
-        {
+        case VSMathOperationTypeSubtract: {
             if (isnan(operandX)) return NAN;
             if (isnan(operandY)) return NAN;
             result = operandX - operandY;
             break;
         }
 
-        case VSMathOperationTypeMultiply:
-        {
+        case VSMathOperationTypeMultiply: {
             if (isnan(operandX)) return NAN;
             if (isnan(operandY)) return NAN;
             result = operandX * operandY;
             break;
         }
 
-        case VSMathOperationTypeDivide:
-        {
+        case VSMathOperationTypeDivide: {
             if (isnan(operandX)) return NAN;
             if (isnan(operandY)) return NAN;
             result = operandX / operandY;
             break;
         }
 
-        case VSMathOperationTypeModulo:
-        {
+        case VSMathOperationTypeModulo: {
             if (isnan(operandX)) return NAN;
             if (isnan(operandY)) return NAN;
             result = fmod(operandX, operandY);
             break;
         }
 
-        case VSMathOperationTypeExponent:
-        {
+        case VSMathOperationTypeExponent: {
             if (isnan(operandX)) return NAN;
             if (isnan(operandY)) return NAN;
             result = fpow(operandX, operandY);
             break;
         }
 
-        case VSMathOperationTypeRoot:
-        {
+        case VSMathOperationTypeRoot: {
             if (isnan(operandX)) return NAN;
             if (isnan(operandY)) return NAN;
             result = froot(operandX, operandY);
             break;
         }
 
-        case VSMathOperationTypeScientificNotation:
-        {
+        case VSMathOperationTypeScientificNotation: {
             if (isnan(operandX)) return NAN;
             if (isnan(operandY)) return NAN;
             result = operandX * fpow(10.0, operandY);
             break;
         }
 
-        case VSMathOperationTypeChoose:
-        {
+        case VSMathOperationTypeChoose: {
             if (isnan(operandX)) return NAN;
             if (isnan(operandY)) return NAN;
             result = fncr(operandX, operandY);
             break;
         }
 
-        case VSMathOperationTypePick:
-        {
+        case VSMathOperationTypePick: {
             if (isnan(operandX)) return NAN;
             if (isnan(operandY)) return NAN;
             result = fnpr(operandX, operandY);
             break;
         }
 
-        case VSMathOperationTypeSine:
-        {
+        case VSMathOperationTypeSine: {
             if (isnan(operandX)) return NAN;
 
-            switch (angleMode)
-            {
-                case VSMathAngleModeTypeDegree:
-                {
+            switch (angleMode) {
+                case VSMathAngleModeTypeDegree: {
                     result = fsind(operandX);
                     break;
                 }
 
-                case VSMathAngleModeTypeRadian:
-                {
+                case VSMathAngleModeTypeRadian: {
                     result = fsinr(operandX);
                     break;
                 }
 
-                case VSMathAngleModeTypeGradian:
-                {
+                case VSMathAngleModeTypeGradian: {
                     result = fsing(operandX);
                     break;
                 }
 
-                default:
-                {
+                default: {
                     result = NAN;
                     break;
                 }
@@ -805,32 +650,26 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeCosine:
-        {
+        case VSMathOperationTypeCosine: {
             if (isnan(operandX)) return NAN;
 
-            switch (angleMode)
-            {
-                case VSMathAngleModeTypeDegree:
-                {
+            switch (angleMode) {
+                case VSMathAngleModeTypeDegree: {
                     result = fcosd(operandX);
                     break;
                 }
 
-                case VSMathAngleModeTypeRadian:
-                {
+                case VSMathAngleModeTypeRadian: {
                     result = fcosr(operandX);
                     break;
                 }
 
-                case VSMathAngleModeTypeGradian:
-                {
+                case VSMathAngleModeTypeGradian: {
                     result = fcosg(operandX);
                     break;
                 }
 
-                default:
-                {
+                default: {
                     result = NAN;
                     break;
                 }
@@ -839,32 +678,26 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeTangent:
-        {
+        case VSMathOperationTypeTangent: {
             if (isnan(operandX)) return NAN;
 
-            switch (angleMode)
-            {
-                case VSMathAngleModeTypeDegree:
-                {
+            switch (angleMode) {
+                case VSMathAngleModeTypeDegree: {
                     result = ftand(operandX);
                     break;
                 }
 
-                case VSMathAngleModeTypeRadian:
-                {
+                case VSMathAngleModeTypeRadian: {
                     result = ftanr(operandX);
                     break;
                 }
 
-                case VSMathAngleModeTypeGradian:
-                {
+                case VSMathAngleModeTypeGradian: {
                     result = ftang(operandX);
                     break;
                 }
 
-                default:
-                {
+                default: {
                     result = NAN;
                     break;
                 }
@@ -873,32 +706,26 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeInverseSine:
-        {
+        case VSMathOperationTypeInverseSine: {
             if (isnan(operandX)) return NAN;
 
-            switch (angleMode)
-            {
-                case VSMathAngleModeTypeDegree:
-                {
+            switch (angleMode) {
+                case VSMathAngleModeTypeDegree: {
                     result = frtod(asin(operandX));
                     break;
                 }
 
-                case VSMathAngleModeTypeRadian:
-                {
+                case VSMathAngleModeTypeRadian: {
                     result = asin(operandX);
                     break;
                 }
 
-                case VSMathAngleModeTypeGradian:
-                {
+                case VSMathAngleModeTypeGradian: {
                     result = frtog(asin(operandX));
                     break;
                 }
 
-                default:
-                {
+                default: {
                     result = NAN;
                     break;
                 }
@@ -907,32 +734,26 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeInverseCosine:
-        {
+        case VSMathOperationTypeInverseCosine: {
             if (isnan(operandX)) return NAN;
 
-            switch (angleMode)
-            {
-                case VSMathAngleModeTypeDegree:
-                {
+            switch (angleMode) {
+                case VSMathAngleModeTypeDegree: {
                     result = frtod(acos(operandX));
                     break;
                 }
 
-                case VSMathAngleModeTypeRadian:
-                {
+                case VSMathAngleModeTypeRadian: {
                     result = acos(operandX);
                     break;
                 }
 
-                case VSMathAngleModeTypeGradian:
-                {
+                case VSMathAngleModeTypeGradian: {
                     result = frtog(acos(operandX));
                     break;
                 }
 
-                default:
-                {
+                default: {
                     result = NAN;
                     break;
                 }
@@ -941,32 +762,26 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeInverseTangent:
-        {
+        case VSMathOperationTypeInverseTangent: {
             if (isnan(operandX)) return NAN;
 
-            switch (angleMode)
-            {
-                case VSMathAngleModeTypeDegree:
-                {
+            switch (angleMode) {
+                case VSMathAngleModeTypeDegree: {
                     result = frtod(atan(operandX));
                     break;
                 }
 
-                case VSMathAngleModeTypeRadian:
-                {
+                case VSMathAngleModeTypeRadian: {
                     result = atan(operandX);
                     break;
                 }
 
-                case VSMathAngleModeTypeGradian:
-                {
+                case VSMathAngleModeTypeGradian: {
                     result = frtog(atan(operandX));
                     break;
                 }
 
-                default:
-                {
+                default: {
                     result = NAN;
                     break;
                 }
@@ -975,259 +790,206 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathOperationTypeHyperbolicSine:
-        {
+        case VSMathOperationTypeHyperbolicSine: {
             if (isnan(operandX)) return NAN;
             result = sinh(operandX);
             break;
         }
 
-        case VSMathOperationTypeHyperbolicCosine:
-        {
+        case VSMathOperationTypeHyperbolicCosine: {
             if (isnan(operandX)) return NAN;
             result = cosh(operandX);
             break;
         }
 
-        case VSMathOperationTypeHyperbolicTangent:
-        {
+        case VSMathOperationTypeHyperbolicTangent: {
             if (isnan(operandX)) return NAN;
             result = tanh(operandX);
             break;
         }
 
-        case VSMathOperationTypeInverseHyperbolicSine:
-        {
+        case VSMathOperationTypeInverseHyperbolicSine: {
             if (isnan(operandX)) return NAN;
             result = asinh(operandX);
             break;
         }
 
-        case VSMathOperationTypeInverseHyperbolicCosine:
-        {
+        case VSMathOperationTypeInverseHyperbolicCosine: {
             if (isnan(operandX)) return NAN;
             result = acosh(operandX);
             break;
         }
 
-        case VSMathOperationTypeInverseHyperbolicTangent:
-        {
+        case VSMathOperationTypeInverseHyperbolicTangent: {
             if (isnan(operandX)) return NAN;
             result = atanh(operandX);
             break;
         }
 
-        case VSMathOperationTypeLogarithm10:
-        {
+        case VSMathOperationTypeLogarithm10: {
             if (isnan(operandX)) return NAN;
             result = log10(operandX);
             break;
         }
 
-        case VSMathOperationTypeInverseLogarithm10:
-        {
+        case VSMathOperationTypeInverseLogarithm10: {
             if (isnan(operandX)) return NAN;
             result = fpow(10.0, operandX);
             break;
         }
 
-        case VSMathOperationTypeLogarithm2:
-        {
+        case VSMathOperationTypeLogarithm2: {
             if (isnan(operandX)) return NAN;
             result = log2(operandX);
             break;
         }
 
-        case VSMathOperationTypeInverseLogarithm2:
-        {
+        case VSMathOperationTypeInverseLogarithm2: {
             if (isnan(operandX)) return NAN;
             result = fpow(2.0, operandX);
             break;
         }
 
-        case VSMathOperationTypeNaturalLogarithm:
-        {
+        case VSMathOperationTypeNaturalLogarithm: {
             if (isnan(operandX)) return NAN;
             result = fln(operandX);
             break;
         }
 
-        case VSMathOperationTypeInverseNaturalLogarithm:
-        {
+        case VSMathOperationTypeInverseNaturalLogarithm: {
             if (isnan(operandX)) return NAN;
             result = exp(operandX);
             break;
         }
 
-        case VSMathOperationTypeAbsoluteValue:
-        {
+        case VSMathOperationTypeAbsoluteValue: {
             if (isnan(operandX)) return NAN;
             result = fabs(operandX);
             break;
         }
 
-        case VSMathOperationTypeSquare:
-        {
+        case VSMathOperationTypeSquare: {
             if (isnan(operandX)) return NAN;
             result = fpow(operandX, 2.0);
             break;
         }
 
-        case VSMathOperationTypeSquareRoot:
-        {
+        case VSMathOperationTypeSquareRoot: {
             if (isnan(operandX)) return NAN;
             result = sqrt(operandX);
             break;
         }
 
-        case VSMathOperationTypeCube:
-        {
+        case VSMathOperationTypeCube: {
             if (isnan(operandX)) return NAN;
             result = fpow(operandX, 3.0);
             break;
         }
 
-        case VSMathOperationTypeCubeRoot:
-        {
+        case VSMathOperationTypeCubeRoot: {
             if (isnan(operandX)) return NAN;
             result = cbrt(operandX);
             break;
         }
 
-        case VSMathOperationTypeNegative:
-        {
+        case VSMathOperationTypeNegative: {
             if (isnan(operandX)) return NAN;
             result = operandX * -1;
             break;
         }
 
-        case VSMathOperationTypeFactorial:
-        {
+        case VSMathOperationTypeFactorial: {
             if (isnan(operandX)) return NAN;
             result = ffact(operandX);
             break;
         }
 
-        case VSMathOperationTypePercent:
-        {
+        case VSMathOperationTypePercent: {
             if (isnan(operandX)) return NAN;
             result = operandX / 100.0;
             break;
         }
 
-        case VSMathOperationTypePi:
-        {
+        case VSMathOperationTypePi: {
             result = M_PI;
             break;
         }
 
-        case VSMathOperationTypeEuler:
-        {
+        case VSMathOperationTypeEuler: {
             result = M_E;
             break;
         }
 
-        case VSMathOperationTypeRandomNumber:
-        {
+        case VSMathOperationTypeRandomNumber: {
             result = ((double)arc4random()/VS_M_ARC4RANDOM_MAX);
             break;
         }
 
-        case VSMathOperationTypeInverse:
-        {
+        case VSMathOperationTypeInverse: {
             if (isnan(operandX)) return NAN;
             result = 1.0/operandX;
             break;
         }
 
-        default:
-        {
+        default: {
             return NAN;
         }
     }
 
-    if (result == INFINITY || result == -INFINITY)
-    {
+    if (result == INFINITY || result == -INFINITY) {
         return NAN;
     }
-    else if (fabs(result) == 0)
-    {
+    else if (fabs(result) == 0) {
         return 0.0;
     }
-    else
-    {
+    else {
         return result;
     }
 }
 
-#pragma mark - Expression Syntax Verification
+#pragma mark Expression Syntax Verification
 
-/**
- *  @inheritDoc
- */
-+ (BOOL)validateInfixExpressionSyntax:(NSString *)infixExpression
-{
++ (BOOL)validateInfixExpressionSyntax:(NSString *)infixExpression {
     return [VSMathUtil validateInfixExpressionSyntax:infixExpression customVariableSets:nil];
 }
 
-/**
- *  @inheritDoc
- */
-+ (BOOL)validateInfixExpressionSyntax:(NSString *)infixExpression customVariableSets:(NSArray *)customVariableSets
-{
++ (BOOL)validateInfixExpressionSyntax:(NSString *)infixExpression customVariableSets:(NSArray *)customVariableSets {
     return [VSMathUtil validatePostfixStackSyntax:[VSMathUtil postfixStackFromInfixExpression:infixExpression customVariableSets:customVariableSets]];
 }
 
-/**
- *  @inheritDoc
- */
-+ (BOOL)validatePostfixStackSyntax:(NSArray *)postfixStack
-{
++ (BOOL)validatePostfixStackSyntax:(NSArray *)postfixStack {
     return ([VSMathUtil evaluatePostfixStack:postfixStack angleMode:VSMathAngleModeTypeDegree tokenMap:nil] != nil);
 }
 
-#pragma mark - Expression Parsing
+#pragma mark Expression Parsing
 
-/**
- *  @inheritDoc
- */
-+ (NSArray *)tokensInInfixExpression:(NSString *)infixExpression customVariableSets:(NSArray *)customVariableSets
-{
-    if (infixExpression == nil || infixExpression.length <= 0)
-    {
++ (NSArray *)tokensInInfixExpression:(NSString *)infixExpression customVariableSets:(NSArray *)customVariableSets {
+    if (infixExpression == nil || infixExpression.length <= 0) {
         return nil;
     }
 
     NSMutableArray *tokens = [[NSMutableArray alloc] init];
 
-    if ([VSMathUtil parseInfixExpressionIntoTokens:tokens infixExpression:infixExpression customVariableSets:customVariableSets])
-    {
+    if ([VSMathUtil parseInfixExpressionIntoTokens:tokens infixExpression:infixExpression customVariableSets:customVariableSets]) {
 #if !__has_feature(objc_arc)
         return [tokens autorelease];
 #else
         return tokens;
 #endif
     }
-    else
-    {
+    else {
         vs_dealloc(tokens);
 
         return nil;
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (BOOL)parseInfixExpressionIntoTokens:(NSMutableArray *)tokens infixExpression:(NSString *)infixExpression customVariableSets:(NSArray *)customVariableSets
-{
-    if (tokens == nil)
-    {
++ (BOOL)parseInfixExpressionIntoTokens:(NSMutableArray *)tokens infixExpression:(NSString *)infixExpression customVariableSets:(NSArray *)customVariableSets {
+    if (tokens == nil) {
         return NO;
     }
 
-    if (infixExpression == nil)
-    {
+    if (infixExpression == nil) {
         [tokens removeAllObjects];
         return NO;
     }
@@ -1235,41 +997,33 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     unsigned long range = 1;
     unsigned long length = infixExpression.length;
 
-    if (length <= 0)
-    {
+    if (length <= 0) {
         [tokens removeAllObjects];
         return NO;
     }
 
-    if (tokens.count > 0)
-    {
+    if (tokens.count > 0) {
         [tokens removeAllObjects];
     }
 
     // Begin scanning the expression to capture individual tokens.
-    for (int i = 0; i < length; i++)
-    {
+    for (int i = 0; i < length; i++) {
         BOOL shouldRecordNow = YES;
         unichar key = [infixExpression characterAtIndex:i];
         unichar nextKey = (i+1 < length) ? [infixExpression characterAtIndex:i+1] : 0;
 
         // Ignore white space.
-        if (key == ' ')
-        {
+        if (key == ' ') {
             continue;
         }
 
         // Check custom character sets.
-        if (customVariableSets != nil)
-        {
+        if (customVariableSets != nil) {
             unsigned long arrlen = customVariableSets.count;
 
-            if (arrlen > 0)
-            {
-                for (int j = 0; j < arrlen; j++)
-                {
-                    if (![VSMathUtil _validateCustomVariableSet:customVariableSets[j]])
-                    {
+            if (arrlen > 0) {
+                for (int j = 0; j < arrlen; j++) {
+                    if (![VSMathUtil _validateCustomVariableSet:customVariableSets[j]]) {
                         continue;
                     }
 
@@ -1277,14 +1031,11 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
                     NSCharacterSet *characterSet = (NSCharacterSet *)[dictionary objectForKey:VS_M_DICTIONARY_PROPERTY_CHARACTER_SET];
                     unsigned long maxRange = [(NSNumber *)[dictionary objectForKey:VS_M_DICTIONARY_PROPERTY_MAX_RANGE] unsignedLongValue];
 
-                    if (maxRange <= 1)
-                    {
+                    if (maxRange <= 1) {
                         continue;
                     }
-                    else
-                    {
-                        if (((i + 1) < length) && ([characterSet characterIsMember:key] && [characterSet characterIsMember:nextKey] && (range < maxRange)))
-                        {
+                    else {
+                        if (((i + 1) < length) && ([characterSet characterIsMember:key] && [characterSet characterIsMember:nextKey] && (range < maxRange))) {
                             range++;
                             shouldRecordNow = NO;
                         }
@@ -1296,14 +1047,12 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         // Check if current char and next char is of character set: numeric/function/variable, if so increase the capture range until a token can be recorded.
         if ((i+1 < length) &&
             (([[VSMathUtil numericCharacterSet] characterIsMember:key] && [[VSMathUtil numericCharacterSet] characterIsMember:nextKey]) ||
-             ([[VSMathUtil functionCharacterSet] characterIsMember:key] && [[VSMathUtil functionCharacterSet] characterIsMember:nextKey])))
-        {
+             ([[VSMathUtil functionCharacterSet] characterIsMember:key] && [[VSMathUtil functionCharacterSet] characterIsMember:nextKey]))) {
             shouldRecordNow = NO;
             range++;
         }
 
-        if (shouldRecordNow)
-        {
+        if (shouldRecordNow) {
             NSString *stringToken = [infixExpression substringWithRange:NSMakeRange(i - range + 1, range)];
 
             [tokens addObject:stringToken];
@@ -1312,152 +1061,104 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         }
     }
 
-    if (tokens.count <= 0)
-    {
+    if (tokens.count <= 0) {
         return NO;
     }
-    else
-    {
+    else {
         return YES;
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (double)doubleFromToken:(id)token
-{
++ (double)doubleFromToken:(id)token {
     VSMathTokenType tokenType = [VSMathUtil typeOfToken:token];
 
-    if (tokenType == VSMathTokenTypeNumeric)
-    {
-        if ([token isKindOfClass:[NSNumber class]])
-        {
+    if (tokenType == VSMathTokenTypeNumeric) {
+        if ([token isKindOfClass:[NSNumber class]]) {
             return [(NSNumber *)token doubleValue];
         }
-        else
-        {
+        else {
             return [VSNumberUtil doubleFromString:token];
         }
     }
-    else if (tokenType == VSMathTokenTypeConstant)
-    {
+    else if (tokenType == VSMathTokenTypeConstant) {
         return [VSMathUtil evaluateOperation:[VSMathUtil operationTypeOfSymbol:token] angleMode:VSMathAngleModeTypeUnknown];
     }
-    else
-    {
+    else {
         return NAN;
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (unsigned long long)unsignedLongLongFromToken:(id)token
-{
++ (unsigned long long)unsignedLongLongFromToken:(id)token {
     VSMathTokenType tokenType = [VSMathUtil typeOfToken:token];
 
-    if (tokenType == VSMathTokenTypeNumeric)
-    {
-        if ([token isKindOfClass:[NSNumber class]])
-        {
+    if (tokenType == VSMathTokenTypeNumeric) {
+        if ([token isKindOfClass:[NSNumber class]]) {
             return [(NSNumber *)token unsignedLongLongValue];
         }
-        else
-        {
+        else {
             return [VSNumberUtil unsignedLongLongFromString:token];
         }
     }
-    else if (tokenType == VSMathTokenTypeConstant)
-    {
+    else if (tokenType == VSMathTokenTypeConstant) {
         return [VSMathUtil evaluateOperation:[VSMathUtil operationTypeOfSymbol:token] angleMode:VSMathAngleModeTypeUnknown];
     }
-    else
-    {
+    else {
         return NAN;
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (unsigned long long)unsignedLongLongFromToken:(id)token numberSystem:(VSNumberSystemType)numberSystemType
-{
-    if (token == nil)
-    {
++ (unsigned long long)unsignedLongLongFromToken:(id)token numberSystem:(VSNumberSystemType)numberSystemType {
+    if (token == nil) {
         return 0;
     }
 
-    if ([token isKindOfClass:[NSString class]])
-    {
+    if ([token isKindOfClass:[NSString class]]) {
         return [VSNumberUtil unsignedLongLongFromString:token numberSystem:numberSystemType];
     }
-    else if ([token isKindOfClass:[NSNumber class]])
-    {
+    else if ([token isKindOfClass:[NSNumber class]]) {
         return [(NSNumber *)token unsignedLongLongValue];
     }
-    else
-    {
+    else {
         return 0;
     }
 }
 
-#pragma mark - Infix-Postfix Conversions
+#pragma mark Infix-Postfix Conversions
 
-/**
- *  @inheritDoc
- */
-+ (NSArray *)postfixStackFromInfixExpression:(NSString *)infixExpression
-{
++ (NSArray *)postfixStackFromInfixExpression:(NSString *)infixExpression {
     return [VSMathUtil postfixStackFromInfixExpression:infixExpression customVariableSets:nil];
 }
 
-/**
- *  @inheritDoc
- */
-+ (NSArray *)postfixStackFromInfixExpression:(NSString *)infixExpression customVariableSets:(NSArray *)customVariableSets
-{
++ (NSArray *)postfixStackFromInfixExpression:(NSString *)infixExpression customVariableSets:(NSArray *)customVariableSets {
     NSMutableArray *postfixStack = [[NSMutableArray alloc] init];
 
-    if ([VSMathUtil parseInfixExpressionIntoPostfixStack:postfixStack infixExpression:infixExpression customVariableSets:customVariableSets])
-    {
+    if ([VSMathUtil parseInfixExpressionIntoPostfixStack:postfixStack infixExpression:infixExpression customVariableSets:customVariableSets]) {
 #if !__has_feature(objc_arc)
         return [postfixStack autorelease];
 #else
         return postfixStack;
 #endif
     }
-    else
-    {
+    else {
         vs_dealloc(postfixStack);
 
         return nil;
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (BOOL)parseInfixExpressionIntoPostfixStack:(NSMutableArray *)postfixStack infixExpression:(NSString *)infixExpression
-{
++ (BOOL)parseInfixExpressionIntoPostfixStack:(NSMutableArray *)postfixStack infixExpression:(NSString *)infixExpression {
     return [VSMathUtil parseInfixExpressionIntoPostfixStack:postfixStack infixExpression:infixExpression customVariableSets:nil];
 }
 
-/**
- *  @inheritDoc
- */
-+ (BOOL)parseInfixExpressionIntoPostfixStack:(NSMutableArray *)postfixStack infixExpression:(NSString *)infixExpression customVariableSets:(NSArray *)customVariableSets
-{
-    if (postfixStack == nil)
-    {
++ (BOOL)parseInfixExpressionIntoPostfixStack:(NSMutableArray *)postfixStack infixExpression:(NSString *)infixExpression customVariableSets:(NSArray *)customVariableSets {
+    if (postfixStack == nil) {
         return NO;
     }
 
     // Parse expression into tokens.
     NSArray *tokens = [VSMathUtil tokensInInfixExpression:infixExpression customVariableSets:customVariableSets];
 
-    if (tokens == nil || tokens.count <= 0)
-    {
+    if (tokens == nil || tokens.count <= 0) {
         [postfixStack removeAllObjects];
 
         return NO;
@@ -1470,13 +1171,11 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 
     unsigned long arrlen = tokens.count;
 
-    for (int i = 0; i < arrlen; i++)
-    {
+    for (int i = 0; i < arrlen; i++) {
         currToken = (NSString *)tokens[i];
 
         // Try to process the token.
-        if (![VSMathUtil _processShuntingYardToken:currToken andPreviousToken:prevToken stack:stack output:postfixStack customVariableSets:customVariableSets contentAware:YES])
-        {
+        if (![VSMathUtil _processShuntingYardToken:currToken andPreviousToken:prevToken stack:stack output:postfixStack customVariableSets:customVariableSets contentAware:YES]) {
             vs_dealloc(stack);
 
             [postfixStack removeAllObjects];
@@ -1488,8 +1187,7 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 
     // Pop remaining stack onto output.
-    while (stack.count > 0)
-    {
+    while (stack.count > 0) {
         [postfixStack addObject:stack.lastObject];
         [stack removeLastObject];
     }
@@ -1497,8 +1195,7 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     // Strip out useless left parenthesis symbols.
     NSString *leftParenthesisSymbol = [VSMathUtil symbolWithType:VSMathSymbolTypeLeftParenthesis];
 
-    while ([postfixStack containsObject:leftParenthesisSymbol])
-    {
+    while ([postfixStack containsObject:leftParenthesisSymbol]) {
         [postfixStack removeObjectAtIndex:[postfixStack indexOfObject:leftParenthesisSymbol]];
     }
 
@@ -1507,79 +1204,61 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     return YES;
 }
 
-#pragma mark - Shunting-Yard Algorithm
+#pragma mark Shunting-Yard Algorithm
 
-/**
- *  @inheritDoc
- */
-+ (BOOL)processShuntingYardToken:(id)token stack:(NSMutableArray *)stack output:(NSMutableArray *)output
-{
++ (BOOL)processShuntingYardToken:(id)token stack:(NSMutableArray *)stack output:(NSMutableArray *)output {
     return [VSMathUtil processShuntingYardToken:token stack:stack output:output customVariableSets:nil];
 }
 
-/**
- *  @inheritDoc
- */
-+ (BOOL)processShuntingYardToken:(id)token stack:(NSMutableArray *)stack output:(NSMutableArray *)output customVariableSets:(NSArray *)customVariableSets
-{
++ (BOOL)processShuntingYardToken:(id)token stack:(NSMutableArray *)stack output:(NSMutableArray *)output customVariableSets:(NSArray *)customVariableSets {
     return [VSMathUtil _processShuntingYardToken:token andPreviousToken:nil stack:stack output:output customVariableSets:customVariableSets contentAware:NO];
 }
 
 /**
- *  @private
+ * @private
  *
- *  Processes token and allocates them to the stack according to shunting-yard rules, with the option to
- *  specify custom variable sets. Setting contentAware as true means each token is processed separately independent
- *  of each other. This process only fails under 3 conditions:
- *      1. Token is recorded as numeric but the operand is invalid (i.e. 1.2.3.4.5.6)
- *      2. Token is a right parenthesis, but no left parenthesis is found on the stack, hence parenthesis mismatch.
- *      3. Token is unrecognized.
+ * Processes token and allocates them to the stack according to shunting-yard rules, with the option to
+ * specify custom variable sets. Setting contentAware as true means each token is processed separately independent
+ * of each other. This process only fails under 3 conditions:
+ *     1. Token is recorded as numeric but the operand is invalid (i.e. 1.2.3.4.5.6)
+ *     2. Token is a right parenthesis, but no left parenthesis is found on the stack, hence parenthesis mismatch.
+ *     3. Token is unrecognized.
  *
- *  @param token
- *  @param prevToken
- *  @param stack
- *  @param output
- *  @param customVariableSets
- *  @param isContentAware
+ * @param token
+ * @param prevToken
+ * @param stack
+ * @param output
+ * @param customVariableSets
+ * @param isContentAware
  *
- *  @return YES if everything went fine, NO if anything went wrong.
+ * @return YES if everything went fine, NO if anything went wrong.
  */
-+ (BOOL)_processShuntingYardToken:(id)token andPreviousToken:(id)prevToken stack:(NSMutableArray *)stack output:(NSMutableArray *)output customVariableSets:(NSArray *)customVariableSets contentAware:(BOOL)isContentAware
-{
-    if ((token == nil) || (stack == nil) || (output == nil))
-    {
++ (BOOL)_processShuntingYardToken:(id)token andPreviousToken:(id)prevToken stack:(NSMutableArray *)stack output:(NSMutableArray *)output customVariableSets:(NSArray *)customVariableSets contentAware:(BOOL)isContentAware {
+    if ((token == nil) || (stack == nil) || (output == nil)) {
         return NO;
     }
 
     VSMathTokenType tokenType = [VSMathUtil typeOfTokenSubset:token];
     VSMathTokenType stackTopTokenType = (stack.count > 0) ? [VSMathUtil typeOfTokenSubset:stack.lastObject] : VSMathTokenTypeUnknown;
 
-    switch (tokenType)
-    {
-        case VSMathTokenTypeNumeric:
-        {
-            if ([token isKindOfClass:[NSString class]])
-            {
+    switch (tokenType) {
+        case VSMathTokenTypeNumeric: {
+            if ([token isKindOfClass:[NSString class]]) {
                 NSNumber *number = [VSNumberUtil numberFromString:token];
 
-                if (number == nil)
-                {
+                if (number == nil) {
                     return NO;
                 }
-                else
-                {
-                    if (isContentAware)
-                    {
+                else {
+                    if (isContentAware) {
                         [VSMathUtil _insertMultiplierAfterLinkableToken:prevToken stack:stack output:output customVariableSets:customVariableSets];
                     }
 
                     [output addObject:number]; // push number to output
                 }
             }
-            else
-            {
-                if (isContentAware)
-                {
+            else {
+                if (isContentAware) {
                     [VSMathUtil _insertMultiplierAfterLinkableToken:prevToken stack:stack output:output customVariableSets:customVariableSets];
                 }
 
@@ -1590,10 +1269,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         }
 
         case VSMathTokenTypeVariable:
-        case VSMathTokenTypeConstant:
-        {
-            if (isContentAware)
-            {
+        case VSMathTokenTypeConstant: {
+            if (isContentAware) {
                 [VSMathUtil _insertMultiplierAfterLinkableToken:prevToken stack:stack output:output customVariableSets:customVariableSets];
             }
 
@@ -1601,23 +1278,18 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathTokenTypeUnaryPostfixOperator:
-        {
+        case VSMathTokenTypeUnaryPostfixOperator: {
             [output addObject:token]; // push unary postfix operator to output
             break;
         }
 
         case VSMathTokenTypeUnaryPrefixOperator:
-        case VSMathTokenTypeFunction:
-        {
+        case VSMathTokenTypeFunction: {
             // Check if this negative sign should behave like a minus sign.
-            if (isContentAware && ([VSMathUtil typeOfSymbol:token] == VSMathSymbolTypeNegative) && [VSMathUtil _validateLinkableToken:prevToken customVariableSets:customVariableSets])
-            {
-                if (stackTopTokenType == VSMathTokenTypeOperator || stackTopTokenType == VSMathTokenTypeUnaryPrefixOperator || stackTopTokenType == VSMathTokenTypeFunction)
-                {
+            if (isContentAware && ([VSMathUtil typeOfSymbol:token] == VSMathSymbolTypeNegative) && [VSMathUtil _validateLinkableToken:prevToken customVariableSets:customVariableSets]) {
+                if (stackTopTokenType == VSMathTokenTypeOperator || stackTopTokenType == VSMathTokenTypeUnaryPrefixOperator || stackTopTokenType == VSMathTokenTypeFunction) {
                     while (([VSMathUtil precedenceOfSymbol:stack.lastObject] >= [VSMathUtil precedenceOfSymbol:VS_M_SYMBOL_SUBTRACT]) ||
-                           ([VSMathUtil typeOfTokenSubset:stack.lastObject] == VSMathTokenTypeFunction))
-                    {
+                           ([VSMathUtil typeOfTokenSubset:stack.lastObject] == VSMathTokenTypeFunction)) {
                         [output addObject:stack.lastObject];
                         [stack removeLastObject];
                     }
@@ -1625,10 +1297,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 
                 [stack addObject:VS_M_SYMBOL_SUBTRACT];
             }
-            else
-            {
-                if (isContentAware)
-                {
+            else {
+                if (isContentAware) {
                     [VSMathUtil _insertMultiplierAfterLinkableToken:prevToken stack:stack output:output customVariableSets:customVariableSets];
                 }
 
@@ -1638,33 +1308,25 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathTokenTypeOperator:
-        {
+        case VSMathTokenTypeOperator: {
             // Check if this minus sign should behave like a negative sign.
-            if (isContentAware && ([VSMathUtil typeOfSymbol:token] == VSMathSymbolTypeSubtract) && ![VSMathUtil _validateLinkableToken:prevToken customVariableSets:customVariableSets])
-            {
+            if (isContentAware && ([VSMathUtil typeOfSymbol:token] == VSMathSymbolTypeSubtract) && ![VSMathUtil _validateLinkableToken:prevToken customVariableSets:customVariableSets]) {
                 [stack addObject:VS_M_SYMBOL_NEGATIVE];
             }
-            else
-            {
-                if (stackTopTokenType == VSMathTokenTypeOperator || stackTopTokenType == VSMathTokenTypeUnaryPrefixOperator || stackTopTokenType == VSMathTokenTypeFunction)
-                {
+            else {
+                if (stackTopTokenType == VSMathTokenTypeOperator || stackTopTokenType == VSMathTokenTypeUnaryPrefixOperator || stackTopTokenType == VSMathTokenTypeFunction) {
                     // If left-associative.
-                    if ([VSMathUtil operatorAssociativeTypeOfSymbol:token] == VSMathOperatorAssociativeTypeLeft)
-                    {
+                    if ([VSMathUtil operatorAssociativeTypeOfSymbol:token] == VSMathOperatorAssociativeTypeLeft) {
                         while (([VSMathUtil precedenceOfSymbol:stack.lastObject] >= [VSMathUtil precedenceOfSymbol:token]) ||
-                               ([VSMathUtil typeOfTokenSubset:stack.lastObject] == VSMathTokenTypeFunction))
-                        {
+                               ([VSMathUtil typeOfTokenSubset:stack.lastObject] == VSMathTokenTypeFunction)) {
                             [output addObject:stack.lastObject];
                             [stack removeLastObject];
                         }
                     }
                     // If right-associative.
-                    else if ([VSMathUtil operatorAssociativeTypeOfSymbol:token] == VSMathOperatorAssociativeTypeRight)
-                    {
+                    else if ([VSMathUtil operatorAssociativeTypeOfSymbol:token] == VSMathOperatorAssociativeTypeRight) {
                         while (([VSMathUtil precedenceOfSymbol:stack.lastObject] > [VSMathUtil precedenceOfSymbol:token]) ||
-                               ([VSMathUtil typeOfTokenSubset:stack.lastObject] == VSMathTokenTypeFunction))
-                        {
+                               ([VSMathUtil typeOfTokenSubset:stack.lastObject] == VSMathTokenTypeFunction)) {
                             [output addObject:stack.lastObject];
                             [stack removeLastObject];
                         }
@@ -1677,48 +1339,38 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathTokenTypeParenthesis:
-        {
-            if ([VSMathUtil typeOfSymbol:token] == VSMathSymbolTypeLeftParenthesis)
-            {
-                if (isContentAware)
-                {
+        case VSMathTokenTypeParenthesis: {
+            if ([VSMathUtil typeOfSymbol:token] == VSMathSymbolTypeLeftParenthesis) {
+                if (isContentAware) {
                     [VSMathUtil _insertMultiplierAfterLinkableToken:prevToken stack:stack output:output customVariableSets:customVariableSets];
                 }
 
                 [stack addObject:token]; // push left-paren to stack
             }
-            else if ([VSMathUtil typeOfSymbol:token] == VSMathSymbolTypeRightParenthesis)
-            {
+            else if ([VSMathUtil typeOfSymbol:token] == VSMathSymbolTypeRightParenthesis) {
                 // While stacktop is not left-paren, pop stacktop to ouptut.
-                while ([VSMathUtil typeOfSymbol:stack.lastObject] != VSMathSymbolTypeLeftParenthesis)
-                {
-                    if (stack.count > 0)
-                    {
+                while ([VSMathUtil typeOfSymbol:stack.lastObject] != VSMathSymbolTypeLeftParenthesis) {
+                    if (stack.count > 0) {
                         [output addObject:stack.lastObject];
                         [stack removeLastObject];
                     }
                     // Since stack count has reached 0 and there is still no left parenthesis found, there is a misbalance between left and right parenthesis, operation failed.
-                    else
-                    {
+                    else {
                         return NO;
                     }
                 }
 
                 // Pop stacktop (should be left-paren).
-                if ([VSMathUtil typeOfSymbol:(NSString *)stack.lastObject] == VSMathSymbolTypeLeftParenthesis)
-                {
+                if ([VSMathUtil typeOfSymbol:(NSString *)stack.lastObject] == VSMathSymbolTypeLeftParenthesis) {
                     [stack removeLastObject];
                 }
                 // If no left-paren found, paren mis-match, return error.
-                else
-                {
+                else {
                     return NO;
                 }
 
                 // Evaluate to see if stacktop is now a function and pop to output if it is.
-                if ((stack.count > 0) && ([VSMathUtil typeOfTokenSubset:stack.lastObject] == VSMathTokenTypeFunction))
-                {
+                if ((stack.count > 0) && ([VSMathUtil typeOfTokenSubset:stack.lastObject] == VSMathTokenTypeFunction)) {
                     [output addObject:stack.lastObject];
                     [stack removeLastObject];
                 }
@@ -1727,16 +1379,12 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             break;
         }
 
-        case VSMathTokenTypeUnknown:
-        {
-            if (customVariableSets != nil)
-            {
+        case VSMathTokenTypeUnknown: {
+            if (customVariableSets != nil) {
                 unsigned long arrlen = customVariableSets.count;
 
-                for (int i = 0; i < arrlen; i++)
-                {
-                    if (![VSMathUtil _validateCustomVariableSet:customVariableSets[i]])
-                    {
+                for (int i = 0; i < arrlen; i++) {
+                    if (![VSMathUtil _validateCustomVariableSet:customVariableSets[i]]) {
                         continue;
                     }
 
@@ -1744,10 +1392,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
                     NSCharacterSet *characterSet = [dictionary objectForKey:VS_M_DICTIONARY_PROPERTY_CHARACTER_SET];
                     NSCharacterSet *tokenSet = [NSCharacterSet characterSetWithCharactersInString:token];
 
-                    if ([characterSet isSupersetOfSet:tokenSet])
-                    {
-                        if (isContentAware)
-                        {
+                    if ([characterSet isSupersetOfSet:tokenSet]) {
+                        if (isContentAware) {
                             [VSMathUtil _insertMultiplierAfterLinkableToken:prevToken stack:stack output:output customVariableSets:customVariableSets];
                         }
 
@@ -1760,8 +1406,7 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             return NO;
         }
 
-        default:
-        {
+        default: {
             return NO;
         }
     }
@@ -1770,85 +1415,72 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 }
 
 /**
- *  @private
+ * @private
  *
- *  Inserts a multiplier after a linkable token (i.e. 2sin(90) == 2*sin(90)).
+ * Inserts a multiplier after a linkable token (i.e. 2sin(90) == 2*sin(90)).
  *
- *  @param token
- *  @param stack
- *  @param output
- *  @param customVariableSets
+ * @param token
+ * @param stack
+ * @param output
+ * @param customVariableSets
  *
- *  @return YES if successful, NO otherwise.
+ * @return YES if successful, NO otherwise.
  */
-+ (BOOL)_insertMultiplierAfterLinkableToken:(id)token stack:(NSMutableArray *)stack output:(NSMutableArray *)output customVariableSets:(NSArray *)customVariableSets;
-{
-    if ([VSMathUtil _validateLinkableToken:token customVariableSets:customVariableSets])
-    {
++ (BOOL)_insertMultiplierAfterLinkableToken:(id)token stack:(NSMutableArray *)stack output:(NSMutableArray *)output customVariableSets:(NSArray *)customVariableSets; {
+    if ([VSMathUtil _validateLinkableToken:token customVariableSets:customVariableSets]) {
         return [VSMathUtil processShuntingYardToken:VS_M_SYMBOL_MULTIPLY stack:stack output:output customVariableSets:customVariableSets];
     }
-    else
-    {
+    else {
         return NO;
     }
 }
 
 /**
- *  @private
+ * @private
  *
- *  Verifies that a given token is product linkable (i.e. 3x = 3*x, meaning that 3 is linkable). Option
- *  to specify custom linkable variable sets.
+ * Verifies that a given token is product linkable (i.e. 3x = 3*x, meaning that 3 is linkable). Option
+ * to specify custom linkable variable sets.
  *
- *  @param token
- *  @param customVariableSets
+ * @param token
+ * @param customVariableSets
  *
- *  @return YES if linkable, NO otherwise.
+ * @return YES if linkable, NO otherwise.
  */
-+ (BOOL)_validateLinkableToken:(id)token customVariableSets:(NSArray *)customVariableSets
-{
-    if (token == nil)
-    {
++ (BOOL)_validateLinkableToken:(id)token customVariableSets:(NSArray *)customVariableSets {
+    if (token == nil) {
         return NO;
     }
 
-    if ([token isKindOfClass:[NSNumber class]])
-    {
+    if ([token isKindOfClass:[NSNumber class]]) {
         return YES;
     }
-    else if ([token isKindOfClass:[NSString class]])
-    {
+    else if ([token isKindOfClass:[NSString class]]) {
         VSMathTokenType tokenType = [VSMathUtil typeOfToken:token];
         VSMathSymbolType symbolType = [VSMathUtil typeOfSymbol:token];
         NSCharacterSet *tokenSet = [NSCharacterSet characterSetWithCharactersInString:token];
 
-        if (tokenType == VSMathTokenTypeNumeric)
-        {
+        if (tokenType == VSMathTokenTypeNumeric) {
             return YES;
         }
 
-        if (customVariableSets != nil)
-        {
+        if (customVariableSets != nil) {
             unsigned long arrlen = customVariableSets.count;
 
-            for (int i = 0; i < arrlen; i++)
-            {
-                if (![VSMathUtil _validateCustomVariableSet:customVariableSets[i]])
-                {
+            for (int i = 0; i < arrlen; i++) {
+                if (![VSMathUtil _validateCustomVariableSet:customVariableSets[i]]) {
                     continue;
                 }
 
                 NSDictionary *dictionary = (NSDictionary *)customVariableSets[i];
                 NSCharacterSet *characterSet = [dictionary objectForKey:VS_M_DICTIONARY_PROPERTY_CHARACTER_SET];
 
-                if ([characterSet isSupersetOfSet:tokenSet])
-                {
+                if ([characterSet isSupersetOfSet:tokenSet]) {
                     return YES;
                 }
             }
         }
 
-        switch (symbolType)
-        {
+        switch (symbolType) {
             case VSMathSymbolTypeXVariable:
             case VSMathSymbolTypeYVariable:
             case VSMathSymbolTypeRightParenthesis:
@@ -1862,32 +1494,28 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
                 return NO;
         }
     }
-    else
-    {
+    else {
         return NO;
     }
 }
 
 /**
- *  @private
+ * @private
  *
- *  Verifies that a custom variable set is valid. A custom variable sets is defined by a NSDictionary object
- *  containing a "characterSet" key (an NSCharacterSet object) and a "maxRange" key (an NSNumber object,
- *  indicating the max character length of the token of associated type).
+ * Verifies that a custom variable set is valid. A custom variable sets is defined by a NSDictionary object
+ * containing a "characterSet" key (an NSCharacterSet object) and a "maxRange" key (an NSNumber object,
+ * indicating the max character length of the token of associated type).
  *
- *  @param customVariableSet
+ * @param customVariableSet
  *
- *  @return YES if valid, NO otherwise.
+ * @return YES if valid, NO otherwise.
  */
-+ (BOOL)_validateCustomVariableSet:(id)customVariableSet
-{
-    if (customVariableSet == nil)
-    {
++ (BOOL)_validateCustomVariableSet:(id)customVariableSet {
+    if (customVariableSet == nil) {
         return NO;
     }
 
-    if (![customVariableSet isKindOfClass:[NSDictionary class]])
-    {
+    if (![customVariableSet isKindOfClass:[NSDictionary class]]) {
         return NO;
     }
 
@@ -1895,191 +1523,143 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     id characterSet = [dictionary objectForKey:VS_M_DICTIONARY_PROPERTY_CHARACTER_SET];
     id maxRange = [dictionary objectForKey:VS_M_DICTIONARY_PROPERTY_MAX_RANGE];
 
-    if ((characterSet == nil) || ![characterSet isKindOfClass:[NSCharacterSet class]])
-    {
+    if ((characterSet == nil) || ![characterSet isKindOfClass:[NSCharacterSet class]]) {
         return NO;
     }
 
-    if ((maxRange == nil) || ![maxRange isKindOfClass:[NSNumber class]])
-    {
+    if ((maxRange == nil) || ![maxRange isKindOfClass:[NSNumber class]]) {
         return NO;
     }
-    
+
     return YES;
 }
 
 /**
- *  @private
+ * @private
  *
- *  Gets the last numeric token on the stack and pops it on success.
+ * Gets the last numeric token on the stack and pops it on success.
  *
- *  @param stack
+ * @param stack
  *
- *  @return Last numeric token on the stack, nil if anything goes wrong.
+ * @return Last numeric token on the stack, nil if anything goes wrong.
  */
-+ (id)_popNumericTokenOnStack:(NSMutableArray *)stack
-{
-    if (stack == nil || stack.count <= 0)
-    {
++ (id)_popNumericTokenOnStack:(NSMutableArray *)stack {
+    if (stack == nil || stack.count <= 0) {
         return nil;
     }
-    
-    if ([VSMathUtil typeOfToken:stack.lastObject] == VSMathTokenTypeNumeric)
-    {
+
+    if ([VSMathUtil typeOfToken:stack.lastObject] == VSMathTokenTypeNumeric) {
         id result = stack.lastObject;
         [stack removeLastObject];
-        
+
         return result;
     }
-    else
-    {
+    else {
         return nil;
     }
 }
 
-#pragma mark - RPN Processing
+#pragma mark RPN Processing
 
-/**
- *  @inheritDoc
- */
-+ (NSArray *)postfixStackByTruncatingPostfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode
-{
++ (NSArray *)postfixStackByTruncatingPostfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode {
     return [VSMathUtil postfixStackByTruncatingPostfixStack:postfixStack angleMode:angleMode tokenMap:nil];
 }
 
-/**
- *  @inheritDoc
- */
-+ (NSArray *)postfixStackByTruncatingPostfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode tokenMap:(NSDictionary *)tokenMap
-{
-    if ((postfixStack == nil) || (postfixStack.count <= 0))
-    {
++ (NSArray *)postfixStackByTruncatingPostfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode tokenMap:(NSDictionary *)tokenMap {
+    if ((postfixStack == nil) || (postfixStack.count <= 0)) {
         return nil;
     }
 
     NSMutableArray *truncatedPostfixStack = [[NSMutableArray alloc] init];
 
-    if ([VSMathUtil truncatePostfixStackIntoPostfixStack:truncatedPostfixStack postfixStack:postfixStack angleMode:angleMode tokenMap:tokenMap])
-    {
+    if ([VSMathUtil truncatePostfixStackIntoPostfixStack:truncatedPostfixStack postfixStack:postfixStack angleMode:angleMode tokenMap:tokenMap]) {
 #if !__has_feature(objc_arc)
         return [truncatedPostfixStack autorelease];
 #else
         return truncatedPostfixStack;
 #endif
     }
-    else
-    {
+    else {
         vs_dealloc(truncatedPostfixStack);
         return nil;
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (NSArray *)postfixStackByTruncatingBitwisePostfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode
-{
++ (NSArray *)postfixStackByTruncatingBitwisePostfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode {
     return [VSMathUtil postfixStackByTruncatingBitwisePostfixStack:postfixStack binaryDigitMode:binaryDigitMode tokenMap:nil];
 }
 
-/**
- *  @inheritDoc
- */
-+ (NSArray *)postfixStackByTruncatingBitwisePostfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode tokenMap:(NSDictionary *)tokenMap
-{
-    if ((postfixStack == nil) || (postfixStack.count <= 0))
-    {
++ (NSArray *)postfixStackByTruncatingBitwisePostfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode tokenMap:(NSDictionary *)tokenMap {
+    if ((postfixStack == nil) || (postfixStack.count <= 0)) {
         return nil;
     }
 
     NSMutableArray *truncatedPostfixStack = [[NSMutableArray alloc] init];
 
-    if ([VSMathUtil truncateBitwisePostfixStackIntoPostfixStack:truncatedPostfixStack postfixStack:postfixStack binaryDigitMode:binaryDigitMode tokenMap:tokenMap])
-    {
+    if ([VSMathUtil truncateBitwisePostfixStackIntoPostfixStack:truncatedPostfixStack postfixStack:postfixStack binaryDigitMode:binaryDigitMode tokenMap:tokenMap]) {
 #if !__has_feature(objc_arc)
         return [truncatedPostfixStack autorelease];
 #else
         return truncatedPostfixStack;
 #endif
     }
-    else
-    {
+    else {
         vs_dealloc(truncatedPostfixStack);
         return nil;
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (BOOL)truncatePostfixStackIntoPostfixStack:(NSMutableArray *)truncatedPostfixStack postfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode;
-{
++ (BOOL)truncatePostfixStackIntoPostfixStack:(NSMutableArray *)truncatedPostfixStack postfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode; {
     return [VSMathUtil truncatePostfixStackIntoPostfixStack:truncatedPostfixStack postfixStack:postfixStack angleMode:angleMode tokenMap:nil];
 }
 
-/**
- *  @inheritDoc
- */
-+ (BOOL)truncatePostfixStackIntoPostfixStack:(NSMutableArray *)truncatedPostfixStack postfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode tokenMap:(NSDictionary *)tokenMap;
-{
-    if (truncatedPostfixStack == nil)
-    {
++ (BOOL)truncatePostfixStackIntoPostfixStack:(NSMutableArray *)truncatedPostfixStack postfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode tokenMap:(NSDictionary *)tokenMap; {
+    if (truncatedPostfixStack == nil) {
         return NO;
     }
 
     unsigned long arrlen = postfixStack.count;
 
-    if ((postfixStack == nil) || (arrlen <= 0))
-    {
+    if ((postfixStack == nil) || (arrlen <= 0)) {
         [truncatedPostfixStack removeAllObjects];
 
         return NO;
     }
 
-    for (int i = 0; i < arrlen; i++)
-    {
+    for (int i = 0; i < arrlen; i++) {
         id token = [postfixStack objectAtIndex:i];
         VSMathTokenType tokenType = [VSMathUtil typeOfToken:token];
 
-        switch (tokenType)
-        {
+        switch (tokenType) {
             case VSMathTokenTypeNumeric:
-            case VSMathTokenTypeConstant:
-            {
+            case VSMathTokenTypeConstant: {
                 [truncatedPostfixStack addObject:[NSNumber numberWithDouble:[VSMathUtil doubleFromToken:token]]];
                 break;
             }
 
-            case VSMathTokenTypeVariable:
-            {
+            case VSMathTokenTypeVariable: {
                 id replacementToken = nil;
 
-                if (tokenMap == nil)
-                {
+                if (tokenMap == nil) {
                     replacementToken = [NSNumber numberWithDouble:NAN];
                 }
-                else
-                {
+                else {
                     replacementToken = [tokenMap objectForKey:token];
 
-                    if (![replacementToken isKindOfClass:[NSNumber class]])
-                    {
+                    if (![replacementToken isKindOfClass:[NSNumber class]]) {
                         replacementToken = [NSNumber numberWithDouble:[VSMathUtil doubleFromToken:replacementToken]];
                     }
                 }
 
-                if (replacementToken != nil)
-                {
+                if (replacementToken != nil) {
                     [truncatedPostfixStack addObject:replacementToken];
                 }
 
                 break;
             }
 
-            case VSMathTokenTypeUnaryPostfixOperator:
-            {
-                if ((truncatedPostfixStack.count <= 0) || ([VSMathUtil typeOfToken:truncatedPostfixStack.lastObject] != VSMathTokenTypeNumeric))
-                {
+            case VSMathTokenTypeUnaryPostfixOperator: {
+                if ((truncatedPostfixStack.count <= 0) || ([VSMathUtil typeOfToken:truncatedPostfixStack.lastObject] != VSMathTokenTypeNumeric)) {
                     [truncatedPostfixStack removeAllObjects];
                     return NO;
                 }
@@ -2092,10 +1672,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             }
 
             case VSMathTokenTypeUnaryPrefixOperator:
-            case VSMathTokenTypeFunction:
-            {
-                if ((truncatedPostfixStack.count <= 0) || ([VSMathUtil typeOfToken:truncatedPostfixStack.lastObject] != VSMathTokenTypeNumeric))
-                {
+            case VSMathTokenTypeFunction: {
+                if ((truncatedPostfixStack.count <= 0) || ([VSMathUtil typeOfToken:truncatedPostfixStack.lastObject] != VSMathTokenTypeNumeric)) {
                     [truncatedPostfixStack removeAllObjects];
                     return NO;
                 }
@@ -2107,10 +1685,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
                 break;
             }
 
-            case VSMathTokenTypeOperator:
-            {
-                if ((truncatedPostfixStack.count < 2) || ([VSMathUtil typeOfToken:truncatedPostfixStack.lastObject] != VSMathTokenTypeNumeric) || ([VSMathUtil typeOfToken:[truncatedPostfixStack objectAtIndex:truncatedPostfixStack.count-2]] != VSMathTokenTypeNumeric))
-                {
+            case VSMathTokenTypeOperator: {
+                if ((truncatedPostfixStack.count < 2) || ([VSMathUtil typeOfToken:truncatedPostfixStack.lastObject] != VSMathTokenTypeNumeric) || ([VSMathUtil typeOfToken:[truncatedPostfixStack objectAtIndex:truncatedPostfixStack.count-2]] != VSMathTokenTypeNumeric)) {
                     [truncatedPostfixStack removeAllObjects];
                     return NO;
                 }
@@ -2123,129 +1699,98 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
                 break;
             }
 
-            case VSMathTokenTypeParenthesis:
-            {
+            case VSMathTokenTypeParenthesis: {
                 // Ignore, as if they never existed.
                 break;
             }
 
-            default:
-            {
-                if (tokenMap != nil)
-                {
+            default: {
+                if (tokenMap != nil) {
                     id replacementToken = [tokenMap objectForKey:token];
 
-                    if (replacementToken != nil)
-                    {
-                        if ([replacementToken isKindOfClass:[NSNumber class]])
-                        {
+                    if (replacementToken != nil) {
+                        if ([replacementToken isKindOfClass:[NSNumber class]]) {
                             [truncatedPostfixStack addObject:replacementToken];
                         }
-                        else
-                        {
+                        else {
                             [truncatedPostfixStack addObject:[NSNumber numberWithDouble:[VSMathUtil doubleFromToken:replacementToken]]];
                         }
                     }
-                    else
-                    {
+                    else {
                         [truncatedPostfixStack removeAllObjects];
                         return NO;
                     }
                 }
-                else
-                {
+                else {
                     [truncatedPostfixStack removeAllObjects];
                     return NO;
                 }
             }
         }
     }
-    
-    if (truncatedPostfixStack.count <= 0)
-    {
+
+    if (truncatedPostfixStack.count <= 0) {
         return NO;
     }
-    else if (![truncatedPostfixStack.lastObject isKindOfClass:[NSNumber class]])
-    {
+    else if (![truncatedPostfixStack.lastObject isKindOfClass:[NSNumber class]]) {
         [truncatedPostfixStack removeAllObjects];
         return NO;
     }
-    else
-    {
+    else {
         return YES;
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (BOOL)truncateBitwisePostfixStackIntoPostfixStack:(NSMutableArray *)truncatedPostfixStack postfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode
-{
++ (BOOL)truncateBitwisePostfixStackIntoPostfixStack:(NSMutableArray *)truncatedPostfixStack postfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode {
     return [VSMathUtil truncateBitwisePostfixStackIntoPostfixStack:truncatedPostfixStack postfixStack:postfixStack binaryDigitMode:binaryDigitMode tokenMap:nil];
 }
 
-/**
- *  @inheritDoc
- */
-+ (BOOL)truncateBitwisePostfixStackIntoPostfixStack:(NSMutableArray *)truncatedPostfixStack postfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode tokenMap:(NSDictionary *)tokenMap
-{
-    if (truncatedPostfixStack == nil)
-    {
++ (BOOL)truncateBitwisePostfixStackIntoPostfixStack:(NSMutableArray *)truncatedPostfixStack postfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode tokenMap:(NSDictionary *)tokenMap {
+    if (truncatedPostfixStack == nil) {
         return NO;
     }
 
     unsigned long arrlen = postfixStack.count;
 
-    if ((postfixStack == nil) || (arrlen <= 0))
-    {
+    if ((postfixStack == nil) || (arrlen <= 0)) {
         [truncatedPostfixStack removeAllObjects];
         return NO;
     }
 
-    for (int i = 0; i < arrlen; i++)
-    {
+    for (int i = 0; i < arrlen; i++) {
         id token = [postfixStack objectAtIndex:i];
         VSMathTokenType tokenType = [VSMathUtil typeOfToken:token];
 
-        switch (tokenType)
-        {
+        switch (tokenType) {
             case VSMathTokenTypeNumeric:
-            case VSMathTokenTypeConstant:
-            {
+            case VSMathTokenTypeConstant: {
                 [truncatedPostfixStack addObject:[NSNumber numberWithUnsignedLongLong:[VSMathUtil unsignedLongLongFromToken:token]]];
                 break;
             }
 
-            case VSMathTokenTypeVariable:
-            {
+            case VSMathTokenTypeVariable: {
                 id replacementToken = nil;
 
-                if (tokenMap == nil)
-                {
+                if (tokenMap == nil) {
                     replacementToken = [NSNumber numberWithUnsignedLongLong:0];
                 }
-                else
-                {
+                else {
                     replacementToken = [tokenMap objectForKey:token];
 
-                    if (![replacementToken isKindOfClass:[NSNumber class]])
-                    {
+                    if (![replacementToken isKindOfClass:[NSNumber class]]) {
                         replacementToken = [NSNumber numberWithUnsignedLongLong:[VSMathUtil unsignedLongLongFromToken:replacementToken]];
                     }
                 }
 
-                if (replacementToken != nil)
-                {
+                if (replacementToken != nil) {
                     [truncatedPostfixStack addObject:replacementToken];
                 }
 
                 break;
             }
 
-            case VSMathTokenTypeUnaryPostfixOperator:
-            {
-                if ((truncatedPostfixStack.count <= 0) || ([VSMathUtil typeOfToken:truncatedPostfixStack.lastObject] != VSMathTokenTypeNumeric))
-                {
+            case VSMathTokenTypeUnaryPostfixOperator: {
+                if ((truncatedPostfixStack.count <= 0) || ([VSMathUtil typeOfToken:truncatedPostfixStack.lastObject] != VSMathTokenTypeNumeric)) {
                     [truncatedPostfixStack removeAllObjects];
                     return NO;
                 }
@@ -2259,10 +1804,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             }
 
             case VSMathTokenTypeUnaryPrefixOperator:
-            case VSMathTokenTypeFunction:
-            {
-                if ((truncatedPostfixStack.count <= 0) || ([VSMathUtil typeOfToken:truncatedPostfixStack.lastObject] != VSMathTokenTypeNumeric))
-                {
+            case VSMathTokenTypeFunction: {
+                if ((truncatedPostfixStack.count <= 0) || ([VSMathUtil typeOfToken:truncatedPostfixStack.lastObject] != VSMathTokenTypeNumeric)) {
                     [truncatedPostfixStack removeAllObjects];
                     return NO;
                 }
@@ -2274,10 +1817,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
                 break;
             }
 
-            case VSMathTokenTypeOperator:
-            {
-                if ((truncatedPostfixStack.count < 2) || ([VSMathUtil typeOfToken:truncatedPostfixStack.lastObject] != VSMathTokenTypeNumeric) || ([VSMathUtil typeOfToken:[truncatedPostfixStack objectAtIndex:truncatedPostfixStack.count-2]] != VSMathTokenTypeNumeric))
-                {
+            case VSMathTokenTypeOperator: {
+                if ((truncatedPostfixStack.count < 2) || ([VSMathUtil typeOfToken:truncatedPostfixStack.lastObject] != VSMathTokenTypeNumeric) || ([VSMathUtil typeOfToken:[truncatedPostfixStack objectAtIndex:truncatedPostfixStack.count-2]] != VSMathTokenTypeNumeric)) {
                     [truncatedPostfixStack removeAllObjects];
                     return NO;
                 }
@@ -2290,171 +1831,118 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
                 break;
             }
 
-            case VSMathTokenTypeParenthesis:
-            {
+            case VSMathTokenTypeParenthesis: {
                 // Ignore, as if they never existed.
                 break;
             }
 
-            default:
-            {
-                if (tokenMap != nil)
-                {
+            default: {
+                if (tokenMap != nil) {
                     id replacementToken = [tokenMap objectForKey:token];
 
-                    if (replacementToken != nil)
-                    {
-                        if ([replacementToken isKindOfClass:[NSNumber class]])
-                        {
+                    if (replacementToken != nil) {
+                        if ([replacementToken isKindOfClass:[NSNumber class]]) {
                             [truncatedPostfixStack addObject:replacementToken];
                         }
-                        else
-                        {
+                        else {
                             [truncatedPostfixStack addObject:[NSNumber numberWithUnsignedLongLong:[VSMathUtil unsignedLongLongFromToken:replacementToken]]];
                         }
                     }
-                    else
-                    {
+                    else {
                         [truncatedPostfixStack removeAllObjects];
                         return NO;
                     }
                 }
-                else
-                {
+                else {
                     [truncatedPostfixStack removeAllObjects];
                     return NO;
                 }
             }
         }
     }
-    
-    if (truncatedPostfixStack.count <= 0)
-    {
+
+    if (truncatedPostfixStack.count <= 0) {
         return NO;
     }
-    else if (![truncatedPostfixStack.lastObject isKindOfClass:[NSNumber class]])
-    {
+    else if (![truncatedPostfixStack.lastObject isKindOfClass:[NSNumber class]]) {
         [truncatedPostfixStack removeAllObjects];
         return NO;
     }
-    else
-    {
+    else {
         return YES;
     }
 }
 
-#pragma mark - Expression Evaluation
+#pragma mark Expression Evaluation
 
-/**
- *  @inheritDoc
- */
-+ (NSNumber *)evaluateInfixExpression:(NSString *)infixExpression angleMode:(VSMathAngleModeType)angleMode
-{
++ (NSNumber *)evaluateInfixExpression:(NSString *)infixExpression angleMode:(VSMathAngleModeType)angleMode {
     return [VSMathUtil evaluateInfixExpression:infixExpression angleMode:angleMode tokenMap:nil customVariableSets:nil];
 }
 
-/**
- *  @inheritDoc
- */
-+ (NSNumber *)evaluateInfixExpression:(NSString *)infixExpression angleMode:(VSMathAngleModeType)angleMode tokenMap:(NSDictionary *)tokenMap customVariableSets:(NSArray *)customVariableSets
-{
++ (NSNumber *)evaluateInfixExpression:(NSString *)infixExpression angleMode:(VSMathAngleModeType)angleMode tokenMap:(NSDictionary *)tokenMap customVariableSets:(NSArray *)customVariableSets {
     return [VSMathUtil evaluatePostfixStack:[VSMathUtil postfixStackFromInfixExpression:infixExpression customVariableSets:customVariableSets] angleMode:angleMode tokenMap:tokenMap];
 }
 
-/**
- *  @inheritDoc
- */
-+ (NSNumber *)evaluatePostfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode
-{
++ (NSNumber *)evaluatePostfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode {
     return [VSMathUtil evaluatePostfixStack:postfixStack angleMode:angleMode tokenMap:nil];
 }
 
-/**
- *  @inheritDoc
- */
-+ (NSNumber *)evaluatePostfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode tokenMap:(NSDictionary *)tokenMap
-{
++ (NSNumber *)evaluatePostfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode tokenMap:(NSDictionary *)tokenMap {
     NSArray *truncatedRPN = [VSMathUtil postfixStackByTruncatingPostfixStack:postfixStack angleMode:angleMode tokenMap:tokenMap];
 
-    if (truncatedRPN == nil)
-    {
+    if (truncatedRPN == nil) {
         return nil;
     }
-    else if (truncatedRPN.count != 1)
-    {
+    else if (truncatedRPN.count != 1) {
         return nil;
     }
-    else if (![truncatedRPN.lastObject isKindOfClass:[NSNumber class]])
-    {
+    else if (![truncatedRPN.lastObject isKindOfClass:[NSNumber class]]) {
         return nil;
     }
-    else
-    {
+    else {
         return truncatedRPN.lastObject;
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (NSNumber *)evaluateBitwisePostfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode
-{
++ (NSNumber *)evaluateBitwisePostfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode {
     return [VSMathUtil evaluateBitwisePostfixStack:postfixStack binaryDigitMode:binaryDigitMode tokenMap:nil];
 }
 
-/**
- *  @inheritDoc
- */
-+ (NSNumber *)evaluateBitwisePostfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode tokenMap:(NSDictionary *)tokenMap
-{
++ (NSNumber *)evaluateBitwisePostfixStack:(NSArray *)postfixStack binaryDigitMode:(VSBinaryDigitType)binaryDigitMode tokenMap:(NSDictionary *)tokenMap {
     NSArray *truncatedRPN = [VSMathUtil postfixStackByTruncatingBitwisePostfixStack:postfixStack binaryDigitMode:binaryDigitMode tokenMap:tokenMap];
 
-    if (truncatedRPN == nil)
-    {
+    if (truncatedRPN == nil) {
         return nil;
     }
-    else if (truncatedRPN.count != 1)
-    {
+    else if (truncatedRPN.count != 1) {
         return nil;
     }
-    else if (![truncatedRPN.lastObject isKindOfClass:[NSNumber class]])
-    {
+    else if (![truncatedRPN.lastObject isKindOfClass:[NSNumber class]]) {
         return nil;
     }
-    else
-    {
+    else {
         return truncatedRPN.lastObject;
     }
 }
 
-#pragma mark - Function Sampling
+#pragma mark Function Sampling
 
-/**
- *  @inheritDoc
- */
-+ (NSArray *)samplesFromLinearSamplingInfixExpression:(NSString *)infixExpression angleMode:(VSMathAngleModeType)angleMode xMin:(double)xMin xMax:(double)xMax numberOfSamples:(int)numberOfSamples
-{
++ (NSArray *)samplesFromLinearSamplingInfixExpression:(NSString *)infixExpression angleMode:(VSMathAngleModeType)angleMode xMin:(double)xMin xMax:(double)xMax numberOfSamples:(int)numberOfSamples {
     return [VSMathUtil samplesFromLinearSamplingPostfixStack:[VSMathUtil postfixStackFromInfixExpression:infixExpression] angleMode:angleMode xMin:xMin xMax:xMax numberOfSamples:numberOfSamples];
 }
 
-/**
- *  @inheritDoc
- */
-+ (NSArray *)samplesFromLinearSamplingPostfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode xMin:(double)xMin xMax:(double)xMax numberOfSamples:(int)numberOfSamples
-{
++ (NSArray *)samplesFromLinearSamplingPostfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode xMin:(double)xMin xMax:(double)xMax numberOfSamples:(int)numberOfSamples {
     NSMutableArray *samples = [[NSMutableArray alloc] init];
 
     // Determine the ranges.
     double xStep = (xMax - xMin) / numberOfSamples;
 
-    for (int i = 0; i < numberOfSamples; i++)
-    {
+    for (int i = 0; i < numberOfSamples; i++) {
         double x = xMin + (xStep * i);
         NSNumber *output = [VSMathUtil evaluatePostfixStack:postfixStack angleMode:angleMode tokenMap:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:x], [VSMathUtil symbolWithType:VSMathSymbolTypeXVariable], nil]];
 
         // Check for syntax error.
-        if (output == nil)
-        {
+        if (output == nil) {
             vs_dealloc(samples);
 
             return nil;
@@ -2478,19 +1966,11 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 #endif
 }
 
-/**
- *  @inheritDoc
- */
-+ (NSArray *)samplesFromAdaptiveSamplingInfixExpression:(NSString *)infixExpression angleMode:(VSMathAngleModeType)angleMode xMin:(double)xMin xMax:(double)xMax tolerance:(double)tolerance depth:(int)depth
-{
++ (NSArray *)samplesFromAdaptiveSamplingInfixExpression:(NSString *)infixExpression angleMode:(VSMathAngleModeType)angleMode xMin:(double)xMin xMax:(double)xMax tolerance:(double)tolerance depth:(int)depth {
     return [VSMathUtil samplesFromAdaptiveSamplingPostfixStack:[VSMathUtil postfixStackFromInfixExpression:infixExpression] angleMode:angleMode xMin:xMin xMax:xMax tolerance:tolerance depth:depth];
 }
 
-/**
- *  @inheritDoc
- */
-+ (NSArray *)samplesFromAdaptiveSamplingPostfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode xMin:(double)xMin xMax:(double)xMax tolerance:(double)tolerance depth:(int)depth
-{
++ (NSArray *)samplesFromAdaptiveSamplingPostfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode xMin:(double)xMin xMax:(double)xMax tolerance:(double)tolerance depth:(int)depth {
     if (isnan(tolerance) || tolerance <= 0.0) tolerance = DBL_EPSILON;
 
     double xa  = xMin;
@@ -2528,16 +2008,14 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
                              nil];
 #endif
 
-    if (depth <= 0)
-    {
+    if (depth <= 0) {
         return localSamples;
     }
 
     // Manually walk through the plots to determine whether there is a rapid oscillation.
     int flag = 0;
 
-    for (int i = 1; i < 4; i++)
-    {
+    for (int i = 1; i < 4; i++) {
 #if ! TARGET_OS_MAC
         double prevValue = [(NSValue *)localSamples[i-1] CGPointValue].y;
         double currValue = [(NSValue *)localSamples[i] CGPointValue].y;
@@ -2554,19 +2032,16 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         double nextValue = t3.y;
 #endif
 
-        if (isnan(prevValue) || isnan(currValue) || isnan(nextValue) || ((currValue > prevValue) && (currValue > nextValue)) || ((currValue < prevValue) && (currValue < nextValue)))
-        {
+        if (isnan(prevValue) || isnan(currValue) || isnan(nextValue) || ((currValue > prevValue) && (currValue > nextValue)) || ((currValue < prevValue) && (currValue < nextValue))) {
             flag++;
         }
     }
 
-    if (flag <= 2)
-    {
+    if (flag <= 2) {
         double ncq1 = (3/8)*ya + (19/24)*yab + (-5/24)*yb + (1/24)*ybc;
         double ncq2 = (5/12)*yb + (2/3)*ybc + (-1/12)*yc;
 
-        if (fabs(ncq1-ncq2) < tolerance*ncq2)
-        {
+        if (fabs(ncq1-ncq2) < tolerance*ncq2) {
             return localSamples;
         }
     }
@@ -2579,19 +2054,11 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     return [leftSamples arrayByAddingObjectsFromArray:rightSamples];
 }
 
-/**
- *  @inheritDoc
- */
-+ (NSArray *)samplesFromCustomSamplingInfixExpression:(NSString *)infixExpression angleMode:(VSMathAngleModeType)angleMode xMin:(double)xMin xMax:(double)xMax yMin:(double)yMin yMax:(double)yMax tolerance:(double)tolerance
-{
++ (NSArray *)samplesFromCustomSamplingInfixExpression:(NSString *)infixExpression angleMode:(VSMathAngleModeType)angleMode xMin:(double)xMin xMax:(double)xMax yMin:(double)yMin yMax:(double)yMax tolerance:(double)tolerance {
     return [VSMathUtil samplesFromCustomSamplingPostfixStack:[VSMathUtil postfixStackFromInfixExpression:infixExpression] angleMode:angleMode xMin:xMin xMax:xMax yMin:yMin yMax:yMax tolerance:tolerance];
 }
 
-/**
- *  @inheritDoc
- */
-+ (NSArray *)samplesFromCustomSamplingPostfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode xMin:(double)xMin xMax:(double)xMax yMin:(double)yMin yMax:(double)yMax tolerance:(double)tolerance
-{
++ (NSArray *)samplesFromCustomSamplingPostfixStack:(NSArray *)postfixStack angleMode:(VSMathAngleModeType)angleMode xMin:(double)xMin xMax:(double)xMax yMin:(double)yMin yMax:(double)yMax tolerance:(double)tolerance {
     if (isnan(tolerance)) tolerance = FLT_EPSILON;
 
     NSMutableArray *samples = [[NSMutableArray alloc] init];
@@ -2601,19 +2068,15 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     double prevY = NAN;
     double currY = NAN;
 
-    while (x < xMax)
-    {
+    while (x < xMax) {
         currY = [VSMathUtil doubleFromToken:[VSMathUtil evaluatePostfixStack:postfixStack angleMode:angleMode tokenMap:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:x], VS_M_SYMBOL_X_VARIABLE, nil]]];
 
-        if ((xStep > tolerance) && fisbounded(currY, yMin, yMax) && !fisbounded(prevY, yMin, yMax))
-        {
+        if ((xStep > tolerance) && fisbounded(currY, yMin, yMax) && !fisbounded(prevY, yMin, yMax)) {
             x -= xStep;
             xStep /= 10;
         }
-        else
-        {
-            if (!(isnan(prevY) || isnan(currY)) && (fisbounded(prevY, yMin, yMax) || fisbounded(currY, yMin, yMax)))
-            {
+        else {
+            if (!(isnan(prevY) || isnan(currY)) && (fisbounded(prevY, yMin, yMax) || fisbounded(currY, yMin, yMax))) {
                 CGPoint sample = CGPointMake(x, currY);
 #if ! TARGET_OS_MAC
                 [samples addObject:[NSValue valueWithCGPoint:sample]];
@@ -2621,8 +2084,7 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
                 [samples addObject:[NSValue valueWithBytes:&sample objCType:@encode(CGPoint)]];
 #endif
             }
-            else
-            {
+            else {
                 CGPoint sample = CGPointMake(x, currY);
 #if ! TARGET_OS_MAC
                 [samples addObject:[NSValue valueWithCGPoint:sample]];
@@ -2631,24 +2093,21 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 #endif
             }
 
-            if (fisbounded(currY, yMin, yMax))
-            {
+            if (fisbounded(currY, yMin, yMax)) {
                 xStep /= fabs(prevY - currY);
             }
-            else
-            {
+            else {
                 xStep = tolerance * 1000;
             }
 
-            if (isnan(xStep))
-            {
+            if (isnan(xStep)) {
                 xStep = tolerance * 1000;
             }
 
             xStep = fbound(xStep, tolerance, tolerance*2000);
             prevY = currY;
         }
-        
+
         x += xStep;
     }
 
@@ -2659,57 +2118,37 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
 #endif
 }
 
-/**
- *  @inheritDoc
- */
-+ (double)evaluateSlopeBetweenPoint:(CGPoint)pointA andPoint:(CGPoint)pointB
-{
-    if (isnan(pointA.x) || isnan(pointA.y) || isnan(pointB.x) || isnan(pointB.y))
-    {
++ (double)evaluateSlopeBetweenPoint:(CGPoint)pointA andPoint:(CGPoint)pointB {
+    if (isnan(pointA.x) || isnan(pointA.y) || isnan(pointB.x) || isnan(pointB.y)) {
         return NAN;
     }
 
     double xDelta = pointB.x - pointA.x;
     double yDelta = pointB.y - pointA.y;
 
-    if (fabs(yDelta) < DBL_EPSILON)
-    {
+    if (fabs(yDelta) < DBL_EPSILON) {
         return 0.0;
     }
 
-    if (fabs(xDelta) < DBL_EPSILON)
-    {
+    if (fabs(xDelta) < DBL_EPSILON) {
         return NAN;
     }
 
     return yDelta/xDelta;
 }
 
-#pragma mark - Math Operator Properties
+#pragma mark Math Operator Properties
 
-/**
- *  @inheritDoc
- */
-+ (int)precedenceOfSymbol:(NSString *)symbol
-{
++ (int)precedenceOfSymbol:(NSString *)symbol {
     return [VSMathUtil precedenceOfSymbolType:[VSMathUtil typeOfSymbol:symbol]];
 }
 
-/**
- *  @inheritDoc
- */
-+ (int)precedenceOfSymbolType:(VSMathSymbolType)symbolType
-{
++ (int)precedenceOfSymbolType:(VSMathSymbolType)symbolType {
     return [VSMathUtil precedenceOfOperationType:[VSMathUtil operationTypeOfSymbolType:symbolType]];
 }
 
-/**
- *  @inheritDoc
- */
-+ (int)precedenceOfOperationType:(VSMathOperationType)operationType
-{
-    switch (operationType)
-    {
++ (int)precedenceOfOperationType:(VSMathOperationType)operationType {
+    switch (operationType) {
         case VSMathOperationTypeEqual:
             return 1;
 
@@ -2755,29 +2194,16 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (VSMathOperatorAssociativeType)operatorAssociativeTypeOfSymbol:(NSString *)symbol
-{
++ (VSMathOperatorAssociativeType)operatorAssociativeTypeOfSymbol:(NSString *)symbol {
     return [VSMathUtil operatorAssociativeTypeOfSymbolType:[VSMathUtil typeOfSymbol:symbol]];
 }
 
-/**
- *  @inheritDoc
- */
-+ (VSMathOperatorAssociativeType)operatorAssociativeTypeOfSymbolType:(VSMathSymbolType)symbolType
-{
++ (VSMathOperatorAssociativeType)operatorAssociativeTypeOfSymbolType:(VSMathSymbolType)symbolType {
     return [VSMathUtil operatorAssociativeTypeOfOperationType:[VSMathUtil operationTypeOfSymbolType:symbolType]];
 }
 
-/**
- *  @inheritDoc
- */
-+ (VSMathOperatorAssociativeType)operatorAssociativeTypeOfOperationType:(VSMathOperationType)operationType
-{
-    switch (operationType)
-    {
++ (VSMathOperatorAssociativeType)operatorAssociativeTypeOfOperationType:(VSMathOperationType)operationType {
+    switch (operationType) {
         case VSMathOperationTypeAdd:
         case VSMathOperationTypeSubtract:
         case VSMathOperationTypeMultiply:
@@ -2809,29 +2235,16 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (VSMathOperatorUnaryType)operatorUnaryTypeOfSymbol:(NSString *)symbol
-{
++ (VSMathOperatorUnaryType)operatorUnaryTypeOfSymbol:(NSString *)symbol {
     return [VSMathUtil operatorUnaryTypeOfOperationType:[VSMathUtil operationTypeOfSymbol:symbol]];
 }
 
-/**
- *  @inheritDoc
- */
-+ (VSMathOperatorUnaryType)operatorUnaryTypeOfSymbolType:(VSMathSymbolType)symbolType
-{
++ (VSMathOperatorUnaryType)operatorUnaryTypeOfSymbolType:(VSMathSymbolType)symbolType {
     return [VSMathUtil operatorUnaryTypeOfOperationType:[VSMathUtil operationTypeOfSymbolType:symbolType]];
 }
 
-/**
- *  @inheritDoc
- */
-+ (VSMathOperatorUnaryType)operatorUnaryTypeOfOperationType:(VSMathOperationType)operationType
-{
-    switch (operationType)
-    {
++ (VSMathOperatorUnaryType)operatorUnaryTypeOfOperationType:(VSMathOperationType)operationType {
+    switch (operationType) {
         case VSMathOperationTypeAdd:
         case VSMathOperationTypeSubtract:
         case VSMathOperationTypeMultiply:
@@ -2862,29 +2275,22 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
         case VSMathOperationTypeCubeRoot:
         case VSMathOperationTypeNegative:
             return VSMathOperatorUnaryTypeUnaryPrefix;
-            
+
         default:
             return VSMathOperatorUnaryTypeUnknown;
     }
 }
 
-#pragma mark - Enum Translations
+#pragma mark Enum Translations
 
-/**
- *  @inheritDoc
- */
-+ (VSMathTokenType)typeOfToken:(id)token
-{
-    if (token == nil)
-    {
++ (VSMathTokenType)typeOfToken:(id)token {
+    if (token == nil) {
         return VSMathTokenTypeUnknown;
     }
-    else if ([token isKindOfClass:[NSNumber class]])
-    {
+    else if ([token isKindOfClass:[NSNumber class]]) {
         return VSMathTokenTypeNumeric;
     }
-    else if ([token isKindOfClass:[NSString class]])
-    {
+    else if ([token isKindOfClass:[NSString class]]) {
         if (([token isEqualToString:VS_M_SYMBOL_ADD]) ||
             ([token isEqualToString:VS_M_SYMBOL_SUBTRACT]) ||
             ([token isEqualToString:VS_M_SYMBOL_MULTIPLY]) ||
@@ -2905,20 +2311,17 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
             ([token isEqualToString:VS_M_SYMBOL_OR]) ||
             ([token isEqualToString:VS_M_SYMBOL_NOR]) ||
             ([token isEqualToString:VS_M_SYMBOL_XOR]) ||
-            ([token isEqualToString:VS_M_SYMBOL_XNOR]))
-        {
+            ([token isEqualToString:VS_M_SYMBOL_XNOR])) {
             return VSMathTokenTypeOperator;
         }
         else if (([token isEqualToString:VS_M_SYMBOL_NEGATIVE]) ||
                  ([token isEqualToString:VS_M_SYMBOL_SQUARE_ROOT]) ||
-                 ([token isEqualToString:VS_M_SYMBOL_CUBE_ROOT]))
-        {
+                 ([token isEqualToString:VS_M_SYMBOL_CUBE_ROOT])) {
             return VSMathTokenTypeUnaryPrefixOperator;
         }
         else if (([token isEqualToString:VS_M_SYMBOL_SQUARE]) ||
                  ([token isEqualToString:VS_M_SYMBOL_CUBE]) ||
-                 ([token isEqualToString:VS_M_SYMBOL_FACTORIAL]))
-        {
+                 ([token isEqualToString:VS_M_SYMBOL_FACTORIAL])) {
             return VSMathTokenTypeUnaryPostfixOperator;
         }
         else if (([token isEqualToString:VS_M_SYMBOL_SINE]) ||
@@ -2945,32 +2348,26 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
                  ([token isEqualToString:VS_M_SYMBOL_ONES_COMPLEMENT]) ||
                  ([token isEqualToString:VS_M_SYMBOL_TWOS_COMPLEMENT]) ||
                  ([token isEqualToString:VS_M_SYMBOL_FLIP_WORD]) ||
-                 ([token isEqualToString:VS_M_SYMBOL_FLIP_BYTE]))
-        {
+                 ([token isEqualToString:VS_M_SYMBOL_FLIP_BYTE])) {
             return VSMathTokenTypeFunction;
         }
         else if (([token isEqualToString:VS_M_SYMBOL_LEFT_PARENTHESIS]) ||
-                 ([token isEqualToString:VS_M_SYMBOL_RIGHT_PARENTHESIS]))
-        {
+                 ([token isEqualToString:VS_M_SYMBOL_RIGHT_PARENTHESIS])) {
             return VSMathTokenTypeParenthesis;
         }
         else if (([token isEqualToString:VS_M_SYMBOL_PI]) ||
                  ([token isEqualToString:VS_M_SYMBOL_RANDOM_NUMBER]) ||
-                 ([token isEqualToString:VS_M_SYMBOL_EULER]))
-        {
+                 ([token isEqualToString:VS_M_SYMBOL_EULER])) {
             return VSMathTokenTypeConstant;
         }
         else if (([token isEqualToString:VS_M_SYMBOL_X_VARIABLE]) ||
-                 ([token isEqualToString:VS_M_SYMBOL_Y_VARIABLE]))
-        {
+                 ([token isEqualToString:VS_M_SYMBOL_Y_VARIABLE])) {
             return VSMathTokenTypeVariable;
         }
-        else if ([VSNumberUtil numberFromString:token] != nil)
-        {
+        else if ([VSNumberUtil numberFromString:token] != nil) {
             return VSMathTokenTypeNumeric;
         }
-        else
-        {
+        else {
             return VSMathTokenTypeUnknown;
         }
     }
@@ -2978,79 +2375,56 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     return VSMathTokenTypeUnknown;
 }
 
-/**
- *  @inheritDoc
- */
-+ (VSMathTokenType)typeOfTokenSubset:(id)tokenSubset
-{
-    if (tokenSubset == nil)
-    {
++ (VSMathTokenType)typeOfTokenSubset:(id)tokenSubset {
+    if (tokenSubset == nil) {
         return VSMathTokenTypeUnknown;
     }
 
     VSMathTokenType tokenType = [VSMathUtil typeOfToken:tokenSubset];
 
-    if (tokenType == VSMathTokenTypeUnknown)
-    {
-        if ([tokenSubset isKindOfClass:[NSString class]])
-        {
+    if (tokenType == VSMathTokenTypeUnknown) {
+        if ([tokenSubset isKindOfClass:[NSString class]]) {
             NSCharacterSet *cs = [NSCharacterSet characterSetWithCharactersInString:(NSString *)tokenSubset];
 
-            if ([[VSMathUtil numericCharacterSet] isSupersetOfSet:cs])
-            {
+            if ([[VSMathUtil numericCharacterSet] isSupersetOfSet:cs]) {
                 return VSMathTokenTypeNumeric;
             }
-            else if ([[VSMathUtil functionCharacterSet] isSupersetOfSet:cs])
-            {
+            else if ([[VSMathUtil functionCharacterSet] isSupersetOfSet:cs]) {
                 return VSMathTokenTypeFunction;
             }
-            else if ([[VSMathUtil operatorCharacterSet] isSupersetOfSet:cs])
-            {
+            else if ([[VSMathUtil operatorCharacterSet] isSupersetOfSet:cs]) {
                 return VSMathTokenTypeOperator;
             }
-            else if ([[VSMathUtil unaryPostfixOperatorCharacterSet] isSupersetOfSet:cs])
-            {
+            else if ([[VSMathUtil unaryPostfixOperatorCharacterSet] isSupersetOfSet:cs]) {
                 return VSMathTokenTypeUnaryPostfixOperator;
             }
-            else if ([[VSMathUtil unaryPrefixOperatorCharacterSet] isSupersetOfSet:cs])
-            {
+            else if ([[VSMathUtil unaryPrefixOperatorCharacterSet] isSupersetOfSet:cs]) {
                 return VSMathTokenTypeUnaryPrefixOperator;
             }
-            else if ([[VSMathUtil constantCharacterSet] isSupersetOfSet:cs])
-            {
+            else if ([[VSMathUtil constantCharacterSet] isSupersetOfSet:cs]) {
                 return VSMathTokenTypeConstant;
             }
-            else if ([[VSMathUtil parenthesisCharacterSet] isSupersetOfSet:cs])
-            {
+            else if ([[VSMathUtil parenthesisCharacterSet] isSupersetOfSet:cs]) {
                 return VSMathTokenTypeParenthesis;
             }
-            else if ([[VSMathUtil variableCharacterSet] isSupersetOfSet:cs])
-            {
+            else if ([[VSMathUtil variableCharacterSet] isSupersetOfSet:cs]) {
                 return VSMathTokenTypeVariable;
             }
-            else
-            {
+            else {
                 return VSMathTokenTypeUnknown;
             }
         }
-        else
-        {
+        else {
             return VSMathTokenTypeUnknown;
         }
     }
-    else
-    {
+    else {
         return tokenType;
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (NSString *)symbolWithType:(VSMathSymbolType)symbolType
-{
-    switch (symbolType)
-    {
++ (NSString *)symbolWithType:(VSMathSymbolType)symbolType {
+    switch (symbolType) {
         case VSMathSymbolTypeEqual:                    return VS_M_SYMBOL_EQUAL;
         case VSMathSymbolTypeAdd:                      return VS_M_SYMBOL_ADD;
         case VSMathSymbolTypeSubtract:                 return VS_M_SYMBOL_SUBTRACT;
@@ -3114,11 +2488,7 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (VSMathSymbolType)typeOfSymbol:(NSString *)symbol
-{
++ (VSMathSymbolType)typeOfSymbol:(NSString *)symbol {
     if      (symbol == nil)                                                   return VSMathSymbolTypeUnknown;
     else if ([symbol isEqualToString:VS_M_SYMBOL_EQUAL])                      return VSMathSymbolTypeEqual;
     else if ([symbol isEqualToString:VS_M_SYMBOL_ADD])                        return VSMathSymbolTypeAdd;
@@ -3182,21 +2552,12 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     else                                                                      return VSMathSymbolTypeUnknown;
 }
 
-/**
- *  @inheritDoc
- */
-+ (VSMathOperationType)operationTypeOfSymbol:(NSString *)symbol
-{
++ (VSMathOperationType)operationTypeOfSymbol:(NSString *)symbol {
     return [VSMathUtil operationTypeOfSymbolType:[VSMathUtil typeOfSymbol:symbol]];
 }
 
-/**
- *  @inheritDoc
- */
-+ (VSMathOperationType)operationTypeOfSymbolType:(VSMathSymbolType)symbolType
-{
-    switch (symbolType)
-    {
++ (VSMathOperationType)operationTypeOfSymbolType:(VSMathSymbolType)symbolType {
+    switch (symbolType) {
         case VSMathSymbolTypeEqual:                    return VSMathOperationTypeEqual;
         case VSMathSymbolTypeAdd:                      return VSMathOperationTypeAdd;
         case VSMathSymbolTypeSubtract:                 return VSMathOperationTypeSubtract;
@@ -3258,13 +2619,8 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (VSMathSymbolType)symbolTypeOfOperationType:(VSMathOperationType)operationType
-{
-    switch (operationType)
-    {
++ (VSMathSymbolType)symbolTypeOfOperationType:(VSMathOperationType)operationType {
+    switch (operationType) {
         case VSMathOperationTypeEqual:                    return VSMathSymbolTypeEqual;
         case VSMathOperationTypeAdd:                      return VSMathSymbolTypeAdd;
         case VSMathOperationTypeSubtract:                 return VSMathSymbolTypeSubtract;
@@ -3324,11 +2680,7 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type)
     }
 }
 
-/**
- *  @inheritDoc
- */
-+ (NSString *)symbolWithOperationType:(VSMathOperationType)operationType
-{
++ (NSString *)symbolWithOperationType:(VSMathOperationType)operationType {
     return [VSMathUtil symbolWithType:[VSMathUtil symbolTypeOfOperationType:operationType]];
 }
 
