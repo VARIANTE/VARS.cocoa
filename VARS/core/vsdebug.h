@@ -1,11 +1,11 @@
 /**
- * VARS
- * (c) VARIANTE <http://variante.io>
+ *  VARS
+ *  (c) VARIANTE <http://variante.io>
  *
- * VARS debug tools.
+ *  VARS debug tools.
  *
- * This software is released under the MIT License:
- * http://www.opensource.org/licenses/mit-license.php
+ *  This software is released under the MIT License:
+ *  http://www.opensource.org/licenses/mit-license.php
  */
 
 #ifndef vsdebug_h

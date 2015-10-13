@@ -1,9 +1,9 @@
 /**
- * VARS
- * (c) VARIANTE <http://variante.io>
+ *  VARS
+ *  (c) VARIANTE <http://variante.io>
  *
- * This software is released under the MIT License:
- * http://www.opensource.org/licenses/mit-license.php
+ *  This software is released under the MIT License:
+ *  http://www.opensource.org/licenses/mit-license.php
  */
 
 #import "vsmath.h"
@@ -14,7 +14,7 @@
 #import "VSStringUtil.h"
 
 /**
- * Static NSNumberFormatter instance.
+ *  Static NSNumberFormatter instance.
  */
 static NSNumberFormatter *NUMBER_FORMATTER;
 
@@ -51,11 +51,11 @@ NSString *NSStringFromVSBinaryDigitType(VSBinaryDigitType type) {
 #pragma mark Formatting
 
 /**
- * @private
+ *  @private
  *
- * Gets the singleton NSNumberFormatter instance.
+ *  Gets the singleton NSNumberFormatter instance.
  *
- * @return NSNumberFormatter instance.
+ *  @return NSNumberFormatter instance.
  */
 + (NSNumberFormatter *)_globalNumberFormatter {
     static dispatch_once_t predicate;

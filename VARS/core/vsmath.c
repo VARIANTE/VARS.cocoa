@@ -1,9 +1,9 @@
 /**
- * VARS
- * (c) VARIANTE <http://variante.io>
+ *  VARS
+ *  (c) VARIANTE <http://variante.io>
  *
- * This software is released under the MIT License:
- * http://www.opensource.org/licenses/mit-license.php
+ *  This software is released under the MIT License:
+ *  http://www.opensource.org/licenses/mit-license.php
  */
 
 #import <float.h>
@@ -388,7 +388,9 @@ float fncrf(float __n, float __r) {
                 float b = __r * log10f(__r);
                 float c = (__n-__r) * log10f(__n-__r);
 
-                o = a-c-b; // Due to precision issues, order from likelihood of largest to smallest.
+                // Due to precision issues, order from likelihood of
+                // largest to smallest.
+                o = a-c-b;
 
                 if (o < 0.0f) {
                     o = NAN;
@@ -412,7 +414,9 @@ float fncrf(float __n, float __r) {
                 float c = (__n-__r+0.5)*log10f(__n-__r);
                 float d = 0.5f*log10f(2.0f*M_PI);
 
-                o = a-c-b-d; // Due to precision issues, order from likelihood of largest to smallest.
+                // Due to precision issues, order from likelihood of largest to
+                // smallest.
+                o = a-c-b-d;
 
                 if (o < 0.0f) {
                     o = NAN;
@@ -455,7 +459,9 @@ float fncrf(float __n, float __r) {
         float b = lgammaf(__r+1.0f); // ln(r!)
         float c = lgammaf(__n-__r+1.0f); // ln((n-r))!
 
-        o = a-c-b; // Due to precision issues, order from likelihood of largest to smallest.
+        // Due to precision issues, order from likelihood of largest to
+        // smallest.
+        o = a-c-b;
         o = expf(o);
     }
 
@@ -494,7 +500,9 @@ double fncr(double __n, double __r) {
                 double b = __r * log10(__r);
                 double c = (__n-__r) * log10(__n-__r);
 
-                o = a-c-b; // Due to precision issues, order from likelihood of largest to smallest.
+                // Due to precision issues, order from likelihood of largest to
+                // smallest.
+                o = a-c-b;
 
                 if (o < 0.0) {
                     o = NAN;
@@ -518,7 +526,9 @@ double fncr(double __n, double __r) {
                 double c = (__n-__r+0.5)*log10(__n-__r);
                 double d = 0.5*log10(2.0*M_PI);
 
-                o = a-c-b-d; // Due to precision issues, order from likelihood of largest to smallest.
+                // Due to precision issues, order from likelihood of largest to
+                // smallest.
+                o = a-c-b-d;
 
                 if (o < 0.0) {
                     o = NAN;
@@ -561,7 +571,9 @@ double fncr(double __n, double __r) {
         double b = lgamma(__r+1.0); // ln(r!)
         double c = lgamma(__n-__r+1.0); // ln((n-r))!
 
-        o = a-c-b; // Due to precision issues, order from likelihood of largest to smallest.
+        // Due to precision issues, order from likelihood of largest to
+        // smallest.
+        o = a-c-b;
         o = exp(o);
     }
 
@@ -571,7 +583,8 @@ double fncr(double __n, double __r) {
 float fnprf(float __n, float __r) {
     float o = 1.0f;
 
-    // If n and r are a positive integers, compute the standard r-permutations of n.
+    // If n and r are a positive integers, compute the standard r-permutations
+    //  of n.
     if (fisintf(__n) && __n >= 0.0f && fisintf(__r) && __r >= 0.0f) {
         // General properties.
         if (__n == __r)      return ffactf(__n);
@@ -599,7 +612,9 @@ float fnprf(float __n, float __r) {
                 float b = (__n-__r) * log10f(__n-__r);
                 float c = __r;
 
-                o = a-b-c; // Due to precision issues, order from likelihood of largest to smallest.
+                // Due to precision issues, order from likelihood of largest to
+                // smallest.
+                o = a-b-c;
 
                 if (o < 0.0f) {
                     o = NAN;
@@ -622,7 +637,9 @@ float fnprf(float __n, float __r) {
                 float b = (__n-__r+0.5f)*log10f(__n-__r);
                 float c = __r;
 
-                o = a-b-c; // Due to precision issues, order from likelihood of largest to smallest.
+                // Due to precision issues, order from likelihood of largest to
+                // smallest.
+                o = a-b-c;
 
                 if (o < 0.0f) {
                     o = NAN;
@@ -654,7 +671,9 @@ float fnprf(float __n, float __r) {
         float a = lgammaf(__n+1.0f); // ln(n!)
         float b = lgammaf(__n-__r+1.0f); // ln((n-r))!
 
-        o = a-b; // Due to precision issues, order from likelihood of largest to smallest.
+        // Due to precision issues, order from likelihood of largest to
+        // smallest.
+        o = a-b;
         o = expf(o);
     }
 
@@ -664,7 +683,8 @@ float fnprf(float __n, float __r) {
 double fnpr(double __n, double __r) {
     double o = 1.0;
 
-    // If n and r are a positive integers, compute the standard r-permutations of n.
+    // If n and r are a positive integers, compute the standard r-permutations
+    // of n.
     if (fisint(__n) && __n >= 0.0 && fisint(__r) && __r >= 0.0) {
         // General properties.
         if (__n == __r)     return ffact(__n);
@@ -692,7 +712,9 @@ double fnpr(double __n, double __r) {
                 double b = (__n-__r) * log10(__n-__r);
                 double c = __r;
 
-                o = a-b-c; // Due to precision issues, order from likelihood of largest to smallest.
+                // Due to precision issues, order from likelihood of largest to
+                // smallest.
+                o = a-b-c;
 
                 if (o < 0.0) {
                     o = NAN;
@@ -715,7 +737,9 @@ double fnpr(double __n, double __r) {
                 double b = (__n-__r+0.5)*log10(__n-__r);
                 double c = __r;
 
-                o = a-b-c; // Due to precision issues, order from likelihood of largest to smallest.
+                // Due to precision issues, order from likelihood of largest to
+                // smallest.
+                o = a-b-c;
 
                 if (o < 0.0) {
                     o = NAN;
@@ -747,7 +771,9 @@ double fnpr(double __n, double __r) {
         double a = lgamma(__n+1.0); // ln(n!)
         double b = lgamma(__n-__r+1.0); // ln((n-r))!
 
-        o = a-b; // Due to precision issues, order from likelihood of largest to smallest.
+        // Due to precision issues, order from likelihood of largest to
+        // smallest.
+        o = a-b;
         o = exp(o);
     }
 

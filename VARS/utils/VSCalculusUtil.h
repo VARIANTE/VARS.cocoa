@@ -1,11 +1,11 @@
 /**
- * VARS
- * (c) VARIANTE <http://variante.io>
+ *  VARS
+ *  (c) VARIANTE <http://variante.io>
  *
- * Utility for complex calculus operations.
+ *  Utility for complex calculus operations.
  *
- * This software is released under the MIT License:
- * http://www.opensource.org/licenses/mit-license.php
+ *  This software is released under the MIT License:
+ *  http://www.opensource.org/licenses/mit-license.php
  */
 
 #import <Foundation/Foundation.h>
