@@ -939,7 +939,7 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type) {
     if (result == INFINITY || result == -INFINITY) {
         return NAN;
     }
-    else if (fabs(result) == 0) {
+    else if (fabs(result) < DBL_EPSILON) {
         return 0.0;
     }
     else {
