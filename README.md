@@ -1,6 +1,6 @@
-# VARS (VARIANTE Stack) for Cocoa/Cocoa Touch
+# VARS for Cocoa/Cocoa Touch
 
-This framework contains many utility classes meant for internal use only.
+This library contains many utility classes meant for internal use only.
 
 ## License
 
