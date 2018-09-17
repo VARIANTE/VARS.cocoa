@@ -101,6 +101,7 @@ build
 upload
 uploads
 docs
+.tmp
 .publish
 
 # CMS files
