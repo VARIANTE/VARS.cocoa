@@ -1,6 +1,0 @@
-framework module VARS {
-  umbrella header "VARS.h"
-
-  export *
-  module * { export * }
-}
