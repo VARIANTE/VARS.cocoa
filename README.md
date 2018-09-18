@@ -1,7 +1,7 @@
 # VARS for Cocoa/Cocoa Touch
 
-This library contains many utility classes meant for internal use only.
+This is a Cocoa/Cocoa Touch utility library meant for internal use only.
 
 ## License
 
-MIT
+This software is released under the [MIT License](http://opensource.org/licenses/MIT).
