@@ -555,28 +555,36 @@ NSString *NSStringFromVSMathTokenType(VSMathTokenType type) {
         case VSMathOperationTypeAdd: {
             if (isnan(operandX)) return NAN;
             if (isnan(operandY)) return NAN;
-            result = operandX + operandY;
+            NSDecimalNumber *x = (NSDecimalNumber *)[NSDecimalNumber numberWithDouble:operandX];
+            NSDecimalNumber *y = (NSDecimalNumber *)[NSDecimalNumber numberWithDouble:operandY];
+            result = [[x decimalNumberByAdding:y] doubleValue];
             break;
         }
 
         case VSMathOperationTypeSubtract: {
             if (isnan(operandX)) return NAN;
             if (isnan(operandY)) return NAN;
-            result = operandX - operandY;
+            NSDecimalNumber *x = (NSDecimalNumber *)[NSDecimalNumber numberWithDouble:operandX];
+            NSDecimalNumber *y = (NSDecimalNumber *)[NSDecimalNumber numberWithDouble:operandY];
+            result = [[x decimalNumberBySubtracting:y] doubleValue];
             break;
         }
 
         case VSMathOperationTypeMultiply: {
             if (isnan(operandX)) return NAN;
             if (isnan(operandY)) return NAN;
-            result = operandX * operandY;
+            NSDecimalNumber *x = (NSDecimalNumber *)[NSDecimalNumber numberWithDouble:operandX];
+            NSDecimalNumber *y = (NSDecimalNumber *)[NSDecimalNumber numberWithDouble:operandY];
+            result = [[x decimalNumberByMultiplyingBy:y] doubleValue];
             break;
         }
 
         case VSMathOperationTypeDivide: {
             if (isnan(operandX)) return NAN;
             if (isnan(operandY)) return NAN;
-            result = operandX / operandY;
+            NSDecimalNumber *x = (NSDecimalNumber *)[NSDecimalNumber numberWithDouble:operandX];
+            NSDecimalNumber *y = (NSDecimalNumber *)[NSDecimalNumber numberWithDouble:operandY];
+            result = [[x decimalNumberByDividingBy:y] doubleValue];
             break;
         }
 
